@@ -1,0 +1,403 @@
+/*! 
+* @package IcoFont 
+* @version 1.0.1 
+* @author IcoFont https://icofont.com 
+* @copyright Copyright (c) 2015 - 2018 IcoFont 
+* @license - https://icofont.com/license/
+*/
+
+@font-face{
+  font-family: "IcoFont";
+  font-weight: normal;
+  font-style: "Regular";
+  src: url("../fonts/icofont.woff2") format("woff2"),
+  url("../fonts/icofont.woff") format("woff");
+}
+
+[class^="icofont-"], [class*=" icofont-"]{
+  font-family: 'IcoFont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+.icofont-star:before {
+f000
+}
+
+.icofont-search-2:before {
+  content: "\ed12";
+}
+
+.icofont-minus:before {
+  content: "\ef9a";
+}
+
+.icofont-plus:before{
+   content: "\efc2";
+}
+
+.icofont-refresh:before {
+  content: "\efd1";
+}
+
+.icofont-info-circle:before {
+  content: "\ef4e";
+}
+
+.icofont-envelope:before {
+  content: "\ef14";
+}
+
+.icofont-close:before{
+  content: "\eee4";
+}
+
+.icofont-quote-left:before{
+  content: "\efcd";
+}
+
+.icofont-quote-right:before{
+  content: "\efce";
+}
+
+.icofont-clock-time:before{
+  content: "\eedc";
+}
+
+.icofont-minus:before{
+  content: "\ef9a";
+}
+
+.icofont-close:before{
+   content: "\eee4";
+}
+
+.icofont-ui-touch-phone:before{
+  content: "\ec8a";
+}
+
+.icofont-share:before{
+  content: "\efe5";
+}
+
+.icofont-eye-alt:before{
+  content: "\ef21";
+}
+
+.icofont-fw{
+  text-align: center;
+  width: 1.25em;
+}
+
+.icofont-ul{
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.icofont-ul > li{
+  position: relative;
+  line-height: 2em;
+}
+
+.icofont-ul > li .icofont{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.icofont-border{
+  border: solid 0.08em #f1f1f1;
+  border-radius: .1em;
+  padding: .2em .25em .15em;
+}
+
+.icofont-pull-left{
+  float: left;
+}
+
+.icofont-pull-right{
+  float: right;
+}
+
+.icofont.icofont-pull-left{
+  margin-right: .3em;
+}
+
+.icofont.icofont-pull-right{
+  margin-left: .3em;
+}
+
+.icofont-globe:before
+{
+  content: "\ef3e";
+}
+
+.icofont-facebook:before
+{
+  content: "\ed37";
+}
+
+.icofont-line:before
+{
+  content: "\ed4c";
+}
+
+.icofont-thin-up:before
+{
+  content: "\eacb";
+}
+
+.icofont-ui-edit:before
+{
+  content: "\ec55";
+}
+.icofont-verification-check:before{
+  content: "\eed8";
+}
+
+.icofont-long-arrow-right:before{
+    content: "\ea94";
+  }
+
+  .icofont-arrow-left:before{
+    content: "\ea5c";
+  }
+
+.icofont-spin{
+  -webkit-animation: icofont-spin 2s infinite linear;
+  animation: icofont-spin 2s infinite linear;
+  display: inline-block;
+}
+
+.icofont-pulse{
+  -webkit-animation: icofont-spin 1s infinite steps(8);
+  animation: icofont-spin 1s infinite steps(8);
+  display: inline-block;
+}
+
+
+
+@-webkit-keyframes icofont-spin
+{
+  0%
+  {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100%
+  {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes icofont-spin{
+  0%
+  {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100%
+  {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.icofont-rotate-90{
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.icofont-rotate-180{
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.icofont-rotate-270{
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.icofont-flip-horizontal{
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.icofont-flip-vertical
+{
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+.icofont-flip-horizontal.icofont-flip-vertical
+{
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(-1, -1);
+  transform: scale(-1, -1);
+}
+
+:root .icofont-rotate-90,
+:root .icofont-rotate-180,
+:root .icofont-rotate-270,
+:root .icofont-flip-horizontal,
+:root .icofont-flip-vertical
+{
+  -webkit-filter: none;
+  filter: none;
+  display: inline-block;
+}
+
+.icofont-inverse
+{
+  color: #fff;
+}
+
+
+.sr-only{
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus{
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.icofont-newspaper:before{
+  content: "\efa7";
+}
+
+.icofont-image:before{
+  content: "\ef4b";
+}
+
+.icofont-location-pin:before{
+  content: "\ef79";
+}
+
+.icofont-facebook:before{
+  content: "\ed37";
+}
+
+/*Font Awesome 5 ---------------------*/
+
+@font-face {
+  font-family: "Font Awesome 5 Brands";
+  font-style: normal;
+  font-weight: normal;
+  src: url(../fonts/fa-brands-400.eot);
+  src: url(../fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-400.woff2) format("woff2"), url(../fonts/fa-brands-400.woff) format("woff"), url(../fonts/fa-brands-400.ttf) format("truetype"), url(../fonts/fa-brands-400.svg#fontawesome) format("svg")
+}
+
+.fab {
+  font-family: "Font Awesome 5 Brands"
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/fa-regular-400.eot);
+  src: url(../fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-400.woff2) format("woff2"), url(../fonts/fa-regular-400.woff) format("woff"), url(../fonts/fa-regular-400.ttf) format("truetype"), url(../fonts/fa-regular-400.svg#fontawesome) format("svg")
+}
+
+.far {
+  font-weight: 400
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  src: url(../fonts/fa-solid-900.eot);
+  src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"), url(../fonts/fa-solid-900.ttf) format("truetype"), url(../fonts/fa-solid-900.svg#fontawesome) format("svg")
+}
+
+.fa, .fab, .fal, .far, .fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.fa,
+.far,
+.fas {
+  font-family: "Font Awesome 5 Free"
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa,
+.fas {
+  font-weight: 900
+}
+
+.fa-times:before {
+  content: "\f00d";
+}
+.fa-caret-left:before {
+ content: "\f0d9";
+}
+.fa-caret-down:before {
+  content: "\f0d7";
+}
+
+.fa-square:before {
+  content: "\f0c8";
+  color: #717171;
+}
+.fa-map-marker-alt:before{
+  content: "\f3c5";
+}
+.fa-spinner:before{
+  content: "\f110"
+}
+.fa-pulse {
+    -webkit-animation: fa-spin 1s steps(8) infinite;
+    animation: fa-spin 1s steps(8) infinite;
+}
+@keyframes fa-spin{
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  100% {
+      -webkit-transform: rotate(1turn);
+      transform: rotate(1turn);
+  }
+

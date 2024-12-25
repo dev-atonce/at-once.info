@@ -1,0 +1,35 @@
+var device = $.fn.deviceDetector;
+axios({
+    method: 'post',
+    url: window.location.pathname+'/capture',
+    data: {
+        'browserId':device.getBrowserId(),
+        'browserName': device.getBrowserName(),
+        'browserVersion' : device.getBrowserVersion(),
+        'osId': device.getOsId(),
+        'osName' : device.getOsName(),
+        'osVersion' : device.getOsVersion(),
+        'desktop' : device.isDesktop(),
+        'mobile' : device.isMobile(),
+        'android': device.isAndroid(),
+        'blackberry': device.isBlackberry(),
+        'ios' : device.isIos(),
+        'linux' : device.isLinux(),
+        'macos' : device.isMacos(),
+        'windows': device.isWindows(),
+        'windowsPhone' : device.isWindowsPhone(),
+        'ipad' : device.isIpad(),
+        'iphone' : device.isIphone(),
+        'chrome' : device.isChrome(),
+        'edge' : device.isEdge(),
+        'firefox' : device.isFirefox(),
+        'ie' : device.isIe(),
+        'ieMobile' : device.isIeMobile(),
+        'msie' : device.isMsie(),
+        'opera' : device.isOpera(),
+        'operaMini' : device.isOperaMini(),
+        'safari' : device.isSafari(),
+        'bsd' : device.isBsd()
+    },
+    responseType: 'json'
+});

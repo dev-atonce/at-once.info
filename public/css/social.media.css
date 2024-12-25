@@ -1,0 +1,38 @@
+.share-this-page,
+.print-this-page{
+    cursor: pointer;
+}
+.btn-share{
+    display: table;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 12px;
+    margin: auto;
+}
+.share-item{
+  margin:0 5px 0 5px; 
+}
+.noti {
+    background-color: #999;
+    padding: 20px;
+    opacity: 0.5;
+}
+  
+.notifications{
+    z-index: 1060;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em;
+    overflow: hidden;
+    background: rgba(0,0,0, 0.5);
+}
+.noti--active {
+    -webkit-transition: bottom 0.350s ease-out;  
+    -moz-transition: bottom 0.350s ease-out;
+    -ms-transition: bottom 0.350s ease-out;
+    -o-transition: bottom 0.350s ease-out;
+    transition: bottom 0.350s ease-out;
+}

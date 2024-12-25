@@ -1,0 +1,576 @@
+
+.nav-company .nav-link.active, .nav-company .nav-item.show .nav-link {
+    color: #495057;
+    /* background-color: #fff; */
+    background-color: #fc593b;
+    border-color: #dee2e6 #dee2e6 #fff;
+    color: #fff;
+}
+
+.nav-company .nav-link {
+    /* border: 1px solid #fc593b; */
+    border-top-left-radius: 0.25rem;
+    background-color: #fc593b1c;
+    border-top-right-radius: 0.25rem;
+    color: #1f1f1f;
+}
+
+
+.info-member .nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #1f1f1f;
+}
+
+.submenu-logout img {
+    color: #888;
+    filter: opacity(0.5);
+    width: 18px;
+    margin-bottom: 7px;
+}
+
+.profile-edit {
+    width: 280px;
+    background: rgb(243, 245, 248);
+    border-right: 1px solid rgb(229, 229, 229);
+    padding: 48px 16px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    border-radius: 12px 0px 0px 12px;
+}
+.personal {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;
+    border-radius: 12px;
+}
+.right {
+    flex: 1 1 0%;
+    background: rgb(255, 255, 255);
+    padding: 48px;
+}
+
+.left{
+  background: rgb(243, 245, 248);
+}
+
+
+.change-profile-image{
+    color: #fff;
+    background-color: #258aff;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.profile-img {
+    border: 10px solid rgba(255,255,255);
+    box-shadow: 0 0 1px 1px rgba(200,200,200);
+    border-radius: 4px;
+}
+
+.company-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+}
+
+.right .group-box-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-box-right .input-group-prepend img {
+    color: #888;
+    filter: opacity(0.5);
+    width: 18px;
+}
+
+.group-box-right .input-group {
+    margin-bottom: 1.5rem !important;
+}
+
+.cover-bg-profile {
+    height: 172px;
+    background-color: #a4a4a4;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+a.toggle-manage-cover {
+    background-color: #fff;
+    padding: 7px 16px;
+    border-radius: 30px;
+    border: 2px solid rgba(0, 0, 0, .6);
+}
+
+.self-cover-manage{
+   box-shadow: 0 -0.5px 0 0 rgb(44 44 44 / 66%);
+   color: #fff;
+   font-size: 14px;
+   background-color: rgb(0 0 0 / 63%);
+   line-height: 26px;
+   height: 24px;
+   padding: 1px 10px;
+   text-align: center;
+   top: 1px;
+   right: 0;
+   margin: calc(8px);
+   z-index: 10;
+   border-radius: 2px;
+   position: absolute;
+}
+
+.self-cover-manage:hover{
+    color: #fff;
+}
+
+.info-member img {
+    border: 1px solid #b5b5b5;
+}
+
+.info-member .nav-link.active {
+    color: #495057;
+    background-color: #fff;
+    z-index: 9;
+    position: relative;
+    border-color: #ced4da #ced4da #fff;
+}
+
+.info-member {
+    border-bottom: 0px solid #ced4da;
+}
+
+.info-member .form-control {
+    border-radius: 0px 4px 4px 4px;
+}
+
+
+.btn-update{
+   /* position: absolute;
+   bottom: 30px;*/
+}
+
+@media only screen and (max-width: 991.98px){
+    .left {
+        width: auto;
+        padding: 0;
+        margin: 0;
+        background: rgb(251, 251, 251);
+        border: 1px solid rgb(229, 229, 229);
+        box-sizing: border-box;
+        border-radius: 6px;
+    }
+
+    .personal {
+        flex-direction: column;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+    .profile-edit {
+        width: 100%;
+        background: rgb(243, 245, 248);
+        border-right: 1px solid rgb(229, 229, 229);
+        padding: 20px 16px;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        align-items: center;
+        border-radius: 12px 0px 0px 12px;
+    }
+
+    .right {
+        padding: 16px;
+    }
+}
+
+
+
+
+.user-submenu ul li a {
+    display: flex;
+    position: relative;
+    padding: 10px 14px;
+    color: #333;
+    font-weight: 400;
+    margin: 1px 0;
+    align-items: center;
+}
+
+.user-submenu ul li a.current::before {
+    content: '';
+    width: 8px;
+    background: #1a81c4;
+    height: 100%;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
+.user-submenu ul li a .member-menu-icon img {
+ background: #777777;
+ width: 24px;
+ height: 24px;
+ padding: 3px;
+ border-radius: 4px;
+ filter: invert(1);
+}
+.user-submenu ul li a:hover, .user-submenu ul li a.current {
+    background-color: rgb(211 229 241);
+    text-decoration: none;
+    margin: 1px 0;
+}
+
+.user-submenu ul li a.current .member-menu-title {
+    color: #292b54;
+    font-weight: 500;
+}
+.user-submenu ul li a .member-menu-title {
+    color: #828c9e;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 14px;
+}
+.nav-item.this-active{
+  background-color: rgb(211 229 241);
+  text-decoration: none;
+  margin: 1px 0;
+}
+
+
+
+
+
+
+
+
+
+figure {
+    margin: 0;
+}
+
+.snip1566 {
+    position: relative;
+    display: inline-block;
+    max-width: 100px;
+    max-height: 100px;
+    width: 100%;
+    color: #bbb;
+    font-size: 16px;
+    box-shadow: none !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+
+.snip1566 img {
+    max-width: 100%;
+    backface-visibility: hidden;
+    vertical-align: top;
+}
+
+.snip1566 figcaption {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    background-color: rgb(0 0 0 / 50%);
+}
+
+.snip1566 small {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    z-index: 999;
+    color: #fff;
+
+}
+
+
+.snip1566 a {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.snip1566:hover figcaption,
+.snip1566.hover figcaption {
+    opacity: 1;
+    -webkit-transition: all 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+}
+
+
+
+.uk-hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* ========================================================================
+   Component: Dropdown
+   ========================================================================== */
+/*
+ * 1. Hide by default
+ * 2. Set position
+ * 3. Box-sizing is needed for `uk-dropdown-justify`
+ * 4. Set width
+ */
+ .uk-dropdown,
+ .uk-dropdown-blank {
+    display: none;
+    position: absolute;
+    z-index: 1020;
+    box-sizing: border-box;
+    width: 300px;
+}
+/*
+ * Dropdown style
+ * 1. Reset button group whitespace hack
+ */
+ .uk-dropdown {
+  padding: 15px;
+  background: #fff;
+  color: #444;
+  z-index: 9;
+  font-size: 1rem;
+  vertical-align: top;
+  border: 1px solid #cbcbcb;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+/*
+ * 1. Show dropdown
+ * 2. Set animation
+ * 3. Needed for scale animation
+ */
+ .uk-open > .uk-dropdown,
+ .uk-open > .uk-dropdown-blank {
+  /* 1 */
+  display: block;
+  /* 2 */
+  -webkit-animation: uk-fade 0.2s ease-in-out;
+  animation: uk-fade 0.2s ease-in-out;
+  /* 3 */
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.uk-dropdown-top {
+  margin-top: -5px;
+}
+.uk-dropdown-bottom {
+  margin-top: 5px;
+}
+.uk-dropdown-left {
+  margin-left: -5px;
+}
+.uk-dropdown-right {
+  margin-left: 5px;
+}
+
+
+
+/* ========================================================================
+   Component: Tab
+   ========================================================================== */
+   .uk-tab {
+      margin: 0;
+      padding: 0;
+      list-style: none;;
+  }
+
+  .uk-tab .linamecompany{
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      color: #1f1f1f;
+  }
+/*
+ * Micro clearfix on the deepest container
+ */
+ .uk-tab:before,
+ .uk-tab:after {
+  content: "";
+  display: table;
+}
+.uk-tab:after {
+  clear: both;
+}
+/*
+ * Items
+ * 1. Create position context for dropdowns
+ */
+ .uk-tab > li {
+  margin-bottom: -1px;
+  float: left;
+  /* 1 */
+  position: relative;
+
+}
+.uk-tab > li > a {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-bottom-width: 0;
+  background-color: #fc593b1c;
+  color: #1f1f1f;
+  text-decoration: none;
+  border-radius: 4px 4px 0 0;
+  width: 203px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-height: 27px;
+}
+.uk-tab > li:nth-child(n+2) > a {
+  margin-left: 5px;
+}
+/*
+ * Hover
+ * 1. Apply hover style also to focus state
+ * 2. Also apply if dropdown is opened
+ * 3. Remove default focus style
+ */
+ .uk-tab > li > a:hover,
+ .uk-tab > li > a:focus,
+ .uk-tab > li.uk-open > a {
+  border-color: #ddd;
+  background: #fafafa;
+  color: #059;
+  /* 2 */
+  outline: none;
+}
+.uk-tab > li:not(.uk-active) > a:hover,
+.uk-tab > li:not(.uk-active) > a:focus,
+.uk-tab > li.uk-open:not(.uk-active) > a {
+  margin-bottom: 1px;
+  padding-bottom: 7px;
+}
+/* Active */
+.uk-tab > li.uk-active > a {
+  border-color: #ddd;
+  border-bottom-color: transparent;
+  background-color: #fc593b;
+  color: #fff!important;
+
+}
+/* Disabled */
+.uk-tab > li.uk-disabled > a {
+  color: #999;
+  cursor: text;
+}
+.uk-tab > li.uk-disabled > a:hover,
+.uk-tab > li.uk-disabled > a:focus,
+.uk-tab > li.uk-disabled.uk-active > a {
+  background: none;
+  border-color: transparent;
+}
+/* Modifier: 'tab-flip'
+========================================================================== */
+.uk-tab-flip > li {
+  float: right;
+}
+.uk-tab-flip > li:nth-child(n+2) > a {
+  margin-left: 0;
+  margin-right: 5px;
+}
+/* Modifier: 'tab-responsive'
+========================================================================== */
+.uk-tab > li.uk-tab-responsive > a {
+  margin-left: 0;
+  margin-right: 0;
+}
+/*
+ * Icon
+ */
+ .uk-tab-responsive > a:before {
+  content: "\efa2";
+  font-family: icofont!important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  margin-right: 6px;
+}
+/* Modifier: 'tab-center'
+========================================================================== */
+.uk-tab-center {
+  border-bottom: 1px solid #ddd;
+}
+.uk-tab-center-bottom {
+  border-bottom: none;
+  border-top: 1px solid #ddd;
+}
+.uk-tab-center:before,
+.uk-tab-center:after {
+  content: "";
+  display: table;
+}
+.uk-tab-center:after {
+  clear: both;
+}
+/*
+ * 1. Using `right` to prevent vertical scrollbar caused by centering if to many tabs
+ */
+ .uk-tab-center .uk-tab {
+  position: relative;
+  right: 50%;
+  border: none;
+  float: right;
+}
+.uk-tab-center .uk-tab > li {
+  position: relative;
+  right: -50%;
+}
+.uk-tab-center .uk-tab > li > a {
+  text-align: center;
+}
+/* Modifier: 'tab-bottom'
+========================================================================== */
+.uk-tab-bottom {
+  border-top: 1px solid #ddd;
+  border-bottom: none;
+}
+.uk-tab-bottom > li {
+  margin-top: -1px;
+  margin-bottom: 0;
+}
+.uk-tab-bottom > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-bottom-width: 1px;
+  border-top-width: 0;
+}
+.uk-tab-bottom > li:not(.uk-active) > a:hover,
+.uk-tab-bottom > li:not(.uk-active) > a:focus,
+.uk-tab-bottom > li.uk-open:not(.uk-active) > a {
+  margin-bottom: 0;
+  margin-top: 1px;
+  padding-bottom: 8px;
+  padding-top: 7px;
+}
+.uk-tab-bottom > li.uk-active > a {
+  border-top-color: transparent;
+  border-bottom-color: #ddd;
+}

@@ -1,0 +1,201 @@
+#my-jobs .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+}
+
+ .card-header {
+    position: relative;
+    padding: 1rem 1rem;
+    border-bottom: none;
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+    z-index: 2;
+}
+
+
+
+.card-header h5{
+    padding: 4px;
+}
+.card-footer {
+    padding: 1rem 2rem;
+    background-color: rgba(0,0,0,.03);
+    border-top: 1px solid transparent;
+}
+
+/*table*/
+.table-light th, .table-light td, .table-light thead th, .table-light tbody+tbody {
+    border-color: #f5f6f7;
+    font-weight: 500;
+    color: #7e8299;
+}
+
+.form-check-input {
+ position: relative; 
+ margin-top: 0; 
+}
+
+.table-hover>tbody>tr:hover>* {
+    --bs-table-accent-bg: var(--bs-table-hover-bg);
+    color: var(--bs-table-hover-color);
+}
+
+/*.table th, .table td {
+    vertical-align: middle;
+    }*/
+
+    .table-light .th-date{
+        width: 100px;
+    }
+
+    .table-light .th-status{
+        width: 120px;
+    }
+
+
+    .cs .strock-list{
+        overflow-y: scroll;
+        max-height: 500px;
+        height: 100%;
+    }
+
+    .cs .reject-list{
+        overflow-y: scroll;
+        min-height: 200px;
+        max-height: 400px;
+        height: 100%;
+    }
+
+    .tranfer-list{
+       overflow-y: scroll;
+       min-height: 533px;
+       max-height: 533px;
+       height: 100%;
+   }
+
+   .vr {
+    display: inline-block;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    width: 1px;
+    min-height: 1em;
+    background-color: currentColor;
+    opacity: 0.25;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.border-left{
+    border-width: 0 1px;
+    border-left: 1px solid;
+}
+
+.file-thumbnail {
+    height: 2.50rem;
+    width: 2.50rem;
+    border-radius: 4px;
+}
+
+.flex-between-center {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.btn-send{
+    padding: 0.375rem 1.75rem;
+}
+
+
+.col-auto {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+}
+
+.progress-thin {
+    height: 4px;
+}
+
+.fw-semibold {
+    font-weight: 600 !important;
+}
+
+.fs-4 {
+    font-size: 1.5rem !important;
+}
+
+.bg-light{
+    background-color: #edf2f9 !important;
+}
+
+.box-created .number,.box-created .total{
+    color: #0d6efd;
+}
+.box-created .card-footer{
+    background-color: #cfe2ff;
+}
+.box-created .progress-bar{
+    background-color: #0d6efd;
+}
+
+.box-finish .number,.box-finish .total{
+    color: #35b653;
+}
+.box-finish .card-footer{
+    background-color: #d7f0dd;
+}
+.box-finish .progress-bar{
+    background-color: #35b653;
+}
+.box-edit .number,.box-edit .total{
+    color: #4650dd ;
+}
+.box-edit .card-footer{
+    background-color: #dadcf8;
+}
+.box-edit .progress-bar{
+    background-color: #4650dd ;
+}
+
+.box-reject .number,.box-reject .total{
+    color: #dc3545  ;
+}
+.box-reject .card-footer,.box-reject .card-body{
+    background-color: #f8d7da;
+}
+.box-reject .progress-bar{
+    background-color: #dc3545  ;
+}
+
+.box-reject .bg-danger{
+ background-color: #dc3545
+}
+
+.btn-falcon-default{
+    color: #4d5969;
+    background-color: #fff;
+    border-color: 0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08) !important;
+    box-shadow:0 0 0 1px rgba(43, 45, 80, 0.1), 0 2px 5px 0 rgba(43, 45, 80, 0.08), 0 1px 1.5px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.08)!important;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <title>{{Config::get('app.name')}} | Webpanel</title>
+
+      <link href="{{url('back-end/css/style.css')}}" rel="stylesheet" />
+      <link href="{{url('back-end/css/sweetalert2.min.css')}}" rel="stylesheet" />
+      <script src="{{url('back-end/js/jquery.min.js')}}"></script>
+      <script src="{{url('back-end/js/bootstrap.min.js')}}"></script>
+      <script src="{{url('back-end/js/sweetalert2.all.min.js')}}"></script>
+
+</head>
+<body class="c-app flex-row">
+      <script>var c=localStorage.getItem("theme"), tag=document.getElementsByTagName('body').item(0); if(c!=''&&c!=null)tag.classList.add(c);</script>
+</body>
+
+</html>
+
+<script>
+const url = '{{@$url}}';
+$(function(){
+      let timerInterval;
+      Swal.fire({
+            title: "Good job!",
+            text: "Successfully!",
+            icon: "success",
+            timer: 1000,
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            willClose: () => {
+                  clearInterval(timerInterval)
+            }
+      }).then((re) =>{
+            if(url==''){
+                  window.location=window.location.href;
+            }else{
+                  window.location=url
+            }
+      });
+})
+</script>

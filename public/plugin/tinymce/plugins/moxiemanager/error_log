@@ -1,0 +1,2 @@
+[13-Jun-2017 09:41:50 Europe/Paris] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 8516 bytes) in /home/chiangmaiaudit/public_html/cwcontrol/tinymce/plugins/moxiemanager/classes/Media/ImageAlter.php on line 33
+[13-Jun-2017 09:42:08 Europe/Paris] PHP Fatal error:  Allowed memory size of 33554432 bytes exhausted (tried to allocate 8516 bytes) in /home/chiangmaiaudit/public_html/cwcontrol/tinymce/plugins/moxiemanager/classes/Media/ImageAlter.php on line 33

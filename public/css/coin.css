@@ -1,0 +1,77 @@
+#coin .check-in {
+    height: 14.875rem;
+    background-image: linear-gradient(
+        0deg, #f67500 0%, #fb0 47.95%);
+    border-radius: .25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#coin .btn-check-in{
+    color: #fff;
+    background-color: #e26b01;
+    display: block;
+    margin: auto;
+    margin-top: 1.25rem;
+    margin-bottom: 1rem;
+    padding: .625rem 2.0625rem;
+    border-radius: 3.375rem;
+    border: none;
+    color: #d0011b;
+    background: none;
+    background-color: #fff;
+    outline: none;
+    line-height: 1rem;
+}
+
+#coin .coupon{
+    background-color: #fff;
+    box-shadow: 0 1px 5px 0 rgb(0 0 0 / 9%);
+    border-radius: 2px;
+}
+
+#coin h1{
+    font-size: 24px;
+}
+
+#coin .content{
+    padding: 15px;
+}
+
+
+.pcmall-coinsrewardpage_3LzSFn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pcmall-coinsrewardpage_2lpQpl {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pcmall-coinsrewardpage_obnR2z {
+    display: flex;
+    flex-direction: column;
+}
+
+.pcmall-coinsrewardpage_3QKvmP {
+    margin: 0;
+    padding: .5rem .6875rem;
+    margin-left: .3125rem;
+    font-size: .875rem;
+    min-width: 4.75rem;
+    color: #fff;
+    background-color: #ee4d2d;
+    border: none;
+    border-radius: 2px;
+}
+
+.pcmall-coinsrewardpage_2cimHK {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

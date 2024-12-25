@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://at-once.info/sitemap.xml

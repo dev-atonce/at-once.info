@@ -1,0 +1,60 @@
+<?php
+
+
+return [
+    'controller' => [
+        'logistics'              => \App\Http\Controllers\LogisticsCtrl::class,
+        'solar-cell'            => \App\Http\Controllers\SolarCellCtrl::class,                
+        'translater'            => \App\Http\Controllers\TranslateCtrl::class,
+        'car-rental'            => \App\Http\Controllers\CarrentCtrl::class,
+        'visa-support'          => \App\Http\Controllers\VisaCtrl::class,
+        'company-register'      => \App\Http\Controllers\SettingCpCtrl::class,
+        'warehouse'             => \App\Http\Controllers\WarehouseCtrl::class,
+        'printing'              => \App\Http\Controllers\PrintingCtrl::class,
+        'accounting'            => \App\Http\Controllers\AccountingCtrl::class,
+        'law-firm'              => \App\Http\Controllers\LawFirmCtrl::class,
+        'recruitment'           => \App\Http\Controllers\RecruitmentCtrl::class,
+        'online-marketing'      => \App\Http\Controllers\OnlineMarketingCtrl::class,
+        'web-system'            => \App\Http\Controllers\WebSystemCtrl::class,
+        'prefabricated-office'  => \App\Http\Controllers\CoWorkingCtrl::class,
+        'office-rent'           => \App\Http\Controllers\OfficeRentCtrl::class,
+        'heavy-machinery'       => \App\Http\Controllers\HeavyMachineCtrl::class,
+        'forklift'              => \App\Http\Controllers\ForkliftCtrl::class,
+        'interior-decoration'   => \App\Http\Controllers\DesignerCtrl::class,
+        'security-system'       => \App\Http\Controllers\SecuritySystemCtrl::class,
+        'broker'                => \App\Http\Controllers\BrokerCtrl::class,
+        'package'               => \App\Http\Controllers\PackageCtrl::class,
+        'insurance'             => \App\Http\Controllers\InsuranceCtrl::class,
+        // 'construction'          => \App\Http\Controllers\ConstructionCtrl::class,
+        'credit-loan'           => \App\Http\Controllers\CreditLoanCtrl::class,        
+        'auto-parts'            => \App\Http\Controllers\AutoPartsCtrl::class,
+        'electrical-electronics' => \App\Http\Controllers\ElectricsCtrl::class,
+        'chemicals'             => \App\Http\Controllers\ChemicalsCtrl::class,
+        'food'                 => \App\Http\Controllers\FoodsCtrl::class,
+        'it'                    => \App\Http\Controllers\ItCtrl::class,
+        'mold'                  => \App\Http\Controllers\MoldCtrl::class,
+        'contractor'            => \App\Http\Controllers\ContractorsCtrl::class,
+        'plastic-molding'       => \App\Http\Controllers\PlasticMoldingCtrl::class,
+        'machine'               => \App\Http\Controllers\MachineCtrl::class,
+        'measuring'             => \App\Http\Controllers\MeasuringCtrl::class,
+        'automation-system'     => \App\Http\Controllers\AutomationSystemCtrl::class,
+        'textiles-clothing'     => \App\Http\Controllers\TextilesClothingCtrl::class,        
+        'metal'                 => \App\Http\Controllers\MetalCtrl::class,
+        'iron'                  => \App\Http\Controllers\IronCtrl::class,
+        'machine-tools'         => \App\Http\Controllers\MachineToolsCtrl::class,
+        'engineering'           => \App\Http\Controllers\EngineeringCtrl::class,
+        // insert in 13-02-2023
+        'baby-supplies'         =>  \App\Http\Controllers\BabySuppliesCtrl::class,
+        'ceremony-supplies'     =>  \App\Http\Controllers\CeremonySuppliesCtrl::class,
+        'jewelry-beauty'        =>  \App\Http\Controllers\JewelryBeautyCtrl::class,
+        'kitchen-supplies'      =>  \App\Http\Controllers\KitchenSuppliesCtrl::class,
+        'music-audio'           =>  \App\Http\Controllers\MusicAudioCtrl::class,
+        'sport'                 =>  \App\Http\Controllers\SportCtrl::class,
+        'electrical-appliance'  =>  \App\Http\Controllers\ElectricalApplianceCtrl::class,
+        'office-supplies'       =>  \App\Http\Controllers\OfficeSuppliesCtrl::class,
+        'home-appliance'        =>  \App\Http\Controllers\Industry\HomeApplianceCtrl::class,
+    ]
+];
+
+
+?>
