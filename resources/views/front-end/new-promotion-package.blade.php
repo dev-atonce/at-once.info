@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css'>
     <link rel="stylesheet" href="css/animate.css">
+    <link href="css/popup-contact.css" rel="stylesheet">
     <link href="css/package.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -80,6 +81,14 @@
 
     section.page strong {
         font-family: "Prompt" !important;
+    }
+
+    .card-bussiness {
+        min-height: auto !important;
+    }
+
+    .dialog-centered {
+        min-height: auto !important;
     }
 
     .card-blue {
@@ -411,7 +420,7 @@
     .my-package {
         display: flex;
         justify-content: center;
-        margin-top: 40px;
+        /* margin-top: 40px; */
     }
 
     .package-item {
@@ -706,11 +715,11 @@
     {{-- <section style="background: linear-gradient( 180deg , #1A315F 0%, #0E2439 46.16%);"> --}}
     <div class="contact-button-function">
         <div class="contact-list d-none">
-            <a class="contact-list-item" href="tel:02-126-6624">02-126-6624</a>
+            <a class="contact-list-item" href="tel:082-875-7539">082-875-7539</a>
         </div>
         <button class="contact-button"><i class="fas fa-phone"></i></button>
     </div>
-    <section class="section-1 ">
+    <!-- <section class="section-1 ">
         <div class="page p-0">
             <div class="title-landing">
                 <h1 class="h2 mt-5 text-center" {{-- data-aos="fade-down" data-aos-delay="200" --}}>
@@ -767,29 +776,34 @@
 
             </div>
 
-        </div> <!-- container -->
+        </div>
 
 
-    </section> <!-- bg -->
+    </section> -->
 
-    <section class="section-2">
+    <section class="section-2 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-center">
-                        <strong class="v1-orange fs-24">บริการของเรา</strong>
-                        <strong class="ml-2 fs-24">ไม่ได้มีเพียงแค่ทำเว็บไซต์เท่านั้น</strong>
+                        <strong class=" text-primary ff-prompt">At-Once</strong>
+                        <strong class="ml-2 ff-prompt">เป็นมากกว่าเว็บไซต์รายชื่อบริษัท</strong>
                     </h2>
-                    <p class="fs-20" style="text-indent: 40px;">นอกจากในส่วนของการออกแบบ และ พัฒนาเว็บไซต์แล้วนั้น
+                    <!-- <p class="fs-20" style="text-indent: 40px;">นอกจากในส่วนของการออกแบบ และ พัฒนาเว็บไซต์แล้วนั้น
                         ทางเรายังให้บริการ<strong class="v1-orange">สร้างโปรไฟล์บริษัทออนไลน์</strong>
                         ซึ่งข้อดีของการมีโปรไฟล์บริษัทออนไลน์นั้นคือ จะทำให้ลูกค้าที่มีความสนใจในตัวธุรกิจของคุณ
                         สามารถจดจำแบรนด์ของคุณ
                         ได้ง่ายมากยิ่งขึ้น และสามารถเข้าถึงข้อมูลการให้บริการธุรกิจของคุณได้อย่างสะดวก
                         เป็นการเพิ่มความน่าเชื่อถือและเพิ่มโอกาส
-                        ให้กับธุรกิจ หรือ บริษัทของคุณได้</p>
+                        ให้กับธุรกิจ หรือ บริษัทของคุณได้</p> -->
+                    <p class="fs-20" style="text-indent: 40px;">At-Once ให้บริการสร้างโปรไฟล์บริษัทออนไลน์ เพื่อเสริมภาพลักษณ์ เพิ่มความน่าเชื่อถือ 
+                        และขยายโอกาสทางธุรกิจของคุณ
+                        โปรไฟล์บริษัทช่วยให้ลูกค้าที่สนใจสามารถเข้าถึงข้อมูลบริการของคุณได้อย่างสะดวก จดจำแบรนด์ได้ง่ายขึ้น และตัดสินใจได้เร็วขึ้น
+                        ที่สำคัญ At-Once คือแพลตฟอร์มที่เชื่อมโยงเครือข่ายผู้ประกอบการแบบ B2B ทั่วประเทศ ช่วยให้คุณเชื่อมต่อกับคู่ค้า พันธมิตร 
+                        และลูกค้าใหม่ได้อย่างมีประสิทธิภาพในยุคดิจิทัล</p>
                     <h3 class="text-center mt-5">
-                        <strong class="fs-24">เราได้รวบรวมรายชื่อบริษัทในประเทศไทย</strong><br>
-                        <strong class="ml-2 fs-24">มากกว่า <span class="fs-34 v1-orange">30,000</span>
+                        <strong class="fs-24">At-Once คือแพลตฟอร์มที่รวบรวมรายชื่อบริษัทในประเทศไทยไว้</strong><br>
+                        <strong class="ml-2 fs-24">มากกว่า <span class="fs-34 v1-orange">160,000</span>
                             รายชื่อ</strong>
                     </h3>
                 </div>
@@ -804,7 +818,7 @@
                 <div class="col-lg-12">
                     <h3 class="text-center">
                         <strong class="ff-prompt fs-26">มีหมวดหมู่มากกว่า <span
-                                class="v1-orange ff-prompt fs-34">170</span><span
+                                class="v1-orange ff-prompt fs-34">177</span><span
                                 class="v1-orange ff-prompt fs-26 ml-2">หมวดหมู่</span></strong>
                         <br />
                         <strong class="ff-prompt fs-26">ครอบคลุมทุกธุรกิจ</strong>
@@ -814,13 +828,21 @@
                     <img src="split/2-2.webp" width="80%">
                 </div>
                 <div class="col-lg-12">
-                    <p class="ff-prompt fs-20" style="text-indent: 40px;">
+                    <!-- <p class="ff-prompt fs-20" style="text-indent: 40px;">
                         ด้วยความมุ่งมั่นและรู้ลึกถึงธุรกิจในแต่ละธุรกิจ ทาง AT-ONCE เองได้สร้าง <strong
                             class="v1-orange">ฐานข้อมูลธุรกิจที่ใหญ่ที่สุดในประเทศไทย</strong>
                         โดยประกอบไปด้วยข้อมูล รายละเอียดต่างๆ ของบริษัทชั้นนำ กว่า 30,000 บริษัท รวมด้วยบริษัทที่มี
                         ขนาดเล็ก ขนาดกลาง และขนาดใหญ่ หลากหลายสาขา ซึ่งผ่านกระบวนการคัดกรอง และตรวจสอบข้อมูลอย่างละเอียด
                         เพื่อให้ได้ข้อมูลที่ถูกต้อง และชัดเจน ซึ่งฐานข้อมูลดังกล่าวนั้น
                         เป็นแหล่งข้อมูลสำคัญของเหล่านักลงทุน หรือ ผู้ที่สนใจธุรกิจในประเทศไทย
+                    </p> -->
+                    <p class="ff-prompt fs-20" style="text-indent: 40px;">
+                        ด้วยความมุ่งมั่นและความเข้าใจอย่างลึกซึ้งในแต่ละธุรกิจ AT-ONCE ได้พัฒนา 
+                        <strong class="v1-orange">ฐานข้อมูลธุรกิจที่ใหญ่ที่สุดในประเทศไทย </strong>
+                        ประกอบด้วยข้อมูลและรายละเอียดของบริษัทชั้นนำกว่า 160,000 แห่ง ครอบคลุมทุกขนาด 
+                        ทั้งธุรกิจขนาดเล็ก กลาง และใหญ่ ในหลากหลายสาขาอุตสาหกรรม ทุกข้อมูลผ่านกระบวนการคัดกรองและตรวจสอบอย่างละเอียด 
+                        เพื่อความถูกต้องและชัดเจนสูงสุด ฐานข้อมูลนี้จึงกลายเป็นแหล่งข้อมูลสำคัญที่นักลงทุนและผู้สนใจธุรกิจทั่วประเทศไว้วางใจ 
+                        ใช้เป็นเครื่องมือในการวางแผนและตัดสินใจอย่างมั่นใจ
                     </p>
                 </div>
                 <div class="col-lg-12 mt-5">
@@ -833,7 +855,7 @@
                     </h3>
                 </div>
                 <div class="col-lg-12 text-center my-3">
-                    <img src="split/2-3.webp" width="80%">
+                    <img src="split/Mareting.png" width="80%" style="border-radius: 1.75rem;">
                 </div>
                 <div class="col-lg-12 mt-5">
                     <h3 class="text-center">
@@ -847,8 +869,11 @@
                 <div class="col-lg-12 text-center my-3">
                     <img src="split/2-4.webp" width="80%">
                 </div>
+                <div class="col-lg-12 text-center my-3">
+                    <img src="split/SEO.png" width="80%" style="border-radius: 1.75rem;">
+                </div>
             </div>
-            <div class="row mt-5">
+            <div class="row mt-5 justify-content-center">
                 <div class="col-lg-3 mt-xs-3 mb-2">
                     <div class="card b-none">
                         <div class="card-body bg-ultralight card-list rounded-xl">
@@ -876,7 +901,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 mt-xs-3">
+                <!-- <div class="col-lg-3 mt-xs-3">
                     <div class="card b-none">
                         <div class="card-body bg-ultralight card-list rounded-xl">
                             <img src="split/2-8.webp" width="60">
@@ -884,20 +909,16 @@
                             <strong style="color:#0c92e0">ภาษา</strong>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row mt-4">
                 <div class="col-lg-12">
-                    <p class="fs-20" style="text-indent:40px">บริการที่สำคัญของเราอีกหนึ่งอย่างก็คือ <strong
-                            class="v1-orange">บริการทำ SEO</strong>
-                        ให้กับทางเว็บไซต์ของลูกค้าทางเรามีเจ้าหน้าที่ระดับสูง
-                        ที่คอยซัพพอร์ตในส่วนของการวิเคราะห์คีย์เวิร์ดที่เหมาะสม
-                        และมีเทคนิคการเขียนเนื้อหาที่ถูกต้องตามหลักของ SEO มากที่สุด
-                        ซึ่งบริการนี้จะช่วยให้เว็บไซต์ของคุณติดอันดับการค้นหาใน Search Engine และทางผู้ที่สนใจธุรกิจ
-                        หรือ บริการของคุณ
-                        จะสามารถเข้าถึงเว็บไซต์ของคุณได้ง่ายมากยิ่งขึ้น อีกทั้งยังรวมถึง <strong
-                            class="v1-orange">บริการลงโฆษณาบน Google Ads</strong> และให้คำปรึกษา
-                        วางแผนกลยุทธ์การตลาดออนไลน์ บริการนี้จะช่วยให้ธุรกิจของคุณมีความสำเร็จอย่างยั่งยืน</p>
+                    <p class="fs-20" style="text-indent:40px"><strong class="v1-orange">บริการ SEO & การตลาดออนไลน์ที่ช่วยธุรกิจคุณเติบโตอย่างยั่งยืน</strong>
+                        หนึ่งในบริการสำคัญของเรา คือ การทำ SEO (Search Engine Optimization) เพื่อช่วยให้ธุรกิจของคุณติดอันดับการค้นหาบน 
+                        Google และเข้าถึงลูกค้าได้ง่ายขึ้นอย่างเป็นธรรมชาติ
+                        เรามีทีมผู้เชี่ยวชาญระดับสูง คอยวิเคราะห์ คีย์เวิร์ดที่ใช่ สำหรับธุรกิจของคุณ พร้อมวางแผนและสร้าง คอนเทนต์ที่ถูกต้องตามหลัก 
+                        SEO ทั้งในเชิงเทคนิคและการสื่อสาร เพื่อเพิ่มโอกาสที่เว็บไซต์ของคุณจะปรากฏบนหน้าแรกของ Search Engine
+                        เพราะการทำ SEO ที่ดี ไม่ใช่แค่ทำให้ติดอันดับ — แต่ต้องช่วยให้ธุรกิจคุณ <strong class="v1-orange">"ถูกค้นพบ"</strong> ในเวลาที่ลูกค้าต้องการจริง ๆ</p>
                 </div>
             </div>
             <div class="row mt-4">
@@ -912,7 +933,7 @@
 
     <section class="section-3">
         <div class="container">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-center mt-5">
                         <strong>แพ็กเกจของเรา</strong>
@@ -991,18 +1012,21 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="card b-none bg-ultralight rounded-xl mt-5">
                 <div class="card-body d-flex justify-content-center ">
                     <div class="row " style="width: 80%;">
                         <div class="col-lg-6  col-xs-12 package-col position-relative">
-                            <div class="package-badge">
+                            <!-- <div class="package-badge">
                                 <div class="package-content text-white py-1 px-3" style="background-color: #f38424;">
                                     <i class="far fa-thumbs-up"></i><span class="ml-1 ff-prompt">RECOMMEND</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="my-package">
-                                <div class="package-item first">
+                                <div class="">
+                                    <img src="split/Service.png" width="100%">
+                                </div>
+                                <!-- <div class="package-item first">
                                     <svg height="150" width="100%" xmlns="http://www.w3.org/2000/svg"
                                         style="position: absolute">
                                         <defs>
@@ -1044,16 +1068,16 @@
                                         <span class="ff-prompt fs-20 title">AT-ONCE</span>
                                         <small class="ff-prompt fs-12 sub-title">SERVICE</small>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="col-lg-6  col-xs-12 package-col align-items-center">
                             <div class="mt-4 text-center d-flex flex-column align-items-center">
-                                <h2 class="ff-prompt fs-44 font-weight-bold"><span>แพ็กเกจสุดคุ้ม!</h2>
+                                <h2 class="ff-prompt fs-44 font-weight-bold"><span>เชื่อมต่อโอกาสใหม่ให้ธุรกิจคุณ</h2>
                                 <div class="d-flex justify-content-center my-4 text-center">
                                     <div class="ff-prompt text-primary font-weight-bold fs-20 mr-4"
-                                        style="margin-top: -20px">เพียง</div>
-                                    <span class="ff-prompt v1-orange font-weight-bold fs-44">14,990 </span>
+                                        style="margin-top: -20px">เรื่มต้นเพียง</div>
+                                    <span class="ff-prompt v1-orange font-weight-bold fs-44">3,990 </span>
                                     <div class="ff-prompt v1-orange position-relative">
                                         <strong class="ml-2 fs-26" style="position:absolute; bottom:-5px;">฿</strong>
                                     </div>
@@ -1064,7 +1088,7 @@
                                         <span class="circle" aria-hidden="true">
                                             <span class="icon arrow"></span>
                                         </span>
-                                        <span class="button-text">ซื้อเลย !</span>
+                                        <span class="button-text">ติดต่อเรา !</span>
                                     </button>
                                 </div>
                             </div>
@@ -1072,7 +1096,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-center mt-5">
                         <strong>แพ็กเกจเสริม</strong>
@@ -1167,7 +1191,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <div class="row mt-5">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8"
@@ -1175,12 +1199,12 @@
                 </div>
                 <div class="col-lg-2"></div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <h3 class="text-center mt-5 ff-prompt">วิธีการสั่งซื้อและขั้นตอนการบริการ</h3>
                 </div>
-            </div>
-            <div class="row mt-3">
+            </div> -->
+            <!-- <div class="row mt-3">
                 <div class="col-lg-4 col-lx-6">
                     <div class="text-center py-3">
                         <img src="split/4-1.webp" width="140" />
@@ -1218,8 +1242,8 @@
                         <p class="fs-20">จัดส่งเว็บไซต์<br> ดีไซน์ใหม่ให้คุณ</p>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+            </div> -->
+            <!-- <div class="row">
                 <div class="col-lg-12">
                     <p class="fs-20" style="text-indent:40px">ด้วยประสบการณ์ ความเชี่ยวชาญและมืออาชีพของ AT-ONCE
                         และทีมงาน การ <strong class="v1-orange">บริการทำเว็บไซต์</strong> ของเราใช้
@@ -1228,6 +1252,9 @@
                         เพื่อให้มีประสบการณ์ใช้งานที่ดี และทำให้องค์กรหรือบริษัทของคุณมีภาพลักษณ์
                         ที่เป็นมืออาชีพมากยิ่งขึ้น</p>
                 </div>
+            </div> -->
+            <div class="col-lg-12 text-center my-3">
+                <img src="split/step.png" width="100%">
             </div>
             <div class="row mt-5">
                 <div class="col-lg-2"></div>
@@ -1337,26 +1364,31 @@
                             <div class="accordion">
                                 <div class="accordion-item">
                                     <button id="accordion-button-1" aria-expanded="true"><span
-                                            class="accordion-title">เว็บไซต์ที่พัฒนาสามารถรองรับการใช้งานบนมือถือได้หรือไม่?</span><span
+                                            class="accordion-title">ฝากโปรไฟล์กับ At-Once มีค่าใช้จ่ายหรือไม่?</span><span
                                             class="icon" aria-hidden="true"></span></button>
                                     <div class="accordion-content">
                                         <p class="mb-0">
-                                            เว็บไซต์ทุกเว็บไซต์ที่เราพัฒนาจะเป็นเว็บไซต์ที่มีการออกแบบ แบบ
-                                            <strong>Responsive</strong> หรือรองรับหน้าจอมือถือ (Mobile-Friendly)
-                                            ทำให้ผู้ใช้งานสามารถเข้าชมและใช้งานเว็บไซต์ได้อย่างสะดวกบนอุปกรณ์ทุกประเภท
+                                            ไม่มีค่าใช้จ่าย การฝากโปรไฟล์กับ At-Once เป็นบริการฟรี ซึ่งการมีโปรไฟล์อยู่บนเว็บไซต์ของ 
+                                            At-Once ช่วยให้ลูกค้าที่สนใจในธุรกิจของคุณสามารถจดจำแบรนด์ได้ง่ายขึ้น 
+                                            เข้าถึงข้อมูลบริการได้สะดวก และเพิ่มความน่าเชื่อถือ ซึ่งช่วยส่งเสริมโอกาสทางธุรกิจให้เติบโตได้อย่างมีประสิทธิภาพ
                                         </p>
                                     </div>
                                 </div>
                                 <div class="accordion-item">
                                     <button id="accordion-button-2" aria-expanded="false"><span
-                                            class="accordion-title">ลูกค้าสามารถแก้ไขหรือปรับปรุงเว็บไซต์ด้วยตนเองได้หรือไม่?</span><span
+                                            class="accordion-title">ต้องมีเว็บไซต์ของตัวเองหรือไม่ ถึงจะใช้บริการกับ At-Once</span><span
                                             class="icon" aria-hidden="true"></span>
                                     </button>
                                     <div class="accordion-content">
                                         <p>
-                                            เว็บไซต์ของเราจะมีระบบจัดการเนื้อหา (CMS)
-                                            ที่ช่วยให้ลูกค้าสามารถจัดการและปรับปรุงเนื้อหาได้ด้วยตนเองผ่านหน้าเว็บแบบ
-                                            User-friendly
+                                            ไม่จำเป็นต้องมีเว็บไซต์มาก่อน
+                                            หากคุณยังไม่มีเว็บไซต์ ก็ไม่ต้องกังวล เพราะเพียงแค่คุณฝากโปรไฟล์ธุรกิจไว้กับ At-Once 
+                                            ก็เปรียบเสมือนมี “หน้าร้านออนไลน์” ที่ช่วยให้กลุ่มเป้าหมายสามารถค้นหาและเข้าถึงธุรกิจของคุณได้ง่ายยิ่งขึ้น
+
+                                            At-Once พร้อมเป็นช่องทางการตลาดดิจิทัลที่ช่วยเพิ่มโอกาสในการสร้างความน่าเชื่อถือ และทำให้คุณเป็นที่รู้จักมากขึ้น
+                                            คุณสามารถเลือกใช้บริการที่เหมาะกับความต้องการของธุรกิจได้อย่างยืดหยุ่น 
+
+                                            ติดต่อเราเพื่อให้เราช่วยคุณเริ่มต้นได้เลย!
                                         </p>
                                     </div>
                                 </div>
@@ -1376,20 +1408,6 @@
                                 </div>
                                 <div class="accordion-item">
                                     <button id="accordion-button-4" aria-expanded="false">
-                                        <span
-                                            class="accordion-title">สามารถดูสถิติการเข้าชมเว็บไซต์และบริการของเราได้ที่ไหน</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            เรามุ่งมั่นให้ความปลอดภัยกับเว็บไซต์เป็นสิ่งสำคัญ
-                                            เว็บไซต์ทั้งหมดจะถูกพัฒนาด้วยมาตรฐานความปลอดภัยสูงสุด เช่น การใช้ SSL,
-                                            การป้องกันการบุกรุก เป็นต้น เพื่อปกป้องข้อมูลของลูกค้าและผู้ใช้งาน
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-5" aria-expanded="false">
                                         <span class="accordion-title">บริการรวมถึงการทำ SEO ด้วยหรือไม่?</span>
                                         <span class="icon" aria-hidden="true"></span></button>
                                     <div class="accordion-content">
@@ -1398,6 +1416,27 @@
                                             เว็บไซต์ด้วยการวิเคราะห์คีย์เวิร์ดที่เหมาะสม
                                             เพื่อช่วยให้เว็บไซต์ของคุณติดอันดับการค้นหาใน Search Engine
                                             และมีโอกาสในการเข้าถึงลูกค้าเป้าหมายได้ง่ายขึ้น
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <button id="accordion-button-5" aria-expanded="false">
+                                        <span
+                                            class="accordion-title">ทำ SEO Optimization ดียังไง?</span>
+                                        <span class="icon" aria-hidden="true"></span>
+                                    </button>
+                                    <div class="accordion-content">
+                                        <p>
+                                            SEO (Search Engine Optimization) คือการปรับแต่งเว็บไซต์ให้ติดอันดับผลการค้นหาใน Google โดยไม่ต้องเสียค่าโฆษณา
+                                            <ul>
+                                                <li>การทำ SEO ที่ดีช่วยให้เว็บไซต์ของคุณ</li>
+                                                <li>ถูกพบง่ายขึ้น เมื่อลูกค้าค้นหาสินค้าหรือบริการที่เกี่ยวข้อง</li>
+                                                <li>เพิ่มจำนวนผู้เข้าชมเว็บไซต์แบบต่อเนื่อง โดยไม่ต้องจ่ายโฆษณาทุกครั้ง</li>
+                                                <li>สร้างความน่าเชื่อถือ เพราะเว็บไซต์ที่ติดหน้าแรกมักถูกมองว่ามีคุณภาพ</li>
+                                                <li>ช่วยลดต้นทุนระยะยาว เมื่อเทียบกับการยิงแอดตลอดเวลา</li>
+                                                <li>เพิ่มโอกาสปิดการขาย เพราะเข้าถึงลูกค้าที่มีความต้องการจริง</li>
+                                            </ul>
+                                            At-Once มีบริการ SEO Optimization ที่เหมาะกับทุกขนาดธุรกิจ ทั้งเว็บไซต์ใหม่และเว็บไซต์ที่มีอยู่แล้ว เพื่อให้แบรนด์ของคุณเติบโตอย่างยั่งยืนในโลกออนไลน์
                                         </p>
                                     </div>
                                 </div>
@@ -1846,6 +1885,243 @@
                         })
                     }
                 })
+            </script>
+            <script> 
+                var lang = "th";
+
+                function PopupBusinessCard(action)
+                {
+                    page = 'Pop-up from CP';
+                    upTime = Boolean(localStorage.getItem('upTime'));
+                    pop = JSON.parse(localStorage.getItem('PopupBUsinessCard'));
+                    
+                    if(upTime===true)
+                    {
+                        let companyLogo = "split/at_once.png";
+                        let companyName = "At-once";
+                        const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 10 นาทีค่ะ';
+                        let companyId = 64;
+                        const popup = $(
+                        `<div class="popup-dialog dialog-centered dialog-backdrop">    
+                            <div style="display:${pop?.minimize==true?'block':'none'}">
+                                <a class="dialog-toggle contact-circle" toggle-show="'+action+'">
+                                    <div class="button-circle">
+                                            <div class="img-circle" onclick="PopupMinimize(false)">
+                                                <img src="${companyLogo}" class="img-fluid">
+                                            </div>
+                                            <div class="button-messenger alert alert-dismissible fade show" role="alert"> ติดต่อบริษัท คลิก
+                                                <span class="close-icon-wrapper" aria-hidden="true"><i class="fas fa-times fa-1x"></i></span>
+                                                <div class="drawer"><div class="speech_bubble_arrow"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="tawk-badge tawk-flex tawk-flex-center tawk-flex-middle tawk-min-badge heartBeat" style="inset: auto auto 145px 40px;"><i class="icofont-ui-touch-phone"></i></span>
+                                </a>
+                            </div>
+                            <div class="card-bussiness dialog-content${pop?.minimize==true?' d-none':''}" style=" display:flex; flex-direction:column; -webkit-transition:opacity 400ms ease-in; -moz-transition:opacity 400ms ease-in; transition: opacity 400ms ease-in;">
+                                <a href="javascript:" class="dialog-minimize" onclick="PopupMinimize(true)">
+                                    <span><i class="fas fa-times"></i></span>
+                                </a>
+                                    <input type="hidden" name="company" value="${companyId}">
+                                    <div class="dialog-header">
+                                            <div class="card-cover" style="background-image: url(https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80)"></div>
+                                        </div>
+                                        <div class="dialog-body mt-4">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <img src="${companyLogo}" class="img-fluid card-avatar">
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <div class="dialog-content">
+                                                    <div class="card-fullname">${companyName}</div>${caption}</div>
+                                                </div>
+                                            </div>
+                                            <form id="businessCard" onsubmit="return false;">
+                                                <input type="hidden" name="thisCompany" value="${companyName}">
+                                                <input type="hidden" name="lang" value="${lang}">
+                                                <input type="hidden" name="type" value="customer">
+                                                <input type="hidden" name="page" value="${page}">
+                                                <input type="hidden" name="companyId" value="${companyId}">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <label for="cardNumber" class="card-input__label">Name</label>
+                                                        <input type="text" name="name" class="form-control" placeholder="ชื่อ" autocomplete="off"/>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label for="cardNumber" class="card-input__label">Telephone</label>
+                                                        <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" autocomplete="off"/>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label for="cardNumber" class="card-input__label">Company Name</label>
+                                                        <input type="text" name="companyName" class="form-control" placeholder="ชื่อบริษัท" autocomplete="off"/>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div style="display:flex;justify-content: center;margin:15px 0 10px 0;">
+                                                            <div id="captcha_container"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <div class="dialog-footer mt-3">
+                                                <div class="d-flex justify-content-center">
+                                                    <button type="submit" class="btn btn-confirm" style="minWidth:100;margin:0 5px 0 0" disabled="">Confirm</button>
+                                                    <button type="button" class="btn btn-secondary" onclick="PopupMinimize(true)" style="minWidth:100; margin:0 0 0 5px">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`);
+                    
+                        if ($(document).find('.popup-dialog').length==0) 
+                        {
+                            $(document).find('body').append(popup);
+
+                            var loadCaptcha = function() {
+                                captchaContainer = grecaptcha.render('captcha_container', {
+                                    'sitekey' : '6LcEE6ooAAAAAN8ZnN5uTezCAeCpAvB6fGuugnKB',
+                                    'callback' : function(response) {
+                                        document.querySelector('#businessCard').querySelector('[type="submit"]').removeAttribute('disabled');
+                                    }
+                                });
+                            };
+                            loadCaptcha();
+                            let companyId = 64;
+                            axios({
+                                method: 'post',
+                                url: `api/statistics/show-popup`,
+                                data: {
+                                    companyId: companyId,
+                                }
+                            }).then((res => {
+                                if(res.data == false){
+                                    console.log(res.status)
+                                }
+                            }))
+                        }
+
+                        const messageResponse = (code, msg) => 
+                        {
+                            popup.find('.alert').remove();
+                            let alert = $('<label class="alert alert-'+code+' text-center" style="width:100%">'+msg+'</alert>');
+                            popup.find('form').prepend(alert);
+                        }
+                        const sendTo = async () => 
+                        {
+                            let inputs = $("#businessCard").serialize();
+                            console.log(inputs);
+                            await axios({
+                                method: 'post',
+                                url: `api/send/sms`,
+                                data: inputs
+                            })
+                            .then((res) => {
+                                grecaptcha.reset(captchaContainer);
+                                let code = 'danger';
+                                if(res.data.status=='success'){
+                                    code = 'success';
+                                }
+                                messageResponse(code, res.data.message);
+                                popup.find('input[name="name"]').val('');
+                                popup.find('input[name="telephone"]').val('');
+                                popup.find('input[name="companyName"]').val('');
+                                popup.find('input').removeClass('valid');
+                                $('.btn-confirm').attr("disabled", false);
+                            })
+                            .catch(err => console.log(err));
+                        }
+
+                        
+                        $('#businessCard').validate({
+                            ignore: [],
+                            errorElement: "span",
+                            rules: {
+                                name:{ required:function(){
+                                    return ($('#flexCheckDefault').is(':checked'))? false : true;
+                                },
+                                letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+'},
+                                telephone:{ required:function(){
+                                    return ($('#flexCheckDefault').is(':checked'))? false : true;
+                                },
+                                letteronly:'[0-9]+'},
+                                companyName:{ required:function(){
+                                    return ($('#flexCheckDefault').is(':checked'))? false : true;
+                                }}
+                            },
+                            messages: {
+                                name: {
+                                    required: '{{ __('phrase.contact.validate.name') }}',
+                                    letteronly: 'กรุณากรอกตัวอักษร'
+                                },
+                                telephone: {
+                                    required: '{{ __('phrase.contact.validate.telephone') }}',
+                                    minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+                                    letteronly: 'กรุณากรอกตัวเลข'
+                                },
+                                company: {
+                                    required: '{{ __('phrase.contact.validate.company') }}'
+                                },
+                            },
+                            submitHandler: function (form) {
+                                
+                                if(!$('#flexCheckDefault').is(':checked')){
+                                    sendTo();
+                                    $('.btn-confirm').attr("disabled", true);
+                                }
+                            }
+                        })
+
+                        popup.on('click','.close-icon-wrapper',function(){
+                            $(this).parent().remove();
+                        });
+
+                        popup.on('click','button[type="submit"]',function(){
+                            if($('#flexCheckDefault').is(':checked')){
+                                PopupMinimize(true)
+                            }
+                        })
+
+                        popup.on('click','#flexCheckDefault',function(){
+                            if($(this).is(':checked')){
+                                localStorage.setItem('dontShowAgain',true);
+                            }else{
+                                localStorage.setItem('dontShowAgain',false);
+                            }
+                        })
+                    }
+                }
+
+                Countdown();
+
+                function Countdown() {
+                    let timeLeft = 1;
+                        const interval = setInterval(function(){
+                            if (timeLeft == 0){
+                                clearInterval(interval);
+                                PopupBusinessCard(true)
+                            }else{
+                                timeLeft--;
+                                console.log(timeLeft);
+                            }
+                        },1000)
+                }
+                function PopupMinimize(e)
+                {
+                    const popup = $('.popup-dialog');
+                    if(Boolean(e)===true){
+                        popup.removeClass('dialog-backdrop');
+                        popup.find('.dialog-content').removeClass('d-block').addClass('d-none');
+                        popup.find('.dialog-toggle').parent().css('display','block');
+                        popup.find('.dialog-toggle').attr('toggle-show','false')
+                        localStorage.setItem("PopupBusinessCard",JSON.stringify({minimize: Boolean(e)}));
+                    }else{
+                        popup.addClass('dialog-backdrop');
+                        popup.find('.dialog-content').removeClass('d-none');
+                        popup.find('.dialog-toggle').parent().css('display','none');
+                        popup.find('.dialog-toggle').attr('toggle-show','true')
+                        localStorage.setItem("PopupBusinessCard",JSON.stringify({minimize: Boolean(e)}));
+                    }
+                }
             </script>
 </body>
 

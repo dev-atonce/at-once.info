@@ -1,5 +1,8 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLZ5N3RPSC"></script>
+<!-- Google AdSense Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8033466435262098"
+ crossorigin="anonymous"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 

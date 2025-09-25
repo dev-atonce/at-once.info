@@ -228,7 +228,7 @@ class StatisticsCtrl extends Controller
         $lastDay = date('d', strtotime('last day of previous month'));
         $start = date('Y-m-d', strtotime($year.'-'.$lastMonth.'-1'));
         $end = date('Y-m-d', strtotime($year.'-'.$lastMonth.'-'.$lastDay));
-
+       
         $date = [];
         $clicks = [];
         $total = 0;

@@ -74,7 +74,7 @@
                                     </a>
                                     <div class="box-nation">
                                         <small class="nation"><img
-                                                src="https://www.at-once.info/flags/{{ strtolower($row->alpha2) }}.png">
+                                                src="/flags/{{ strtolower($row->alpha2) }}.png">
                                             {{ $row->nationality }} Company</small>
                                     </div>
                                     <div class="social d-none d-lg-block">

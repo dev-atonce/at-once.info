@@ -15,7 +15,7 @@
                     <div class="col-lg-12">
                         <select name="{{ $v->name }}[]" class="{{ $v->name }} form-control" multiple="multiple">
                         @foreach ($filter->filter[$v->name] as $key => $val)
-                            <option class="filterSub" value="{{$val->key}}">{{$val->name ? $val->name : $val->name_th}}</option>
+                            <option class="filterSub" value="{{$val->key}}">{{$val->name}}</option>
                         @endforeach
                         </select>
                     </div>
@@ -36,7 +36,7 @@
                             </div>
                             <div>
                                 <label for="{{ $v->name }}_{{ $key }}"
-                                    class="text-secondary">{{ $val->name ? $val->name : $val->name_th }}</label>
+                                    class="text-secondary">{{ $val->name }}</label>
                             </div>
                         </div>
                     @endforeach

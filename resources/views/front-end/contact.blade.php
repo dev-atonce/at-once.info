@@ -623,26 +623,26 @@
             },
             messages: {
                 company: {
-                    required: "{{ __('phrase.contact.validate.company') }}"
+                    required: '{{ __('phrase.contact.validate.company') }}'
                 },
                 name: {
-                    required: "{{ __('phrase.contact.validate.name') }}",
-                    letteronly: "{{ __('phrase.contact.validate.name') }}",
+                    required: '{{ __('phrase.contact.validate.name') }}',
+                    letteronly: 'กรุณากรอกตัวอักษร'
                 },
                 department: {
-                    required: "{{ __('phrase.contact.validate.department') }}"
+                    required: '{{ __('phrase.contact.validate.department') }}'
                 },
                 telephone: {
-                    required: "{{ __('phrase.contact.validate.telephone') }}",
-                    minlength: "{{ __('phrase.contact.validate.telephone') }}",
-                    letteronly: "{{ __('phrase.contact.validate.numberonly') }}",
+                    required: '{{ __('phrase.contact.validate.telephone') }}',
+                    minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+                    letteronly: 'กรุณากรอกตัวเลข'
                 },
                 email: {
-                    required: "{{ __('phrase.contact.validate.email') }}",
-                    email: "{{ __('phrase.contact.validate.email-pattern') }}",
+                    required: '{{ __('phrase.contact.validate.email') }}',
+                    email: 'กรุณากรอกอีเมลให้ถูกต้อง',
                 },
                 detail: {
-                    required: "{{ __('phrase.contact.validate.detail') }}"
+                    required: '{{ __('phrase.contact.validate.detail') }}'
                 }
             },
             submitHandler: function(form, e) {
@@ -669,7 +669,7 @@
                 }).then((result) => {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Success',
+                        title: 'ส่งอีเมลสำเร็จแล้ว',
                         showConfirmButton: false,
                         timer: 1500
                     }).then((result) => {
@@ -681,7 +681,7 @@
                 }).catch((err) => {
                     Swal.fire({
                         icon: 'danger',
-                        title: 'Please Try Again Later !',
+                        title: 'ไม่สามารถส่งได้ กรุณาลองใหม่อีกครั้ง',
                         showConfirmButton: false,
                         timer: 1500
                     });

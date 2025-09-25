@@ -82,9 +82,9 @@
                     <div class="card-header-actions mr-2"><small class="badge badge-secondary"><a target="_blank"
                                 href="webpanel/export/category/{{ $categoryId }}"><i class="fas fa-file-export"></i>
                                 Export .csv</a></small></div>
-                    <div class="card-header-actions mr-2"><small class="badge badge-secondary"><a target="_blank"
+                    <!-- <div class="card-header-actions mr-2"><small class="badge badge-secondary"><a target="_blank"
                                 href="webpanel/export/all-category"><i class="fas fa-file-export"></i>
-                                Export All Compnay .csv</a></small></div>
+                                Export All Compnay .csv</a></small></div> -->
                 </div>
                 <div class="card-body">
                     @php
@@ -108,12 +108,6 @@
                                 'company.semi' => true,
                             ])
                             ->count();
-                        $semi = $CompanyMd::where([
-                                'company.type' => 'semi',
-                                'company.category' => $categoryId,
-                            ])
-                            ->select('company.id')
-                            ->count();
                         $onProcess = $CompanyMd
                             ::leftJoin('job_progress', 'company.id', 'job_progress.company')
                             ->leftJoin('job_cs', 'company.id', 'job_cs.company')
@@ -127,11 +121,11 @@
                             })
                             ->count();
                         $attachfile = $CompanyMd
-                            ::where(['category' => $categoryId, 'company.type' => 'full'])
+                            ::where(['category' => $categoryId])
                             ->whereNotNull('license_attachfile')
                             ->count();
                         $no_attachfile = $CompanyMd
-                            ::where(['category' => $categoryId, 'company.type' => 'full'])
+                            ::where(['category' => $categoryId])
                             ->whereNull('license_attachfile')
                             ->count();
                         $refuse = $CompanyMd
@@ -209,31 +203,6 @@
                                             class="text-warning">{{ $onProcess }}</span>]</label>
                                 </div>
                             </span>
-                            {{-- <span class="form-control mr-1 mb-1">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="detail" class="custom-control-input" id="detail"
-                                        value="1" @if (Request::get('detail') == 1) checked @endif>
-                                    <label class="custom-control-label" for="detail">Detail [<span
-                                            class="text-success">{{ $detail }}</span>]</label>
-                                </div>
-                            </span>
-                            <span class="form-control mr-1 mb-1">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="no_detail" class="custom-control-input" id="noDetail"
-                                        value="1" @if (Request::get('no_detail') == 1) checked @endif>
-                                    <label class="custom-control-label" for="noDetail">No Detail [<span
-                                            class="text-danger">{{ $no_detail }}</span>]</label>
-                                </div>
-                            </span>
-                            <span class="form-control mr-1 mb-1">
-                                <div class="custom-control custom-checkbox ">
-                                    <input type="checkbox" name="no_logo" class="custom-control-input"
-                                        id="noLogo" value="1"
-                                        @if (Request::get('no_logo') == 1) checked @endif>
-                                    <label class="custom-control-label" for="noLogo">No Design [<span
-                                            class="text-warning">{{ $no_logo }}</span>]</label>
-                                </div>
-                            </span> --}}
                             <span class="form-control mr-1 mb-1">
                                 <div class="custom-control custom-checkbox ">
                                     <input type="checkbox" name="attachfile" class="custom-control-input"
@@ -410,7 +379,7 @@
                                                                     {{ $users->name }}</small>
                                                             @endif
                                                         @endif
-                                                        @if (\App\Models\LogOfModifiedMd::where(['action' => 'URL Close', 'company' => $row->id])->count() > 0)
+                                                        @if (\App\Models\LogOfModifiedMd::where(['action' => 'URL Close', 'company' => $row->id])->count() > 0 && $row->website=='')
                                                             <span class="badge badge-warning"><i
                                                                     class="fas fa-times"></i> URL
                                                                 Close</span>

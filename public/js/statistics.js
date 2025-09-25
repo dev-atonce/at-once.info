@@ -96,7 +96,7 @@ function PopupBusinessCard(action)
     {
         let companyLogo = $('.profile-img').attr('src');
         let companyName = $('.company-detail').find('h1').find('a').find('strong').html();
-        const caption = 'Thank you for your interest in our company. If customers need further information, please fill out the details below. Then, a staff member will contact you back.';
+        const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 10 นาทีค่ะ';
         let companyId = $('a.mail').attr('tag');
         const popup = $(
         `<div class="popup-dialog dialog-centered dialog-backdrop">    
@@ -106,7 +106,7 @@ function PopupBusinessCard(action)
                             <div class="img-circle" onclick="PopupMinimize(false)">
                                 <img src="${companyLogo}" class="img-fluid">
                             </div>
-                            <div class="button-messenger alert alert-dismissible fade show" role="alert">Click Here !
+                            <div class="button-messenger alert alert-dismissible fade show" role="alert"> ติดต่อบริษัท คลิก
                                 <span class="close-icon-wrapper" aria-hidden="true"><i class="fas fa-times fa-1x"></i></span>
                                 <div class="drawer"><div class="speech_bubble_arrow"></div>
                             </div>
@@ -142,15 +142,15 @@ function PopupBusinessCard(action)
                                 <div class="row">
                                     <div class="col-12">
                                         <label for="cardNumber" class="card-input__label">Name</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off"/>
+                                        <input type="text" name="name" class="form-control" placeholder="ชื่อ" autocomplete="off"/>
                                     </div>
                                     <div class="col-12">
                                         <label for="cardNumber" class="card-input__label">Telephone</label>
-                                        <input type="text" name="telephone" class="form-control" placeholder="Telephone" autocomplete="off"/>
+                                        <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" autocomplete="off"/>
                                     </div>
                                     <div class="col-12">
                                         <label for="cardNumber" class="card-input__label">Company Name</label>
-                                        <input type="text" name="companyName" class="form-control" placeholder="Company Name" autocomplete="off"/>
+                                        <input type="text" name="companyName" class="form-control" placeholder="ชื่อบริษัท" autocomplete="off"/>
                                     </div>
                                     <div class="col-lg-12">
                                         <div style="display:flex;justify-content: center;margin:15px 0 10px 0;">

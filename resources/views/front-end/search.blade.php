@@ -216,7 +216,7 @@
                                                                 @if ($kg == 3)
                                                                     <div class="overlay-see-all"><span
                                                                             class="backdrop-gallery"
-                                                                            style="text-align:center;vertical-align:middle;height:100%;vertical-align:-webkit-baseline-middle;">@lang('phrase.view-all-image')</span>
+                                                                            style="text-align:center;vertical-align:middle;height:100%;vertical-align:-webkit-baseline-middle;">ดูภาพทั้งหมด</span>
                                                                     </div>
                                                                 @endif
                                                             </a>

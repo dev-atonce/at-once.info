@@ -98,7 +98,7 @@
                                                             aria-hidden="true">&times;</span></button>
                                                 </div>
                                             @endif
-                                            <label for="address">@lang('phrase.member.company-profile.address')</label>
+                                            <label for="address">Details of address</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend"><span
                                                         class="input-group-text">ภาษาไทย</span></div>
@@ -127,8 +127,8 @@
                                                     id="address_zh" placeholder="地址详情" autocomplete="new-detail-ch"
                                                     value="{!! $row->address_zh !!}">
                                             </div>
-                                            <label for="address">@lang('phrase.member.company-profile.zipcode')</label> <small
-                                                class="text-danger">@lang('phrase.member.company-profile.zipcode-label')</small>
+                                            <label for="address">Address</label> <small
+                                                class="text-danger">*กรอกรหัสไปรษณีย์ ที่อยู่จะปรากฏขึ้นมา</small>
                                             <div class="mb-3">
                                                 <div class="input-group" style="margin-bottom: 0 !important;">
                                                     <div class="input-group-prepend">
@@ -252,7 +252,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <center><button type="submit" class="btn btn-blue btn-update mt-3">@lang('phrase.save')</button></center>
+                                <center><button type="submit" class="btn btn-blue btn-update mt-3">บันทึก</button></center>
                             </form>
                         </div>
                     </div>

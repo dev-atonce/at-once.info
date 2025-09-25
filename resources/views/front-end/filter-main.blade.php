@@ -21,7 +21,7 @@
         </div>
     </div> --}}
     <div class="content">
-        <div class="my-4">
+        <div class="my-3">
             <h1 class="d-flex justify-content-center align-items-center text-center">
                 <b>@lang('phrase.caption')</b>
             </h1>

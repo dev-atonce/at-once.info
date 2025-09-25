@@ -42,7 +42,7 @@
         <div class="chatbox chatbox-min d-none">
             <div class="chatbox-top">
                 <div class="chat-partner-name">
-                    <h6 class="bold mb-0">@lang('phrase.contact.contact-form')</h6>
+                    <h6 class="bold mb-0">กรอกข้อมูลเพื่อสอบถามเพิ่มเติม</h6>
                     <div><i class="icofont-minus"></i></div>
                 </div>
             </div>
@@ -57,31 +57,31 @@
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="control-label">@lang('phrase.contact.company')</label>
+                                    <label class="control-label">ชื่อบริษัท</label>
                                     <input type="text" name="company" class="form-control" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="control-label">@lang('phrase.contact.name')</label>
+                                    <label class="control-label">ชื่อ</label>
                                     <input type="text" name="name" class="form-control" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="control-label">@lang('phrase.contact.telephone')</label>
+                                    <label class="control-label">เบอร์ติดต่อ</label>
                                     <input type="text" name="telephone" class="form-control" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="control-label">@lang('phrase.contact.email')</label>
+                                    <label class="control-label">อีเมล</label>
                                     <input type="email" name="email" class="form-control" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="control-label">@lang('phrase.contact.category')</label>
+                                    <label class="control-label">ประเภทธุรกิจ</label>
                                     <input type="text" name="category" class="form-control" autocomplete="off" />
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label class="control-label">@lang('phrase.contact.deatil')</label>
+                                    <label class="control-label">รายละเอียดที่ต้องการติดต่อ</label>
                                     <textarea type="textarea" rows="4" class="form-control" name="detail"></textarea>
                                     <input type="hidden" name="package" id="package">
                                 </div>

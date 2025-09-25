@@ -80,9 +80,9 @@
                                 @endif
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="company">@lang('phrase.member.contact-email.contact-company')</label>
+                                        <label for="company">ชื่อบริษัท</label>
                                         <input type="text" class="form-control @error('company')is-invalid @enderror"
-                                            id="company" name="company" placeholder="@lang('phrase.member.contact-email.contact-company')"
+                                            id="company" name="company" placeholder="ชื่อบริษัท"
                                             value="{{ old('company') ? old('company') : $data->company_name }}">
                                         @error('company')
                                             <small class="text-danger">{{ $message }}</small>
@@ -91,19 +91,19 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="email">@lang('phrase.member.contact-email.contact-email')</label>
+                                        <label for="email">อีเมล</label>
                                         <input type="email" class="form-control @error('email')is-invalid @enderror"
-                                            id="email" name="email" placeholder="@lang('phrase.member.contact-email.contact-email')"
+                                            id="email" name="email" placeholder="อีเมล"
                                             value="{{ old('email') ? old('email') : $data->email }}">
                                         @error('email')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="telephone">@lang('phrase.member.contact-email.contact-telephone')</label>
+                                        <label for="telephone">เบอร์โทรศัพท์</label>
                                         <input type="text"
                                             class="form-control @error('telephone')is-invalid @enderror"
-                                            name="telephone" id="telephone" placeholder="@lang('phrase.member.contact-email.contact-telephone')"
+                                            name="telephone" id="telephone" placeholder="เบอร์โทรศัพท์"
                                             value="{{ old('telephone') ? old('telephone') : $data->telephone }}">
                                         @error('telephone')
                                             <small class="text-danger">{{ $message }}</small>
@@ -112,10 +112,10 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="customer">@lang('phrase.member.contact-email.contact-name')</label>
+                                        <label for="customer">ชื่อ - นามสกุล</label>
                                         <input type="customer"
                                             class="form-control @error('customer')is-invalid @enderror" id="customer"
-                                            name="customer" placeholder="@lang('phrase.member.contact-email.contact-name')"
+                                            name="customer" placeholder="ชื่อ - นามสกุล"
                                             value="{{ old('customer') ? old('customer') : $data->customer_name }}">
                                         @error('customer')
                                             <small class="text-danger">{{ $message }}</small>
@@ -124,10 +124,10 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col">
-                                        <label for="department">@lang('phrase.member.contact-email.contact-department')</label>
+                                        <label for="department">แผนก</label>
                                         <input type="text"
                                             class="form-control @error('department')is-invalid @enderror"
-                                            id="department" name="department" placeholder="@lang('phrase.member.contact-email.contact-department')"
+                                            id="department" name="department" placeholder="แผนก"
                                             value="{{ old('department') ? old('department') : $data->department }}">
                                         @error('department')
                                             <small class="text-danger">{{ $message }}</small>
@@ -139,7 +139,7 @@
                                         <button type="submit"
                                             class="btn btn-success btn-sm float-right mb-2">@lang('phrase.save')</button>
                                         <a class="btn btn-danger btn-sm float-right mb-2 mr-2"
-                                            href="{{ url('') . '/' . Session('lang') . "/member/contact-email/$category/$cid" }}">@lang('phrase.cancel')</a>
+                                            href="{{ url("th/member/contact-email/$category/$cid") }}">@lang('phrase.cancel')</a>
                                     </div>
                                 </div>
                             </form>

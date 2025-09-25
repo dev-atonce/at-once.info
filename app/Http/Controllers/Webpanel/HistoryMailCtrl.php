@@ -352,8 +352,10 @@ class HistoryMailCtrl extends Controller
         $date = $request->date;
         $date = explode('-', $date);
 
-        $data = \App\Models\SMSHistoryMd::select(['sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type'])
+        $data = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
+            ->leftJoin('company', 'company', 'company.id')
             ->where('message', 'like', "%Pop-up from CP%")
+            ->whereNull('status')
             ->when($request->keywords, function ($query) use ($keywords) {
                 $query->where('name', 'LIKE', "%$keywords")
                     ->orWhere('telephone', 'LIKE', "%$keywords")
@@ -363,14 +365,35 @@ class HistoryMailCtrl extends Controller
                 $query->where(DB::raw('DATE(sms_history.created)'), '>=', date('Y-m-d', strtotime($date[0])))
                     ->where(DB::raw('DATE(sms_history.created)'), '<=', date('Y-m-d', strtotime($date[1])));
             })
-            ->paginate(15);
+            ->latest()->paginate(8, ['*'], 'page_data');
+
+        $dataApprove = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
+            ->leftJoin('company', 'company', 'company.id')
+            ->where('message', 'like', "%Pop-up from CP%")
+            ->where('status', 'approve')
+            ->when($request->keywords, function ($query) use ($keywords) {
+                $query->where('name', 'LIKE', "%$keywords")
+                    ->orWhere('telephone', 'LIKE', "%$keywords")
+                    ->orWhere('message', 'LIKE', "%$keywords");
+            })
+            ->latest()->paginate(5, ['*'], 'page_dataApprove');
+
+        $dataReject = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
+            ->leftJoin('company', 'company', 'company.id')
+            ->where('message', 'like', "%Pop-up from CP%")
+            ->where('status', 'reject')
+            ->when($request->keywords, function ($query) use ($keywords) {
+                $query->where('name', 'LIKE', "%$keywords")
+                    ->orWhere('telephone', 'LIKE', "%$keywords")
+                    ->orWhere('message', 'LIKE', "%$keywords");
+            })
+            ->latest()->paginate(5, ['*'], 'page_dataReject');
 
         $userAction = \App\Models\SendToMd::select(['approve_by as id', 'users.name'])
             ->leftJoin('users', 'send_to.approve_by', '=', 'users.id')
             ->whereNotNull('approve_by')
             ->groupBy('users.id')
             ->get();
-
 
         return view("$this->path.modules.history_mail.index", [
             'css' => [
@@ -389,6 +412,8 @@ class HistoryMailCtrl extends Controller
             'page' => 'popup-approve',
             'segment' => 'popup-approve',
             'rows' => $data,
+            'dataApprove' => $dataApprove,
+            'dataReject' => $dataReject,
             'userAction' => $userAction
         ]);
     }
@@ -463,5 +488,21 @@ class HistoryMailCtrl extends Controller
             'rows' => $data,
             'userAction' => $userAction
         ]);
+    }
+
+    public function popupApproveUpdate(request $request)
+    {
+        $data = \App\Models\SMSHistoryMd::find($request->id);
+        
+        if($request->status)
+        {
+            $data->status = $request->status == "reset" ? null : $request->status;
+        }
+        if($request->message)
+        {
+            $data->message = $request->message;
+        }
+        $data->save();
+        return response()->json(['status' => 'success' , 'data' => $data]);
     }
 }

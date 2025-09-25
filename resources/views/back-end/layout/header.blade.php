@@ -14,37 +14,9 @@
         </li>
     </ul>
     @php
-        $todayActivity = \App\Models\CompanyMd::where(DB::raw('DATE(created)'),date('Y-m-d'))->where(['created_by' => Auth::user()->name])->get()
+        $test = DB::raw('DATE(created)');
     @endphp
     <ul class="c-header-nav ">
-        {{-- <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#"><<i class="far fa-bell"></i></a></li>
-        <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#"><i class="far fa-bell"></i></a></li>
-        <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#"><i class="fas fa-list-ul"></i></a></li> --}}
-        
-        <li class="c-header-nav-item dropdown d-md-down-none mx-2">
-            <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-                <i class="far fa-bell fa-lg"></i>@if($todayActivity->count()>0)<span class="badge badge-pill badge-danger">{{$todayActivity->count()}}</span>@endif
-            </a>
-            @if($todayActivity->count()>0)
-            <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg pt-0">
-                <div class="dropdown-header bg-light"><strong>{{$todayActivity->count()}}</strong></div>
-                @foreach($todayActivity as $k => $rs)
-                <a class="dropdown-item text-primary">
-                    <i class="far fa-credit-card"></i>&nbsp;{{$rs->name_jp}}
-                </a>
-                @endforeach
-                {{-- <a class="dropdown-item text-primary" href="{{url('/')}}">
-                    <i class="far fa-credit-card"></i>&nbsp;User deleted
-                </a>
-                <a class="dropdown-item text-primary">
-                    <i class="far fa-credit-card"></i>&nbsp;Sales report is ready
-                </a>
-                <a class="dropdown-item text-primary">
-                    <i class="far fa-credit-card"></i>&nbsp;New client</a><a class="dropdown-item" href="#">
-                </a> --}}
-            </div>
-            @endif
-        </li>
         <li class="c-header-nav-item dropdown">
               <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                   <div class="c-avatar"><img class="c-avatar-img" src="back-end/image/ex.png" alt="user@email.com"></div><br>

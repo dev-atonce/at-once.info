@@ -105,4 +105,22 @@
     $('.reset-date').on('click', function() {
         $(this).closest('.input-group').find('input').val('');
     });
+
+
+    $('#date').on('apply.daterangepicker', function(){
+        
+    });
+
+    // $('.export').on('click', function() {
+    //     let date = $('#date').val();
+    //     let keyword = $('#keyword').val();
+    //     $.ajax({
+    //         url: "webpanel/export/sms-popup",
+    //         method: "get",
+    //         data: {
+    //             date: date,
+    //             keyword: keyword,
+    //         },
+    //     })
+    // });
 </script>

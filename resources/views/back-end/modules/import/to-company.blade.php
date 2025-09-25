@@ -236,9 +236,6 @@
                                     return obj;
                                 });
                             }
-                            const resetFile = () => {
-                                input  = document.querySelector('[type="file"]');
-                            }
                
                             // const handleOnSubmit = (e) => {
                             //     e.preventDefault();

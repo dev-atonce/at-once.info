@@ -167,7 +167,6 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb" style="border-bottom:unset; margin-bottom:unset;">
                         <li class="breadcrumb-item "><a href='{{url("$prefix$segment")}}'>Member</a></li>
-                        <li class="breadcrumb-item "><a href='{{url("$prefix$segment")}}'>Member</a></li>
                         <li class="breadcrumb-item active">Add Form</span>&nbsp;&nbsp;<span></li>
                     </ol>
                 </nav>

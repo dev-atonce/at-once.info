@@ -182,7 +182,7 @@ class MyServiceCtrl extends Controller
                 if($store->save())
                 {
                     $msg = "$request->page\n==============================\nผู้รับ: $cp->name_th\nอีเมล: $cp->email\n==============================\nผู้ส่ง: $request->name\nบริษัท: $request->company\nแผนก: $request->department\nโทรศัพท์: $request->telephone\nอีเมลตอบกลับ: $request->email\nรายละเอียดการติดต่อ: $request->detail";
-                    \App\Http\Controllers\Api\LineNotiCtrl::lineNoti($msg, '', 'email');
+                    \App\Http\Controllers\Api\LineNotiCtrl::lineNoti($msg, '', 'client');
                     $res = [
                         'status' => true,
                         'statusCode' => 200,

@@ -556,8 +556,8 @@
                                     </button>
                                 </div>
                             @endif
-                            <span class="mb-0 text-danger text-center" style="font-size:14px;">size: 1920 x 500
-                                pixel (width x height)</span>
+                            <span class="mb-0 text-danger text-center" style="font-size:14px;">ขนาดรูปภาพ 1920 x 500
+                                pixel (กว้าง x สูง)</span>
                             <form action="" method="post">
                                 <input type="hidden" name="id" value="{{ $cid }}">
                                 @csrf
@@ -565,8 +565,8 @@
                                     <div class="col-lg-12">
                                         <div class="form-group mt-4">
                                             <strong
-                                                style="color: #1a81c4; font-size: 20px;">@lang('phrase.member.company-profile.short-des')</strong><small
-                                                class="ml-1">@lang('phrase.member.company-profile.short-des-label')</small>
+                                                style="color: #1a81c4; font-size: 20px;">คำอธิบายแบบสั้น</strong><small
+                                                class="ml-1">เพื่อแนะนำบริษัทคุณ</small>
                                         </div>
                                         <div class="mb-4">
                                             <ul class="nav nav-tabs info-member" id="myTab" role="tablist">
@@ -620,9 +620,9 @@
                                         </div>
                                         <center>
                                             <div>
-                                                <h6>@lang('phrase.member.company-profile.translate-rule', ['count' => $monthly_description_use])
-                                                    <span
-                                                        class="text-danger"style="font-size: 14px;">@lang('phrase.member.company-profile.translate-rule-limit')</span>
+                                                <h6>แปลและบันทึกคำอธิบายแบบสั้น(<spanid="description_use">{{ $monthly_description_use }}</span>/10)
+                                                <span class="text-danger"style="font-size: 14px;">*แปลภาษาอัตโนมัติ 10
+                                                    ครั้ง/เดือน</span>
                                                 </h6>
                                                 <div class="row justify-content-center align-items-center">
                                                     <div class="col-10">
@@ -669,7 +669,7 @@
                                 <div class="mb-4">
                                     <div class="form-group mt-4">
                                         <strong class=""
-                                            style="color: #1a81c4; font-size: 20px;">@lang('phrase.member.company-profile.detail')</strong>
+                                            style="color: #1a81c4; font-size: 20px;">รายละเอียดเกี่ยวกับบริษัทคุณ</strong>
                                     </div>
                                     <ul class="nav nav-tabs info-member" id="myTab" role="tablist">
                                         <li class="nav-item" role="presentation">
@@ -742,9 +742,10 @@
                                 </div>
                                 <center>
                                     <div>
-                                        <h6>@lang('phrase.member.company-profile.translate-rule', ['count' => $monthly_details_use])
-                                            <span class="text-danger"style="font-size: 14px;">@lang('phrase.member.company-profile.translate-rule-limit')</span>
-                                        </h6>
+                                        <h6>แปลและบันทึกรายละเอียด(<span
+                                                id="details_use">{{ $monthly_details_use }}</span>/10) <span
+                                                class="text-danger" style="font-size: 14px;">*แปลภาษาอัตโนมัติ 10
+                                                ครั้ง/เดือน</span></h6>
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col-10">
                                                 <div class="row">
@@ -784,14 +785,14 @@
                                             </div>
                                         </div>
                                         <button type="submit" id="save-btn"
-                                            class="btn btn-success btn-update mt-3">@lang('phrase.save')</button>
+                                            class="btn btn-success btn-update mt-3">บันทึก</button>
                                     </div>
                                 </center>
                                 <hr>
                             </form>
                         </div>
-                        <h5 class="bold mt-3">@lang('phrase.member.company-profile.gallery') <span class="text-danger"
-                                style="font-size: 14px;">@lang('phrase.member.company-profile.gallery-rule')</span>
+                        <h5 class="bold mt-3">แกลเลอรี่ <span class="text-danger"
+                                style="font-size: 14px;">*ขนาดไฟล์ต้องไม่เกิน 2MB ไฟล์ที่เกินจะถูกลบอัตโนมัติ</span>
                         </h5>
                         <div class="row">
                             <div class="col-12 mb-3">

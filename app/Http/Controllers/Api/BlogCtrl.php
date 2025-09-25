@@ -764,4 +764,53 @@ class BlogCtrl extends Controller
             return response()->json(['status' => 500, 'message' => $e->getMessage()]);
         }
     }
+
+    public function getBlogForTranslate(Request $request)
+    {
+        try {
+            $url = $request->url;
+            $slug = basename($url);
+            // $blog = \App\Models\BlogMd::find($request->id);
+            $blog = BlogMd::where('url_th', $slug)->first();
+            return response()->json(['status' => 'success', 'data' => $blog ]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function updataBlogToTranslate(Request $request)
+    {
+        try {
+            $blog = \App\Models\BlogMd::find($request->id);
+            // $blog->name_th = $request->name_th;
+            $blog->name_en = $request->name_en;
+            $blog->name_jp = $request->name_jp;
+            $blog->name_zh = $request->name_zh;
+
+            // $blog->detail_th = $request->detail_th;
+            $blog->detail_en = $request->detail_en;
+            $blog->detail_jp = $request->detail_jp;
+            $blog->detail_zh = $request->detail_zh;
+
+            // $blog->more_th = $request->more_th;
+            $blog->more_en = $request->more_en;
+            $blog->more_jp = $request->more_jp;
+            $blog->more_zh = $request->more_zh;
+
+            // $blog->seo_keyword_th = $request->seo_keyword_th;
+            $blog->seo_keyword_en = $request->seo_keyword_en;
+            $blog->seo_keyword_jp = $request->seo_keyword_jp;
+            $blog->seo_keyword_zh = $request->seo_keyword_zh;
+
+            // $blog->seo_description_th = $request->seo_description_th;  
+            $blog->seo_description_en = $request->seo_description_en;
+            $blog->seo_description_jp = $request->seo_description_jp;
+            $blog->seo_description_zh = $request->seo_description_zh;
+
+            $blog->save();
+            return response()->json(['status' => 'success' ]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

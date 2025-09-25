@@ -4,63 +4,103 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Phattarachai\LineNotify\Facade\Line;
 
 class LineNotiCtrl extends Controller
 {
-    //\
     public function notification()
     {
-        // Line::send("ทดสอบส่งข้อความ");
-        print_r(phpinfo());
+        // Test message
+        $result = $this->lineNoti("Line message API","","sms");
+        return response()->json($result);
     }
 
-    public static function lineNoti($msg, $ctoken=null, $type=null)
+    public static function lineNoti($msg, $ctoken=null, $type=nul)
     {
-        $LINE_API = "https://notify-api.line.me/api/notify";
+        try {
+            $LINE_API = "https://api.line.me/v2/bot/message/push";
+            $token = env('LINE_CHANNEL_ACCESS_TOKEN');
+            $groupId = NULL;
 
-        if($type == 'email'){
-            $token = env('LINE_ACCESS_TOKEN_MAIL');
-        }
-        if($type == 'atonce'){
-            $token = env('LINE_ACCESS_TOKEN_ATONCE');
-        }
-        if($type == 'sms'){
-            $token = env('LINE_ACCESS_TOKEN_CUSTOMER');
-        }
-        if($type == 'client'){
-            $token = env('LINE_ACCESS_TOKEN_CLIENT');
-        }
-        if($type == 'customer'){
-            $token = env('LINE_ACCESS_TOKEN_CUSTOMER');
-            $queryData = ['message' => $msg];
-            $queryData = http_build_query($queryData, '', '&');
+            if (empty($token)) {
+                return (object)[
+                    'status' => 200,
+                    'message' => 'LINE Channel Access Token not found'
+                ];
+            }
+
+            if($type == 'email'){
+                $groupId = env('LINE_GROUP_ID_MAIL');
+            }
+            if($type == 'atonce'){
+                $groupId = env('LINE_GROUP_ID_ATONCE');
+            }
+            if($type == 'sms'){
+                $groupId = env('LINE_GROUP_ID_CUSTOMER');
+            }
+            if($type == 'client'){
+                $groupId = env('LINE_GROUP_ID_CLIENT');
+            }
+            if($type == 'customer'){
+                $groupId = env('LINE_GROUP_ID_CUSTOMER');
+            }
+
+            if (empty($groupId)) {
+                return (object)[
+                    'status' => 200,
+                    'message' => 'LINE GroupId not found'
+                ];
+            }
+
+            $data = [
+                'to' => $groupId,
+                'messages' => [
+                    [
+                        'type' => 'text',
+                        'text' => $msg
+                    ]
+                ]
+            ];
+
             $headerOptions = [
                 'http' => [
                     'method' => 'POST',
-                    'header' => "Content-Type: application/x-www-form-urlencoded\r\n" . "Authorization: Bearer " . $token . "\r\n" . "Content-Length: " . strlen($queryData) . "\r\n",
-                    'content' => $queryData
+                    'header' => "Content-Type: application/json\r\n" . 
+                               "Authorization: Bearer " . $token . "\r\n",
+                    'content' => json_encode($data)
                 ]
             ];
             $context = stream_context_create($headerOptions);
             $result = file_get_contents($LINE_API, FALSE, $context);
-        }
+            
+            if ($result === FALSE) {
+                return (object)[
+                    'status' => 200,
+                    'message' => 'Failed to send message'
+                ];
+            }
 
-        if($ctoken){
-            $token = $ctoken;
+            $response = json_decode($result);
+
+            if (isset($response->sentMessages)) {
+                return (object)[
+                    'status' => 200,
+                    'message' => $msg
+                ];
+            }
+            
+            if (isset($response->message)) {
+                return (object)[
+                    'status' => 200,
+                    'message' => $response->message
+                ];
+            }
+            
+
+        } catch (\Exception $e) {
+            return (object)[
+                'status' => 200,
+                'message' => $e->getMessage()
+            ];
         }
-        $queryData = ['message' => $msg];
-        $queryData = http_build_query($queryData, '', '&');
-        $headerOptions = [
-            'http' => [
-                'method' => 'POST',
-                'header' => "Content-Type: application/x-www-form-urlencoded\r\n" . "Authorization: Bearer " . $token . "\r\n" . "Content-Length: " . strlen($queryData) . "\r\n",
-                'content' => $queryData
-            ]
-        ];
-        $context = stream_context_create($headerOptions);
-        $result = file_get_contents($LINE_API, FALSE, $context);
-        $res = json_decode($result);
-        return $res;
     }
 }

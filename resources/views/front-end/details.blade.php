@@ -12,6 +12,29 @@
 
     <title>{{ $row->title ? $row->title : $row->name . ' - ' . env('APP_NAME') }}</title>
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "At-Once",
+            "url": "https://at-once.info",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://at-once.info/img/at-once-tw.png"
+            },
+            "description": "แหล่งรวบรวมข้อมูลธุรกิจครบวงจรสำหรับค้นหารายชื่อบริษัทจากทุกอุตสาหกรรมในประเทศไทย ผู้ให้บริการเว็บไซต์รวมรายชื่อบริษัทอันดับหนึ่ง พร้อมข้อมูลสำคัญอย่างละเอียดถูกต้องและทันสมัย",
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://at-once.info/th/search?keywords={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
+
     <meta property="og:title" content="{{ $row->name }}">
     <meta property="og:description" content="{{ $row->seo_description }}">
     <meta property="og:image" content="@if ($row->logo) {{ url($row->logo) }} @endif" />
@@ -136,29 +159,35 @@
         }
 
         .popup-dialog .profile-img {}
+
+        .hider-img img {
+            display: none !important;
+        }
     </style>
 </head>
 
 <body>
     @if($row->type=='semi')
-        @include("$prefix.header")
+    @include("$prefix.header")
     @else
-        @if (!$customerStatus)
-            @include("$prefix.header")
-        @else
-            @include("$prefix.translateBox")
-        @endif
+    @if (!$customerStatus)
+    @include("$prefix.header")
+    @else
+    @include("$prefix.translateBox")
+    @endif
     @endif
 
     @if ($row->type != 'basic')
 
     <section class="">
         @php
-        $check = Storage::disk(env('disk'))->exists($row->cover);
+        $check = 0;
         $cover = $row->cover != '' ? $row->cover : 'images/default-cover.jpg';
         @endphp
         <div class="cover" style="position: relative; margin-bottom: 20px">
-            <img src="{{ $cover }}" class="bg-cover-detail-cp img-fluid">
+            @if ($row->type != 'semi')
+                <img src="{{ $cover }}" class="bg-cover-detail-cp img-fluid" loading="lazy" alt="Cover image">
+            @endif
             @if (@$row->video_profile != '')
             @php
             $cssAligh = '';
@@ -199,13 +228,14 @@
                     <div class="col-sm-7 col-md-8 col-lg-9 pr-lg-0">
                         <div class="box-title-box-cp mb-lg-0">
                             <div class="row">
-                                <div class="col-5 col-md-3 col-lg-3">
+                                <div class="col-5 col-md-3 col-lg-3 {{$row->type == 'semi' ? 'hider-img' : ''}}">
                                     <center>
                                         @if ($row->public == 1 && $row->logo != '')
                                         <img src="{{ url($row->logo) }}"
-                                            class="profile-img img-fluid mb-3 mb-lg-0">@else<div
-                                            class="company-logo profile-img img-fluid mb-3"
-                                            data-name="{{ $row->name ? $row->name : $row->name_th }}"></div>
+                                            class="profile-img img-fluid mb-3 mb-lg-0" loading="lazy" alt="Company logo">
+                                        @else
+                                            <div class="company-logo profile-img img-fluid mb-3"
+                                                data-name="{{ $row->name ? $row->name : $row->name_th }}"></div>
                                         @endif
                                     </center>
                                 </div>
@@ -217,13 +247,13 @@
                                         @if ($row->alpha2)
                                         <div class="category-tag"
                                             style="background: #4caf50; color:white; border: 1px solid #4caf50;">
-                                            <img src="flags/{{ strtolower($row->alpha2) }}.png">
+                                            <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy">
                                             {{ $row->nationality }} Company
                                         </div>
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-12 col-lg-9">
+                                <div class="col-12 col-md-12 {{$row->type == 'semi' ? 'col-lg-12' : 'col-lg-9'}}">
                                     <div class="company-detail">
                                         <div class="vertical-table disp-p none-absolute">
                                             <div class="vertical-align-middle">
@@ -261,8 +291,7 @@
                                                     @if ($row->alpha2)
                                                     <div class="category-tag"
                                                         style="background: #4caf50; color:white; border: 1px solid #4caf50;">
-                                                        <img
-                                                            src="flags/{{ strtolower($row->alpha2) }}.png">
+                                                        <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy">
                                                         {{ $row->nationality }} Company
                                                     </div>
                                                     @endif
@@ -293,22 +322,22 @@
                                         @if ($row->email != '')
                                         <div class="btn-group w-100" role="group"
                                             aria-label="Basic example">
-                                            <button class="btn-sb-company tel-top"
-                                                style="border-bottom-right-radius: unset;border-top-right-radius: unset;"><img
-                                                    src="images/icon/phone-call.svg" width="20"
-                                                    style="filter: invert(1);"></button>
+                                            <button class="btn-sb-company tel-top" style="border-bottom-right-radius: unset;border-top-right-radius: unset;">
+                                                <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy">
+                                            </button>
                                             <a class="btn-sb-company mailtop"
                                                 @if ($customerStatus) href="#formQuotation" @else href="javascript:0" @endif
                                                 style="border-bottom-left-radius: unset;border-top-left-radius: unset;"
                                                 lang="{{ Session('lang') }}"
                                                 category={{ Request::segment(2) }} tag="{{ $row->id }}"
-                                                text="{{ $row->name }}"><img src="images/icon/mail.svg"
-                                                    width="20" style="filter: invert(1);"></a>
+                                                text="{{ $row->name }}">
+                                                <img src="images/icon/mail.svg" width="20" style="filter: invert(1);" loading="lazy">
+                                            </a>
                                         </div>
                                         @else
-                                        <button class="btn-sb-company tel-top"><img
-                                                src="images/icon/phone-call.svg" width="20"
-                                                style="filter: invert(1);"></button>
+                                        <button class="btn-sb-company tel-top">
+                                            <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy">
+                                        </button>
                                         @endif
                                         @php
                                         $phone = explode(',', $row->phone);
@@ -323,9 +352,9 @@
                                             class="btn-contact service-pos">@lang('phrase.contact-information')</a>
                                     </div>
                                     <!--   <div class="share-this-page">
-                      <div class="btn-share-company">
-                      <i class="icofont-share mr-1"></i>  @lang('phrase.share')</div>
-                  </div> -->
+                                        <div class="btn-share-company">
+                                        <i class="icofont-share mr-1"></i>  @lang('phrase.share')</div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -366,7 +395,7 @@
 
         <section class="mt-5">
             <div class="container">
-                <div class="detail-content">
+                <div class="detail-content {{$row->type == 'semi' ? 'hider-img' : ''}}">
                     {!! $row->more ? $row->more : $row->more_th !!}
                 </div>
             </div>
@@ -389,7 +418,7 @@
                         <div class="col-lg-12 gall">
                             <a href="{{ $gall->image }}" data-fancybox="gallery1" class="slick-slide">
                                 <div class="img-gallery">
-                                    <img src="{{ $gall->image }}" class="img-fluid">
+                                    <img src="{{ $gall->image }}" class="img-fluid" loading="lazy" alt="Gallery image">
                                 </div>
                             </a>
                         </div>
@@ -470,7 +499,7 @@
                                 <div class="blog-cover">
                                     <a href="{{ Session('lang') }}/blog/{{ $url }}"><img
                                             src="{{ $v->images }}" title="{{ $v->name }}"
-                                            alt="{{ $v->name }}"></a>
+                                            alt="{{ $v->name }}" loading="lazy"></a>
                                 </div>
                             </div>
                             <div class="blog-body">
@@ -533,7 +562,7 @@
                             <div class="contact-tm">
                                 <div class="detail-contact ch-red">
                                     <a class="tel" href="javascript:">
-                                        <img src="images/icon/phone-call.svg" width="20">
+                                        <img src="images/icon/phone-call.svg" width="20" loading="lazy">
                                         <span id="">@lang('phrase.telephone')</span>
                                     </a>
                                     <div class=" col-lg-12 d-none">
@@ -555,7 +584,7 @@
                                         category={{ Request::segment(2) }} tag="{{ $row->id }}"
                                         text="{{ $row->name ? $row->name : $row->name_th }}"
                                         @if ($row->email == '') disabled @endif>
-                                        <img src="images/icon/mail.svg" width="20"> @lang('phrase.contact.inquiry')
+                                        <img src="images/icon/mail.svg" width="20" loading="lazy"> @lang('phrase.contact.inquiry')
                                     </a>
                                     <span class="d-none">{{ $row->email }}</span>
                                 </div>
@@ -571,13 +600,13 @@
                                         <p class="text-orange font-weight-normal">@lang('phrase.contact.inquiry-for', ['company' => $row->name])</span>
                                         </p>
                                         <div class="owl-pagination-custom fd">
-                                            <div class="data-dots-custom active" data-owl-item="0"><img
-                                                    src="{{ url($row->logo) }}" alt=""
-                                                    width="179" height="89" class="img-fluid">
+                                            <div class="data-dots-custom active" data-owl-item="0">
+                                                <img src="{{ url($row->logo) }}" alt="Company logo"
+                                                    width="179" height="89" class="img-fluid" loading="lazy">
                                             </div>
-                                            <div class="data-dots-custom" data-owl-item="1"><img
-                                                    src="images/page-package/mk01.webp" alt=""
-                                                    width="250" height="153" class="img-fluid">
+                                            <div class="data-dots-custom" data-owl-item="1">
+                                                <img src="images/page-package/mk01.webp" alt="Package image"
+                                                    width="250" height="153" class="img-fluid" loading="lazy">
                                             </div>
                                         </div>
                                     </div>
@@ -830,7 +859,7 @@
                                             class="detail-contact ch-tel @if ($row->phone == '') btn-no-info @endif">
                                             <a class="tel" href="javascript:" style="text-decoration: none"
                                                 @if ($row->phone == '') disabled @endif>
-                                                <img src="images/icon/phone-call.svg" width="20">
+                                                <img src="images/icon/phone-call.svg" width="20" loading="lazy">
                                                 <span style="font-size: 18px;">@lang('phrase.contact.telephone')</span>
                                             </a>
                                             <div class=" col-lg-12 d-none">
@@ -845,7 +874,7 @@
                                                 text="{{ $row->name }}" data-email="{{ $row->email }}"
                                                 style="font-size: 18px; text-decoration: none"
                                                 @if ($row->email == '' || $row->mail == 0) disabled @endif>
-                                                <img src="images/icon/mail.svg" width="20">
+                                                <img src="images/icon/mail.svg" width="20" loading="lazy">
                                                 @lang('phrase.contact.inquiry')
                                             </a>
                                             <span class="d-none">{{ $row->email }}</span>
@@ -869,7 +898,7 @@
                             <div class="card-popup">
                                 <figure class="snip1205 navy">
                                     <img src="images/detail/popup-basic.jpg"
-                                        alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')" class="img-fluid">
+                                        alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')" class="img-fluid" loading="lazy">
                                     <i class="icofont-search-2"></i>
                                     <a href="https://www.at-once.info/th/web-marketing/cp/1-ce-wind"
                                         target="_blank"></a>
@@ -937,7 +966,7 @@
                             <a href="https://www.at-once.info/th">
                                 <img src="images/banner-blog01.jpg" class="img-fluid"
                                     alt="ร่วมเป็นส่วนหนึ่งกับเว็บไซต์ At Once เพิ่มโอกาสสร้างยอดขายให้กับธุรกิจของคุณได้ง่ายๆ"
-                                    width="100%">
+                                    width="100%" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -954,7 +983,7 @@
                         </button>
                         <div class="ads">
                             <img src="images/detail/popup-basic.jpg" alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')"
-                                class="img-fluid">
+                                class="img-fluid" loading="lazy">
                             <h5 class="text-center mt-2">@lang('phrase.contact.interest') <a href="javascript:"
                                     class="click-here font-weight-bold">@lang('phrase.contact.clickhere')</a></h5>
                         </div>
@@ -1082,47 +1111,46 @@
 
         <script src="js/jquery.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-        </script>
-        <script type="text/javascript" src="js/gallery-box.js"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"
+        ></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en">
-        </script>
-        <script type="text/javascript" src="js/custom.js?v=0002"></script>
-        <script type="text/javascript" src="js/fancybox.js"></script>
+        <script type="text/javascript" src="js/gallery-box.js" defer></script>
+        <script src="js/jquery.mCustomScrollbar.concat.min.js" defer></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en" defer></script>
+        <script type="text/javascript" src="js/custom.js?v=0002" defer></script>
+        <script type="text/javascript" src="js/fancybox.js" defer></script>
 
-        <script type="text/javascript" src="slick/slick.min.js?v=001"></script>
-        <script type="text/javascript" src="slick/custom.js"></script>
-        <script type="text/javascript" src="slick/main.js"></script>
+        <script type="text/javascript" src="slick/slick.min.js?v=001" defer></script>
+        <script type="text/javascript" src="slick/custom.js" defer></script>
+        <script type="text/javascript" src="slick/main.js" defer></script>
 
-        <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
-        <script type="text/javascript" src="js/build/authentication.js"></script>
-        <script type="text/javascript" src="js/build/social.media.js"></script>
-        <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js"></script>
-        <script type="text/javascript" src="js/blog.color.js"></script>
+        <script type="text/javascript" src="js/jquery.validate-v1.18.js" defer></script>
+        <script type="text/javascript" src="js/build/authentication.js" defer></script>
+        <script type="text/javascript" src="js/build/social.media.js" defer></script>
+        <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js" defer></script>
+        <script type="text/javascript" src="js/blog.color.js" defer></script>
 
-        <script src="js/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.js"></script>
+        <script src="js/axios.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.js" defer></script>
 
 </body>
 
 </html>
 <script>
     const profileType = "{{$row->type}}";
-    if (profileType == 'semi') {
-        document.querySelector('.cover').querySelector('img')?.remove();
-        document.querySelector('.profile-img').closest('[class^="col-"]')?.remove();
-        const companyDetail = document.querySelector('.company-detail');
-        companyDetail.closest('[class^="col-"]').classList.add('col-lg-12');
-        companyDetail.closest('[class^="col-"]').classList.remove('col-lg-9');
-        const detailCotnent = document.querySelector('.detail-content');
+    // if (profileType == 'semi') {
+        // document.querySelector('.cover').querySelector('img')?.remove();
+        // document.querySelector('.profile-img').closest('[class^="col-"]')?.remove();
+        // const companyDetail = document.querySelector('.company-detail');
+        // companyDetail.closest('[class^="col-"]').classList.add('col-lg-12');
+        // companyDetail.closest('[class^="col-"]').classList.remove('col-lg-9');
+        // const detailCotnent = document.querySelector('.detail-content');
         // detailCotnent.querySelectorAll('img').forEach((el) => el.remove());
-        detailCotnent.querySelectorAll('img').forEach((el) => {
-            el.style.filter = 'blur(16px) grayscale(70%)';
-        });
-    }
+        // detailCotnent.querySelectorAll('img').forEach((el) => {
+        //     el.style.filter = 'blur(16px) grayscale(70%)';
+        // });
+    // }
     modal = $('#popupBasic');
     timeout = 5000;
     customer = '{{ @$customerStatus->id }}';

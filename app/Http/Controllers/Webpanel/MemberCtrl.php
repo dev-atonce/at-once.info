@@ -517,7 +517,7 @@ class MemberCtrl extends Controller
         $data->seo_keyword_en = $request->seo_keyword_en;
         $data->seo_keyword_jp = $request->seo_keyword_jp;
         $data->seo_keyword_zh = $request->seo_keyword_zh;
-        $data->seo_description = $request->seo_description;
+        // $data->seo_description = $request->seo_description;
         // $data->updated_by = Auth::user()->name;
 
         $filename = 'logo_' . date('dmY-Hism');
@@ -580,7 +580,7 @@ class MemberCtrl extends Controller
             $newStep->created = date('Y-m-d H:i:s');
             if ($newStep->save()) {
                 $jf = new \App\Models\JobForwardMd;
-                $jf->job_propress = $newStep->id;
+                $jf->job_progress = $newStep->id;
                 $jf->created = $newStep->created;
                 $jf->save();
             }

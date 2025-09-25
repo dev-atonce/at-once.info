@@ -819,16 +819,7 @@ class JobProgressCtrl extends Controller
         }
     }
 
-    public function addRowExist(Request $request)
-    {
-        $exist = \App\Models\CsRowMd::where([
-            'category' => $request->category,
-            'name_th' => $request->name_th,
-            'name_en' => $request->name_en,
-            'telephone' => $request->telephone,
-            'email' => $request->email,
-        ])->first();
-    }
+
     public function addRow(Request $request)
     {
         $res = [
@@ -837,8 +828,7 @@ class JobProgressCtrl extends Controller
         ];
 
         $new = new \App\Models\CsRowMd;
-        $title = $request->title;
-        $new->name_th = ($title != 'บุคคลธรรมดา') ? "$title " . $request->name_th : $request->name_th;
+        $new->name_th = $request->name_th;
         $new->name_en = $request->name_en;
         $new->status = 'on-process';
         if ($request->company) {
@@ -2215,14 +2205,27 @@ class JobProgressCtrl extends Controller
             $toRows = [];
             foreach ($request->rows as $k => $v) {
                 $data[$k] = [
-                    'name_th'   => $v[1],
-                    'name_en'   => $v[1],
-                    'category' => $request->category,
-                    'telephone' => $v[2],
-                    'email'     => $v[3],
-                    'website'   => $v[4],
-                    'created_by' => $userId,
-                    'created_at' => date('Y-m-d H:i:s')
+                    'name_th'       => $v[1],
+                    'name_en'       => $v[2],
+                    'category'      => $request->category,
+                    'address'       => $v[3],
+                    'telephone'     => $v[4],
+                    'email'         => $v[5],
+                    'website'       => $v[6],
+                    'description_th' => $v[7],
+                    'detail_th'     => $v[8],
+                    'created_by'    => $user->name,
+                    'created_at'    => date('Y-m-d H:i:s')
+                ];
+                $toRows[$k] = [
+                    'name_th'       => $v[1],
+                    'name_en'       => $v[2],
+                    'category'      => $request->category,
+                    'telephone'     => $v[4],
+                    'email'         => ($v[5] == '') ? NULL : $v[5],
+                    'website'       => $v[6],
+                    'created_by'    => $userId,
+                    'created_at'    => date('Y-m-d H:i:s')
                 ];
             }
             if (count($toRows) > 0) {
@@ -2426,402 +2429,6 @@ class JobProgressCtrl extends Controller
             $data->refuse = date('Y-m-d H:i:s');
             $data->refuse_by = Auth::id();
             if ($data->save()) $res = ['status' => true, 'message' => 'Your request has been completed.'];
-        }
-        return response()->json($res);
-    }
-    public function reviseCompany(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobProgressMd::where('company', $request->id)
-            ->leftJoin('job_reject as rej', 'job_progress.id', 'rej.job_progress')
-            ->select([
-                'job_progress.id as jobId',
-                'job_progress.company as companyId',
-            ])
-            ->first();
-        if ($data->id) {
-        }
-        return response()->json($res);
-    }
-    public function addAppointmentDate(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = new \App\Models\JobAppointmentMd;
-        $datetime = explode(' ', $request->date);
-        $date = explode('/', $datetime[0]);
-        $newDate = "$date[2]-$date[1]-$date[0] $datetime[1]";
-        $data->company = $request->company;
-        $data->date = $newDate;
-        $data->by = Auth::id();
-        if ($data->save()) {
-            $res = [
-                'status' => true,
-                'message' => 'Data has been stored.',
-                'data' => [
-                    'id' => $data->id,
-                    'date' => $newDate
-                ]
-            ];
-        }
-        return response()->json($res);
-    }
-    public function getAppointment(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobAppointmentMd::where('company', $request->company)
-            ->leftJoin('users', 'job_appointment.by', 'users.id')
-            ->select([
-                'job_appointment.*',
-                'users.byName',
-                'users.display as displayName',
-            ])
-            ->get();
-        if (@$data->id) {
-            $res = $data->toArray();
-        }
-        return response()->json($res);
-    }
-    public function appointmentProcess(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->company)->first();
-        $datetime = date('Y-m-d H:i:s');
-        if (@$data->id) {
-            $current = $data[$request->process];
-            $data[$request->process] = ($current) ? NULL : $datetime;
-            $data[$request->process . "_by"] = ($current) ? NULL : Auth::id();
-
-            $from = $data[$request->process];
-            $changeTo = $current == NULL ? $datetime : NULL;
-
-            if ($data->save()) {
-                // job log
-                $from = ($from != NULL) ? 'Checked' : 'Unchecked';
-                $changeTo = ($changeTo == NULL) ? 'Checked' : 'Unchecked';
-                $log = new \App\Models\Webpanel\JobLogMd;
-                $log->type = 'system';
-                $log->company = $data->company;
-                $log->job_cs = $data->id;
-                $log->user = Auth::user()->id;
-                $log->message = "Update $request->process status from:$from to:$changeTo";
-                $log->save();
-                // response
-                $res = [
-                    'status' => true,
-                    'message' => 'Your request is successfully!'
-                ];
-            }
-        } else {
-            $data = new \App\Models\JobSaleMd;
-            $current = $data[$request->process];
-            $field = $request->process;
-            $data[$field] = date('Y-m-d H:i:s');
-            $data[$field . "_by"] = Auth::id();
-            $data->company = $request->company;
-
-            $from = $request->process;
-            $changeTo = $current == NULL ? $datetime : NULL;
-
-            if ($data->save()) {
-                // job log
-                $from = ($from != NULL) ? 'Checked' : 'Unchecked';
-                $changeTo = ($changeTo != NULL) ? 'Checked' : 'Unchecked';
-                $log = new \App\Models\Webpanel\JobLogMd;
-                $log->type = 'system';
-                $log->company = $data->company;
-                $log->user = Auth::user()->id;
-                $log->message = "Update $request->process status from:$from to:$changeTo";
-                $log->save();
-                // response
-                $res = [
-                    'status' => true,
-                    'message' => 'Your request is successfully!'
-                ];
-            }
-        }
-        return response()->json($res);
-    }
-    public function appointmentAssign(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->company)->first();
-
-        if (@$data->id) {
-            $current = $data->assignment;
-            $changeTo = ($current) ? NULL : Auth::id();
-            $data->assignment = $changeTo;
-            if ($data->save()) {
-                $log = new \App\Models\Webpanel\JobLogMd;
-                $log->type = 'system';
-                $log->company = $request->company;
-                $log->user = Auth::id();
-                $log->message = ($changeTo == NULL) ? 'Add Assignemnt' : "Remove assignment $from";
-                $log->save();
-                $res = [
-                    'status' => true,
-                    'message' => 'Your request is successfully!'
-                ];
-                if ($changeTo == NULL) {
-                    $res['assignment'] = 'remove';
-                } else {
-                    $res['data'] =
-                        \App\Models\JobSaleMd::where('job_sale.company', $request->company)
-                        ->join('users', 'job_sale.assignment', 'users.id')
-                        ->select('users.id', 'users.name', 'users.display')
-                        ->first();
-                    $res['assignment'] = 'add';
-                }
-            }
-        }
-        return response()->json($res);
-    }
-    public function presentationProgress(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->company)->first();
-        $datetime = date('Y-m-d H:i:s');
-        if (@$data->id) {
-            $current = $data[$request->process];
-            $data[$request->process] = ($current) ? NULL : $datetime;
-            $data[$request->process . "_by"] = ($current) ? NULL : Auth::id();
-
-            $from = $data[$request->process];
-            $changeTo = $current == NULL ? $datetime : NULL;
-            if ($data->save()) {
-                // job log
-                $from = ($current == NULL) ? 'Unchecked' : 'Checked';
-                $changeTo = ($changeTo) ? 'Checked' : 'Unchecked';
-                $log = new \App\Models\Webpanel\JobLogMd;
-                $log->type = 'system';
-                $log->company = $request->company;
-                $log->job_cs = $data->id;
-                $log->user = Auth::user()->id;
-                $log->message = "Update $request->process status from:$from to:$changeTo";
-                $log->save();
-                // response
-                $res = [
-                    'status' => true,
-                    'message' => 'Your request is successfully!'
-                ];
-            }
-        }
-        return response()->json($res);
-    }
-    public function presentationPackage(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->company)->first();
-        if (@$data->id) {
-            $data->package = $request->package;
-            $data->package_at = date('Y-m-d H:i:s');
-            if ($data->save()) {
-                $res = [
-                    'status' => true,
-                    'message' => 'Your request is successfully!'
-                ];
-            }
-        }
-        return response()->json($res);
-    }
-    public function AttachFile(Request $request)
-    {
-        $res = $this->responseDefault;
-        $store = \App\Models\CompanyMd::find($request->companyId);
-        $job = \App\Models\JobSaleMd::where('company', $request->companyId)->first();
-        $job[$request->field . "_at"] = date('Y-m-d H:i:s');
-        $job[$request->field . "_by"] = Auth::id();
-
-
-        if (!empty($request->attachFile)) {
-            $file = $request->attachFile;
-            $ext = '.' . $file->getClientOriginalExtension();
-            $newfile = "$request->field" . $request->companyId . $ext;
-            $fullpath = "upload/$request->field/" . $newfile;
-            $file->storeAs('', $fullpath, env('disk'));
-            $job[$request->field] = $fullpath;
-        }
-        if ($job->save()) {
-            $log = new \App\Models\Webpanel\JobLogMd;
-            $log->type = "system";
-            if ($request->companyId) $log->company = $request->companyId;
-            $log->user = Auth::user()->id;
-            $log->message = "Attach file: $request->field, path: $fullpath";
-            $log->save();
-
-            $res = [
-                'status' => true,
-                'message' => 'uploaded',
-                'file' => $fullpath,
-            ];
-        }
-        return response()->json($res);
-    }
-
-    public function documentAttach(Request $request)
-    {
-        $res = $this->responseDefault;
-        $store = \App\Models\CompanyMd::find($request->companyId);
-        $job = \App\Models\JobSaleMd::where('company', $request->companyId)->first();
-        $job[$request->field . "_at"] = date('Y-m-d H:i:s');
-        $job[$request->field . "_by"] = Auth::id();
-
-
-        if (!empty($request->attachFile)) {
-            $file = $request->attachFile;
-            $ext = '.' . $file->getClientOriginalExtension();
-            $newfile = "$request->field" . $request->companyId . $ext;
-            $fullpath = "upload/$request->field/" . $newfile;
-            $file->storeAs('', $fullpath, env('disk'));
-            $job[$request->field] = $fullpath;
-        }
-        if ($job->save()) {
-            $log = new \App\Models\Webpanel\JobLogMd;
-            $log->type = "system";
-            if ($request->companyId) $log->company = $request->companyId;
-            $log->user = Auth::user()->id;
-            $log->message = "Attach file: $request->field, path: $fullpath";
-            $log->save();
-
-            $res = [
-                'status' => true,
-                'message' => 'uploaded',
-                'file' => $fullpath,
-                'by' => Auth::id(),
-                'name' => Auth::user()->name,
-                'display' => Auth::user()->display,
-            ];
-        }
-        return response()->json($res);
-    }
-    public function contractUpdate(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->companyId)->first();
-        if (@$data->id) {
-            $start = explode('/', $request->start);
-            $end = explode('/', $request->end);
-            $data->contract = date('Y-m-d H:i:s');
-            $data->contract_start = "$start[2]-$start[1]-$start[0]";
-            $data->contract_end = "$end[2]-$end[1]-$end[0]";
-            if ($data->save()) {
-                $res = [
-                    'status' => true,
-                    'message' => 'Data has saved.'
-                ];
-            }
-        }
-        return response()->json($res);
-    }
-    public function DeleteAttachedFile(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->companyId)->first();
-        if (@$data->id) {
-            $fullpath = $data[$request->field];
-            Storage::disk(env('disk'))->delete($fullpath);
-            $data[$request->field] = NULL;
-            $data[$request->field . "_at"] = NULL;
-            $data[$request->field . "_by"] = NULL;
-
-            if ($data->save()) {
-                $log = new \App\Models\Webpanel\JobLogMd;
-                $log->type = "system";
-                if (@$request->companyId) $log->company = $request->companyId;
-                $log->user = Auth::user()->id;
-                $log->message = "Delete Attach file: $request->field, path: $fullpath";
-                $log->save();
-
-                $res = [
-                    'status' => true,
-                    'message' => 'Data has been deleted.'
-                ];
-            }
-        }
-        return response()->json($res);
-    }
-    public function comment(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\Webpanel\JobLogMd::where('company', $request->id);
-        if ($data->count() > 0) {
-            $res = $data->get()->toArray();
-        }
-        return response()->json($res);
-    }
-    public function removeDateAppoint(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobAppointmentMd::where('id', $request->id)->first();
-        if (@$data->id) {
-            \App\Models\JobAppointmentMd::where('id', $request->id)->delete();
-            $res = ['status' => true, 'message' => 'Your request is successfully!'];
-        }
-        return response()->json($res);
-    }
-    public function newPackage(Request $request)
-    {
-        $res = $this->responseDefault;
-        $package = new \App\Models\Webpanel\SalePackageMd;
-        $package->name = $request->name;
-        $package->description = $request->descripttion;
-        $package->created_at = date('Y-m-d H:i:s');
-        $package->created_by = Auth::id();
-        if ($package->save()) {
-            $job = \App\Models\JobSaleMd::where('company', $request->companyId)->first();
-            $job->pacakge = $data->id;
-            $job->pacakge_at = date('Y-m-d H:i:s');
-            $job->save();
-            $res = [
-                'status' => true,
-                'message' => 'Your request is sucessfully!',
-                'data' => \App\Models\Webpanel\SalePackageMd::find($package->id)
-            ];
-        }
-        return response()->json($res);
-    }
-    public function notInterestReturn(Request $request)
-    {
-        $res = $this->responseDefault;
-        $data = \App\Models\JobSaleMd::where('company', $request->companyId)->first();
-        if (@$data->id) {
-            if ($request->return == 'appointment') {
-                $data->done = NULL;
-                $data->done_by = NULL;
-                $data->not_interest = NULL;
-                $data->not_interest_by = NULL;
-                $data->present_send_email = NULL;
-                $data->present_send_email_by = NULL;
-                $data->present_follow = NULL;
-                $data->present_follow_by = NULL;
-                $data->present_done = NULL;
-                $data->present_done_by = NULL;
-                $data->present_not_interest = NULL;
-                $data->present_not_interest_by = NULL;
-            } else {
-                $data->done = NULL;
-                $data->done_by = NULL;
-                $data->not_interest = NULL;
-                $data->not_interest_by = NULL;
-                $data->present_done = NULL;
-                $data->present_done_by = NULL;
-                $data->present_not_interest = NULL;
-                $data->present_not_interest_by = NULL;
-            }
-
-            if ($data->save()) {
-                $log = new \App\Models\Webpanel\JobLogMd;
-                $log->company = $request->companyId;
-                $log->user = Auth::id();
-                $log->message = "Return record to $request->return";
-                $log->type = 'system';
-                $log->created = date('Y-m-d H:i:s');
-                $log->save();
-                $res = [
-                    'status' => true,
-                    'message' => 'Your request is successfully!'
-                ];
-            }
-            // $data->
         }
         return response()->json($res);
     }

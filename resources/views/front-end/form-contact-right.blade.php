@@ -18,9 +18,9 @@
                     style=" border-radius: 4px; padding: 3px; color: #555;">#@lang("phrase.$module.form-limit", ['max' => 10])</span>
                 <div class="row mt-3">
                     <div class="col-12 ">
-                        <label>@lang("phrase.form.to")</label>
+                        <label>@lang("phrase.$module.sendto")</label>
                         <div class="form-group">
-                            <div id="companyList" class="form-control company-contact">
+                            <div id="companyList" class="form-control company-contact">กรุณาเลือกบริษัทที่ต้องการติดต่อ
                             </div>
                         </div>
                     </div>

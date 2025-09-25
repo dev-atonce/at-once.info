@@ -16,5 +16,5 @@ use Spatie\Sitemap\SitemapGenerator;
 */
 Artisan::command('sitemap', function () {
     SitemapGenerator::create('https://at-once.info')
-        ->writeToFile(`public_html/sitemap.xml`);
+        ->writeToFile('public_html/sitemap.xml');
 })->purpose('Create Sitemap');

@@ -193,16 +193,6 @@ class SqlCtrl extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
-        // for ($i=0; $i < 45; $i++) { 
-        //     $st = new \App\Models\BlogStMd;
-        //     $st->blog = "";
-        //     $st->company = 4897;
-        //     $st->ip = "127.0.0.1";
-        //     $st->created = "2024-09-15 12:00:00";
-        //     $st->save();
-        //     echo $i."<br>";
-        // }
     }
 
     public function by($name)

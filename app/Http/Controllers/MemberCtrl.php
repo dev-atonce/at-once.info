@@ -328,9 +328,9 @@ class MemberCtrl extends Controller
                 if($logo){
 
                     $filename = 'logo_'.date('dmY-Hism');
-                    $image = Image::make($logo->getRealPath())->encode('webp', 100);
-                    $image_xs = Image::make($logo->getRealPath())->encode('webp', 100);
-                    $image_sm = Image::make($logo->getRealPath())->encode('webp', 100);
+                    $image = Image::make($logo->getRealPath());
+                    $image_xs = Image::make($logo->getRealPath());
+                    $image_sm = Image::make($logo->getRealPath());
                     $ext = '.'.explode("/", $image->mime())[1];
                     $newfile = 'images/company/'.$new->id.'/'.$filename.$ext;
 
@@ -426,7 +426,7 @@ class MemberCtrl extends Controller
                 if ($logoImage) {
                     $filename = 'logo_'.date('dmY-Hism');
 
-                    $image = Image::make($logoImage->getRealPath())->encode('webp', 100);
+                    $image = Image::make($logoImage->getRealPath());
                     $ext = '.'.explode("/", $image->mime())[1];
 
                     $width = $image->width();
@@ -570,9 +570,9 @@ class MemberCtrl extends Controller
             @Storage::disk(env('disk','ftp'))->delete($get->logo);
             @unlink($get->logo);
 
-            $image = Image::make($logoImage->getRealPath())->encode('webp', 100);
-            $imageXs = Image::make($logoImage->getRealPath())->encode('webp', 100);
-            $imageSm = Image::make($logoImage->getRealPath())->encode('webp', 100);
+            $image = Image::make($logoImage->getRealPath());
+            $imageXs = Image::make($logoImage->getRealPath());
+            $imageSm = Image::make($logoImage->getRealPath());
 
             $ext = '.'.explode("/", $image->mime())[1];
             // $width = $image->width();
@@ -612,7 +612,7 @@ class MemberCtrl extends Controller
         $coverImage = $request->image;
 
         if ($coverImage) {
-            $image = Image::make($coverImage->getRealPath())->encode('webp', 100);
+            $image = Image::make($coverImage->getRealPath());
             $ext = '.'.explode("/", $image->mime())[1];
             $newfile = 'images/company/'.$filename.$ext;
 
@@ -648,7 +648,7 @@ class MemberCtrl extends Controller
         if ($serviceImage) {
             $get = \App\Models\CompanyMd::where(['_id'=>$_id,'category'=>$this->categoryId()])->first();
 
-            $image = Image::make($serviceImage->getRealPath())->encode('webp', 100);
+            $image = Image::make($serviceImage->getRealPath());
             $ext = '.'.explode("/", $image->mime())[1];
             $newfile = 'images/company/'.$get->id.'/'.$filename.$ext;
 
@@ -678,7 +678,7 @@ class MemberCtrl extends Controller
 
             $get = \App\Models\CompanyMd::where(['_id'=>$_id,'category'=>$this->categoryId()])->first();
 
-            $image = Image::make($glImage->getRealPath())->encode('webp', 100);
+            $image = Image::make($glImage->getRealPath());
             $ext = '.'.explode("/", $image->mime())[1];
             $newfile = 'images/company/'.$_id.'/'.$filename.$ext;
 
@@ -2792,8 +2792,8 @@ class MemberCtrl extends Controller
         $glImage = $request->image;
         if ($glImage) {
 
-            $image = Image::make($glImage->getRealPath())->encode('webp', 100);
-            $image_xs = Image::make($glImage->getRealPath())->encode('webp', 100);
+            $image = Image::make($glImage->getRealPath());
+            $image_xs = Image::make($glImage->getRealPath());
             $ext = '.'.explode("/", $image->mime())[1];
             $newfile = 'images/company/'.$_id.'/profile-image/'.$filename.$ext;
 

@@ -64,7 +64,7 @@
                             <strong class="bold border-bottom h5">MA Blog</strong>
                             <div class="row mb-5 mt-1">
                                 <div class="col-12">
-                                    @lang('phrase.member.contact-email.history')
+                                    ประวัติการเข้าชมเว็บไซต์
                                 </div>
                             </div>
                             <table class="table table-striped">

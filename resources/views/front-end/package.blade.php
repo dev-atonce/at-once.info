@@ -714,6 +714,7 @@
     @php
         \App\Helpers\PageCounter::index('promotion-package');
     @endphp
+    @include("$prefix.popup")
 
 </body>
 

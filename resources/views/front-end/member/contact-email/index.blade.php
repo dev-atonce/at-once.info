@@ -64,7 +64,7 @@
                             <strong class="bold border-bottom h5">@lang('phrase.member.menu.c-email')</strong>
                             <div class="row mb-5 mt-1">
                                 <div class="col-12">
-                                    @lang('phrase.member.contact-email.contact-for-sending')
+                                    รายชื่อผู้ติดต่อสำหรับส่งอีเมล
                                 </div>
                             </div>
                             <div class="row">
@@ -85,10 +85,10 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="">@lang('phrase.member.contact-email.contact-company')</th>
-                                        <th width="">@lang('phrase.member.contact-email.contact-name')</th>
-                                        <th width="">@lang('phrase.member.contact-email.contact-department')</th>
-                                        <th width="">@lang('phrase.member.contact-email.contact-email')</th>
+                                        <th width="">บริษัท</th>
+                                        <th width="">ชื่อผู้ติดต่อ</th>
+                                        <th width="">แผนก</th>
+                                        <th width="">อีเมล</th>
                                         <th width="18%"></th>
                                     </tr>
                                 </thead>

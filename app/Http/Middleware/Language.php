@@ -3,26 +3,33 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class Language
 {
     public function handle($request, Closure $next)
     {
+        $availableLangs = ['en', 'th', 'jp', 'zh'];
 
-        $language = Session::get('lang'); 
-        if ($language==null) {
-            Session::put('lang','th'); 
-            $language = Session('lang');
-            App::setLocale($language);
-        } else { 
-            // set from url
-            $uri = $request->url(); 
-            $uri_lang = $request->segment(1);
-            Session::put('lang',$uri_lang); 
-            App::setLocale($uri_lang);
+        $uriLang = $request->segment(1);
+
+        if (in_array($uriLang, $availableLangs)) {
+            Session::put('lang', $uriLang);
+            App::setLocale($uriLang);
+        } else {
+            $sessionLang = Session::get('lang', 'th');
+            App::setLocale($sessionLang);
         }
+
         return $next($request);
+    }
+    public function setLang($lang)
+    {
+        $availableLangs = ['th', 'en', 'jp', 'zh'];
+        if (in_array($lang, $availableLangs)) {
+            session()->put('lang', $lang);
+            App::setLocale($lang);
+        }
+        return redirect()->back();
     }
 }

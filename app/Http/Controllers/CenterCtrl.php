@@ -2187,7 +2187,7 @@ class CenterCtrl extends Controller
 
     public static function myFilter($category=null,$company=null)
     {
-        $lang = Session('lang');
+        $lang = Session('lang', 'th');
         // if (!$lang) { \App::setLocale('th'); $lang='th'; }
         $langP = $lang == 'th' ? 'th' : 'en';
         $key = ($category == null) ? request()->segment(2) : $category;

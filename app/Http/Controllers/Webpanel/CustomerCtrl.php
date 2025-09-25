@@ -21,6 +21,7 @@ class CustomerCtrl extends Controller
             'our_customer.id',
             'our_customer.cs',
             'our_customer.cs_mail',
+            'our_customer.package_in',
             'cp.id as cid',
             'cp.name_th',
             'cp.name_jp',
@@ -86,13 +87,14 @@ class CustomerCtrl extends Controller
     {
         $data = new \App\Models\OurCustomerMd;
         $data->company = $request->company;
-        $data->package = $request->package;
+        $data->package = $request->package ? $request->package : NULL;
         if ($request->package > 2) {
             $data['popup-contact'] = 1;
             $data['popup-blog'] = 1;
         }
+        $data->package_in = ($request->package_in) ? join(',', $request->package_in) : NULL;
         $data->cs = $request->cs;
-        $data->cs_mail = $request->cs_mail;
+        $data->cs_mail = $request->email_cs;
         $data->created = date('Y-m-d H:i:s');
         if ($data->save()) {
             return view($this->path . '.alert.sweet.success', ['url' => url($this->prefix . '/customers')]);
@@ -120,6 +122,7 @@ class CustomerCtrl extends Controller
                 'our_customer.status',
                 'our_customer.cs',
                 'our_customer.cs_mail',
+                'our_customer.package_in',
                 'cp.id as companyId',
                 'cp.category as categoryId',
                 'cp.mobile'
@@ -146,35 +149,29 @@ class CustomerCtrl extends Controller
     {
         $data = \App\Models\OurCustomerMd::find($request->id);
         $data->company = $request->company;
-        $data->package = $request->package;
-        if ($request->line_notifiy) {
-            $data->line = 1;
-        } else {
-            $data->line = 0;
-        }
+        $data->package = ($request->package) ? $request->package : NULL;
+        $data->line = ($request->line_notifiy) ? 1 : 0;
         $data->lat = $request->lat;
         $data->cs = $request->cs;
         $data->cs_mail = $request->cs_mail;
-        if ($request->sms_nofity) {
-            $data->smsnoti = 1;
-        } else {
-            $data->smsnoti = 0;
-        }
+        $data->smsnoti = ($request->sms_nofity) ? 1 : 0;
         $data->sms = $request->sms;
-        $array = [];
-        $keys = $request->key[$request->package];
 
-        for ($i = 0; $i < count($keys); $i++) {
-            $array[] = $keys[$i];
-        }
-        $searchBlog = array_search('popup-blog', $array);
-        $popBlog = ($searchBlog != '') ? 1 : 0;
+        // $array = [];
+        // $keys = $request->key[$request->package];
 
-        $searchContact = array_search('popup-contact', $array);
-        $popContact = ($searchContact != '') ? 1 : 0;
+        // for ($i = 0; $i < count($keys); $i++) {
+        //     $array[] = $keys[$i];
+        // }
+        // $searchBlog = array_search('popup-blog', $array);
+        // $popBlog = ($searchBlog != '') ? 1 : 0;
 
-        $data['popup-blog'] = $popBlog;
-        $data['popup-contact'] = $popContact;
+        // $searchContact = array_search('popup-contact', $array);
+        // $popContact = ($searchContact != '') ? 1 : 0;
+
+        $data['popup-blog'] = $request['popup-blog'];
+        $data['popup-contact'] = $request['popup-contact'];
+        $data->package_in = ($request->package_in) ? join(',', $request->package_in) : NULL;
         $data->updated = date('Y-m-d H:i:s');
 
         if ($data->save()) {

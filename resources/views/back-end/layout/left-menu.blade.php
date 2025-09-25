@@ -59,6 +59,9 @@
                 if ($m->name == 'Company') {
                     $count = \App\Models\CompanyMd::select('id')->count();
                 }
+                if ($m->name == 'Popup Approve') {
+                    $count = \App\Models\SMSHistoryMd::select('id')->whereNull('status')->count();
+                }
             }
         @endphp
         <li class="c-sidebar-nav-item @if ($second) c-sidebar-nav-dropdown @endif @if ($m->position == 'main' && $m->name == 'Company') four-cubcategories @endif">
@@ -86,6 +89,10 @@
                                         ->count() .
                                     '</span>';
                             }
+                            $countVs = '';
+                            if ($vs->name == 'Popup Approve') {
+                                $countVs = \App\Models\SMSHistoryMd::select('id')->whereNull('status')->count();
+                            }
                         @endphp
                         <li class="c-sidebar-nav-item @if ($third->count() > 0) c-sidebar-nav-dropdown sub-secondary @endif">
                             @if ($vs->url == '/blog-type/promotion-package')
@@ -95,7 +102,9 @@
                             @endif
                             <a class="c-sidebar-nav-link @if ($third->count() > 0) c-sidebar-nav-dropdown-toggle @endif"
                                 @if($vs->url)href="{{ $prefix }}{{ $vs->url }}"@endif>{{ $vs->name }}
-                                {!! $subCount !!}</a>
+                                {!! $subCount !!}
+                                <span class='badge badge-success'>{{ @$countVs }}</span>
+                            </a>
                             @if ($third->count() > 0)
                                 <ul class="c-sidebar-nav-dropdown-items">
                                     @foreach ($third as $krd => $vrd)

@@ -28,6 +28,7 @@ class ContactCtrl extends Controller
         $cid = explode(',', $request->cid);
         $data = \App\Models\CompanyMd::select("id", "name_th", 'email', 'phone', 'mobile')->whereIn('id', $cid)->get();
         $emails = [];
+        $comId = [];
         $names = [];
         $phone = [];
         foreach ($data as $v) {
@@ -50,7 +51,7 @@ class ContactCtrl extends Controller
             $store->to_company = $names[$i];
             $store->company_tel = @$phone[$i];
             $store->subject = $subject;
-            $store->cid = $cid[$i];
+            $store->cid = $comId[$i];
             $store->company = $request->company;
             $store->telephone = $request->telephone;
             $store->department = $request->department;

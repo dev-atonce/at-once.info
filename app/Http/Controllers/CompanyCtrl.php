@@ -208,6 +208,7 @@ class CompanyCtrl extends Controller
                     'row' => $data,
                     'blog' => $blog,
                     // 'filters' => \App\Http\Controllers\CenterCtrl::myFilter($data->categoryId, $data->id)
+                    'customerStatus' => \App\Models\OurCustomerMd::where('company', $data->id)->first(),
                     'myFilter' => \App\Http\Controllers\CenterCtrl::myFilter($data->key, $data->id),
                     'filters' => \App\Http\Controllers\CenterCtrl::filterOfCategory($data->key)
                 ]);
@@ -485,11 +486,11 @@ class CompanyCtrl extends Controller
 
                 $message = [
                     'th' => [
-                        'success' => "เราได้ส่งข้อมูลไปยัง $thisCompany แล้ว",
+                        'success' => "เราได้ส่ง SMS ไปยังบริษัท $thisCompany แล้ว",
                         'error' => "บางอย่างผิดพลาด กรุณาทำรายการใหม่หรือติดต่อ At Once"
                     ],
                     'en' => [
-                        'success' => "We have sent an information to a $thisCompany",
+                        'success' => "We have sent an SMS to a $thisCompany company",
                         'error' => "something went wrong, please try again or contact At Once"
                     ]
                 ];
@@ -503,7 +504,7 @@ class CompanyCtrl extends Controller
                                 // บันทึกข้อมูลการส่ง SMS ลงฐานข้อมูล
                                 $history->name = $name;
                                 $history->telephone = $telephone;
-                                $history->message = $message[$lang]['success'];
+                                $history->message = $linemsg;
                                 $history->company = $request->companyId;
                                 $history->user_company = $companyName;
                                 $history->type = 'sms';
@@ -539,7 +540,7 @@ class CompanyCtrl extends Controller
                         if ($noti->status == 200) {
                             $history->name = $name;
                             $history->telephone = $telephone;
-                            $history->message = $message[$lang]['success'];
+                            $history->message = $linemsg;
                             $history->company = $request->companyId;
                             $history->user_company = $companyName;
                             $history->type = 'line';

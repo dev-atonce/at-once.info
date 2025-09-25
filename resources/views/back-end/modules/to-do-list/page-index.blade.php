@@ -313,7 +313,7 @@
         height: 24px;
         width: 24px;
         color: #fff;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 400;
         border-radius: 50%;
         overflow: hidden;
@@ -929,6 +929,8 @@
                                     <div class="card-detail-item">
                                         <span class="font-weight-bold">Members</span>
                                         <div class="detail-user">
+                                            <a href="javascript:" class="user bg515fb9">H</a>
+                                            <a href="javascript:" class="user bg66b951">B</a>
                                             <a href="javascript:" class="user bg-light add-user"><i class="fas fa-plus"></i></a>
                                         </div>
                                     </div>
@@ -1016,7 +1018,7 @@
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <div class="new-comment mb-2">
-                                    <div class="current-user">
+                                    <div class="detail-user">
                                         <a href="javascript:" class="user bg515fb9" style="margin-left: -5px;">H</a>
                                     </div>
                                     <div class="checklist-new-comment w-100">
@@ -1125,12 +1127,11 @@
         return checklist;
     }
     const ChecklistItem = (e) => { 
-        let checked = e.do == 1 ? 'checked' : '';
         item = document.createElement('div');
         item.setAttribute('class','checklist-item');
         item.setAttribute('checklist-item-id',e.id);
         item.innerHTML = `
-            <div class="checklist-item-checkbox enabled js-toggle-checklist-item ${checked}" data-testid="checklist-item-checkbox">
+            <div class="checklist-item-checkbox enabled js-toggle-checklist-item" data-testid="checklist-item-checkbox">
                 <span class="checklist-item-checkbox-check"></span>
             </div>
             <div class="checklist-item-details editable ml-16 w-100">
@@ -1276,7 +1277,7 @@
         item.setAttribute('draggable', true);
         item.ondragend = handleDrop;
         item.ondrag = handleDrag;
-        item.onclick = EditList;
+        item.onclick = editList;
     }
 
     function handleDrag(item) {
@@ -1354,7 +1355,6 @@
 
     async function UpdateChecklistItem(data)
     {
-        data._token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         const request = await fetch('api/to-do-list/checklist/item/update',{
             method:'post',
             headers:{ "Content-Type": 'application/json' },
@@ -1391,26 +1391,24 @@
 
     function FetchToDoList()
     {
-        GetTodoList().then(res => pushData(res) );
+        GetTodoList().then(res => pushData(res.data) );
         
         const data = { list:[], do:[], test:[], done:[] };
         function pushData(obj){
             data.list = [];
             obj?.forEach(v=> {
-                if(v.do == 1){
+                if(v.do == null && v.test == null && v.done == null){
                     data.list.push(v)
-                }else if(v.test == 1){
+                }else if(v.do == null && v.test == null && v.done != null){
                     data.test.push(v);
-                }else if(v.do == 1){
+                }else if(v.do == null && v.test != null && v.done != null){
                     data.do.push(v)
                 }else{
                     data.done.push(v)
                 }
-            });
-            console.log(data)
+            })
 
-            if(data.list.length > 0)
-            {
+            if(data.list.length > 0){
                 listDefault = document.querySelector('.list-default');
                 let item = '';
                 data.list.map(v => {
@@ -1426,24 +1424,24 @@
                 });
                 listDefault.innerHTML = item;
             }
-            if (data.do?.length > 0) {
-                listDo = document.querySelector('.list-do');
-                data.do.forEach(v => {
-    
-                });
-            }
-            if (data.test?.length > 0) {
-                listTest = document.querySelector('.list-test');
-                data.test.forEach(v => {
-    
-                });
-            }
-            if (data.done?.length > 0) {
-                listDone = document.querySelector('.list-done');
-                data.done.forEach(v => {
-    
-                });
-            }
+        }
+        if (data.do?.length > 0) {
+            listDo = document.querySelector('.list-do');
+            data.do.forEach(v => {
+
+            });
+        }
+        if (data.test?.length > 0) {
+            listTest = document.querySelector('.list-test');
+            data.test.forEach(v => {
+
+            });
+        }
+        if (data.done?.length > 0) {
+            listDone = document.querySelector('.list-done');
+            data.done.forEach(v => {
+
+            });
         }
         setTimeout(() => { enableDragSort('to-do-list'); },1000);
         
@@ -1455,16 +1453,15 @@
     {
         const modal = $('#exampleModal');
         modal.find('.ProseMirror').html('');
-        modal.find('.detail-user').find('span.user').remove();
+        modal.find('.detail-user').find('a').not('.add-user').remove();
         modal.find('.card-detail-badge-due-date').find('span').html('');
         modal.find('.markeddown').addClass('d-none');
         modal.find('.row-description').find('p').removeClass('d-none');
         modal.find('.row-checklist').closest('.row').remove();
     }
 
-    function EditList(item)
+    function editList(item)
     {
-        console.log(item)
         if(!item.target.classList.contains('user'))
         {
             item = item.target.closest('.box');
@@ -1473,7 +1470,8 @@
 
             ClearModal();
     
-            GetTodoList(id).then(row => {
+            GetTodoList(id).then(res => {
+                const row = res.data[0];
                 const modal = $('#exampleModal');
                 modal.modal('show');
                 if (row.description != null)
@@ -1491,49 +1489,13 @@
                         $(checklist).insertAfter(descriptionRow);
                         if (v.items.length > 0 )
                         {
-                            let last = v.items.length
                             v.items.map(e => {
                                 item = ChecklistItem(e);
                                 checklist.querySelector('.checklist-items').append(item);
                             });
-                            currentChecklistRow = v.items[(last - 1)]
                         }
                     });
                 }
-                if(row.members.length > 0){
-                    const membersContent = document.querySelector('#exampleModal').querySelector('.detail-user');
-                    // const badge = document.createElement('span'); 
-                    modal.find('a.add-user').attr('select',`${JSON.stringify(row.members)}`);
-                    const len = row.members.length;
-                    row.members.map(function(v,k){
-                        if (k<5) 
-                        {
-                            badge = document.createElement('span');
-                            badge.setAttribute('class','user bg515fb9');
-                            badge.setAttribute('title',v.name);
-                            badge.setAttribute('member-id',v.id);
-                            badge.innerHTML = v.character;
-                            membersContent.append(badge);
-                        }else{
-                            more = parseInt(len) - 5;
-                            if(more != 0) 
-                            {
-                                if(!membersContent?.querySelector('span.more'))
-                                {
-                                    badge = document.createElement('span');
-                                    badge.setAttribute('class','user bg515fb9 more');
-                                    badge.innerHTML = `+${more}`;
-                                    membersContent.append(badge);
-                                }else{
-                                    badge = destination.querySelector('span.more');
-                                    badge.innerHTML = `+${more}`;
-                                }
-                            }
-                            return false;
-                        }
-                    })
-                }
-                calculatePercentage();
                 modal.find('.modal-title').html(title);
                 modal.find('input[name="id"]').val(id);
             });
@@ -1612,12 +1574,6 @@
     //  Click Event
     //  Click Event
     document.addEventListener('click',function(e){
-        const addList = e.target.closest('.add-box');
-        if(addList) {
-            modalContent = document.querySelector('#exampleModal');
-            Modal = new bootstrap.Modal(modalContent,{ backdrop: false, keyboard: true});
-            Modal.show();
-        }
         const newChecklistItem = e.target.closest('.new-checklist-item');
         if(newChecklistItem){
             newChecklistItem.closest('.editing').querySelector('textarea').classList.remove('d-none');
@@ -1684,87 +1640,13 @@
                         checklist.prepend(item);
                         detail.value = '';
                         currentChecklistRow = AddChecklistItem.closest('.row-checklist');
+                        calculatePercentage();
                     }
                 })
                 
             }else{
                 detail.classList.add('invalid');
             }
-        }
-        // Edit todo list
-        const EditList = e.target.closest('.box')
-        if(EditList){
-       
-            const id = EditList.getAttribute('data-id');
-            const title = EditList.querySelector('.list-title').innerHTML;
-
-            ClearModal();
-    
-            GetTodoList(id).then(res => {
-                const row = res.data[0];
-                const modal = $('#exampleModal');
-                modal.modal('show');
-                if (row.description != null)
-                {
-                    descriptionRow = modal.find('.row-description');
-                    // descriptionRow.find('.description-edit').addClass('edit');
-                    descriptionRow.find('p').addClass('d-none');
-                    descriptionRow.find('.markeddown').removeClass('d-none').html(row.description);
-                }
-                if (row.checklist.length > 0 )
-                {
-                    descriptionRow = modal.find('.row-description')
-                    row.checklist.map(v => {
-                        checklist = Checklist(v);
-                        $(checklist).insertAfter(descriptionRow);
-                        if (v.items.length > 0 )
-                        {
-                            let last = v.items.length
-                            v.items.map(e => {
-                                item = ChecklistItem(e);
-                                checklist.querySelector('.checklist-items').append(item);
-                            });
-                            currentChecklistRow = v.items[(last - 1)]
-                        }
-                    });
-                }
-                if(row.members.length > 0){
-                    const membersContent = document.querySelector('#exampleModal').querySelector('.detail-user');
-                    // const badge = document.createElement('span'); 
-                    modal.find('a.add-user').attr('select',`${JSON.stringify(row.members)}`);
-                    const len = row.members.length;
-                    row.members.map(function(v,k){
-                        if (k<5) 
-                        {
-                            badge = document.createElement('span');
-                            badge.setAttribute('class','user bg515fb9');
-                            badge.setAttribute('title',v.name);
-                            badge.setAttribute('member-id',v.id);
-                            badge.innerHTML = v.character;
-                            membersContent.append(badge);
-                        }else{
-                            more = parseInt(len) - 5;
-                            if(more != 0) 
-                            {
-                                if(!membersContent?.querySelector('span.more'))
-                                {
-                                    badge = document.createElement('span');
-                                    badge.setAttribute('class','user bg515fb9 more');
-                                    badge.innerHTML = `+${more}`;
-                                    membersContent.append(badge);
-                                }else{
-                                    badge = destination.querySelector('span.more');
-                                    badge.innerHTML = `+${more}`;
-                                }
-                            }
-                            return false;
-                        }
-                    })
-                }
-                calculatePercentage();
-                modal.find('.modal-title').html(title);
-                modal.find('input[name="id"]').val(id);
-            });
         }
         const markedDown = e.target.closest('.markeddown');
         if(markedDown){
@@ -1773,22 +1655,11 @@
         }
         const checkBox = e.target.closest('.checklist-item-checkbox');
         if(checkBox){
-            let checked = false;
-            let id = checkBox.closest('.checklist-item').getAttribute('checklist-item-id');
-            if (checkBox.classList.contains('checked')) {
-                checked = false;
-                checkBox.classList.remove('checked');
-            }else{
-                checked = true;
-                checkBox.classList.add('checked');
-            } 
+            if (checkBox.classList.contains('checked')) checkBox.classList.remove('checked');
+            else checkBox.classList.add('checked');
             currentChecklistRow = checkBox.closest('.row-checklist');
-            UpdateChecklistItem({id:id,do:checked}).then(res => {
-                if(res.status === true)
-                {
-                    calculatePercentage();
-                }
-            })
+            calculatePercentage();
+
         }
 
         checklistDelete = e.target.closest('[action="checklist-delete"]');
@@ -1807,7 +1678,7 @@
             `;
             const title = 'Delete '+checklistDelete.closest('.checklist-title').querySelector('h5').innerHTML + '?';
             const offset = getOffset(e,checklistDelete);
-            showAction({offset: offset, actions: actions, title: title});
+            showAction(offset,actions,title);
         }
 
         checklistActions = e.target.closest('.checklist-actions');
@@ -1833,7 +1704,7 @@
             `;
             
             const offset = getOffset(e,checklistActions);
-            showAction({offset: offset, actions: actions});
+            showAction(offset,actions);
         }
 
         const deleteComment = e.target.closest('.delete-comment');
@@ -1852,7 +1723,7 @@
             `;
             const title = 'Delete Comment?';
             const offset = getOffset(e,deleteComment);
-            showAction({offset:offset, actions:actions, title:title});
+            showAction(offset,actions,title);
         }
 
 
@@ -1913,6 +1784,7 @@
         }
         const addUser = e.target.closest('.add-user');
         if(addUser){
+            
             let actions = `
             <div class="p-2">
                 <div class="pop-over-content js-pop-over-content u-fancy-scrollbar js-tab-parent" style="height: 500px; max-height: 500px; overflow-y:auto;">
@@ -1929,12 +1801,7 @@
             actions+=`</ul></div></div>`;
             const title = 'Members';
             const offset = getOffset(e,addUser);
-            showAction({
-                offset: offset,
-                actions: actions,
-                title: title,
-                select: JSON.parse(addUser.getAttribute('select'))
-            });
+            showAction(offset,actions,title);
         }
         
         list = e.target.closest('.js-member-item');
@@ -1990,7 +1857,7 @@
 
     }
   
-    function showAction(event)
+    function showAction(offset,actions,title)
     {
         const actionsBox = document.querySelector('.actions');
         actionsBox.innerHTML = '';
@@ -2004,16 +1871,16 @@
                 <i class="fas fa-times"></i>
             </a> 
         </div>
-        <div class="action-body">${event.actions}</div>
+        <div class="action-body">${actions}</div>
         `;
         actionsBox.append(inner);
-        if (event.title) actionsBox.querySelector('h6').innerHTML = event.title;
+        if (title) actionsBox.querySelector('h6').innerHTML = title;
         actionsBox.style.display = 'block';
         actionsBox.style.position = 'fixed';
         actionsBox.style.width = '304px';
         actionsBox.style.willChange = 'top, left';
-        actionsBox.style.top = `${event.offset.top}px`;
-        actionsBox.style.left = `${event.offset.left}px`;
+        actionsBox.style.top = `${offset.top}px`;
+        actionsBox.style.left = `${offset.left}px`;
         actionsBox.style.zIndex = 9999;
 
         actionsBox.querySelector('input[name="members"]').addEventListener('keyup',function(e){
@@ -2030,16 +1897,7 @@
 
         });
 
-        if(event.select.length > 0){
-            event.select.map(function(v,k){
-                icon = document.createElement('i');
-                icon.setAttribute('class','fas fa-check position-absolute');
-                icon.setAttribute('style','right: 10px;');
-                actionsBox.querySelector(`[member-id="${v.id}"]`).querySelector('.js-select-member').append(icon);
-            })
-
-        }
-
+        
         Array.from(document.querySelectorAll('.action-item')).map((item) => { item.onclick = takeAction });
         document.querySelector('.actions .action-close').onclick = closeAction;
     }

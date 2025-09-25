@@ -52,6 +52,7 @@ class CompanyCtrl extends Controller
             "company.more_th",
             "company.more_jp",
             "company.profile_url",
+            "company.website",
             "company.public",
             "company.email",
             "company.type",
@@ -99,13 +100,19 @@ class CompanyCtrl extends Controller
                     'company.resource' => 'import',
                 ]);
             })
-            ->when($request->semi,function($query){
-                $query->where('company.type','semi');
+            ->when($request->semi, function ($query) {
+                $query->where([
+                    'company.type' => 'semi',
+                    'company.semi' => true,
+                ])
+                ->whereNull(['company.resource']);
             })
             ->when($request->onProcess, function ($query) {
-                $query->where('company.type','basic')
-                    ->whereNull('cs.refuse')
-                    ->whereNull('company.resource');
+                $query->where('company.type', 'semi')
+                    ->whereNull(['cs.refuse', 'company.resource'])
+                    ->where(function ($query) {
+                        $query->whereNull('company.semi')->orWhere('company.semi', false);
+                    });
             })
             ->when($request->attachfile, function ($query) {
                 $query->whereNotNull('company.license_attachfile');

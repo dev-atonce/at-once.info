@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="{{Session('lang')}}">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="csrf-token" content="{{csrf_token()}}">
+
+  <title>{{ENV('APP_NAME')}}</title>
+
+  <base href="{{url('/')}}">  
+  <link href="img/favicon.ico?v=1001" rel="shortcut icon" type="image/x-icon" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="fonts/icofont.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/header-footer.css" rel="stylesheet">
+  <link href="css/member-company.css?v=002" rel="stylesheet">
+  <link rel="stylesheet" href="css/gallery.css?v=0001">
+  <link rel="stylesheet" href="css/validate.css">
+  <style>
+      .mce-btn, .mce-panel{
+          background-color: #fff !important;
+      }
+      input.error{
+        border: 1px solid red;
+      }
+      input.error:focus{
+        border-color: rgb(255, 128, 128);
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+      }
+  </style>
+</head>
+<body>
+
+  @if($module!='member')
+  @include("$prefix.$module.header")
+@else
+  @include("$prefix.header")
+@endif
+ 
+ <section class="page">
+  <div class="container">
+
+    <div class="col-lg-12">
+      <div class="personal row" style="box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 16px;">
+        <div class="left">
+          @include("$prefix.member.member-menu")
+        </div>
+        <div class="right">
+          <div class="group-box-right">
+            
+
+            <form id="change-password" action="" method="post">
+              @csrf
+              <h5 class="bold border-bottom mb-5">เปลี่ยนอีเมล</h5>
+              @if(Session('status')=='success')
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong class="bold">{{Session('status')}}!</strong> {{Session('message')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              @endif
+              @if(Session('status')=='error')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong class="bold">{{Session('status')}}!</strong> {{Session('message')}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              @endif
+              <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <label class="mr-2">@lang('phrase.old-email') :</label>
+                    <div class="form-group">                        
+                        <input type="text" name="email" id="email" class="form-control" value="{{$member->email}}" readonly="">
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <label class="mr-2">@lang('phrase.new-email') :</label>
+                    <div class="form-group">                        
+                        <input type="text" name="new_email" id="new_email" class="form-control" >
+                    </div>
+                </div>
+              </div>
+
+              <center class="mt-5"><button type="submit" class="btn btn-primary">บันทึก</button></center>
+          </form>
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+</section>
+
+
+
+@include("$prefix.footer")
+
+<script src="js/jquery.js"></script>
+<!-- Optional JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="js/uk-tab.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="js/custom.js?v=001"></script>
+<script src="js/js.device.detector-master/dist/jquery.device.detector.js"></script>
+<script type="text/javascript" src="plugin/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
+<script>
+    tinymce.init({
+		selector: 'textarea.tiny-detail',
+		menubar : false,
+		force_br_newlines : true,
+		force_p_newlines : false,
+		forced_root_block : '',
+		height: 600, 
+        //width : 1100,
+        plugins: ["advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker","searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking","save table contextmenu directionality emoticons template paste textcolor colorpicker layer textpattern moxiemanager"],    
+        toolbar: 'undo redo | table | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | nonbreaking hr code',
+        
+    });
+    $('i.fa-eye-slash').click(function(){
+        $(this).toggleClass('fa-eye-slash fa-eye');
+        const prev = $(this).parent().parent().prev();
+        type = (prev.attr('type')=='password')?'text':'password';
+        prev.attr('type',type);
+    });
+    errMessage = {
+        new_email : ['กรอกอีเมลของคุณ','Enter enter your email.'],
+        valid_email : ['รูปปแบบอีเมลไม่ถูกต้อง','Please enter a valid email address.'],
+        duplicate : ['มีอีเมลนี้อยู่ในระบบแล้ว','This email already exists.']
+    },
+    lang = '{{Session("lang")}}',
+    hl = (lang=='th')?0:1;
+    $('#change-password').validate({
+        ignore:[],
+        rules : {
+            new_email : { 
+                required : true, 
+                email : email,
+                remote : {
+                    url : 'check/email?a=duplicate',
+                    type : 'get',
+                    data : {
+                        email : function(){ return $('#new_email').val() }
+                    }
+                }
+            },
+        },
+        messages : {
+            new_email : {
+                required: errMessage.new_email[hl],
+                email: errMessage.valid_email[hl],
+                remote: errMessage.duplicate[hl]
+            }
+        },
+        errorPlacement : function(error,input){
+            error.insertAfter(input.parent().prev());
+        }
+    })
+    var lang = '{{Session("lang")}}';
+</script>
+<script src="js/build/main.js?v=04"></script>
+<script src="js/build/media.image.js?v=005"></script>

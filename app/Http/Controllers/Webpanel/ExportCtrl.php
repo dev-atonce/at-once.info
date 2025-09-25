@@ -13,39 +13,51 @@ class ExportCtrl extends Controller
     public function index()
     {
         // \DB::enableQueryLog();
-        $link1 = url('webpanel/export/jp-online-license');
+        // $link1 = url('webpanel/export/jp-online-license');
         // $link2 = url('webpanel/export/basic-company-no-refuse');
 
+        // echo ('<style>*{font-family:Arial, Helvetica, sans-serif; font-size:14px;}</style>');
+        // echo ("<p>1. Japanese Company, Online, License >> <a href='$link1' target='_blank'>Export</a></p>");
+        // $allCount = \App\Models\CompanyMd::select('company.name_th')
+        //     ->join('job_cs as jcs', 'company.id', 'jcs.company')
+        //     ->where('company.type', 'basic')
+        //     ->whereNull('jcs.refuse')
+        //     ->get()
+        //     ->count();
+        // $allCount = number_format($allCount);
+        // echo ("<p style='margin-bottom: 5px'>2. Basic Company, No refuse <small style='font-size:12px;'>(All basic company <strong>$allCount</strong>)</small></p>");
+
+
+        // $sql = \App\Models\CompanyMd::select('company.name_th')
+        //     ->join('job_cs as jcs', 'company.id', 'jcs.company')
+        //     ->where('company.type', 'basic')
+        //     ->whereNull('jcs.refuse')
+        //     ->groupBy('company.name_th')
+        //     ->get();
+
+        // $all = $sql->count();
+        // $no = ceil($all / 1000);
+        // $url = url('webpanel/export');
+        // for ($i = 0; $i < $no; $i++) {
+        //     $start = $i == 0 ? 1 : ($i * 1000) + 1;
+        //     $end = $i == 0 ? 1000 : ($i + 1) * 1000;
+        //     echo '<a style="margin-left:15px;" href="' . $url . '/basic-company-no-refuse/' . $start . '-' . $end . '" target="_blank">ไฟล์ ' . ($i + 1) . '. จาก ' . $start . ' ~ ' . $end . '</a><br>';
+        // }
+        // dd(\DB::getQueryLog());
+
+        // new function
         echo ('<style>*{font-family:Arial, Helvetica, sans-serif; font-size:14px;}</style>');
-        echo ("<p>1. Japanese Company, Online, License >> <a href='$link1' target='_blank'>Export</a></p>");
-        $allCount = \App\Models\CompanyMd::select('company.name_th')
-            ->join('job_cs as jcs', 'company.id', 'jcs.company')
-            ->where('company.type', 'basic')
-            ->whereNull('jcs.refuse')
-            ->get()
-            ->count();
-        $allCount = number_format($allCount);
-        echo ("<p style='margin-bottom: 5px'>2. Basic Company, No refuse <small style='font-size:12px;'>(All basic company <strong>$allCount</strong>)</small></p>");
+        $allCount = \App\Models\CompanyMd::count();
+        echo ("<p style='margin-bottom: 5px'>All company <small style='font-size:12px;'>(All company <strong>$allCount</strong>)</small></p>");
 
-
-        $sql = \App\Models\CompanyMd::select('company.name_th')
-            ->join('job_cs as jcs', 'company.id', 'jcs.company')
-            ->where('company.type', 'basic')
-            ->whereNull('jcs.refuse')
-            ->groupBy('company.name_th')
-            ->get();
-
-        $all = $sql->count();
-        $no = ceil($all / 1000);
+        $no = ceil($allCount / 1000);
         $url = url('webpanel/export');
         for ($i = 0; $i < $no; $i++) {
             $start = $i == 0 ? 1 : ($i * 1000) + 1;
             $end = $i == 0 ? 1000 : ($i + 1) * 1000;
-            echo '<a style="margin-left:15px;" href="' . $url . '/basic-company-no-refuse/' . $start . '-' . $end . '" target="_blank">ไฟล์ ' . ($i + 1) . '. จาก ' . $start . ' ~ ' . $end . '</a><br>';
+            $end = $end > $allCount ? $allCount : $end;
+            echo '<a style="margin-left:15px;" href="' . $url . '/company-all/' . $start . '-' . $end . '" target="_blank">ไฟล์ ' . ($i + 1) . '. จาก ' . $start . ' ~ ' . $end . '</a><br>';
         }
-        // dd(\DB::getQueryLog());
-
-
     }
     public function allCompany(Request $request)
     {
@@ -152,15 +164,14 @@ class ExportCtrl extends Controller
     public function category(Request $request, $id = null)
     {
         try {
-            $data = \App\Models\CompanyMd::whereNull('company.license_attachfile')
-                ->leftJoin('job_cs', 'company.id', '=', 'job_cs.company')
-                // ->leftJoin('job_progress', 'company.id', 'job_progress.company')
+            $data = \App\Models\CompanyMd::leftJoin('job_cs', 'company.id', '=', 'job_cs.company')
+                ->leftJoin('category', 'company.category', '=', 'category.id')
                 ->where([
-                    // 'company.category' => $id,
-                    'company.type' => 'basic',
-                    'company.public' => 1,
+                    'company.category' => $id,
+                    // 'company.type' => 'basic',
+                    // 'company.public' => 1,
                 ])
-                ->whereNull('job_cs.refuse')
+                // ->whereNull('job_cs.refuse')
                 // ->whereNotNull(['company.more_th', 'job_progress.step3', 'company.checked'])
                 ->select([
                     'company.id',
@@ -169,10 +180,10 @@ class ExportCtrl extends Controller
                     'company.address_th',
                     'company.address_jp',
                     'company.phone',
-                    'company.mobile',
                     'company.email',
-                    'company.license',
-                    'company.website',
+                    'company.license_attachfile',
+                    'category.key as category',
+                    'company.profile_url'
                 ])
                 ->orderBy('company.name_th', 'desc')
                 ->get();
@@ -189,41 +200,24 @@ class ExportCtrl extends Controller
                 "Expires" => "0"
             );
 
-            $columns = array('No.', 'Name TH', 'Name JP', 'Telephone', 'Mobile', 'Email', 'Copyright', 'Address TH', 'Address JP', 'Website');
+            $columns = array('No.', 'Name TH', 'Name JP', 'Telephone', 'Email', 'Address TH', 'Address JP', 'full_profile_url' , 'license_attachfile');
 
             $callback = function () use ($data, $columns) {
                 $file = fopen('php://output', 'w');
                 fputs($file, (chr(0xEF) . chr(0xBB) . chr(0xBF))); // set ภาษาไทย
                 fputcsv($file, $columns);
                 foreach ($data as $k => $rs) {
-                    // if (\App\Models\LogOfModifiedMd::where(['action' => 'URL Close', 'company' => $rs->id])->count() > 0) {
                     fputcsv($file, [
                         $k + 1,
                         $rs->name_th,
                         $rs->name_jp,
                         $rs->phone,
-                        $rs->mobile,
                         $rs->email,
-                        $rs->license,
                         $rs->address_th,
                         $rs->address_jp,
-                        $rs->website,
+                        $rs->profile_url ? url("/th/$rs->category/cp/$rs->profile_url") : '',
+                        $rs->license_attachfile ? url($rs->license_attachfile) : ''
                     ]);
-                    // } else {
-                    //     fputcsv($file, [
-                    //         $k + 1,
-                    //         $rs->name_th,
-                    //         $rs->name_jp,
-                    //         '',
-                    //         $rs->phone,
-                    //         $rs->mobile,
-                    //         $rs->email,
-                    //         $rs->license,
-                    //         $rs->address_th,
-                    //         $rs->address_jp,
-                    //         $rs->website,
-                    //     ]);
-                    // }
                 }
             };
             return response()->stream($callback, 200, $headers)->send();
@@ -910,6 +904,66 @@ description_th => $data->description_th\r\ndescription_jp => $data->description_
         2. No Reruse 
         3. ทุกแคท
     */
+
+    public function companyAll($request)
+    {
+        try {
+            $request = explode('-', $request);
+
+            $data = \App\Models\CompanyMd::leftJoin('category', 'company.category', '=', 'category.id')
+                ->select([
+                    'company.id',
+                    'company.name_th',
+                    'company.name_jp',
+                    'company.address_th',
+                    'company.address_jp',
+                    'company.phone',
+                    'company.email',
+                    'company.license_attachfile',
+                    'category.key as category',
+                    'company.profile_url'
+                ])
+                ->orderBy('company.id', 'desc')
+                ->skip($request[0]-1)
+                ->take(1000)
+                ->get();
+
+            $fileName = "all company ($request[0]-$request[1]).csv";
+            $headers = array(
+                "Charset" => "utf-8",
+                "Content-type" => "text/csv",
+                "Content-Disposition" => "attachment; filename=$fileName",
+                "Pragma" => "no-cache",
+                "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+                "Expires" => "0"
+            );
+            $columns = array('No.', 'Name TH', 'Name JP', 'Telephone', 'Email', 'Address TH', 'Address JP', 'full_profile_url' , 'license_attachfile');
+
+            $callback = function () use ($data, $columns , $request) {
+                $file = fopen('php://output', 'w');
+                fputs($file, (chr(0xEF) . chr(0xBB) . chr(0xBF))); // set ภาษาไทย
+                fputcsv($file, $columns);
+                foreach ($data as $k => $rs) {
+                    fputcsv($file, [
+                        $k + $request[0],
+                        $rs->name_th,
+                        $rs->name_jp,
+                        $rs->phone,
+                        $rs->email,
+                        $rs->address_th,
+                        $rs->address_jp,
+                        $rs->profile_url ? url("/th/$rs->category/cp/$rs->profile_url") : '',
+                        $rs->license_attachfile ? url($rs->license_attachfile) : ''
+                    ]);
+                }
+            };
+            return response()->stream($callback, 200, $headers)->send();
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd($e->getMessage());
+        } catch (\ErrorException $e) {
+            dd($e->getMessage());
+        }
+    }
 
     public function basicNoRefuse($request)
     {

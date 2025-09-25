@@ -656,6 +656,7 @@ class StatisticsCtrl extends Controller
                 'inquiryOld' => $this->mergeArray($telephoneOld->toArray(), $emailOld->toArray(), $popupOld->toArray()),
                 'backlink' => $backlink, // backlink
                 'backlinkOld' => $backlinkOld, // backlinkOld
+                'dateCreated' => date('M Y', strtotime($memberSince->created))
             ], 200);
         } catch (\Exception $e) {
             return response()->json([

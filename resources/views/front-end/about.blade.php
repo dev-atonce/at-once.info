@@ -11,6 +11,29 @@
 
     <title>{{ $seo->title ? $seo->title : $seo->title_th }}</title>
 
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "At-Once",
+            "url": "https://at-once.info",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://at-once.info/img/at-once-tw.png"
+            },
+            "description": "แหล่งรวบรวมข้อมูลธุรกิจครบวงจรสำหรับค้นหารายชื่อบริษัทจากทุกอุตสาหกรรมในประเทศไทย ผู้ให้บริการเว็บไซต์รวมรายชื่อบริษัทอันดับหนึ่ง พร้อมข้อมูลสำคัญอย่างละเอียดถูกต้องและทันสมัย",
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://at-once.info/th/search?keywords={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
+
     <meta property="og:title" content="{{ $seo->title ? $seo->title : $seo->title_th }}">
     <meta property="og:description"
         content="{{ $seo->seo_description ? $seo->seo_description : $seo->seo_description_th }}">
@@ -482,7 +505,7 @@
             </div>
         </div>
     </section>
-
+    
     @include("$prefix.analytics.gtagBody")
     @include("$prefix.footer")
 
@@ -504,6 +527,7 @@
     <script>
         new WOW().init();
     </script>
+    @include("$prefix.popup")
 
 </body>
 

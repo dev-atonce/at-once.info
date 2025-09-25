@@ -78,12 +78,12 @@ class SettingsCtrl extends Controller
 
 
         if($res['status'] === true) {
-            echo '<h4 style="display:flex;justify-content:center;">Auto close in <span id="countdown" style="margin-left:5px;">3</span></h4>';
+            echo '<h4 style="display:flex;justify-content:center;">Auto close in <span id="countdown" style="margin-left:5px;">5</span></h4>';
         }else{
-            echo '<h4 style="display:flex;justify-content:center;">Auto redirect in <span id="countdown" style="margin-left:5px;">3</span></h4>';
+            echo '<h4 style="display:flex;justify-content:center;">Auto redirect in <span id="countdown" style="margin-left:5px;">5</span></h4>';
         }
         echo '<script>
-                var timeleft = 3;
+                var timeleft = 5;
                 var downloadTimer = setInterval(function(){
                     if(timeleft <= 0){
                         clearInterval(downloadTimer);

@@ -64,6 +64,7 @@ Route::middleware(['Webpanel'])->group(function () use ($category) {
             Route::get('real-basic', [\App\Http\Controllers\Webpanel\ExportCtrl::class, 'exportRealBasic']);
             Route::get('jp-online-license', [\App\Http\Controllers\Webpanel\ExportCtrl::class, 'jpOnlineAndLicense']);
             Route::get('basic-company-no-refuse/{r}', [\App\Http\Controllers\Webpanel\ExportCtrl::class, 'basicNoRefuse'])->where(['r' => '[0-9-]+']);
+            Route::get('company-all/{r}', [\App\Http\Controllers\Webpanel\ExportCtrl::class, 'companyAll'])->where(['r' => '[0-9-]+']);
 
             Route::get('sms-popup', [\App\Http\Controllers\Webpanel\ExportCtrl::class, 'exportSmsPopup']);
             Route::get('package-form', [\App\Http\Controllers\Webpanel\ExportCtrl::class, 'exportPackageForm']);
@@ -92,6 +93,7 @@ Route::middleware(['Webpanel'])->group(function () use ($category) {
         Route::get('/web-traffic/get-clicks-blog', [\App\Http\Controllers\Webpanel\DashboardCtrl::class, 'getClicksBlog']);
         Route::get('/email-approve', [\App\Http\Controllers\Webpanel\HistoryMailCtrl::class, 'emailApprove']);
         Route::get('/popup-approve', [\App\Http\Controllers\Webpanel\HistoryMailCtrl::class, 'popupApprove']);
+        Route::post('/popup-approve/update', [\App\Http\Controllers\Webpanel\HistoryMailCtrl::class, 'popupApproveUpdate']);
         Route::get('/email-reject', [\App\Http\Controllers\Webpanel\HistoryMailCtrl::class, 'emailReject']);
         Route::post('/sendmail/cs', [\App\Http\Controllers\ContactCtrl::class, 'SendtoCustomer']);
         Route::post('/revisemail/cs', [\App\Http\Controllers\ContactCtrl::class, 'ReviseMail']);
@@ -310,21 +312,20 @@ Route::middleware(['Webpanel'])->group(function () use ($category) {
 
             Route::get('/', [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'index']);
 
-            foreach ($category as $i => $cat) {
-                Route::get($cat, [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'index']);
-                Route::get("$cat/statistics/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'statistic'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/sms/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'statistic'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/banner/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'statistic'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/statistics/{id}/report", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'report'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/sms/{id}/report", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'reportsms'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'edit'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/send-email", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'sendEmail']);
-                Route::get("$cat/log-of-modified", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'logOfModified']);
-                Route::get("$cat/log-of-contact", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'getContact']);
-                Route::post("$cat/updateContact", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'updateContact']);
+            foreach ($category as $i => $v) {
+                Route::get($v, [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'index']);
+                Route::get("$v/statistics/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'statistic'])->where(['id' => '[0-9]+']);
+                Route::get("$v/sms/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'statistic'])->where(['id' => '[0-9]+']);
+                Route::get("$v/banner/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'statistic'])->where(['id' => '[0-9]+']);
+                Route::get("$v/sms/{id}/report", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'reportsms'])->where(['id' => '[0-9]+']);
+                Route::get("$v/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'edit'])->where(['id' => '[0-9]+']);
+                Route::get("$v/send-email", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'sendEmail']);
+                Route::get("$v/log-of-modified", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'logOfModified']);
+                Route::get("$v/log-of-contact", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'getContact']);
+                Route::post("$v/updateContact", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'updateContact']);
 
-                Route::get("$cat/stat-email/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'EmailDetail'])->where(['id' => '[0-9]+']);
-                Route::get("$cat/stat-popup/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'PopupDetail'])->where(['id' => '[0-9]+']);
+                Route::get("$v/stat-email/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'EmailDetail'])->where(['id' => '[0-9]+']);
+                Route::get("$v/stat-popup/{id}", [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'PopupDetail'])->where(['id' => '[0-9]+']);
             }
             Route::get('/refuse', [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'refuse']);
             Route::get('/refuse/report', [\App\Http\Controllers\Webpanel\CompanyCtrl::class, 'refuseReport']);

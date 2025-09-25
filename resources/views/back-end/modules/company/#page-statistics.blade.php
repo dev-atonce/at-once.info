@@ -226,6 +226,7 @@
         </div> --}}
 
         <div class="row">
+
             <div class="col-lg-12">
                 <table class="table table-striped" id="stBrowser" style="width:100%;">
                     <thead>
@@ -239,6 +240,9 @@
                 </table>
             </div>
         </div>
+
+
+
     </div>
 </div>
 
@@ -490,6 +494,15 @@
         $('.all-visit').find('.text-value-lg.blogtoweb').html(stClick.blogtoweb);
     }
 
+    function allBlog(len) {
+        const nLength = (len != null) ? '?len=' + len : '';
+        const all = $.ajax({
+            url: 'api/' + category + '/' + cid + '/statistics/all-blog' + nLength,
+            async: false
+        }).responseJSON
+        $('.all-blog').find('.text-value-lg').html(all);
+    }
+
     function fetchLocate(request) {
         const data = statisticsLocate(request);
         var stLocate = []
@@ -518,6 +531,7 @@
     this.barGrap();
     this.lineGrap();
     this.staticClick();
+    this.allBlog();
 
     $('#stBrowser').dataTable({
         // width: '100%',

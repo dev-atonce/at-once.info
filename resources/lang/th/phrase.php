@@ -32,7 +32,7 @@ return [
         'other' => 'อื่น ๆ',
         'copylink' => 'คัดลอกลิงค์',
         'shareblog' => 'แชร์บทความ หรือข่าวสาร',
-    ], 
+    ],
     'paginate' => [
         'previous' => 'ก่อนหน้า',
         'next' => 'ถัดไป',
@@ -244,8 +244,8 @@ return [
         'terms-conditions' => 'ข้อกำหนดและเงื่อนไข',
         'privacy-policy' => 'นโยบายความเป็นส่วนตัว',
         'contact-us' => 'ติดต่อ At Once',
-        'caption-upper' =>'เพิ่มโอกาสในการขายสินค้าและบริการของคุณ',
-        'caption-lower' =>'ด้วยเครื่องมือและแผนการตลาดออนไลน์ โดยทีมงานมืออาชีพ', 
+        'caption-upper' => 'เพิ่มโอกาสในการขายสินค้าและบริการของคุณ',
+        'caption-lower' => 'ด้วยเครื่องมือและแผนการตลาดออนไลน์ โดยทีมงานมืออาชีพ',
     ],
     'industry' => 'ประเภทธุรกิจ',
     'other-industry' => 'ธุรกิจอื่น ๆ',
@@ -1120,10 +1120,10 @@ return [
         ],
     ],
     'electric-product-part-industrial-service' => [ /*= 1.5.5 */
-        'caption' => 'Electric product & Parts industrial in Thailand',
-        'title-industry' => "Electric product & Parts industrial",
+        'caption' => 'บริษัทจำหน่ายผลิตภัณฑ์ไฟฟ้าและชิ้นส่วนอุตสาหกรรมในประเทศไทย',
+        'title-industry' => "บริษัทจำหน่ายผลิตภัณฑ์ไฟฟ้าและชิ้นส่วนอุตสาหกรรม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell Electric product & Parts industrial',
+        'search-title' => 'ค้นหาบริษัทจำหน่ายผลิตภัณฑ์ไฟฟ้าและชิ้นส่วนอุตสาหกรรมในประเทศไทย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1279,10 +1279,10 @@ return [
     ],
     // 2.1.6
     'welding-machine' => [
-        'caption' => 'Welding Machine in Thailand',
-        'title-industry' => "Welding Machine",
+        'caption' => 'เครื่องเชื่อมในประเทศไทย',
+        'title-industry' => "เครื่องเชื่อม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell welding Machine.',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องเชื่อม',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1296,10 +1296,10 @@ return [
     ],
     // 2.1.7
     'robot-automation' => [
-        'caption' => 'Robot & Automation in Thailand',
-        'title-industry' => "Robot & Automation",
+        'caption' => 'หุ่นยนต์และระบบอัตโนมัติในประเทศไทย',
+        'title-industry' => "หุ่นยนต์และระบบอัตโนมัติ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell robot & automation.',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายหุ่นยนต์และระบบอัตโนมัติ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1340,10 +1340,10 @@ return [
     ],
     // 2.1.9
     'second-hand-machine' => [
-        'caption' => 'Second Hand Machine in Thailand',
-        'title-industry' => "Second Hand Machine",
+        'caption' => 'เครื่องจักรมือสองในประเทศไทย',
+        'title-industry' => "เครื่องจักรมือสอง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell second hand machine.',
+        'search-title' => 'ค้นหาบริษัทที่ขายเครื่องจักรมือสอง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1357,10 +1357,10 @@ return [
     ],
     // 2.1.10
     'coating-painting-heating-treatment-machine' => [
-        'caption' => 'Coating, Painting, Heating treatment machine in Thailand',
-        'title-industry' => "Coating, Painting, Heating treatment machine",
+        'caption' => 'เครื่องเคลือบ, พ่นสี, เครื่องบำบัดความร้อนในประเทศไทย',
+        'title-industry' => "เครื่องเคลือบ, พ่นสี, เครื่องบำบัดความร้อน",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell Coating, Painting, Heating treatment machine',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องเคลือบ,พ่นสี,เครื่องบำบัดความร้อน',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1374,10 +1374,10 @@ return [
     ],
     // 2.1.11
     'grinding-edm-wire-cut-machine' => [
-        'caption' => 'Griding & EDM, Wire cut machine in Thailand',
-        'title-industry' => "Griding & EDM, Wire cut machine",
+        'caption' => 'เครื่องเจียร & EDM เครื่องตัดลวดในประเทศไทย',
+        'title-industry' => "เครื่องเจียร & EDM, เครื่องตัดลวด",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell griding & EDM, wire cut machine',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องเจียร & EDM, เครื่องตัดลวด',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1391,10 +1391,10 @@ return [
     ],
     // 2.1.12
     'qc-equipment' => [
-        'caption' => 'QC Equipment in Thailand',
-        'title-industry' => "QC Equipment",
+        'caption' => 'อุปกรณ์ควบคุมคุณภาพในประเทศไทย',
+        'title-industry' => "อุปกรณ์ควบคุมคุณภาพ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell QC equipment',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายอุปกรณ์ควบคุมคุณภาพ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1408,10 +1408,10 @@ return [
     ],
     // 2.1.13
     'cutting-blending-machine' => [
-        'caption' => 'Cutting & Blending machine in Thailand',
-        'title-industry' => "Cutting & Blending machine",
+        'caption' => 'เครื่องตัดและผสมในประเทศไทย',
+        'title-industry' => "เครื่องตัดและผสม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell cutting & blending machine',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องตัดและผสม',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1448,10 +1448,10 @@ return [
     ],
     // 2.1.15
     'washing-machine' => [
-        'caption' => 'Washing machine in Thailand',
-        'title-industry' => "Washing machine",
+        'caption' => 'เครื่องซักผ้าในประเทศไทย',
+        'title-industry' => "เครื่องซักผ้า",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell washing machine',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายเครื่องซักผ้า',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1465,10 +1465,10 @@ return [
     ],
     // 2.1.16
     'painting-equipment' => [
-        'caption' => 'Painting equipment in Thailand',
-        'title-industry' => "Painting equipment",
+        'caption' => 'อุปกรณ์พ่นสีในประเทศไทย',
+        'title-industry' => "อุปกรณ์พ่นสี",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell painting equipment',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายอุปกรณ์พ่นสี',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1482,10 +1482,10 @@ return [
     ],
     // 2.1.17
     'special-machine-product-designed-line' => [
-        'caption' => 'Special machine & Product designed line in Thailand',
-        'title-industry' => "Special machine & Product designed line",
+        'caption' => 'เครื่องจักรพิเศษและผลิตภัณฑ์ออกแบบสายในประเทศไทย',
+        'title-industry' => "เครื่องจักรพิเศษและสายการออกแบบผลิตภัณฑ์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell special machine & roduct designed line',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายสายการผลิตเครื่องจักรและท่อแบบพิเศษ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1499,10 +1499,10 @@ return [
     ],
     // 2.1.18
     'other-machine-equipment' => [
-        'caption' => 'Other machine & Equipment line in Thailand',
-        'title-industry' => "Other machine & Equipment line",
+        'caption' => 'เครื่องจักรและอุปกรณ์อื่นๆ ในประเทศไทย',
+        'title-industry' => "เครื่องจักรและอุปกรณ์อื่นๆ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell other machine & equipment',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องจักรและอุปกรณ์อื่นๆ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1516,10 +1516,10 @@ return [
     ],
     // 2.1.19
     'clean-room-temperature-control' => [
-        'caption' => 'Clean Room & Temperature control in Thailand',
-        'title-industry' => "Clean Room & Temperature control",
+        'caption' => 'ห้องสะอาดและควบคุมอุณหภูมิในประเทศไทย',
+        'title-industry' => "ห้องสะอาดและการควบคุมอุณหภูมิ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell clean room & temperature control',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายห้องคลีนรูมและการควบคุมอุณหภูมิ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1588,8 +1588,8 @@ return [
     ],
     // 2.2.3
     'jewely-cosmetic-industrial' => [
-        'caption' => 'Jewely & Cosmetic industrial in Thailand',
-        'title-industry' => "Jewely & Cosmetic industrial",
+        'caption' => 'อุตสาหกรรมอัญมณีและเครื่องสำอางในประเทศไทย',
+        'title-industry' => "อุตสาหกรรมอัญมณีและเครื่องสำอาง",
         'allCompany' => 'บริษัททั้งหมด',
         'search-title' => 'Search for companies that produce and sell jewely & cosmetic industrial',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
@@ -1605,10 +1605,10 @@ return [
     ],
     // 2.2.4
     'food-drinks-industrial' => [
-        'caption' => 'Food & Drinks industrial in Thailand',
-        'title-industry' => "Food & Drinks industrial",
+        'caption' => 'อุตสาหกรรมอาหารและเครื่องดื่มในประเทศไทย',
+        'title-industry' => "อุตสาหกรรมอาหารและเครื่องดื่ม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell food & drinks industrial',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายอุตสาหกรรมอาหารและเครื่องดื่ม',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1622,10 +1622,10 @@ return [
     ],
     // 2.2.5
     'mold' => [
-        'caption' => 'Mold companies in Thailand',
-        'title-industry' => "Mold Company",
+        'caption' => 'บริษัทแม่พิมพ์ในประเทศไทย',
+        'title-industry' => "บริษัทแม่พิมพ์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell molds',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายแม่พิมพ์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1639,10 +1639,10 @@ return [
     ],
     // 2.2.6
     'electric-product-part-industrial' => [
-        'caption' => 'Electric product & Parts industrial in Thailand',
-        'title-industry' => "Electric product & Parts industrial",
+        'caption' => 'อุตสาหกรรมผลิตภัณฑ์ไฟฟ้าและชิ้นส่วนในประเทศไทย',
+        'title-industry' => "ผลิตภัณฑ์ไฟฟ้าและชิ้นส่วนอุตสาหกรรม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell Electric product & Parts industrial',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายผลิตภัณฑ์ไฟฟ้าและชิ้นส่วนอุตสาหกรรม',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1682,10 +1682,10 @@ return [
     ],
     // 2.2.8
     'agriculture-industrial' => [
-        'caption' => 'Agriculture industrial in Thailand',
-        'title-industry' => "Agriculture industrial",
+        'caption' => 'อุตสาหกรรมเกษตรกรรมในประเทศไทย',
+        'title-industry' => "อุตสาหกรรมการเกษตร",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell agriculture industrial',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายอุตสาหกรรมการเกษตร',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1699,10 +1699,10 @@ return [
     ],
     // 2.2.9
     'heavy-machine-industrial' => [
-        'caption' => 'Heavy Machine industrial in Thailand',
-        'title-industry' => "Heavy Machine industrial",
+        'caption' => 'อุตสาหกรรมเครื่องจักรกลหนักในประเทศไทย',
+        'title-industry' => "อุตสาหกรรมเครื่องจักรกลหนัก",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell heavy machine industrial',
+        'search-title' => 'นหาบริษัทที่ผลิตและจำหน่ายเครื่องจักรหนักทางอุตสาหกรรม',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1716,10 +1716,10 @@ return [
     ],
     // 2.2.10
     'job-shops' => [
-        'caption' => 'Job shops in Thailand',
-        'title-industry' => "Job shops",
+        'caption' => 'ร้านค้าจัดหางานในประเทศไทย',
+        'title-industry' => "ร้านค้าจัดหางาน",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell job shops',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายร้านขายงาน',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1750,10 +1750,10 @@ return [
     ],
     // 2.2.12
     'shoes-bags' => [
-        'caption' => 'Shoes & Bags in Thailand',
-        'title-industry' => "Shoes & Bags",
+        'caption' => 'รองเท้าและกระเป๋าในประเทศไทย',
+        'title-industry' => "รองเท้าและกระเป๋า",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell Shoes & Bags',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายรองเท้าและกระเป๋า',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1767,10 +1767,10 @@ return [
     ],
     // 2.2.13
     'medical-industrial' => [
-        'caption' => 'Medical industrial in Thailand',
-        'title-industry' => "Medical industrial",
+        'caption' => 'อุตสาหกรรมการแพทย์ในประเทศไทย',
+        'title-industry' => "อุตสาหกรรมการแพทย์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell medical industrial',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายอุตสาหกรรมการแพทย์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1784,10 +1784,10 @@ return [
     ],
     // 2.2.14
     'glass-mirror-lens' => [
-        'caption' => 'Glass, Mirror, lens in Thailand',
-        'title-industry' => "Glass, Mirror, lens",
+        'caption' => 'แก้ว กระจก เลนส์ในประเทศไทย',
+        'title-industry' => "แก้ว กระจก เลนส์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell glass, mirror, lens',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายกระจก กระจก เลนส์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1828,10 +1828,10 @@ return [
     ],
     // 2.2.16
     'other-industrial' => [
-        'caption' => 'Other industrial in Thailand',
-        'title-industry' => "Other industrial",
+        'caption' => 'อุตสาหกรรมอื่นๆ ในประเทศไทย',
+        'title-industry' => "อุตสาหกรรมอื่นๆ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell other industrial',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายอุตสาหกรรมอื่นๆ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1846,10 +1846,10 @@ return [
 
     // 2.3.1
     'cutting-tool-grinding-stone' => [
-        'caption' => 'Cutting tool & Grinding stone in Thailand',
-        'title-industry' => "Cutting tool & Grinding stone company",
+        'caption' => 'เครื่องมือตัดและหินเจียรในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องมือตัดและหินเจียร",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell cutting tool & grinding stone',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องมือตัดและหินเจียร',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1863,10 +1863,10 @@ return [
     ],
     // 2.3.2
     'coolant-oil' => [
-        'caption' => 'Coolant & Oil in Thailand',
-        'title-industry' => "Coolant & Oil company",
+        'caption' => 'น้ำยาหล่อเย็นและน้ำมันในประเทศไทย',
+        'title-industry' => "ค้นหาบริษัทบริษัท Coolant & Oil",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell voolant & oil',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายสารหล่อเย็นและน้ำมัน',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1880,10 +1880,10 @@ return [
     ],
     // 2.3.3
     'chemical' => [
-        'caption' => 'Chemical companies in Thailand',
-        'title-industry' => "Chemical company",
+        'caption' => 'บริษัทเคมีภัณฑ์ในประเทศไทย',
+        'title-industry' => "บริษัทเคมีภัณฑ์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell chemical',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเคมีภัณฑ์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1897,10 +1897,10 @@ return [
     ],
     // 2.3.4
     'filter' => [
-        'caption' => 'Filter companies in Thailand',
-        'title-industry' => "Filter company",
-        'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell filter',
+        'caption' => 'บริษัทผลิตและจำหน่ายกรองในประเทศไทย',
+        'title-industry' => "บริษัทผลิตและจำหน่ายกรอง",
+        'allCompany' => 'บริษัทผลิตและจำหน่ายกรองทั้งหมด',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายตัวกรอง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1914,10 +1914,10 @@ return [
     ],
     // 2.3.5
     'fuel-gas' => [
-        'caption' => 'Fuel & Gas companies in Thailand',
-        'title-industry' => "Fuel & Gas company",
+        'caption' => 'บริษัทเชื้อเพลิงและก๊าซในประเทศไทย',
+        'title-industry' => "บริษัทเชื้อเพลิงและก๊าซ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell fuel & gas',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเชื้อเพลิงและก๊าซ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1931,10 +1931,10 @@ return [
     ],
     // 2.3.6
     'paint' => [
-        'caption' => 'Paint companies in Thailand',
-        'title-industry' => "Paint company",
+        'caption' => 'บริษัทผลิตและจำหน่ายสีในประเทศไทย',
+        'title-industry' => "บริษัทผลิตและจำหน่ายสี",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell paint',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายสี',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1972,10 +1972,10 @@ return [
     ],
     // 2.4.2
     'rubber' => [
-        'caption' => 'Rubber companies in Thailand',
-        'title-industry' => "Rubber company",
+        'caption' => 'บริษัทยางในประเทศไทย',
+        'title-industry' => "บริษัทยาง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell rubber',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายยาง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -1989,10 +1989,10 @@ return [
     ],
     // 2.4.3
     'plastic-resin' => [
-        'caption' => 'Plastic & Resin companies in Thailand',
-        'title-industry' => "Plastic & Resin company",
+        'caption' => 'บริษัทพลาสติกและเรซินในประเทศไทย',
+        'title-industry' => "บริษัทพลาสติกและเรซิน",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell plastic & resin',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายพลาสติกและเรซิน',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2006,10 +2006,10 @@ return [
     ],
     // 2.4.4
     'pipe' => [
-        'caption' => 'Pipe companies in Thailand',
-        'title-industry' => "Pipe company",
+        'caption' => 'บริษัทท่อในประเทศไทย',
+        'title-industry' => "บริษัทท่อ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell pipe',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายท่อ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2023,10 +2023,10 @@ return [
     ],
     // 2.4.5
     'pulp' => [
-        'caption' => 'Pulp companies in Thailand',
-        'title-industry' => "Pipe company",
+        'caption' => 'บริษัทเยื่อกระดาษในประเทศไทย',
+        'title-industry' => "บริษัทเยื่อกระดาษ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell pipe',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายเยื่อกระดาษ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2040,10 +2040,10 @@ return [
     ],
     // 2.4.6
     'woods' => [
-        'caption' => 'Woods companies in Thailand',
-        'title-industry' => "Woods company",
+        'caption' => 'บริษัทจำหน่าย และไม้แปรรูปในประเทศไทย',
+        'title-industry' => "บริษัทจำหน่ายไม้ และไม้แปรรูป",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell woods',
+        'search-title' => 'ค้นหาบริษัทที่จำหน่ายไม้ ไม้แปรรูป',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2057,10 +2057,10 @@ return [
     ],
     // 2.4.7
     'ceramic' => [
-        'caption' => 'Ceramic companies in Thailand',
-        'title-industry' => "Ceramic company",
+        'caption' => 'บริษัทเซรามิคในประเทศไทย',
+        'title-industry' => "บริษัทเซรามิค",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell ceramic',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเซรามิก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2074,10 +2074,10 @@ return [
     ],
     // 2.4.8
     'leather' => [
-        'caption' => 'Leather companies in Thailand',
-        'title-industry' => "Leather company",
+        'caption' => 'บริษัทเครื่องหนังในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องหนัง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell leather',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องหนัง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2092,10 +2092,10 @@ return [
 
     // 2.5.1
     'compressor' => [
-        'caption' => 'Compressor companies in Thailand',
-        'title-industry' => "Compressor company",
+        'caption' => 'บริษัทคอมเพรสเซอร์ในประเทศไทย',
+        'title-industry' => "บริษัทคอมเพรสเซอร์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell compressor',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายคอมเพรสเซอร์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2109,10 +2109,10 @@ return [
     ],
     // 2.5.2
     'solar-windmilling' => [
-        'caption' => 'Solar & Windmilling companies in Thailand',
-        'title-industry' => "Solar & Windmilling company",
+        'caption' => 'บริษัทพลังงานแสงอาทิตย์และกังหันลมในประเทศไทย',
+        'title-industry' => "บริษัทพลังงานแสงอาทิตย์และกังหันลม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell solar & windmilling',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายพลังงานแสงอาทิตย์และกังหันลม',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2126,10 +2126,10 @@ return [
     ],
     // 2.5.3
     'boiler' => [
-        'caption' => 'Boiler companies in Thailand',
-        'title-industry' => "Boiler company",
+        'caption' => 'บริษัทหม้อไอน้ำในประเทศไทย',
+        'title-industry' => "บริษัทหม้อไอน้ำ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell boiler',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายหม้อไอน้ำ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2143,10 +2143,10 @@ return [
     ],
     // 2.5.4
     'conveyor-shelter-rack' => [
-        'caption' => 'Conveyor, Shatter & Rack companies in Thailand',
-        'title-industry' => "Conveyor, Shatter & Rack company",
+        'caption' => 'บริษัทสายพานลำเลียง, Shatter & Rack ในประเทศไทย',
+        'title-industry' => "บริษัทสายพานลำเลียง, Shatter & Rack",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell conveyor, shatter & rack',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายสายพานลำเลียง เครื่องย่อย และชั้นวาง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2160,10 +2160,10 @@ return [
     ],
     // 2.5.5
     'generator' => [
-        'caption' => 'Generator companies in Thailand',
-        'title-industry' => "Generator company",
+        'caption' => 'บริษัทเครื่องกำเนิดไฟฟ้าในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องกำเนิดไฟฟ้า",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell generator',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครื่องกำเนิดไฟฟ้า',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2177,10 +2177,10 @@ return [
     ],
     // 2.5.6
     'crane-hoist' => [
-        'caption' => 'Crane & Hoist companies in Thailand',
-        'title-industry' => "Crane & Hoist company",
+        'caption' => 'บริษัทเครนและรอกในประเทศไทย',
+        'title-industry' => "บริษัทเครนและรอก",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell crane & hoist',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายเครนและรอก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2194,10 +2194,10 @@ return [
     ],
     // 2.5.7
     'contractor-maintenance-renovation' => [
-        'caption' => 'Contractor, Maintenance & Renovation companies in Thailand',
-        'title-industry' => "Contractor, Maintenance & Renovation company",
+        'caption' => 'บริษัทรับเหมา ซ่อมบำรุง และปรับปรุง ในประเทศไทย',
+        'title-industry' => "ผู้รับเหมา บริษัทบำรุงรักษาและปรับปรุง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell Contractor, maintenance & renovation',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายผู้รับเหมา การบำรุงรักษาและการปรับปรุงใหม่',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2238,10 +2238,10 @@ return [
     ],
     // 2.5.9
     'safety-goods' => [
-        'caption' => 'Safety goods companies in Thailand',
-        'title-industry' => "Safety goods company",
+        'caption' => 'บริษัทสินค้าด้านความปลอดภัยในประเทศไทย',
+        'title-industry' => "บริษัทสินค้าเซฟตี้",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell safety goods',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายสินค้าเพื่อความปลอดภัย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2255,10 +2255,10 @@ return [
     ],
     // 2.5.10
     'pump-motor' => [
-        'caption' => 'Pump & Motor companies in Thailand',
-        'title-industry' => "Pump & Motor company",
+        'caption' => 'บริษัทปั๊มและมอเตอร์ในประเทศไทย',
+        'title-industry' => "บริษัทปั้มแอนด์มอเตอร์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell pump & motor',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายปั๊มและมอเตอร์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2272,10 +2272,10 @@ return [
     ],
     // 2.5.11
     'pipe-electrical-engineering' => [
-        'caption' => 'Pipe & Electrical engineering companies in Thailand',
-        'title-industry' => "Pipe & Electrical engineering company",
+        'caption' => 'บริษัทวิศวกรรมท่อและไฟฟ้าในประเทศไทย',
+        'title-industry' => "บริษัทวิศวกรรมท่อและไฟฟ้า",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell pipe & electrical engineering',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่ายท่อและวิศวกรรมไฟฟ้า',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2289,10 +2289,10 @@ return [
     ],
     // 2.5.12
     'factory-gardening' => [
-        'caption' => 'Gardening companies in Thailand',
-        'title-industry' => "Gardening company",
+        'caption' => 'บริษัทจัดสวนในประเทศไทย',
+        'title-industry' => "บริษัทจัดสวน",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell gardening',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายอุปกรณ์ทำสวน',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2306,10 +2306,10 @@ return [
     ],
     // 2.5.13
     'maintenance-for-facility-pump-motor' => [
-        'caption' => 'Maintenance for facility & Pump, Motor companies in Thailand',
-        'title-industry' => "Maintenance for facility & Pump, Motor company",
+        'caption' => 'การบำรุงรักษาสิ่งอำนวยความสะดวก & ปั๊ม บริษัทมอเตอร์ในประเทศไทย',
+        'title-industry' => "การบำรุงรักษาสิ่งอำนวยความสะดวก & ปั๊ม บริษัทมอเตอร์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell Maintenance for facility & pump, motor',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและจำหน่าย บำรุงรักษาสิ่งอำนวยความสะดวก ปั๊ม และมอเตอร์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2324,10 +2324,10 @@ return [
 
     // 2.6.1
     'general-security' => [
-        'caption' => 'Security companies in Thailand',
-        'title-industry' => "Security company",
+        'caption' => 'บริษัทรักษาความปลอดภัยในประเทศไทย',
+        'title-industry' => "บริษัทรักษาความปลอดภัย",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell security',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายระบบรักษาความปลอดภัย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2341,10 +2341,10 @@ return [
     ],
     // 2.6.2
     'system-iot-dx-factory' => [
-        'caption' => 'System IOT & DX companies in Thailand',
-        'title-industry' => "System IOT & DX company",
+        'caption' => 'บริษัทระบบ IOT & DX ในประเทศไทย',
+        'title-industry' => "บริษัทระบบ IOT & DX",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell system IoT & DX',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายระบบ IoT & DX',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2358,10 +2358,10 @@ return [
     ],
     // 2.6.3
     'consulting' => [
-        'caption' => 'Consulting companies in Thailand',
-        'title-industry' => "Consulting company",
+        'caption' => 'บริษัทที่ปรึกษาในประเทศไทย',
+        'title-industry' => "บริษัทที่ปรึกษา",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell consulting',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายที่ปรึกษา',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2375,10 +2375,10 @@ return [
     ],
     // 2.6.4
     'canteen' => [
-        'caption' => 'Canteen companies in Thailand',
-        'title-industry' => "Canteen company",
+        'caption' => 'ร้าน ห้องอาหารในประเทศไทย',
+        'title-industry' => "ร้าน ห้องอาหาร",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell canteen',
+        'search-title' => 'ค้นหาร้าน ห้องอาหาร',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2392,10 +2392,10 @@ return [
     ],
     // 2.6.5
     'trading-company' => [
-        'caption' => 'Trading company companies in Thailand',
-        'title-industry' => "Trading company company",
+        'caption' => 'บริษัทการค้าในประเทศไทย',
+        'title-industry' => "บริษัทการค้า",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell trading company',
+        'search-title' => 'ค้นหาบริษัทการค้าในประเทศไทย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2409,10 +2409,10 @@ return [
     ],
     // 2.6.6
     'recruitment' => [
-        'caption' => 'Recruitment companies in Thailand',
-        'title-industry' => "Recruitment company",
+        'caption' => 'บริษัทจัดหางานในประเทศไทย',
+        'title-industry' => "บริษัทจัดหางาน",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell recruitment',
+        'search-title' => 'ค้นหาบริษัทที่ผลิตและขายจัดหางาน',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2426,10 +2426,10 @@ return [
     ],
     // 2.6.7
     'logistics-warehouse-delivery-factory' => [
-        'caption' => 'Logistics, Warehouse & Delivery companies in Thailand',
-        'title-industry' => "Logistics, Warehouse & Delivery company",
+        'caption' => 'บริษัทโลจิสติกส์ คลังสินค้า และจัดส่งในประเทศไทย',
+        'title-industry' => "บริษัทโลจิสติกส์ คลังสินค้า และจัดส่ง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell logistics, warehouse & delivery',
+        'search-title' => 'ค้นหาบริษัทโลจิสติกส์ คลังสินค้า และการจัดส่ง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2443,10 +2443,10 @@ return [
     ],
     // 2.6.8
     'other-service' => [
-        'caption' => 'Other service companies in Thailand',
-        'title-industry' => "Other service company",
+        'caption' => 'บริษัทผู้ให้บริการอื่นๆ ในประเทศไทย',
+        'title-industry' => "บริษัทผู้ให้บริการอื่นๆ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell other service',
+        'search-title' => 'ค้นหาบริษัทผู้ให้บริการอื่นๆ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2461,10 +2461,10 @@ return [
 
     // 2.7.1
     'amata' => [
-        'caption' => 'Amata industrial estate companies in Thailand',
-        'title-industry' => "Amata Industrial Estate company",
+        'caption' => 'บริษัทนิคมอุตสาหกรรมอมตะในประเทศไทย',
+        'title-industry' => "บริษัทนิคมอุตสาหกรรมอมตะ",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell amata industrial estate',
+        'search-title' => 'ค้นหาบริษัทนิคมอุตสาหกรรมอมตะ',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2478,10 +2478,10 @@ return [
     ],
     // 2.7.2
     'pintong' => [
-        'caption' => 'Pintong industrial estate companies in Thailand',
-        'title-industry' => "Pintong industrial estate company",
+        'caption' => 'บริษัทนิคมอุตสาหกรรมปิ่นทองในประเทศไทย',
+        'title-industry' => "บริษัทนิคมอุตสาหกรรมปิ่นทอง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for companies that produce and sell pintong industrial estate',
+        'search-title' => 'ค้นหาบริษัทนิคมอุตสาหกรรมปิ่นทองในประเทศไทย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2496,10 +2496,10 @@ return [
 
     // 3.1.1
     'developer' => [
-        'caption' => 'Developer companies in Thailand',
-        'title-industry' => "Developer company",
+        'caption' => 'บริษัทผู้พัฒนาในประเทศไทย',
+        'title-industry' => "บริษัทผู้พัฒนา",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for developer company',
+        'search-title' => 'ค้นหาบริษัทผู้พัฒนาในประเทศไทย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2515,7 +2515,7 @@ return [
     'contractor' => [
         'caption' => 'บริษัทผู้รับเหมา บริษัทรับเหมาก่อสร้าง บริษัทรับเหมาก่อสร้างบ้าน',
         'title-industry' => "บริษัทผู้รับเหมา",
-        'search-title' => ' ค้นหาบริษัทผู้รับเหมา',
+        'search-title' => 'ค้นหาบริษัทผู้รับเหมา',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'allCompany' => 'บริษัทผู้รับเหมาทั้งหมด',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
@@ -2543,10 +2543,10 @@ return [
 
     // 3.2.1
     'compressor-construction' => [
-        'caption' => 'Compressor companies in Thailand',
-        'title-industry' => "Compressor company",
+        'caption' => 'บริษัทผลิตและจำหน่ายคอมเพรสเซอร์ในประเทศไทย',
+        'title-industry' => "บริษัทผลิตและจำหน่ายคอมเพรสเซอร์",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for compressor companies',
+        'search-title' => 'ค้นหาบริษัทผลิตและจำหน่ายคอมเพรสเซอร์',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2560,10 +2560,10 @@ return [
     ],
     // 3.2.2
     'generator-construction' => [
-        'caption' => 'Generator companies in Thailand',
-        'title-industry' => "Generator company",
+        'caption' => 'บริษัทเครื่องกำเนิดไฟฟ้าในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องกำเนิดไฟฟ้า",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for generator companies',
+        'search-title' => 'ค้นหาบริษัทเครื่องกำเนิดไฟฟ้า',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2577,10 +2577,10 @@ return [
     ],
     // 3.2.3
     'maintenance-for-facility-construction' => [
-        'caption' => '?aintenance of facilities companies in Thailand',
-        'title-industry' => "maintenance of facilities company",
+        'caption' => 'บริษัทผลิตและจำหน่ายเครื่องมือการบำรุงรักษาสิ่งอำนวยความสะดวกในประเทศไทย',
+        'title-industry' => "บริษัทผลิตและจำหน่ายเครื่องมือการบำรุงรักษาสิ่งอำนวยความสะดวก",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Find a facility maintenance company',
+        'search-title' => 'ค้นหาบริษัทผลิตและจำหน่ายเครื่องมือการบำรุงรักษาสิ่งอำนวยความสะดวก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2594,10 +2594,10 @@ return [
     ],
     // 3.2.4
     'solar-windmilling-construction' => [
-        'caption' => 'Solar & Windmilling companies in Thailand',
-        'title-industry' => "Solar & Windmilling company",
+        'caption' => 'บริษัทพลังงานแสงอาทิตย์และกังหันลมในประเทศไทย',
+        'title-industry' => "บริษัทพลังงานแสงอาทิตย์และกังหันลม",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for solar and wind turbine companies',
+        'search-title' => 'ค้นหาบริษัทพลังงานแสงอาทิตย์และกังหันลมในประเทศไทย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2611,10 +2611,10 @@ return [
     ],
     // 3.2.5
     'conveyor-shelter-rack-construction' => [
-        'caption' => 'Conveyor, Shatter & Rack companies in Thailand',
-        'title-industry' => "Conveyor, Shatter & Rack company",
+        'caption' => 'บริษัทสายพานลำเลียง, Shatter & Rack ในประเทศไทย',
+        'title-industry' => "บริษัทสายพานลำเลียง, Shatter & Rack",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for conveyor, shatter & rack companies',
+        'search-title' => 'ค้นหาบริษัทสายพานลำเลียง, Shatter & Rack ในประเทศไทย',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2629,10 +2629,10 @@ return [
 
     // 3.3.1
     'heavy-machinery' => [
-        'caption' => 'Heavy machinery companies in Thailand',
-        'title-industry' => "Heavy machinery company",
+        'caption' => 'บริษัทเครื่องจักรกลหนักในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องจักรกลหนัก",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for heavy machinery companies',
+        'search-title' => 'ค้นหาบริษัทเครื่องจักรกลหนัก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2645,10 +2645,10 @@ return [
         ],
     ],
     'heavy-machinery-service' => [
-        'caption' => 'Heavy machinery companies in Thailand',
-        'title-industry' => "Heavy machinery company",
+        'caption' => 'บริษัทเครื่องจักรกลหนักในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องจักรกลหนัก",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for heavy machinery companies',
+        'search-title' => 'ค้นหาบริษัทเครื่องจักรกลหนัก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2662,10 +2662,10 @@ return [
     ],
     // 3.3.2
     'construction-machine' => [
-        'caption' => 'Construction machine companies in Thailand',
-        'title-industry' => "Construction machine company",
+        'caption' => 'บริษัทเครื่องจักรก่อสร้างในประเทศไทย',
+        'title-industry' => "บริษัทเครื่องจักรก่อสร้าง",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for construction machine companies',
+        'search-title' => 'ค้นหาบริษัทเครื่องจักรก่อสร้าง',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2884,10 +2884,10 @@ return [
     ],
     // 3.4.13
     'chemical-construction' => [
-        'caption' => 'Chemical companies in Thailand',
+        'caption' => 'บริษัทเซรามิกในประเทศไทย',
         'title-industry' => "Chemical company",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for chemical companies',
+        'search-title' => 'ค้นหาบริษัทเซรามิก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',
@@ -2900,11 +2900,11 @@ return [
         ],
     ],
     // 3.4.14
-    '/eramic-construction' => [
-        'caption' => 'Ceramic companies in Thailand',
-        'title-industry' => "Ceramic company",
+    'ceramic-construction' => [
+        'caption' => 'บริษัทเซรามิกในประเทศไทย',
+        'title-industry' => "บริษัทเซรามิก",
         'allCompany' => 'บริษัททั้งหมด',
-        'search-title' => 'Search for ceramic companies',
+        'search-title' => 'ค้นหาบริษัทเซรามิก',
         'form-caption' => 'ฟอร์มการติดต่อบริษัท',
         'form-limit' => 'คุณสามารถส่งอีเมลได้สูงสุด :max บริษัท',
         'sendto' => 'ส่งถึง',

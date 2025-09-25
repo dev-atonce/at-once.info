@@ -801,6 +801,7 @@
     <div class="fade-in">
 
         <div class="row">
+            {{--
             @php
                 $month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 $goalCreated = 80;
@@ -832,6 +833,7 @@
                     ->orderBy('id')
                     ->get();
             @endphp
+            --}}
             <div class="col-sm-12 col-lg-12">
                 <div class="row">
                     <div class="col-sm-12 col-lg-12">
@@ -926,6 +928,7 @@
                 </div>
                 <div class="row p1">
                     <div class="col-sm-12 col-lg-12">
+                        {{--
                         <h5 class="font-weight-bold mt-4">Today Activity</h5>
                         <div class="media-grid">
                             <div class="media-col">
@@ -951,7 +954,7 @@
                                 </a>
                             </div>
                             <div class="media-col">
-                                {{-- <a href="javascript:#onlineTable" class="media-item"> --}}
+                                <a href="javascript:#onlineTable" class="media-item">
                                 <a href="{{url('webpanel/allcategory')}}" class="media-item">
                                     <figure class="media-figure">
                                         <i class="media-icon fa-2x fas fa-chart-line"></i>
@@ -963,7 +966,9 @@
                                 </a>
                             </div>
                         </div>
+                        --}}
                         <div class="toggle-content mt-3">
+                        {{--
                             <div class="row" id="todayActivity">
                                 <div class="col-sm-12 col-lg-8">
                                     <div class="_card mb-3 bg-secondary-gradient">
@@ -1280,8 +1285,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-
+                        --}}
+                        {{--
                             @php($CompanyMd=\App\Models\CompanyMd::class)
                             @php($online = $CompanyMd::where('public',1)->count())
                             @php($onlineFull = $CompanyMd::where(['public'=>1,'type'=>'full'])->count())
@@ -1295,11 +1300,12 @@
                             @php($grandTotal = ($completedTotal + $delisted + $refuse))
                             @php($grandTotalExceptDelisted = ($completedTotal + $refuse))
                             @php($sum = $CompanyMd::select('name_th')->groupBy('name_th')->get()->count())
-
+                        --}}
                             <div class="d-none summary-category" id="summaryCategory">
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 col-md-12">
                                         <div class="row">
+                                        {{--
                                             <div class="col-lg-12">
                                                 <div class="_card mb-3 bg-success bg-success-gradient">
                                                     <div class="_card-body p-3">
@@ -1403,6 +1409,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        --}}
                                             {{-- @foreach ($myCategory as $k => $item)
                                                 <div class="col-lg-2 col-sm-6 col-md-4 industry-item">
                                                     <div class="card mb-3 bg-light-gradient">
@@ -1472,6 +1479,7 @@
                                                 </div>
                                                 @endforeach
                                             </div> --}}
+                                        {{--
                                             <div class="_row mb-3">
                                                 <div class="_col _col-lg-16 _col-sm-16">
                                                     <div class="_card overflow-hidden">
@@ -1526,11 +1534,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row" id="onlineTable">
+                            {{--
                                 <div class="col-lg-12">
                                     <div class="d-flex align-items-end">
                                         @php($m = date('m'))
@@ -1563,6 +1573,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            --}}
                                 <div class="col-lg-12">
                                     @php($ym = date('Y-m'))
                                     {{-- <div class="_card bg-ultralight">
@@ -1581,9 +1592,9 @@
                                             </table>
                                         </div>
                                     </div> --}}
-{{--                                     
+                            {{--                                     
                                     <div class="_card bg-ultralight overflow-hidden">
-                                        <div class="_card-body p-0"> --}}
+                                        <div class="_card-body p-0">
                                             <table class="table thead-sticky border-top-0 bg-white">
                                                 <thead>
                                                     <tr>
@@ -1641,11 +1652,10 @@
                                                 </tbody>
                                                 <tfoot></tfoot>
                                             </table>
-                                        {{-- </div>
-                                </div> --}}
-
+                                        </div>
+                                </div> 
+                            --}}
                             </div>
-
                         </div>
                     </div>
                     {{-- <div class="col-sm-6 col-lg-2 pl-2 pr-2">

@@ -15,7 +15,7 @@ use \App\Http\Controllers\DemoCtrl;
 |
 */
 
-$lang = ['th'];
+$lang = ['th','en' , 'jp' , 'zh'];
 
 
 Route::get('clear/cache',function(){

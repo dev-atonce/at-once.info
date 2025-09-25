@@ -6,25 +6,22 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "Article",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "{{ Request::url() }}"
+            "@type": "Organization",
+            "name": "At-Once",
+            "url": "https://at-once.info",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://at-once.info/img/at-once-tw.png"
             },
-            "headline": "{{ @$row->name_th }}",
-            "image": "{{ url($row->images) }}",
-            "author": {
-                "@type": "Person",
-                "name": "At-once",
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "at-once",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://at-once.info/img/logo-bg-white.jpg"
-                    }
-                },
-                "datePublished": "{{ $row->publish }}"
+            "description": "แหล่งรวบรวมข้อมูลธุรกิจครบวงจรสำหรับค้นหารายชื่อบริษัทจากทุกอุตสาหกรรมในประเทศไทย ผู้ให้บริการเว็บไซต์รวมรายชื่อบริษัทอันดับหนึ่ง พร้อมข้อมูลสำคัญอย่างละเอียดถูกต้องและทันสมัย",
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://at-once.info/th/search?keywords={search_term_string}",
+                "query-input": "required name=search_term_string"
             }
         }
     </script>
@@ -40,7 +37,7 @@
     <meta property="og:title" content="{{ $row->name }}">
     <meta property="og:description" content="{{ $row->seo_description }}">
     <meta property="og:image" content="@if ($row->images) {{ url($row->images) }} @endif" />
-    <meta property="og:url" content="{{ url('') . '/' . Session('lang') }}/blog/{{ $row->url }}" />
+    <meta property="og:url" content="{{ url('/') . '/' . Session('lang') }}/blog/{{ $row->url }}" />
 
     <base href="{{ url('/') }}">
     <link href="img/favicon.ico?v=1001" rel="shortcut icon" type="image/x-icon" />
@@ -215,7 +212,8 @@
                         <h6><span class="font-weight-bold">@lang('phrase.contact.inquiry-for', ['company' => $row->company])</h6>
                         <div class="owl-pagination-custom fd">
                             <div class="data-dots-custom active" data-owl-item="0"><img
-                                    src="{{ url($row->logo) }}" alt="" width="179" height="89"
+                                    src="@if ($row->logo) {{ url($row->logo) }} @else img/Logo-at-once.jpg @endif"
+                                    alt="" width="179" height="89"
                                     class="img-fluid">
                             </div>
                             <div class="data-dots-custom" data-owl-item="1"><img
@@ -406,7 +404,7 @@
                             <h3 class="title-service"><strong><i class="icon icofont-newspaper"></i>
                                     @lang('phrase.blog.blog-recommend')</strong></h3>
                             <div><a class="b-view-more" style="color:rgb(0, 112, 168);"
-                                    href="{{ url(Session('lang')) }}/blog-customer-company/{{ $row->comid }}/{{ $row->company }}">@lang('phrase.see-more')
+                                    href="{{ url(Session('lang') . '/blog-customer-company/' . $row->comid . '/' . $row->company) }}">@lang('phrase.see-more')
                                     »</a></div>
                         </div>
                     </div>

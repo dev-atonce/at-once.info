@@ -19,6 +19,30 @@
   <meta name="keywords" content="{{env('APP_NAME').', '.$keyword}}">
   <meta name="description" content="{{env('APP_NAME').', '.$description}}">
   <title>หางาน - {{env('APP_NAME')}}</title>
+
+  <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "At-Once",
+            "url": "https://at-once.info",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://at-once.info/img/at-once-tw.png"
+            },
+            "description": "แหล่งรวบรวมข้อมูลธุรกิจครบวงจรสำหรับค้นหารายชื่อบริษัทจากทุกอุตสาหกรรมในประเทศไทย ผู้ให้บริการเว็บไซต์รวมรายชื่อบริษัทอันดับหนึ่ง พร้อมข้อมูลสำคัญอย่างละเอียดถูกต้องและทันสมัย",
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://at-once.info/th/search?keywords={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+  </script>
+  
   <meta name="author" content="at-once.info">
 
   <base href="{{url('/')}}">

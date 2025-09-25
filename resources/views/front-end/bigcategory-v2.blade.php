@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class=" mb-3">
-                    <input type="text" id="formCategory" class="form-control px-3" placeholder="{{ __('phrase.search-business') }}"
+                    <input type="text" id="formCategory" class="form-control px-3" placeholder="ค้นหาหมวดหมู่"
                         style="border:none;">
                 </div>
             </div>

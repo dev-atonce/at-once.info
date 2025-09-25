@@ -61,7 +61,16 @@
             <div class="elementor">
                 @php
                     $category = Request::segment(2);
-                    $creator = $row->comid ? ($row->language == 1 ? $row->company : ($row->language == 2 ? $row->companyJP : ($row->language == 3 ? $row->companyEN : $row->company))) : __('phrase.app_name');
+                    $creator = $row->comid
+                        ? ($row->language == 1
+                            ? $row->company
+                            : ($row->language == 2
+                                ? $row->companyJP
+                                : ($row->language == 3
+                                    ? $row->companyEN
+                                    : $row->company)))
+                        : __('phrase.app_name');
+
                     $logo = $row->company != '' ? $row->logo : 'img/Logo-at-once.jpg';
                     $name = $row->profile_url != '' ? $row->profile_url : $row->company;
                     $url = $row->company != '' ? Session('lang') . "/$category/cp/" . str_replace(' ', '-', $name) : '';

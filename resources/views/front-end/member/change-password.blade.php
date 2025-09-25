@@ -56,7 +56,7 @@
                         <div class="group-box-right">
                             <form id="change-password" action="th/member/setting/password" method="post">
                                 @csrf
-                                <h5 class="bold border-bottom mb-5">@lang('phrase.member.change-password')</h5>
+                                <h5 class="bold border-bottom mb-5">เปลี่ยนรหัสผ่าน</h5>
                                 @if (Session('status') == 'Success')
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <strong class="bold">{{ Session('status') }}!</strong>
@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
-                                        <label class="mr-2">@lang('phrase.member.new-password')</label>
+                                        <label class="mr-2">รหัสผ่านใหม่</label>
                                         <div class="input-group">
                                             <input type="password" name="password" id="password" class="form-control">
                                             <div class="input-group-append">
@@ -90,7 +90,7 @@
                                 <div class="row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
-                                        <label class="mr-2">@lang('phrase.member.confirm-password')</label>
+                                        <label class="mr-2">ยืนยันรหัสผ่าน</label>
                                         <div class="input-group">
                                             <input type="password" name="confirm" id="confirm" class="form-control">
                                             <div class="input-group-append">

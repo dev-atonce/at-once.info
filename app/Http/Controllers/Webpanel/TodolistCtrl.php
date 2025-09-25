@@ -33,25 +33,6 @@ class TodolistCtrl extends Controller
             'page' => 'index'
         ]);
     }
-    public function updateDescription(Request $request)
-    {
-        $data = \App\Models\TodolistMd::find($request->id);
-        $res = [
-            'status' => false,
-            'message' => 'An error occurred.'
-        ];
-        if(@$data->id){
-            $data->description = $request->description;
-            if($data->save()){
-                $res = [
-                    'status' => true,
-                    'message' => 'Data has been updated.'
-                ];
-            }
-        }
-
-        return response()->json($res);
-    }
     public function store(Request $request)
     {
 

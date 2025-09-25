@@ -43,16 +43,14 @@ class Clicks
             && preg_match("/glid/i",$path) == 0
             && preg_match("/wbraid/i",$path) == 0
         ){
-            $clickQuery = \App\Models\ClicksMd::where('ip',$ipaddress)->where('url',$path);
-            // ->where(DB::raw("(DATE_FORMAT(created,'%Y-%m-%d %H:%i'))"),date('Y-m-d H:i'))
+            $clickQuery = \App\Models\ClicksMd::where('ip',$ipaddress)->where('url',$path)->pluck('id');
             /////////////////
             $now = date('Y-m-d H:i:s');
             /////////////////
-            if ($clickQuery->count() > 0) 
+            if ($clickQuery)
             {
-                $click = $clickQuery->first();
                 $logTime = new \App\Models\VisitorLogTimeMd;
-                $logTime->_id = $click->id;
+                $logTime->_id = $clickQuery;
                 $logTime->datetime = $now;
                 $logTime->save();
             }

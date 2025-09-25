@@ -14,7 +14,7 @@ class PackageCtrl extends Controller
         $this->module = request()->segment(2);
         $this->config = (object)[
             'css' => (object)[
-                'validate'=>"back-end/css/validate.css",
+                'validate' => "back-end/css/validate.css",
             ],
             'js' => (object)[
                 'jquery' => "back-end/js/jquery.min.js",
@@ -31,32 +31,38 @@ class PackageCtrl extends Controller
     {
         $keyword = $request->keyword;
         $get = \App\Models\PackageCategoryMd::select([
-            'id',
-            "name_th",
-            "name_en",
-            "name_jp",
-            "description_th",
-            "description_en",
-            "description_jp",
-            "status",
-            "price",
-            "color",
-            "created",
-            "updated"
+            'package_category.id',
+            "package_category.name_th",
+            "package_category.name_en",
+            "package_category.name_jp",
+            "package_category.description_th",
+            "package_category.description_en",
+            "package_category.description_jp",
+            "package_category.status",
+            "package_category.price",
+            "package_category.color",
+            "package_category.created",
+            "package_category.updated",
+            'package_detail.detail_th',
+            'package_detail.detail_en',
+            'package_detail.html_th',
+            'package_detail.html_en'
         ])
-        ->where('type','main')
-        ->when($request->keyword,function($query)use($keyword){
-            $query
-            ->where("name_th","%$keyword")
-            ->orWhere("name_en","%$keyword")
-            ->orWhere("name_jp","%$keyword");
-        });
-        if($request->submit){
+            ->where(['package_category.type' => 'main', 'package_category.visible' => 1])
+            ->when($request->keyword, function ($query) use ($keyword) {
+                $query
+                    ->where("name_th", "%$keyword")
+                    ->orWhere("name_en", "%$keyword")
+                    ->orWhere("name_jp", "%$keyword");
+            })
+            ->leftJoin('package_detail', 'package_detail.category', 'package_category.id');
+
+        if ($request->submit) {
             $rows = $get->get();
-        }else{
+        } else {
             $rows = $get->get();
         }
-        return view("$this->path.modules.$this->module.index",[
+        return view("$this->path.modules.$this->module.index", [
             'js' => [
                 $this->config->js->jquery,
                 $this->config->js->sweetalert,
@@ -64,43 +70,40 @@ class PackageCtrl extends Controller
             'prefix' => $this->prefix,
             'module' => $this->module,
             'folder' => $this->module,
-            'page'=> 'index',
+            'page' => 'index',
             'rows' => $rows
         ]);
     }
     public function create()
     {
-        return view("$this->path.modules.$this->module.index",[
+        return view("$this->path.modules.$this->module.index", [
             'prefix' => $this->prefix,
             'module' => $this->module
         ]);
     }
     public function store()
     {
-
     }
     public function get()
     {
         $res = [];
-        $data = \App\Models\PackageCategoryMd::select(['id','name_th'])
-        ->groupBy('name_th')
-        ->orderBy('id')
-        ->get();
+        $data = \App\Models\PackageCategoryMd::select(['id', 'name_th'])
+            ->groupBy('name_th')
+            ->orderBy('id')
+            ->get();
 
-        foreach($data as $k => $v)
-        {
+        foreach ($data as $k => $v) {
             $res[] = [
                 'id' => $v->id,
                 'name' => strtolower($v->name_th),
-                'package' => \App\Models\PackageMd::select('id','package','list','value')->where('package',$v->id)->get()
+                'package' => \App\Models\PackageMd::select('id', 'package', 'list', 'value')->where('package', $v->id)->get()
             ];
         }
-        
-   
-        return response()->json($res);
 
+
+        return response()->json($res);
     }
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $res = [
             'status' => 'error',
@@ -113,8 +116,10 @@ class PackageCtrl extends Controller
             $data->color = $request->color;
             $data->name_th = $request->name_th;
             $data->name_en = $request->name_en;
-            if($data->save())
-            {
+            if ($request->package_in) {
+                $data->package_in = join(',', $request->package_in);
+            }
+            if ($data->save()) {
                 $res = [
                     'status' => 'success',
                     'statusCode' => 200,
@@ -128,19 +133,18 @@ class PackageCtrl extends Controller
 
     public function adjust(Request $request)
     {
-        $get = \App\Models\PackageMd::where(['package'=>$request->package,'list'=>$request->list])->first();
-        if(@$get->id)
-        {
+        $get = \App\Models\PackageMd::where(['package' => $request->package, 'list' => $request->list])->first();
+        if (@$get->id) {
             $get->value = $request->value;
             $get->updated = date('Y-m-d H:i:s');
-            if($get->save()){
+            if ($get->save()) {
                 $response = [
                     'status' => 'success',
                     'statusCode' => 200,
                     'title' => 'Good job!',
                     'message' => 'Data has been updated.'
                 ];
-            }else{
+            } else {
                 $response = [
                     'status' => 'error',
                     'statusCode' => 500,
@@ -148,20 +152,20 @@ class PackageCtrl extends Controller
                     'message' => "An error has occurred, data can't be updated."
                 ];
             }
-        }else{
+        } else {
             $new = new \App\Models\PackageMd;
             $new->package = $request->package;
             $new->list = $request->list;
             $new->value = $request->value;
             $new->created = date('Y-m-d H:i:s');
-            if($new->save()){
+            if ($new->save()) {
                 $response = [
                     'status' => 'success',
                     'statusCode' => 200,
                     'title' => 'Good job!',
                     'message' => 'Data has been added.'
                 ];
-            }else{
+            } else {
                 $response = [
                     'status' => 'error',
                     'statusCode' => 500,
@@ -178,17 +182,17 @@ class PackageCtrl extends Controller
         $data = \App\Models\PackageCategoryMd::find($request->id);
         $res = [
             'status' => 'error',
-            'statusCode'=> 500,
+            'statusCode' => 500,
             'title' => 'Oops!',
             'message' => 'An error has occurred',
         ];
-        if(@$data->id){
+        if (@$data->id) {
             $status = $data->status == 1 ? 0 : 1;
             $data->status = $status;
-            if($data->save()){
+            if ($data->save()) {
                 $res = [
                     'status' => 'success',
-                    'statusCode'=> 200,
+                    'statusCode' => 200,
                     'title' => 'Success!',
                     'message' => 'Data has been saved.',
                 ];
@@ -199,18 +203,16 @@ class PackageCtrl extends Controller
     public function optionStatus(Request $request)
     {
         $res = [
-            'status' => 'error','statusCode'=> 500 ,'title' => 'Oops!','message' => 'An error has occurred.'
+            'status' => 'error', 'statusCode' => 500, 'title' => 'Oops!', 'message' => 'An error has occurred.'
         ];
 
         $data = \App\Models\PackageListMd::find($request->id);
-        if(@$data->id)
-        {
+        if (@$data->id) {
             $status = $data->status == 0 ? 1 : 0;
             $data->status = $status;
-            if($data->save())
-            {
+            if ($data->save()) {
                 $res = [
-                    'status' => 'success','statusCode'=> 200 ,'title' => 'Success!','message' => 'Data has been saved.'
+                    'status' => 'success', 'statusCode' => 200, 'title' => 'Success!', 'message' => 'Data has been saved.'
                 ];
             }
         }
@@ -218,7 +220,7 @@ class PackageCtrl extends Controller
     }
     public function edit()
     {
-        return view("$this->path.modules.$this->module.index",[
+        return view("$this->path.modules.$this->module.index", [
             'prefix' => $this->prefix,
             'module' => $this->module
         ]);
@@ -232,10 +234,10 @@ class PackageCtrl extends Controller
             'text' => 'An error has occurred.'
         ];
         $data = \App\Models\PackageMd::find($request->id);
-        if(@$data->id){
+        if (@$data->id) {
             $data->value = $request->value;
             $data->updated = date('Y-m-d H:i:s');
-            if($data->save()){
+            if ($data->save()) {
                 $res = [
                     'status' => 'success',
                     'statusCode' => 200,
@@ -243,13 +245,13 @@ class PackageCtrl extends Controller
                     'message' => 'Data has been updated.'
                 ];
             }
-        }else{
+        } else {
             $new  = new \App\Models\PackageMd;
             $new->value = $request->value;
             $new->package = $request->package;
             $new->list = $request->list;
             $new->created = date('Y-m-d H:i:s');
-            if($new->save()){
+            if ($new->save()) {
                 $res = [
                     'status' => 'success',
                     'statusCode' => 201,
@@ -260,7 +262,4 @@ class PackageCtrl extends Controller
         }
         return response()->json($res);
     }
-  
- 
-
 }

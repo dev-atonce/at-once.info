@@ -52,7 +52,6 @@ class LogisticsCtrl extends Controller
         $count = ($request->domestic == 1)?$count+1:$count+0;
         // // $keywords = array_filter(explode(' ',Purifier::clean($request->keywords)));
         $keywords = $request->keywords;
-        
         $data['count'] = $count;
         $data['rows'] = \App\Models\CompanyMd::select([
             'company.id',

@@ -85,7 +85,7 @@
                 <span class="breadcrumb-item "><a href="jacascript:">All category</a></span>
                 <div class="card-header-actions">
                     <small class="badge badge-secondary">
-                        <a target="_blank" href="webpanel/export/onlineCategory">
+                        <a target="_blank" href="webpanel/export/all">
                             <i class="fas fa-file-export"></i>ExportAll .csv
                         </a>
                     </small>
@@ -232,7 +232,9 @@
                                     @endphp
                                     @foreach ($rows as $k => $row)
                                         @php
-                                            $total = $CompanyMd::where('category', $row->id)->count();
+                                            $total = $CompanyMd
+                                                ::where('category', $row->id)
+                                                ->count();
                                             $sum_total += $total;
 
                                             $onlineFull = $CompanyMd

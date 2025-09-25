@@ -73,10 +73,10 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="">@lang('phrase.member.contact-email.contact-company')</th>
-                                        <th width="">@lang('phrase.member.contact-email.contact-name')</th>
-                                        <th width="">@lang('phrase.member.contact-email.contact-department')</th>
-                                        <th width="">@lang('phrase.member.contact-email.contact-email')</th>
+                                        <th width="">บริษัท</th>
+                                        <th width="">ชื่อผู้ติดต่อ</th>
+                                        <th width="">แผนก</th>
+                                        <th width="">อีเมล</th>
                                         <th width="5%">
                                             <input type="checkbox" class="checkAll">
                                         </th>
@@ -110,7 +110,7 @@
                             <div class="row mt-4">
                                 <div class="col-lg-12">
                                     <button type="button" class="btn btn-success btn-sm float-right mb-2 send-list"
-                                        disabled>@lang('phrase.member.activity.share')</button>
+                                        disabled>ส่งอีเมล</button>
                                 </div>
                             </div>
                         </div>

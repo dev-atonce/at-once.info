@@ -47,7 +47,7 @@
                 return $query->where(db::raw('DATE(blog_progress.step2_on)'), 'like', $req_date);
             }
         });
-    $stock = $stockQuery->orderBy('blog_progress.created', 'desc')->skip(0)->take(50)->get();
+    $stock = $stockQuery->orderBy('blog_progress.created', 'desc')->get();
 
     $reject = \App\Models\BlogRejectMd::select(
         'blg.*',
@@ -303,8 +303,8 @@
                                             </p>
                                             <a target="_blank" href="{{ url("th/blog/$url") }}"
                                                 class="text-gray">URL: {{ url("th/blog/$url") }}</a>
-                                            <br>
-                                            <a target="_blank" href="{{ url("th/preview/blog/$v->id") }}"
+                                                <br>
+                                                  <a target="_blank" href="{{ url("th/preview/blog/$v->id") }}"
                                                 class="text-gray">PREVIEW: {{ url("th/preview/blog/$v->id") }}</a>
                                         </td>
                                         <td class="text-center"><small>{{ $v->type }}</small></td>
@@ -452,6 +452,7 @@
                         <tbody>
                             @foreach ($reject as $k => $v)
                                 @php($attach = \App\Models\RejectImageMd::select('image')->where('_id', $v->reject_id)->where('type_reject', 'blog')->get())
+
                                 <tr class="align-middle tr" data-id="{{ $v->id }}"
                                     data-remark="{{ $v->remark }}" data-attach="{{ $attach }}"
                                     data-edit="webpanel/blog/{{ $v->id }}">

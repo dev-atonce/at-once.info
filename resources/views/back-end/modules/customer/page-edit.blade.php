@@ -146,7 +146,7 @@
                                         <div class="input-group-prepend">
                                             <select name="cs" id="cs" class="form-control">
                                                 <option hidden>Choose CS</option>
-                                                @foreach(\App\Models\UsersMd::whereIn('name',['BUM','PAIR','FUJII','Banana','Ball','Yoyo'])->get() as $k =>$v)
+                                                @foreach(\App\Models\UsersMd::whereIn('name',['BUM','PAIR','FUJII','Banana','Ball','Yoyo', 'TAKAGI'])->get() as $k =>$v)
                                                 <option value="{{$v->id}}" @if ($row->cs == $v->id)selected @endif>{{$v->name}}</option>
                                                 @endforeach
                                                 <!-- <option value="11"@if ($row->cs == '11') selected @endif>BUM</option>

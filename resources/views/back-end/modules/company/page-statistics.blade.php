@@ -208,6 +208,7 @@
     let category = apiUrl.split('/')[3];
     let cid = apiUrl.split('/')[5];
     let dateCreate = "{{ $dateCreate->created }}";
+    let dateLength = 6;
 
     function formatDate(input) {
         var datePart = input.match(/\d+/g),
@@ -383,15 +384,29 @@
                 data: backlink.totals
             }]
         });
-        const pageviewOld = extractDataGraph(graph, 'pageviewOld');
-        
-        let pvoLength = pageviewOld.months.length
-        let end = pageviewOld.months[pvoLength-1];
-        let endNo = getkeyOfMonth(end.split(' ')[0]);
-        let start = moment(end).subtract(6, 'months').format('MMMM YYYY');
-        let startNo = getkeyOfMonth(start.split(' ')[0]);
+        function DateAdjust(memberSince, length, data)
+        {
+            let arr = {};
+            let m=[], y=[], months=[], totals=[];
+            for(i=0; i<length; i++){
+                months.push(moment(memberSince).subtract(length-i, 'months').format('MMM YYYY'));
+                totals.push(0);
+                arr.months = months;
+                arr.totals = totals;
+            }
 
-        console.log(startNo, start,endNo, end);
+            for(i=0; i<arr.months.length; i++)
+            {
+                for(j=0; j<=data.months.length; j++)
+                {
+                    if(arr.months[i] == data?.months[j]) arr.totals[i] = data.totals[j]
+                }
+            }
+            return arr;
+        }
+        const pageviewOld = extractDataGraph(graph, 'pageviewOld');
+        let memberSince = graph.dateCreated;
+        let _PageviewOld = DateAdjust(memberSince,dateLength,pageviewOld);
         
         Highcharts.chart('pageviewOld', {
             chart: {
@@ -402,7 +417,7 @@
                 align: 'center'
             },
             xAxis: {
-                categories: pageviewOld.months,
+                categories: _PageviewOld.months,
                 crosshair: true,
                 accessibility: {
                     description: 'Monthly'
@@ -422,7 +437,7 @@
             },
             series: [{
                 name: 'Monthly',
-                data: pageviewOld.totals
+                data: _PageviewOld.totals
             }, ]
         });
 
@@ -574,8 +589,8 @@
             if (!graphBtn.classList.contains('active')) {
                 document.querySelector('.btn-graph.active').classList.remove('active');
                 graphBtn.classList.add('active');
-                const range = graphBtn.dataset.length;
-                fetchGraph(range);
+                dateLength = graphBtn.dataset.length;
+                fetchGraph(dateLength);
             }
         }
     })

@@ -56,7 +56,7 @@
                         <div class="group-box-right">
                             <form id="change-password" action="th/member/setting/email" method="post">
                                 @csrf
-                                <h5 class="bold border-bottom mb-5">@lang('phrase.member.change-email')</h5>
+                                <h5 class="bold border-bottom mb-5">เปลี่ยนอีเมล</h5>
                                 @if (Session('status') == 'success')
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <strong class="bold">{{ Session('status') }}!</strong>
@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
-                                        <label class="mr-2">@lang('phrase.member.old-email') :</label>
+                                        <label class="mr-2">@lang('phrase.old-email') :</label>
                                         <div class="form-group">
                                             <input type="text" name="email" id="email" class="form-control"
                                                 value="{{ $member->email }}" readonly="">
@@ -88,14 +88,14 @@
                                 <div class="row">
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-8">
-                                        <label class="mr-2">@lang('phrase.member.new-email') :</label>
+                                        <label class="mr-2">@lang('phrase.new-email') :</label>
                                         <div class="form-group">
                                             <input type="text" name="new_email" id="new_email" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <center class="mt-5">
-                                    <button type="submit" class="btn btn-primary">@lang('phrase.save')</button>
+                                    <button type="submit" class="btn btn-primary">บันทึก</button>
                                 </center>
                             </form>
                         </div>

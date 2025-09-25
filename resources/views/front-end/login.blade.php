@@ -67,7 +67,7 @@
                         @csrf
                         <div class="row">     
                             <div class="col-lg-12">
-                                <h5 class="border-bottom pb-3 text-center" style="color:#fc593b;">@lang('phrase.member.login')</h5>
+                                <h5 class="border-bottom pb-3 text-center" style="color:#fc593b;">เข้าสู่ระบบ</h5>
                             </div>
                             <div class="col-lg-12">                 
                                 @if(Session('error'))
@@ -102,7 +102,7 @@
                                     <input type="checkbox" class="custom-control-input" id="remember">
                                     <label class="custom-control-label" for="remember">@lang('phrase.member.remember')</label>
                                 </div>
-                                <a class="float-right" href="{{Session('lang')}}/password/forgot">@lang('phrase.member.forgot') ?</a>
+                                <a class="float-right" href="{{Session('lang')}}/password/forgot">ลืมรหัสผ่าน?</a>
                             </div>
                         </div>
                         <div class="row">

@@ -43,7 +43,7 @@
         <li><a href="{{ url(Session('lang') . '/promotion-package') }}">@lang('phrase.header.advertising-rate')</a></li>
         {{-- <li><a href="{{ url(Session('lang') .'/contact') }}">@lang('phrase.header.free-profile')</a></li> --}}
     </ul>
-    <ul class="list-unstyled CTAs">
+    {{-- <ul class="list-unstyled CTAs">
 		<div class="cate-menu-block-head-no mb-2">
 			<div class="text-center"><i class="icofont-globe"></i>Language</div>
 		</div>
@@ -51,12 +51,12 @@
 			<div class="col-6 pr-1"><a href="{{url("logistic/set/lang/th")}}" class="article mr-2"><img src="images/flag_th.jpg"> ไทย</a></div>
 			<div class="col-6 pl-1"><a href="{{url("logistic/set/lang/jp")}}" class="article"><img src="images/flag_jp.jpg"> Japan</a></div>
 		</div>
-	</ul>
-    {{-- <div class="sidebar-footer d-flex justify-content-center align-items-center">
+	</ul> --}}
+    <div class="sidebar-footer d-flex justify-content-center align-items-center">
         <div class="btn-group btn-block" style="height: 70px; width: 100px; margin-left: -35px; margin-top: 15px;">
             <div id="google_translate_element2"></div>
         </div>
-    </div> --}}
+    </div>
 
     @php
         $lng['th'] = 'ภาษาไทย';
@@ -162,7 +162,7 @@
                             </div>
                         </li>
                     @endif
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
 						<div class="btn-group">
 							<button class="btn btn-primary dropdown-toggle lang-btn skiptranslate" type="button" data-toggle="dropdown" aria-expanded="false">
 								Language
@@ -175,7 +175,7 @@
                                     <img src="flags/gb.png" class="mr-2">English
                                 </a>
 								<a class="dropdown-item skiptranslate translation-links" href="set/lang/jp" data-bs-auto-close="outside">
-                                    <img src="flags/jp.png" class="mr-2">Japanese
+                                    <img src="flags/jp.png" class="mr-2">Japanse
                                 </a>
 								<a class="dropdown-item skiptranslate translation-links" href="set/lang/zh" data-bs-auto-close="outside">
                                     <img src="flags/cn.png" class="mr-2">Chinese
@@ -183,7 +183,7 @@
 
 							</div>
 						</div>
-					</li>
+					</li> --}}
                     {{-- <ul class="list-unstyled CTAs">
                         <div class="cate-menu-block-head-no mb-2">
                             <div class="text-center"><i class="icofont-globe"></i>Language</div>
@@ -193,9 +193,9 @@
                             <div class="col-6 pl-1"><a href="{{url("logistic/set/lang/jp")}}" class="article"><img src="images/flag_jp.jpg"> Japan</a></div>
                         </div>
                     </ul> --}}
-                    {{-- <li class="nav-item member-btn">
+                    <li class="nav-item member-btn">
                         <div id="google_translate_element"></div>
-                    </li> --}}
+                    </li>
                 </ul>
             </div>
         </div>

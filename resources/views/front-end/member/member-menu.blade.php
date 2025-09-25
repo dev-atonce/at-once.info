@@ -2,7 +2,7 @@
     <div class="profile-img mt-3 mb-3">
         <figure class="snip1566">
             <img src="{{ @$row->logo }}" class="company-logo img-fluid">
-            <figcaption><small><i class="fas fa-edit logo-edit"></i> @lang('phrase.member.edit')</small></figcaption>
+            <figcaption><small><i class="fas fa-edit logo-edit"></i> แก้ไข</small></figcaption>
             <a href="javascript:"></a>
         </figure>
     </div>
@@ -13,7 +13,7 @@
     </p>
     <div class="box-button-change-profile">
         <a href="{{ Session('lang') }}/preview/company-profile/{{ $row->id }}" target="_blank">
-            <button class="btn change-profile-image"><i class="icofont-eye-alt"></i> @lang('phrase.member.profile-preview')</button>
+            <button class="btn change-profile-image"><i class="icofont-eye-alt"></i> ดูตัวอย่างโปรไฟล์</button>
         </a>
     </div>
 </div>
@@ -81,22 +81,22 @@
             <li>
                 <a href="javascript:" class="submenu-member loading_page border-top">
                     <span class="member-menu-icon icon icon-setting"></span>
-                    <span class="member-menu-title">@lang('phrase.member.menu.setting')</span>
+                    <span class="member-menu-title">ตั้งค่า</span>
                     <span class="position-absolute" style="right: 10px;"><i class="fas fa-chevron-left"></i></span>
                 </a>
                 <div class="nav flex-column menu-child d-none">
                     {{-- <a class="pl-5" href="/{{Session('lang')}}{{$path}}/member/setting/name"><span class="member-menu-title pl-0">Name</span></a> --}}
                     <a class="pl-5" href="/{{ Session('lang') }}{{ $path }}/member/setting/email/{{ $category }}/{{ $cid }}"><span
-                            class="member-menu-title pl-0">@lang('phrase.member.menu.email')</span></a>
+                            class="member-menu-title pl-0">อีเมล์</span></a>
                     <a class="pl-5" href="/{{ Session('lang') }}{{ $path }}/member/setting/password/{{ $category }}/{{ $cid }}"><span
-                            class="member-menu-title pl-0">@lang('phrase.member.menu.password')</span></a>
+                            class="member-menu-title pl-0">รหัสผ่าน</span></a>
                 </div>
             </li>
             <li>
                 <a href="/{{ Session('lang') }}{{ $path }}/member/logout"
                     class="submenu-member submenu-logout border-top">
                     <span class="member-menu-icon icon icon-logout"></span>
-                    <span class="member-menu-title">@lang('phrase.member.menu.logout')</span>
+                    <span class="member-menu-title">ออกจากระบบ</span>
                 </a>
             </li>
         </ul>

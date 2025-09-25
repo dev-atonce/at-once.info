@@ -362,7 +362,7 @@
                                         {{ date('D, d-M-Y H:i', strtotime($row->created)) }}
                                     </td>
                                     <td data-label="Status :">
-                                        @php($onlineAction = ($row->step1 == 1 && $row->step2 == 1 && $row->step3 == 1 && Auth::user()->role == 'super') || Auth::user()->name == 'NOT' || Auth::user()->name == 'NATTAWAT' || Auth::user()->name == 'BOOM' || Auth::user()->name == 'WIN' || Auth::user()->name == 'NAMFON' || Auth::user()->name == 'TANGMO' || Auth::user()->name == 'FERN' || Auth::user()->role == 'developer' ? '' : 'disabled=""')
+                                        @php($onlineAction = ($row->step1 == 1 && $row->step2 == 1 && $row->step3 == 1 && Auth::user()->role == 'super') || Auth::user()->name == 'NOT' || Auth::user()->name == 'NATTAWAT' || Auth::user()->name == 'BOOM' || Auth::user()->name == 'WIN' || Auth::user()->name == 'NAMFON' || Auth::user()->name == 'TANGMO' || Auth::user()->name == 'FERN' || Auth::user()->name == 'MAY' || Auth::user()->role == 'developer' ? '' : 'disabled=""')
                                         <label class="c-switch c-switch-label c-switch-pill c-switch-success">
                                             <input class="c-switch-input status" type="checkbox"
                                                 data-id="{{ $row->company }}"
