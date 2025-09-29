@@ -12,6 +12,7 @@
 
     <title>{{ $row->title ? $row->title : $row->name . ' - ' . env('APP_NAME') }}</title>
 
+    <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -26,13 +27,8 @@
             "areaServed": {
                 "@type": "Country",
                 "name": "Thailand"
-            },
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://at-once.info/th/search?keywords={search_term_string}",
-                "query-input": "required name=search_term_string"
             }
-        }
+            }
     </script>
 
     <meta property="og:title" content="{{ $row->name }}">
@@ -1114,25 +1110,25 @@
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"
         ></script>
         <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/gallery-box.js" defer></script>
-        <script src="js/jquery.mCustomScrollbar.concat.min.js" defer></script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en" defer></script>
-        <script type="text/javascript" src="js/custom.js?v=0002" defer></script>
-        <script type="text/javascript" src="js/fancybox.js" defer></script>
+        <script type="text/javascript" src="js/gallery-box.js"></script>
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en"></script>
+        <script type="text/javascript" src="js/custom.js?v=0002"></script>
+        <script type="text/javascript" src="js/fancybox.js"></script>
 
-        <script type="text/javascript" src="slick/slick.min.js?v=001" defer></script>
-        <script type="text/javascript" src="slick/custom.js" defer></script>
-        <script type="text/javascript" src="slick/main.js" defer></script>
+        <script type="text/javascript" src="slick/slick.min.js?v=001"></script>
+        <script type="text/javascript" src="slick/custom.js"></script>
+        <script type="text/javascript" src="slick/main.js"></script>
 
-        <script type="text/javascript" src="js/jquery.validate-v1.18.js" defer></script>
-        <script type="text/javascript" src="js/build/authentication.js" defer></script>
-        <script type="text/javascript" src="js/build/social.media.js" defer></script>
-        <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js" defer></script>
-        <script type="text/javascript" src="js/blog.color.js" defer></script>
+        <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
+        <script type="text/javascript" src="js/build/authentication.js"></script>
+        <script type="text/javascript" src="js/build/social.media.js"></script>
+        <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js"></script>
+        <script type="text/javascript" src="js/blog.color.js"></script>
 
-        <script src="js/axios.min.js" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.js" defer></script>
+        <script src="js/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.js"></script>
 
 </body>
 
@@ -1434,8 +1430,8 @@
     }
 
     function staticsCapture() {
-        axios({
-            method: 'post',
+        $.ajax({
+            method: 'POST',
             url: 'api/' + category + '/store/statistics',
             data: {
                 _method: 'PUT',
@@ -1463,9 +1459,9 @@
 
     $(document).on('click', '.countOfClick', function() {
         let geo = converseToJson(geoIp);
-        axios({
+        $.ajax({
             url: 'api/count-of-click',
-            method: 'post',
+            method: 'POST',
             data: {
                 company: _id,
                 ip: geoIp.ip,
@@ -1477,8 +1473,8 @@
     $('button.tel-top').on('click', function() {
         $('.tel-com-top').toggleClass('d-none d-flex');
         if ($('.tel-com-top').hasClass('d-flex')) {
-            axios({
-                method: 'post',
+            $.ajax({
+                method: 'POST',
                 url: 'api/' + category + '/store/statistics/click',
                 data: {
                     _method: 'PUT',
@@ -1495,8 +1491,8 @@
         $('.tel-com').parent().toggleClass('d-none d-block');
         if ($('.tel-com').parent().hasClass('d-block')) {
 
-            axios({
-                method: 'post',
+            $.ajax({
+                method: 'POST',
                 url: 'api/' + category + '/store/statistics/click',
                 data: {
                     _method: 'PUT',
@@ -1515,8 +1511,8 @@
                 actionAd($(this));
                 $('.chatbox').removeClass('d-none').removeClass('chatbox-min');
             }
-            axios({
-                method: 'post',
+            $.ajax({
+                method: 'POST',
                 url: 'api/' + category + '/store/statistics/click',
                 data: {
                     _method: 'PUT',
@@ -1535,8 +1531,8 @@
                 actionAd($(this));
                 $('.chatbox').removeClass('d-none').removeClass('chatbox-min');
             }
-            axios({
-                method: 'post',
+            $.ajax({
+                method: 'POST',
                 url: 'api/' + category + '/store/statistics/click',
                 data: {
                     _method: 'PUT',

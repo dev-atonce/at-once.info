@@ -3,6 +3,7 @@
 
 <head>
     @include("$prefix.analytics.googleAnalytics")
+    <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -17,13 +18,8 @@
             "areaServed": {
                 "@type": "Country",
                 "name": "Thailand"
-            },
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://at-once.info/th/search?keywords={search_term_string}",
-                "query-input": "required name=search_term_string"
             }
-        }
+            }
     </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">

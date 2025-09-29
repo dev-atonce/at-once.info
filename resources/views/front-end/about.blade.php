@@ -11,6 +11,7 @@
 
     <title>{{ $seo->title ? $seo->title : $seo->title_th }}</title>
 
+    <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -25,13 +26,8 @@
             "areaServed": {
                 "@type": "Country",
                 "name": "Thailand"
-            },
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://at-once.info/th/search?keywords={search_term_string}",
-                "query-input": "required name=search_term_string"
             }
-        }
+            }
     </script>
 
     <meta property="og:title" content="{{ $seo->title ? $seo->title : $seo->title_th }}">

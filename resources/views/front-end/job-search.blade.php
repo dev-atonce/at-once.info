@@ -20,7 +20,8 @@
   <meta name="description" content="{{env('APP_NAME').', '.$description}}">
   <title>หางาน - {{env('APP_NAME')}}</title>
 
-  <script type="application/ld+json">
+    <!-- 既存のOrganization Schema（SearchAction削除版） -->
+    <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "Organization",
@@ -34,14 +35,9 @@
             "areaServed": {
                 "@type": "Country",
                 "name": "Thailand"
-            },
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://at-once.info/th/search?keywords={search_term_string}",
-                "query-input": "required name=search_term_string"
             }
-        }
-  </script>
+            }
+    </script>
   
   <meta name="author" content="at-once.info">
 

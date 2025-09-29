@@ -14,6 +14,7 @@
 
     <title>{{ $seo->title ? $seo->title : $seo->title_th }}</title>
 
+    <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -28,12 +29,41 @@
             "areaServed": {
                 "@type": "Country",
                 "name": "Thailand"
-            },
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://at-once.info/th/search?keywords={search_term_string}",
-                "query-input": "required name=search_term_string"
             }
+            }
+    </script>
+    <!-- 新規追加するWebSite Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "At-Once Thailand Business Directory",
+            "alternateName": "At-Once ไดเร็กทอรี่ธุรกิจไทย",
+            "url": "https://at-once.info/th",
+            "description": "ไดเร็กทอรี่ธุรกิจไทยที่ครอบคลุมที่สุด ค้นหาบริษัท ข้อมูลธุรกิจ และข่าวสารอุตสาหกรรมในภาษาไทยและอีก 18 ภาษา พร้อมข้อมูลที่ถูกต้องและทันสมัย",
+            "inLanguage": "th",
+            "publisher": {
+                "@type": "Organization",
+                "name": "At-Once",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https://at-once.info/img/at-once-tw.png"
+                }
+            },
+            "potentialAction": [
+                {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://at-once.info/th/search?q={search_term_string}",
+                    "actionPlatform": [
+                    "http://schema.org/DesktopWebPlatform",
+                    "http://schema.org/MobileWebPlatform"
+                    ]
+                },
+                "query-input": "required name=search_term_string"
+                }
+            ]
         }
     </script>
 
