@@ -21,6 +21,34 @@
             }
             }
     </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "หน้าแรก",
+                "item": "https://at-once.info/th"
+                },
+                {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "บทความ",
+                "item": "https://at-once.info/th/{{ $row->type == 'general' ? 'blog' : 'blog-company' }}"
+                },
+                {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ $row->name }}",
+                "item": "https://at-once.info/th/blog/{{ $row->url }}"
+                }
+            ]
+        }
+    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

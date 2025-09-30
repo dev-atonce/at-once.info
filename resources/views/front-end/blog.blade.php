@@ -30,6 +30,28 @@
             }
     </script>
 
+        <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "หน้าแรก",
+                "item": "https://at-once.info/th"
+                },
+                {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "บทความ",
+                "item": "https://at-once.info/th/{{ $segment }}"
+                }
+            ]
+        }
+    </script>
+
     <meta property="og:title" content="{{ $seo->title ? $seo->title : $seo->title_th }}">
     <meta property="og:description" content="{{ $seo->seo_description ? $seo->seo_description :  $seo->seo_description_th }}">
     <meta property="og:image" content="{{ url('img/logo-bg-white.jpg') }}">

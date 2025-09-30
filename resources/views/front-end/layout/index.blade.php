@@ -30,6 +30,28 @@
             }
     </script>
 
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "หน้าแรก",
+                "item": "https://at-once.info/th"
+                },
+                {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ $categoryName }}",
+                "item": "https://at-once.info/th/{{ $module }}"
+                }
+            ]
+        }
+    </script>
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="SBEehLLGMBDzOMbSEIBIf15L3etk2d7P1_cYrwo97rk" />
 

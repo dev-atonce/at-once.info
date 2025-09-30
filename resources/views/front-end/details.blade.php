@@ -31,6 +31,50 @@
             }
     </script>
 
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+        {
+            '@context' => 'https://schema.org',
+            '@type' => 'LocalBusiness',
+            'name' => '{{ $row->name }}',
+            'url' => 'https://at-once.info/th/{{ $row->key }}/cp/{{ $row->profile_url }}',
+            'description' => '{{ $row->name }} ให้บริการ {{ $row->category }} ในประเทศไทย',
+            'areaServed' => [
+                '@type' => 'Country',
+                'name' => 'Thailand'
+            ],
+            'knowsAbout' => '{{ $row->category }}'
+        }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "หน้าแรก",
+                "item": "https://at-once.info/th"
+                },
+                {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ $row->category }}",
+                "item": "https://at-once.info/th/{{ $row->key }}"
+                },
+                {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "{{ $row->name }}",
+                "item": "https://at-once.info/th/{{ $row->key }}/cp/{{ $row->profile_url }}"
+                }
+            ]
+        }
+    </script>
+
     <meta property="og:title" content="{{ $row->name }}">
     <meta property="og:description" content="{{ $row->seo_description }}">
     <meta property="og:image" content="@if ($row->logo) {{ url($row->logo) }} @endif" />

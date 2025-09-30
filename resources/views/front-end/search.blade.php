@@ -11,6 +11,47 @@
 
     <title>{{ $seo->title }}</title>
 
+    <!-- 既存のOrganization Schema（SearchAction削除版） -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "At-Once",
+            "url": "https://at-once.info",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://at-once.info/img/at-once-tw.png"
+            },
+            "description": "แหล่งรวบรวมข้อมูลธุรกิจครบวงจรสำหรับค้นหารายชื่อบริษัทจากทุกอุตสาหกรรมในประเทศไทย ผู้ให้บริการเว็บไซต์รวมรายชื่อบริษัทอันดับหนึ่ง พร้อมข้อมูลสำคัญอย่างละเอียดถูกต้องและทันสมัย",
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            }
+            }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "หน้าแรก",
+                "item": "https://at-once.info/th"
+                },
+                {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "ค้นหา",
+                "item": "https://at-once.info/th/search"
+                }
+            ]
+        }
+    </script>
+
     <meta property="og:title" content="{{ $seo->title }}">
     <meta property="og:description" content="{{ $seo->seo_description }}">
     <meta property="og:image" content="{{ url('img/logo-bg-white.jpg') }}">
