@@ -99,6 +99,17 @@ class CompanyCtrl extends Controller
                 })
                 ->orderBy('created', 'desc')->get();
 
+            $workingHrs = \App\Models\Filter\CpWorkingHoursMd::select(
+                'cp_working_hours.id',
+                "wh.name_$lang as day",
+                'wh.name_en as day_en',
+                'cp_working_hours.time',
+                )
+                ->leftJoin('working_hours as wh', 'cp_working_hours.day', '=', 'wh.id')
+                ->where('_id', $data->id)
+            ->get();
+
+            // dd($workingHrs);
             if ($data->id && $data->public == 1) {
                 return view("$this->prefix.details", [
                     'prefix' => $this->prefix,
@@ -108,6 +119,7 @@ class CompanyCtrl extends Controller
                     'customerStatus' => \App\Models\OurCustomerMd::where('company', $dataid)->first(),
                     'row' => $data,
                     'blog' => $blog,
+                    'workingHrs' => $workingHrs,
                     'myFilter' => \App\Http\Controllers\CenterCtrl::myFilter($data->key, $data->id),
                     'filters' => \App\Http\Controllers\CenterCtrl::filterOfCategory($data->key)
                 ]);

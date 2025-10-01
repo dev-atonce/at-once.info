@@ -65,7 +65,6 @@
 
     <base href="{{ url('/') }}">
     <link href="img/favicon.ico?v=1001" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="css/fontawesome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fonts/icofont.css">
     <link href="css/style.css" rel="stylesheet">
@@ -81,6 +80,21 @@
 
 <body>
     @include("$prefix.header")
+
+    <nav aria-label="Tab navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{Session('lang')}}/{{ $row->type == 'general' ? 'blog' : 'blog-company' }}">{{ $row->type == 'general' ? 'blog' : 'blog-company' }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/{{Session('lang')}}/blog/{{ $row->url }}">{{ $row->name }}</a>
+            </li>
+        </ul>
+    </nav>
+
     <section class="page">
         <div class="container">
             <div class="card bg-light">

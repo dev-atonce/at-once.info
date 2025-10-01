@@ -136,6 +136,17 @@
             </div>
         </div>
     </div>
+    
+    <nav aria-label="Tab navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/{{Session('lang')}}/search">ค้นหา</a>
+            </li>
+        </ul>
+    </nav>
 
     <section class="page">
         <div class="container">

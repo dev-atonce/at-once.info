@@ -32,18 +32,43 @@
     </script>
 
     <!-- LocalBusiness Schema -->
+    @php
+        $dayMap = [
+            'Monday' => 'Mo',
+            'Tuesday' => 'Tu',
+            'Wednesday' => 'We',
+            'Thursday' => 'Th',
+            'Friday' => 'Fr',
+            'Saturday' => 'Sa',
+            'Sunday' => 'Su',
+        ];
+    @endphp
     <script type="application/ld+json">
         {
-            '@context' => 'https://schema.org',
-            '@type' => 'LocalBusiness',
-            'name' => '{{ $row->name }}',
-            'url' => 'https://at-once.info/th/{{ $row->key }}/cp/{{ $row->profile_url }}',
-            'description' => '{{ $row->name }} ให้บริการ {{ $row->category }} ในประเทศไทย',
-            'areaServed' => [
-                '@type' => 'Country',
-                'name' => 'Thailand'
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "{{ $row->name }}",
+            "url": "https://at-once.info/th/{{ $row->key }}/cp/{{ $row->profile_url }}",
+            "description": "{{ $row->detail }}",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "{{ $row->address }}",
+                "addressLocality": "",
+                "addressRegion": "",
+                "postalCode": "",
+                "addressCountry": "TH"
+            },
+            "telephone": "{{ $row->phone }}",
+            "openingHours": [
+                @foreach ($workingHrs as $kwh => $wh)
+                    "{{ $dayMap[$wh->day_en] }} {{ str_replace(' - ', '-', $wh->time) }}"{{!$loop->last ? ',' : ''}}
+                @endforeach
             ],
-            'knowsAbout' => '{{ $row->category }}'
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "knowsAbout": "{{ $row->category }}"
         }
     </script>
 
@@ -85,7 +110,6 @@
     <link href="img/favicon.ico?v=1001" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fonts/icofont.css">
-    <link rel="stylesheet" href="css/fontawesome.css">
     <link href="css/style.css?v=0004" rel="stylesheet">
     <link href="css/panel-box.css?v=0001" rel="stylesheet">
     <link href="css/gallery.css?v=002" rel="stylesheet">
@@ -218,6 +242,20 @@
     @endif
 
     @if ($row->type != 'basic')
+
+    <nav aria-label="Tab navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{Session('lang')}}/{{ $row->key }}">{{ $row->category }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/{{Session('lang')}}/{{ $row->key }}/cp/{{ $row->profile_url }}">{{ $row->name }}</a>
+            </li>
+        </ul>
+    </nav>
 
     <section class="">
         @php
@@ -421,15 +459,6 @@
         $items = \App\Models\Filter\CpItemMd::select('ch.id', "ch.name_$lang as name")
         ->leftJoin('choice as ch', 'cp_item.item', '=', 'ch.key')
         ->where(['_id' => $row->id, 'ch.type' => 'warehouse'])
-        ->get();
-        $workingHrs = \App\Models\Filter\CpWorkingHoursMd::select(
-        'cp_working_hours.id',
-        "wh.name_$lang as day",
-        'wh.name_en as day_en',
-        'cp_working_hours.time',
-        )
-        ->leftJoin('working_hours as wh', 'cp_working_hours.day', '=', 'wh.id')
-        ->where('_id', $row->id)
         ->get();
         @endphp
 

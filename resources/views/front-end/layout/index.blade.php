@@ -90,6 +90,18 @@
 <body class="main_page">
     {{-- Header --}}
     @include("$prefix.header")
+        
+    <nav aria-label="Tab navigation">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/{{Session('lang')}}/{{ $module }}">{{ $categoryName }}</a>
+            </li>
+        </ul>
+    </nav>
+
     @include("$prefix.layout.filter")
     @include("$prefix.sponsor")
     {{-- Form contact in Desktop device --}}
