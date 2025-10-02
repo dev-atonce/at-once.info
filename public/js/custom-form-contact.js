@@ -1,19 +1,32 @@
 var ipUrl = "https://get.geojs.io/v1/ip/geo.js",
-    geoIp = $.ajax({ url: ipUrl, async: false, success: function (res) { console.log(res) } }).responseText;
+    geoIp = null;
+
+// Load geo IP asynchronously
+axios.get(ipUrl).then(function(response) {
+    geoIp = response.data;
+    console.log(geoIp);
+}).catch(function(error) {
+    console.log('Geo IP error:', error);
+});
 
 
 $('.light-g').each(function () { $(this).children().lightGallery({ thumbnail: true, download: false }) });
 $(document).on('click', '[data-target="#exampleModal"]', function () {
-    const html = $.ajax({ method: 'get', url: $('html').attr('lang') + '/' + category + '/cp/d/' + $(this).attr('data-cp'), async: false });
-    staticsCapture($(this))
-    $('#exampleModal').find('.col-lg-12').append(html.responseText);
-    $('#exampleModal').find('.new-tab').attr({
-        'target': '_blank',
-        'href': $(this).attr('data-full')
-    })
-    $('#exampleModal').modal('show');
-
-    // $('#exampleModal').find('.new-tab').attr({'href':window.location.origin+'/'+$('html').attr('lang')+'/'+category+'/company/'+$(this).attr('href').replace('javascript:',''),'target':'_blank'});
+    const element = $(this);
+    staticsCapture(element);
+    
+    axios.get($('html').attr('lang') + '/' + category + '/cp/d/' + element.attr('data-cp'))
+        .then(function(response) {
+            $('#exampleModal').find('.col-lg-12').append(response.data);
+            $('#exampleModal').find('.new-tab').attr({
+                'target': '_blank',
+                'href': element.attr('data-full')
+            });
+            $('#exampleModal').modal('show');
+        })
+        .catch(function(error) {
+            console.log('Modal content error:', error);
+        });
 })
 $(document).on('click', 'a.new-tab', function () {
     $('#exampleModal').modal('hide');
@@ -154,12 +167,9 @@ $('#formContactPackage').validate({
         // fd.append('page', $('input[name="page"]').val());
         // fd.append('package', $('input[name="package"]').val());
         // fd.append('type', 'atonce');
-        axios({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            method: 'post',
-            url: 'api/package/sendmail',
-            data: inputs
-        }).then((result) => {
+        axios.post('api/package/sendmail', inputs, {
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        }).then(function(result) {
             Swal.fire({
                 icon: 'success',
                 title: 'ส่งอีเมลสำเร็จแล้ว',
@@ -170,7 +180,7 @@ $('#formContactPackage').validate({
                 document.querySelectorAll('.form-control').forEach(el=> el.classList.remove('valid'));
                 document.querySelectorAll('.form-control').forEach(el=> el.value = '');
             });
-        }).catch((err) => {
+        }).catch(function(err) {
             Swal.fire({
                 icon: 'danger',
                 title: 'ไม่สามารถส่งได้ กรุณาลองใหม่อีกครั้ง',
@@ -254,16 +264,14 @@ function converseToJson(data) {
 
 function staticsCapture(el) {
     if (el.attr('capture') == 'banner') {
-        $.ajax({
-            method: 'post',
-            url: 'api/store/statistics/detail',
-            data: {
-                _method: 'PUT',
-                company: el.attr('data-id'),
-                category: el.attr('category'),
-                capture: el.attr('capture'),
-                locate: converseToJson(geoIp)
-            }
+        axios.post('api/store/statistics/detail', {
+            _method: 'PUT',
+            company: el.attr('data-id'),
+            category: el.attr('category'),
+            capture: el.attr('capture'),
+            locate: converseToJson(geoIp)
+        }).catch(function(error) {
+            console.log('Statistics capture error:', error);
         });
     }
 }

@@ -222,8 +222,6 @@
             }
         }
 
-        .popup-dialog .profile-img {}
-
         .hider-img img {
             display: none !important;
         }
@@ -258,46 +256,42 @@
     </nav>
 
     <section class="">
-        @php
-        $check = 0;
-        $cover = $row->cover != '' ? $row->cover : 'images/default-cover.jpg';
-        @endphp
         <div class="cover" style="position: relative; margin-bottom: 20px">
             @if ($row->type != 'semi')
-                <img src="{{ $cover }}" class="bg-cover-detail-cp img-fluid" loading="lazy" alt="Cover image">
+                <img src="{{ $row->cover ?? asset('images/default-cover.jpg') }}" class="bg-cover-detail-cp img-fluid" loading="lazy" alt="Cover image">
             @endif
             @if (@$row->video_profile != '')
-            @php
-            $cssAligh = '';
-            if ($row->video_position == 'center') {
-            $cssAligh = 'left:calc(50% - 250px);';
-            }
-            if ($row->video_position == 'left') {
-            $cssAligh = '';
-            }
-            if ($row->video_position == 'right') {
-            $cssAligh = 'right:0;';
-            }
-            @endphp
-            <div class="container" style="position: relative;">
-                <div style="position: absolute; bottom:0; {{ $cssAligh }}">
-                    <div class="row">
-                        <div class="col-lg-2 col-xs-12 d-block d-lg-none">
-                            <button type="button" class="btn btn-outline-primary search-advance"
-                                data-toggle="collapse" href="#collapseExample"
-                                aria-expanded="{{ @$expanded }}">ค้นหาแบบละเอียด<i
-                                    class="fas @if (@$expanded === true) fa-caret-down @else fa-caret-left @endif fa-fw"></i></button>
-                        </div>
-                        <div class="col-lg-12">
-                            <video width="500" controls="controls" controlslist="nodownload"
-                                preload="metadata" autoplay>
-                                <source src="{{ url($row->video_profile) }}#t=1"
-                                    type="video/{{ explode('.', $row->video_profile)[1] }}">
-                            </video>
+                @php
+                $cssAligh = '';
+                if ($row->video_position == 'center') {
+                $cssAligh = 'left:calc(50% - 250px);';
+                }
+                if ($row->video_position == 'left') {
+                $cssAligh = '';
+                }
+                if ($row->video_position == 'right') {
+                $cssAligh = 'right:0;';
+                }
+                @endphp
+                <div class="container" style="position: relative;">
+                    <div style="position: absolute; bottom:0; @if($cssAligh) {!! $cssAligh !!} @endif">
+                        <div class="row">
+                            <div class="col-lg-2 col-xs-12 d-block d-lg-none">
+                                <button type="button" class="btn btn-outline-primary search-advance"
+                                    data-toggle="collapse" href="#collapseExample"
+                                    aria-expanded="{{ @$expanded }}">ค้นหาแบบละเอียด<i
+                                        class="fas @if (@$expanded === true) fa-caret-down @else fa-caret-left @endif fa-fw"></i></button>
+                            </div>
+                            <div class="col-lg-12">
+                                <video width="500" controls="controls" controlslist="nodownload"
+                                    preload="metadata" autoplay>
+                                    <source src="{{ url($row->video_profile) }}#t=1"
+                                        type="video/{{ explode('.', $row->video_profile)[1] }}">
+                                </video>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endif
         </div>
         <div class="container">
@@ -325,7 +319,7 @@
                                         @if ($row->alpha2)
                                         <div class="category-tag"
                                             style="background: #4caf50; color:white; border: 1px solid #4caf50;">
-                                            <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy">
+                                            <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy" alt="Company flag">
                                             {{ $row->nationality }} Company
                                         </div>
                                         @endif
@@ -369,7 +363,7 @@
                                                     @if ($row->alpha2)
                                                     <div class="category-tag"
                                                         style="background: #4caf50; color:white; border: 1px solid #4caf50;">
-                                                        <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy">
+                                                        <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy" alt="Company flag">
                                                         {{ $row->nationality }} Company
                                                     </div>
                                                     @endif
@@ -401,7 +395,7 @@
                                         <div class="btn-group w-100" role="group"
                                             aria-label="Basic example">
                                             <button class="btn-sb-company tel-top" style="border-bottom-right-radius: unset;border-top-right-radius: unset;">
-                                                <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy">
+                                                <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy" alt="icon-phone">
                                             </button>
                                             <a class="btn-sb-company mailtop"
                                                 @if ($customerStatus) href="#formQuotation" @else href="javascript:0" @endif
@@ -409,12 +403,12 @@
                                                 lang="{{ Session('lang') }}"
                                                 category={{ Request::segment(2) }} tag="{{ $row->id }}"
                                                 text="{{ $row->name }}">
-                                                <img src="images/icon/mail.svg" width="20" style="filter: invert(1);" loading="lazy">
+                                                <img src="images/icon/mail.svg" width="20" style="filter: invert(1);" loading="lazy" alt="icon-mail">
                                             </a>
                                         </div>
                                         @else
                                         <button class="btn-sb-company tel-top">
-                                            <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy">
+                                            <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy" alt="icon-phone">
                                         </button>
                                         @endif
                                         @php
@@ -631,7 +625,7 @@
                             <div class="contact-tm">
                                 <div class="detail-contact ch-red">
                                     <a class="tel" href="javascript:">
-                                        <img src="images/icon/phone-call.svg" width="20" loading="lazy">
+                                        <img src="images/icon/phone-call.svg" width="20" loading="lazy" alt="icon-phone">
                                         <span id="">@lang('phrase.telephone')</span>
                                     </a>
                                     <div class=" col-lg-12 d-none">
@@ -653,7 +647,7 @@
                                         category={{ Request::segment(2) }} tag="{{ $row->id }}"
                                         text="{{ $row->name ? $row->name : $row->name_th }}"
                                         @if ($row->email == '') disabled @endif>
-                                        <img src="images/icon/mail.svg" width="20" loading="lazy"> @lang('phrase.contact.inquiry')
+                                        <img src="images/icon/mail.svg" width="20" loading="lazy" alt="icon-mail"> @lang('phrase.contact.inquiry')
                                     </a>
                                     <span class="d-none">{{ $row->email }}</span>
                                 </div>
@@ -928,7 +922,7 @@
                                             class="detail-contact ch-tel @if ($row->phone == '') btn-no-info @endif">
                                             <a class="tel" href="javascript:" style="text-decoration: none"
                                                 @if ($row->phone == '') disabled @endif>
-                                                <img src="images/icon/phone-call.svg" width="20" loading="lazy">
+                                                <img src="images/icon/phone-call.svg" width="20" loading="lazy" alt="icon-phone-call">
                                                 <span style="font-size: 18px;">@lang('phrase.contact.telephone')</span>
                                             </a>
                                             <div class=" col-lg-12 d-none">
@@ -943,7 +937,7 @@
                                                 text="{{ $row->name }}" data-email="{{ $row->email }}"
                                                 style="font-size: 18px; text-decoration: none"
                                                 @if ($row->email == '' || $row->mail == 0) disabled @endif>
-                                                <img src="images/icon/mail.svg" width="20" loading="lazy">
+                                                <img src="images/icon/mail.svg" width="20" loading="lazy" alt="icon-mail">
                                                 @lang('phrase.contact.inquiry')
                                             </a>
                                             <span class="d-none">{{ $row->email }}</span>
@@ -1324,14 +1318,16 @@
                     fd.append("telephone", modal.find('input[name="telephone"]').val());
                     fd.append("email", modal.find('input[name="email"]').val());
                     fd.append("detail", modal.find('textarea[name="detail"]').val());
-                    store = $.ajax({
-                        method: 'POST',
-                        url: 'api/contact/s/basic',
-                        async: false,
-                        processData: false,
-                        contentType: false,
-                        data: fd
-                    }).responseJSON;
+                    axios.post('api/contact/s/basic', fd, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(function(response) {
+                        store = response.data;
+                    }).catch(function(error) {
+                        console.log('Contact form error:', error);
+                        store = { statusCode: 500, title: 'Error', message: 'เกิดข้อผิดพลาด' };
+                    });
 
                     if (store.statusCode == 200) {
                         alert.removeClass('alert-danger');
@@ -1419,14 +1415,16 @@
                     fd.append("telephone", $('input[name="telephone"]').val());
                     fd.append("email", $('input[name="email"]').val());
                     fd.append("detail", $('textarea[name="detail"]').val());
-                    store = $.ajax({
-                        method: 'POST',
-                        url: 'api/contact/s/basic',
-                        async: false,
-                        processData: false,
-                        contentType: false,
-                        data: fd
-                    }).responseJSON;
+                    axios.post('api/contact/s/basic', fd, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(function(response) {
+                        store = response.data;
+                    }).catch(function(error) {
+                        console.log('Contact form error:', error);
+                        store = { statusCode: 500, title: 'Error', message: 'เกิดข้อผิดพลาด' };
+                    });
 
                     if (store.statusCode == 200) {
                         alert.removeClass('alert-danger');
@@ -1477,13 +1475,36 @@
     var pageUrl = window.location.pathname.split('/');
     category = pageUrl[2];
     var ipUrl = "https://get.geojs.io/v1/ip/geo.js";
-    var geoIp = $.ajax({
-        url: ipUrl,
-        async: false,
-        success: function(res) {
-            console.log(res)
+    var geoIp = null;
+    
+    // Load geo IP asynchronously - wait for axios to be available
+    function loadGeoIP() {
+        if (typeof axios !== 'undefined') {
+            axios.get(ipUrl).then(function(response) {
+                geoIp = response.data;
+                console.log('Geo IP loaded:', geoIp);
+            }).catch(function(error) {
+                console.log('Geo IP error:', error);
+            });
+        } else {
+            // Fallback to jQuery ajax if axios not available
+            $.ajax({
+                url: ipUrl,
+                success: function(response) {
+                    geoIp = response;
+                    console.log('Geo IP loaded (jQuery):', geoIp);
+                },
+                error: function(error) {
+                    console.log('Geo IP error (jQuery):', error);
+                }
+            });
         }
-    }).responseText;
+    }
+    
+    // Load geo IP when DOM is ready
+    $(document).ready(function() {
+        loadGeoIP();
+    });
 
     function converseToJson(data) {
 
@@ -1503,18 +1524,42 @@
     }
 
     function staticsCapture() {
-        $.ajax({
-            method: 'POST',
-            url: 'api/' + category + '/store/statistics',
-            data: {
+        const locationData = converseToJson(geoIp);
+        
+        if (typeof axios !== 'undefined') {
+            axios.post('api/' + category + '/store/statistics', {
                 _method: 'PUT',
                 company: _id,
-                locate: converseToJson(geoIp),
+                locate: locationData,
                 device: d.getInfo()
-            }
-        });
+            }).catch(function(error) {
+                console.log('Statistics capture error:', error);
+            });
+        } else {
+            $.ajax({
+                method: 'POST',
+                url: 'api/' + category + '/store/statistics',
+                data: {
+                    _method: 'PUT',
+                    company: _id,
+                    locate: locationData,
+                    device: d.getInfo()
+                }
+            }).fail(function(error) {
+                console.log('Statistics capture error (jQuery):', error);
+            });
+        }
     }
-    staticsCapture()
+    
+    // Call staticsCapture after geo IP is loaded
+    function callStaticsCapture() {
+        setTimeout(function() {
+            staticsCapture();
+        }, 1000); // Wait 1 second for geo IP to load
+    }
+    
+    // Call statistics capture
+    callStaticsCapture();
 
     $.fn.extend({
         toggleText: function(a, b) {
@@ -1532,48 +1577,65 @@
 
     $(document).on('click', '.countOfClick', function() {
         let geo = converseToJson(geoIp);
-        $.ajax({
-            url: 'api/count-of-click',
-            method: 'POST',
-            data: {
-                company: _id,
-                ip: geoIp.ip,
-                type: "cp-to-website"
-            }
-        })
+        axios.post('api/count-of-click', {
+            company: _id,
+            ip: geoIp.ip,
+            type: "cp-to-website"
+        }).catch(function(error) {
+            console.log('Count click error:', error);
+        });
     });
 
-    $('button.tel-top').on('click', function() {
+    // Tel button click handler
+    $(document).on('click', 'button.tel-top', function() {
+        console.log('Tel button clicked');
         $('.tel-com-top').toggleClass('d-none d-flex');
+        console.log('Tel classes toggled');
+        
         if ($('.tel-com-top').hasClass('d-flex')) {
-            $.ajax({
-                method: 'POST',
-                url: 'api/' + category + '/store/statistics/click',
-                data: {
+            console.log('Tel is visible, sending stats...');
+            const locationData = converseToJson(geoIp);
+            
+            // Use axios if available, otherwise use jQuery ajax
+            if (typeof axios !== 'undefined') {
+                axios.post('api/' + category + '/store/statistics/click', {
                     _method: 'PUT',
                     company: _id,
                     c: 't',
                     category: categoryId,
-                    locate: geoIp
-                }
-            });
+                    locate: locationData || null
+                }).catch(function(error) {
+                    console.log('Tel click error:', error);
+                });
+            } else {
+                $.ajax({
+                    method: 'POST',
+                    url: 'api/' + category + '/store/statistics/click',
+                    data: {
+                        _method: 'PUT',
+                        company: _id,
+                        c: 't',
+                        category: categoryId,
+                        locate: locationData || null
+                    }
+                }).fail(function(error) {
+                    console.log('Tel click error (jQuery):', error);
+                });
+            }
         }
-    })
+    });
 
     $('a.tel').on('click', function() {
         $('.tel-com').parent().toggleClass('d-none d-block');
         if ($('.tel-com').parent().hasClass('d-block')) {
-
-            $.ajax({
-                method: 'POST',
-                url: 'api/' + category + '/store/statistics/click',
-                data: {
-                    _method: 'PUT',
-                    company: _id,
-                    c: 't',
-                    category: categoryId,
-                    locate: geoIp
-                }
+            axios.post('api/' + category + '/store/statistics/click', {
+                _method: 'PUT',
+                company: _id,
+                c: 't',
+                category: categoryId,
+                locate: converseToJson(geoIp)
+            }).catch(function(error) {
+                console.log('Tel click error:', error);
             });
         }
     });
@@ -1584,16 +1646,14 @@
                 actionAd($(this));
                 $('.chatbox').removeClass('d-none').removeClass('chatbox-min');
             }
-            $.ajax({
-                method: 'POST',
-                url: 'api/' + category + '/store/statistics/click',
-                data: {
-                    _method: 'PUT',
-                    company: _id,
-                    c: 'm',
-                    category: categoryId,
-                    locate: geoIp
-                }
+            axios.post('api/' + category + '/store/statistics/click', {
+                _method: 'PUT',
+                company: _id,
+                c: 'm',
+                category: categoryId,
+                locate: converseToJson(geoIp)
+            }).catch(function(error) {
+                console.log('Mail click error:', error);
             });
         });
     });
@@ -1604,16 +1664,14 @@
                 actionAd($(this));
                 $('.chatbox').removeClass('d-none').removeClass('chatbox-min');
             }
-            $.ajax({
-                method: 'POST',
-                url: 'api/' + category + '/store/statistics/click',
-                data: {
-                    _method: 'PUT',
-                    company: _id,
-                    c: 'm',
-                    category: categoryId,
-                    locate: geoIp
-                }
+            axios.post('api/' + category + '/store/statistics/click', {
+                _method: 'PUT',
+                company: _id,
+                c: 'm',
+                category: categoryId,
+                locate: converseToJson(geoIp)
+            }).catch(function(error) {
+                console.log('Mailtop click error:', error);
             });
         });
     });
@@ -1811,29 +1869,36 @@
         },
         submitHandler: function(form) {
             inputs = $('#quotationForm').serialize();
-            const res = $.ajax({
-                method: 'post',
-                url: 'my/service/request/quotation',
-                data: inputs,
-                async: false,
-            }).responseJSON;
-            alert = document.createElement('div');
-            alert.setAttribute('class',
-                `alert${res.statusCode == 200 ?' alert-success': ' alert-danger'} text-center w-100`);
-            alert.innerHTML = `${res.message.replace('ที่','ที่ <br/>')}`;
-            $('#quotationForm').find('.alert')?.remove();
-            document.getElementById('quotationForm').querySelector('.row').prepend(alert);
-            document.getElementById('quotationForm').querySelector('[type="submit"]').setAttribute(
-                'disabled', true);
-            reRender();
-            if (res.statusCode == 200) {
-                $('#quotationForm').find("input[name='company']").val('').removeClass('valid');
-                $('#quotationForm').find("input[name='name']").val('').removeClass('valid');
-                $('#quotationForm').find("input[name='telephone']").val('').removeClass('valid');
-                $('#quotationForm').find("input[name='email']").val('').removeClass('valid');
-                $('#quotationForm').find("input[name='department']").val('').removeClass('valid');
-                $('#quotationForm').find("textarea[name='detail']").val('').removeClass('valid');
-            }
+            axios.post('my/service/request/quotation', inputs)
+                .then(function(response) {
+                    const res = response.data;
+                    alert = document.createElement('div');
+                    alert.setAttribute('class',
+                        `alert${res.statusCode == 200 ?' alert-success': ' alert-danger'} text-center w-100`);
+                    alert.innerHTML = `${res.message.replace('ที่','ที่ <br/>')}`;
+                    $('#quotationForm').find('.alert')?.remove();
+                    document.getElementById('quotationForm').querySelector('.row').prepend(alert);
+                    document.getElementById('quotationForm').querySelector('[type="submit"]').setAttribute(
+                        'disabled', true);
+                    reRender();
+                    if (res.statusCode == 200) {
+                        $('#quotationForm').find("input[name='company']").val('').removeClass('valid');
+                        $('#quotationForm').find("input[name='name']").val('').removeClass('valid');
+                        $('#quotationForm').find("input[name='telephone']").val('').removeClass('valid');
+                        $('#quotationForm').find("input[name='email']").val('').removeClass('valid');
+                        $('#quotationForm').find("input[name='department']").val('').removeClass('valid');
+                        $('#quotationForm').find("textarea[name='detail']").val('').removeClass('valid');
+                    }
+                })
+                .catch(function(error) {
+                    console.log('Quotation error:', error);
+                    const res = { statusCode: 500, message: 'เกิดข้อผิดพลาด' };
+                    alert = document.createElement('div');
+                    alert.setAttribute('class', 'alert alert-danger text-center w-100');
+                    alert.innerHTML = res.message;
+                    $('#quotationForm').find('.alert')?.remove();
+                    document.getElementById('quotationForm').querySelector('.row').prepend(alert);
+                });
         }
     })
 

@@ -7,8 +7,19 @@ var timer = true;
 // var stopTimer = localStorage.getItem('stopTimer');
 var ipUrl = "https://get.geojs.io/v1/ip/geo.js",
     pageUrl = window.location.pathname.split('/'),
-    geoIp = $.ajax({url:ipUrl,async:false,success:function(res){console.log(res)}}).responseText;
+    geoIp = null;
     category = pageUrl[2];
+
+// Load geo IP asynchronously
+axios.get(ipUrl).then(function(response) {
+    geoIp = response.data;
+    console.log(geoIp);
+    // Store counter after geo IP is loaded
+    storeCounter(geoIp);
+}).catch(function(error) {
+    console.log('Geo IP error:', error);
+    storeCounter(null);
+});
 var validate = {
     message: {
         th:{
@@ -37,11 +48,14 @@ jQuery.validator.addMethod("letteronly", function(value, element, param) {
 // localStorage.removeItem('stopTimer')
 
 function getPackage(){
-    const response = $.ajax({
-        url:'api/get/package?cp='+$('a.mail').attr('tag')+'&lang='+$(document).find('html').attr('lang'),
-        async:false,
-    }).responseJSON
-    return response;
+    return axios.get('api/get/package?cp='+$('a.mail').attr('tag')+'&lang='+$(document).find('html').attr('lang'))
+        .then(function(response) {
+            return response.data;
+        })
+        .catch(function(error) {
+            console.log('Package error:', error);
+            return null;
+        });
 }
 function converseToJson(data){
 
@@ -60,24 +74,21 @@ function converseToJson(data){
     }
 }
 function storeCounter(geoIp){
-
-    axios({
-        method: 'post',
-        url: 'api/'+category+'/store/counter',
-        data: {
-            _method: 'PUT',
-            company: $('a.mail').attr('tag'),
-            locate: converseToJson(geoIp),
-            device: d.getInfo(),
-            currentUrl: window.location.pathname
-        }
+    axios.post('api/'+category+'/store/counter', {
+        _method: 'PUT',
+        company: $('a.mail').attr('tag'),
+        locate: converseToJson(geoIp),
+        device: d.getInfo(),
+        currentUrl: window.location.pathname
     })
-    .catch(err=>console.log(err));
+    .catch(function(err){
+        console.log(err);
+    });
 }
 
 
 
-storeCounter(geoIp); //เก็บสถิติ เข้า company profile
+// storeCounter moved to axios callback above
 
 Countdown();
 
@@ -184,17 +195,15 @@ function PopupBusinessCard(action)
             };
             loadCaptcha();
             let companyId = $('a.mail').attr('tag');
-            axios({
-                method: 'post',
-                url: `api/statistics/show-popup`,
-                data: {
-                    companyId: companyId,
-                }
-            }).then((res => {
+            axios.post('api/statistics/show-popup', {
+                companyId: companyId,
+            }).then(function(res) {
                 if(res.data == false){
-                    console.log(res.status)
+                    console.log('Popup not shown')
                 }
-            }))
+            }).catch(function(err) {
+                console.log(err);
+            });
         }
 
         const messageResponse = (code, msg) => 
@@ -203,16 +212,12 @@ function PopupBusinessCard(action)
             let alert = $('<label class="alert alert-'+code+' text-center" style="width:100%">'+msg+'</alert>');
             popup.find('form').prepend(alert);
         }
-        const sendTo = async () => 
+        const sendTo = () => 
         {
             let inputs = $("#businessCard").serialize();
 
-            await axios({
-                method: 'post',
-                url: `api/send/sms`,
-                data: inputs
-            })
-            .then((res) => {
+            axios.post('api/send/sms', inputs)
+            .then(function(res) {
                 grecaptcha.reset(captchaContainer);
                 let code = 'danger';
                 if(res.data.status=='success'){
@@ -225,7 +230,9 @@ function PopupBusinessCard(action)
                 popup.find('input').removeClass('valid');
                 $('.btn-confirm').attr("disabled", false);
             })
-            .catch(err => console.log(err));
+            .catch(function(err) {
+                console.log(err);
+            });
         }
 
         
@@ -283,19 +290,20 @@ function PopupBusinessCard(action)
 
 function Countdown() {
     const popup = $('.popup-dialog');
-    res = getPackage();
-    let timeLeft = 7;
-    if (res?.popupContact == 1 && popup.length==0) {
-        const interval = setInterval(function(){
-            if (timeLeft == 0){
-                clearInterval(interval);
-                PopupBusinessCard(true)
-            }else{
-                timeLeft--;
-                console.log(timeLeft);
-            }
-        },1000)
-    }
+    getPackage().then(function(res) {
+        let timeLeft = 7;
+        if (res?.popupContact == 1 && popup.length==0) {
+            const interval = setInterval(function(){
+                if (timeLeft == 0){
+                    clearInterval(interval);
+                    PopupBusinessCard(true)
+                }else{
+                    timeLeft--;
+                    console.log(timeLeft);
+                }
+            },1000)
+        }
+    });
 }
 function PopupMinimize(e)
 {
