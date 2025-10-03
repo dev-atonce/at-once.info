@@ -47,6 +47,8 @@ Route::get('/my-ip',function(){
 });
 //Redirect 301 Redirect 301 Redirect 301
 //Redirect 301 Redirect 301 Redirect 301
+Route::redirect('th/contractor-service/blog/5-maintain-the-copyright-of-thailand-as-well','th/blog',301);
+Route::redirect('th/conveyor-shelter-rack-construction/cp/cre-form','th',301);
 Route::redirect('th/designer/cp/saaithorn-interfurnish','th/interior-decoration/cp/saaithorn-interfurnish',301);
 Route::redirect('/jp/logistics/cp/pornvatana-group','/th/logistics/cp/pornvatana-group',301);
 Route::redirect("/th/blog/เปรียบเทียบบริษัทขนส่งแต่ละเจ้าในไทย",'compare-transport-companies-in-thailand',301);
@@ -506,3 +508,16 @@ Route::get('counter/getThreeTimes',[\App\Http\Controllers\CounterCtrl::class,'ge
 Route::get('css/generate/svg/image.svg',[\App\Http\Controllers\GenerateCtrl::class,'image']);
 Route::get('css/generate/svg/text.webp',[\App\Http\Controllers\GenerateCtrl::class,'text']);
 
+Route::fallback(function () {
+    $path = request()->path();
+
+    if (str_starts_with($path, 'th/')) {
+        $parts = explode('/', $path);
+
+        if (!empty($parts[1]) && !empty($parts[2])) {
+            return redirect('/th/' . $parts[1], 301);
+        }
+    }
+    
+    return redirect('/th', 301);
+});
