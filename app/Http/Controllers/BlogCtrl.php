@@ -329,8 +329,7 @@ class BlogCtrl extends Controller
                 'lang' => $lang
             ]);
         } else {
-            abort(404);
-            return view("error.404", ['prefix' => $this->prefix]);
+            return redirect("/th/blog");
         }
     }
 
