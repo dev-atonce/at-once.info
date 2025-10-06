@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="{{ $row->seo_keyword ? $row->seo_keyword : $row->seo_keyword_th }}">
-    <meta name="description" content="{{ $row->seo_description ? $row->seo_description : $row->seo_description_th }}">
+    <meta name="description" content="{{ $row->description ? $row->description : ($row->description_th ? $row->description_th : $row->name)}}">
     <meta name="author" content="at-once.info">
 
     <title>{{ $row->title ? $row->title : $row->name . ' - ' . env('APP_NAME') }}</title>
@@ -258,7 +258,7 @@
     <section class="">
         <div class="cover" style="position: relative; margin-bottom: 20px">
             @if ($row->type != 'semi')
-                <img src="{{ $row->cover ?? asset('images/default-cover.jpg') }}" class="bg-cover-detail-cp img-fluid" loading="lazy" alt="Cover image">
+                <img src="{{ $row->cover ?? asset('images/default-cover.jpg') }}" class="bg-cover-detail-cp img-fluid" loading="lazy" alt="{{ $row->name }} - Cover Image" width="1200" height="400">
             @endif
             @if (@$row->video_profile != '')
                 @php
@@ -304,7 +304,7 @@
                                     <center>
                                         @if ($row->public == 1 && $row->logo != '')
                                         <img src="{{ url($row->logo) }}"
-                                            class="profile-img img-fluid mb-3 mb-lg-0" loading="lazy" alt="Company logo">
+                                            class="profile-img img-fluid mb-3 mb-lg-0" loading="lazy" alt="{{ $row->name }} - Company Logo" width="150" height="150">
                                         @else
                                             <div class="company-logo profile-img img-fluid mb-3"
                                                 data-name="{{ $row->name ? $row->name : $row->name_th }}"></div>
@@ -319,7 +319,7 @@
                                         @if ($row->alpha2)
                                         <div class="category-tag"
                                             style="background: #4caf50; color:white; border: 1px solid #4caf50;">
-                                            <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy" alt="Company flag">
+                                            <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy" alt="{{ $row->nationality }} Flag" width="16" height="12">
                                             {{ $row->nationality }} Company
                                         </div>
                                         @endif
@@ -363,7 +363,7 @@
                                                     @if ($row->alpha2)
                                                     <div class="category-tag"
                                                         style="background: #4caf50; color:white; border: 1px solid #4caf50;">
-                                                        <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy" alt="Company flag">
+                                                        <img src="flags/{{ strtolower($row->alpha2) }}.png" loading="lazy" alt="{{ $row->nationality }} Flag" width="16" height="12">
                                                         {{ $row->nationality }} Company
                                                     </div>
                                                     @endif
@@ -395,7 +395,7 @@
                                         <div class="btn-group w-100" role="group"
                                             aria-label="Basic example">
                                             <button class="btn-sb-company tel-top" style="border-bottom-right-radius: unset;border-top-right-radius: unset;">
-                                                <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy" alt="icon-phone">
+                                                <img src="images/icon/phone-call.svg" width="20" height="20" style="filter: invert(1);" loading="lazy" alt="Phone Icon">
                                             </button>
                                             <a class="btn-sb-company mailtop"
                                                 @if ($customerStatus) href="#formQuotation" @else href="javascript:0" @endif
@@ -403,12 +403,12 @@
                                                 lang="{{ Session('lang') }}"
                                                 category={{ Request::segment(2) }} tag="{{ $row->id }}"
                                                 text="{{ $row->name }}">
-                                                <img src="images/icon/mail.svg" width="20" style="filter: invert(1);" loading="lazy" alt="icon-mail">
+                                                <img src="images/icon/mail.svg" width="20" height="20" style="filter: invert(1);" loading="lazy" alt="Mail Icon">
                                             </a>
                                         </div>
                                         @else
                                         <button class="btn-sb-company tel-top">
-                                            <img src="images/icon/phone-call.svg" width="20" style="filter: invert(1);" loading="lazy" alt="icon-phone">
+                                            <img src="images/icon/phone-call.svg" width="20" height="20" style="filter: invert(1);" loading="lazy" alt="Phone Icon">
                                         </button>
                                         @endif
                                         @php
@@ -481,7 +481,7 @@
                         <div class="col-lg-12 gall">
                             <a href="{{ $gall->image }}" data-fancybox="gallery1" class="slick-slide">
                                 <div class="img-gallery">
-                                    <img src="{{ $gall->image }}" class="img-fluid" loading="lazy" alt="Gallery image">
+                                    <img src="{{ $gall->image }}" class="img-fluid" loading="lazy" alt="{{ $row->name }} - Gallery Image {{ $loop->iteration }}" width="800" height="600">
                                 </div>
                             </a>
                         </div>
@@ -562,7 +562,7 @@
                                 <div class="blog-cover">
                                     <a href="{{ Session('lang') }}/blog/{{ $url }}"><img
                                             src="{{ $v->images }}" title="{{ $v->name }}"
-                                            alt="{{ $v->name }}" loading="lazy"></a>
+                                            alt="{{ $v->name }} - Blog Image" loading="lazy" width="300" height="200"></a>
                                 </div>
                             </div>
                             <div class="blog-body">
@@ -625,7 +625,7 @@
                             <div class="contact-tm">
                                 <div class="detail-contact ch-red">
                                     <a class="tel" href="javascript:">
-                                        <img src="images/icon/phone-call.svg" width="20" loading="lazy" alt="icon-phone">
+                                        <img src="images/icon/phone-call.svg" width="20" height="20" loading="lazy" alt="Phone Icon">
                                         <span id="">@lang('phrase.telephone')</span>
                                     </a>
                                     <div class=" col-lg-12 d-none">
@@ -647,7 +647,7 @@
                                         category={{ Request::segment(2) }} tag="{{ $row->id }}"
                                         text="{{ $row->name ? $row->name : $row->name_th }}"
                                         @if ($row->email == '') disabled @endif>
-                                        <img src="images/icon/mail.svg" width="20" loading="lazy" alt="icon-mail"> @lang('phrase.contact.inquiry')
+                                        <img src="images/icon/mail.svg" width="20" height="20" loading="lazy" alt="Mail Icon"> @lang('phrase.contact.inquiry')
                                     </a>
                                     <span class="d-none">{{ $row->email }}</span>
                                 </div>
@@ -664,11 +664,11 @@
                                         </p>
                                         <div class="owl-pagination-custom fd">
                                             <div class="data-dots-custom active" data-owl-item="0">
-                                                <img src="{{ url($row->logo) }}" alt="Company logo"
+                                                <img src="{{ url($row->logo) }}" alt="{{ $row->name }} - Company Logo"
                                                     width="179" height="89" class="img-fluid" loading="lazy">
                                             </div>
                                             <div class="data-dots-custom" data-owl-item="1">
-                                                <img src="images/page-package/mk01.webp" alt="Package image"
+                                                <img src="images/page-package/mk01.webp" alt="Package Information"
                                                     width="250" height="153" class="img-fluid" loading="lazy">
                                             </div>
                                         </div>
@@ -922,7 +922,7 @@
                                             class="detail-contact ch-tel @if ($row->phone == '') btn-no-info @endif">
                                             <a class="tel" href="javascript:" style="text-decoration: none"
                                                 @if ($row->phone == '') disabled @endif>
-                                                <img src="images/icon/phone-call.svg" width="20" loading="lazy" alt="icon-phone-call">
+                                                <img src="images/icon/phone-call.svg" width="20" height="20" loading="lazy" alt="Phone Icon">
                                                 <span style="font-size: 18px;">@lang('phrase.contact.telephone')</span>
                                             </a>
                                             <div class=" col-lg-12 d-none">
@@ -937,7 +937,7 @@
                                                 text="{{ $row->name }}" data-email="{{ $row->email }}"
                                                 style="font-size: 18px; text-decoration: none"
                                                 @if ($row->email == '' || $row->mail == 0) disabled @endif>
-                                                <img src="images/icon/mail.svg" width="20" loading="lazy" alt="icon-mail">
+                                                <img src="images/icon/mail.svg" width="20" height="20" loading="lazy" alt="Mail Icon">
                                                 @lang('phrase.contact.inquiry')
                                             </a>
                                             <span class="d-none">{{ $row->email }}</span>
@@ -961,7 +961,7 @@
                             <div class="card-popup">
                                 <figure class="snip1205 navy">
                                     <img src="images/detail/popup-basic.jpg"
-                                        alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')" class="img-fluid" loading="lazy">
+                                        alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')" class="img-fluid" loading="lazy" width="400" height="300">
                                     <i class="icofont-search-2"></i>
                                     <a href="https://www.at-once.info/th/web-marketing/cp/1-ce-wind"
                                         target="_blank"></a>
@@ -1029,7 +1029,7 @@
                             <a href="https://www.at-once.info/th">
                                 <img src="images/banner-blog01.jpg" class="img-fluid"
                                     alt="ร่วมเป็นส่วนหนึ่งกับเว็บไซต์ At Once เพิ่มโอกาสสร้างยอดขายให้กับธุรกิจของคุณได้ง่ายๆ"
-                                    width="100%" loading="lazy">
+                                    width="100%" height="200" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -1046,7 +1046,7 @@
                         </button>
                         <div class="ads">
                             <img src="images/detail/popup-basic.jpg" alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')"
-                                class="img-fluid" loading="lazy">
+                                class="img-fluid" loading="lazy" width="400" height="300">
                             <h5 class="text-center mt-2">@lang('phrase.contact.interest') <a href="javascript:"
                                     class="click-here font-weight-bold">@lang('phrase.contact.clickhere')</a></h5>
                         </div>
@@ -1172,30 +1172,33 @@
 
         @include("$prefix.footer")
 
+        <!-- Critical JavaScript -->
         <script src="js/jquery.js"></script>
+        
+        <!-- Non-critical JavaScript with defer -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"
-        ></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/gallery-box.js"></script>
-        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en"></script>
-        <script type="text/javascript" src="js/custom.js?v=0002"></script>
-        <script type="text/javascript" src="js/fancybox.js"></script>
+        defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script type="text/javascript" src="js/gallery-box.js" defer></script>
+        <script src="js/jquery.mCustomScrollbar.concat.min.js" defer></script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en" async></script>
+        <script type="text/javascript" src="js/custom.js?v=0002" defer></script>
+        <script type="text/javascript" src="js/fancybox.js" defer></script>
 
-        <script type="text/javascript" src="slick/slick.min.js?v=001"></script>
-        <script type="text/javascript" src="slick/custom.js"></script>
-        <script type="text/javascript" src="slick/main.js"></script>
+        <script type="text/javascript" src="slick/slick.min.js?v=001" defer></script>
+        <script type="text/javascript" src="slick/custom.js" defer></script>
+        <script type="text/javascript" src="slick/main.js" defer></script>
 
-        <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
-        <script type="text/javascript" src="js/build/authentication.js"></script>
-        <script type="text/javascript" src="js/build/social.media.js"></script>
-        <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js"></script>
-        <script type="text/javascript" src="js/blog.color.js"></script>
+        <script type="text/javascript" src="js/jquery.validate-v1.18.js" defer></script>
+        <script type="text/javascript" src="js/build/authentication.js" defer></script>
+        <script type="text/javascript" src="js/build/social.media.js" defer></script>
+        <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js" defer></script>
+        <script type="text/javascript" src="js/blog.color.js" defer></script>
 
-        <script src="js/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.js"></script>
+        <script src="js/axios.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.es6.js" defer></script>
 
 </body>
 
@@ -1477,26 +1480,13 @@
     var ipUrl = "https://get.geojs.io/v1/ip/geo.js";
     var geoIp = null;
     
-    // Load geo IP asynchronously - wait for axios to be available
+    // Load geo IP asynchronously - optimized version
     function loadGeoIP() {
         if (typeof axios !== 'undefined') {
             axios.get(ipUrl).then(function(response) {
                 geoIp = response.data;
-                console.log('Geo IP loaded:', geoIp);
             }).catch(function(error) {
                 console.log('Geo IP error:', error);
-            });
-        } else {
-            // Fallback to jQuery ajax if axios not available
-            $.ajax({
-                url: ipUrl,
-                success: function(response) {
-                    geoIp = response;
-                    console.log('Geo IP loaded (jQuery):', geoIp);
-                },
-                error: function(error) {
-                    console.log('Geo IP error (jQuery):', error);
-                }
             });
         }
     }
@@ -1534,19 +1524,6 @@
                 device: d.getInfo()
             }).catch(function(error) {
                 console.log('Statistics capture error:', error);
-            });
-        } else {
-            $.ajax({
-                method: 'POST',
-                url: 'api/' + category + '/store/statistics',
-                data: {
-                    _method: 'PUT',
-                    company: _id,
-                    locate: locationData,
-                    device: d.getInfo()
-                }
-            }).fail(function(error) {
-                console.log('Statistics capture error (jQuery):', error);
             });
         }
     }
@@ -1586,17 +1563,13 @@
         });
     });
 
-    // Tel button click handler
+    // Tel button click handler - optimized
     $(document).on('click', 'button.tel-top', function() {
-        console.log('Tel button clicked');
         $('.tel-com-top').toggleClass('d-none d-flex');
-        console.log('Tel classes toggled');
         
         if ($('.tel-com-top').hasClass('d-flex')) {
-            console.log('Tel is visible, sending stats...');
             const locationData = converseToJson(geoIp);
             
-            // Use axios if available, otherwise use jQuery ajax
             if (typeof axios !== 'undefined') {
                 axios.post('api/' + category + '/store/statistics/click', {
                     _method: 'PUT',
@@ -1606,20 +1579,6 @@
                     locate: locationData || null
                 }).catch(function(error) {
                     console.log('Tel click error:', error);
-                });
-            } else {
-                $.ajax({
-                    method: 'POST',
-                    url: 'api/' + category + '/store/statistics/click',
-                    data: {
-                        _method: 'PUT',
-                        company: _id,
-                        c: 't',
-                        category: categoryId,
-                        locate: locationData || null
-                    }
-                }).fail(function(error) {
-                    console.log('Tel click error (jQuery):', error);
                 });
             }
         }
@@ -1767,9 +1726,9 @@
     }
 </script>
 @if (!$customerStatus)
-<script src="js/contact-function.js?v=001"></script>
+<script src="js/contact-function.js?v=001" defer></script>
 @else
-<script>
+<script defer>
     var formQuotation = document.getElementById('formQuotation');
     document.addEventListener('click', function(e) {
         const buttonQuotation = e.target.closest('.mail');
@@ -1779,10 +1738,10 @@
     });
 </script>
 @endif
-<script type="text/javascript" src="js/custom-form-contact.js"></script>
-<script src="js/statistics.js?v=000033"></script>
+<script type="text/javascript" src="js/custom-form-contact.js" defer></script>
+<script src="js/statistics.js?v=000033" defer></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script>
+<script defer>
     var reRender = function() {
         grecaptcha.reset();
     };
