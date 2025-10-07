@@ -92,12 +92,15 @@
     @include("$prefix.header")
         
     <nav aria-label="Tab navigation">
-        <ul class="nav nav-tabs">
+        <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
+                <a class="nav-link pr-1" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/{{Session('lang')}}/{{ $module }}">{{ $categoryName }}</a>
+                <span class="nav-link text-muted px-1">></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active pl-1 text-primary" aria-current="page" href="#">{{ $categoryName }}</a>
             </li>
         </ul>
     </nav>

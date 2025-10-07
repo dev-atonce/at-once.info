@@ -82,15 +82,21 @@
     @include("$prefix.header")
 
     <nav aria-label="Tab navigation">
-        <ul class="nav nav-tabs">
+        <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
+                <a class="nav-link pr-1" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{Session('lang')}}/{{ $row->type == 'general' ? 'blog' : 'blog-company' }}">{{ $row->type == 'general' ? 'blog' : 'blog-company' }}</a>
+                <span class="nav-link text-muted px-1">></span>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/{{Session('lang')}}/blog/{{ $row->url }}">{{ $row->name }}</a>
+                <a class="nav-link px-1" href="{{Session('lang')}}/{{ $row->type == 'general' ? 'blog' : 'blog-company' }}">{{ $row->type == 'general' ? 'blog' : 'blog-company' }}</a>
+            </li>
+            <li class="nav-item">
+                <span class="nav-link text-muted px-1">></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active pl-1 text-primary" aria-current="page" href="#">{{ $row->name }}</a>
             </li>
         </ul>
     </nav>
