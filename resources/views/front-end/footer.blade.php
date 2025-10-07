@@ -26,23 +26,23 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
                 <div class="col-4 col-md-6 col-lg-6 pr-1">
                     <ul class="sitemap mb-0">
                         <li class="list-item">
-                            <a href="{{ url($lang) }}" target="_self" class="btn btn-back link link--primary">
+                            <a href="{{ url($lang) }}" target="_self" class="btn btn-back link link--primary" aria-label="กลับไปหน้าแรก">
                                 <span class="link__title"><i class="icofont-arrow-left"></i> @lang('phrase.home')</span>
                             </a>
                         </li>
                         @if (@!$customerStatus)
                         <li class="list-item">
-                            <a href="{{ url($lang) }}/about-us" target="_self" class="link link--primary">
+                            <a href="{{ url($lang) }}/about-us" target="_self" class="link link--primary" aria-label="เกี่ยวกับเรา">
                                 <span class="link__title">@lang('phrase.header.about')</span>
                             </a>
                         </li>
                         <li class="list-item">
-                            <a href="{{ $blog_path }}" target="_self" class="link link--primary">
+                            <a href="{{ $blog_path }}" target="_self" class="link link--primary" aria-label="บล็อก">
                                 <span class="link__title">@lang('phrase.header.blog')</span>
                             </a>
                         </li>
                         <li class="list-item">
-                            <a href="{{ url($lang) }}/news" target="_self" class="link link--primary">
+                            <a href="{{ url($lang) }}/news" target="_self" class="link link--primary" aria-label="ข่าวสาร">
                                 <span class="link__title">@lang('phrase.header.news')</span>
                             </a>
                         </li>
@@ -53,12 +53,12 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
                     <div class="row @if (@!$customerStatus) '' @else justify-content-end @endif">
                         @if (@!$customerStatus)
                         <div class="col-12 col-md-12 col-lg-6 mb-3 mb-lg-0">
-                            <a href="{{ url($lang) }}/category" class="btn btn-border d-block"><i
+                            <a href="{{ url($lang) }}/category" class="btn btn-border d-block" aria-label="ค้นหาธุรกิจอื่นๆ"><i
                                 class="icofont-search-2"></i> ค้นหาธุรกิจอื่นๆ</a>
                             </div>
                             @endif
                             <div class="col-12 col-md-12 col-lg-6">
-                                <a href="{{ url($lang . '/promotion-package') }}" class="btn btn-orange d-block">
+                                <a href="{{ url($lang . '/promotion-package') }}" class="btn btn-orange d-block" aria-label="สนใจลงโฆษณากับเรา">
                                     <span class="link__title">สนใจลงโฆษณากับเรา</span>
                                 </a>
                             </div>
@@ -72,19 +72,19 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
                     <!-- <span>@lang('phrase.footer.copyright') {{ date('Y') }} {{ env('APP_NAME') }} | @lang('phrase.footer.reserved')</span> -->
                     <span> Copyright 2022 1-CE WIND CO., LTD. | All rights reserved.</span><a
                     href="http://www.trustmarkthai.com/callbackData/popup.php?data=9a2-18-6-253d529d70a8c51101033f0566fe7d4165dd1cfbbf4&markID=firstmar"
-                    class="ml-2"><img src="img/dbd-logo.svg"></a>
+                    class="ml-2" aria-label="DBD Trust Mark"><img src="img/dbd-logo.svg" alt="DBD Trust Mark" loading="lazy" width="50" height="50"></a>
                 </div>
                 <div class="col-12 col-md-12 col-lg-6">
                     <ul class="list-menu">
                         <li class="list-item">
-                            <a href="{{ url($lang) }}/{{ $condition_path }}" target="_self"
-                            class="link link--primary">
-                            <span class="link__title">ข้อกำหนดและเงื่อนไข</span>
-                        </a>
+                        <a href="{{ url($lang) }}/{{ $condition_path }}" target="_self"
+                        class="link link--primary" aria-label="ข้อกำหนดและเงื่อนไข">
+                        <span class="link__title">ข้อกำหนดและเงื่อนไข</span>
+                    </a>
                     </li>
                     <li class="list-item">
                         <a href="{{ url($lang) }}/{{ $policy_path }}" target="_self"
-                        class="link link--primary">
+                        class="link link--primary" aria-label="นโยบายความเป็นส่วนตัว">
                         <span class="link__title">นโยบายความเป็นส่วนตัว</span>
                     </a>
                 </li>
@@ -99,7 +99,7 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <div class="mb-1"><img src="img/at-once-tw.png" width="150" alt="{{ env('APP_NAME') }}"></div>
+                <div class="mb-1"><img src="img/at-once-tw.png" width="150" height="50" alt="{{ env('APP_NAME') }}" loading="lazy"></div>
             </div>
             <div class="col-md-5 col-lg-4">
                 <p class="mb-0"><strong class="v1-orange" style="font-size: 24px;">At-Once </strong>- แอท วันซ์
@@ -111,17 +111,17 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
             <div class="col-5 col-md-3 col-lg-2 pl-md-4">
                 <ul class="sitemap mb-0 mb-lg-2">
                     <li class="list-item">
-                        <a href="{{ url($lang) }}" target="_self" class="link link--primary">
+                        <a href="{{ url($lang) }}" target="_self" class="link link--primary" aria-label="หน้าแรก">
                             <span class="link__title">@lang('phrase.home')</span>
                         </a>
                     </li>
                     <li class="list-item">
-                        <a href="{{ url($lang) }}/about-us" target="_self" class="link link--primary">
+                        <a href="{{ url($lang) }}/about-us" target="_self" class="link link--primary" aria-label="เกี่ยวกับเรา">
                             <span class="link__title">@lang('phrase.header.about')</span>
                         </a>
                     </li>
                     <li class="list-item">
-                        <a href="{{ $blog_path }}" target="_self" class="link link--primary">
+                        <a href="{{ $blog_path }}" target="_self" class="link link--primary" aria-label="บล็อก">
                             <span class="link__title">@lang('phrase.header.blog')</span>
                         </a>
                     </li>
@@ -131,7 +131,7 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
                     </a>
                 </li> --}}
                 <li class="list-item">
-                    <a href="{{ url($lang) }}/contact" class="link link--primary">
+                    <a href="{{ url($lang) }}/contact" class="link link--primary" aria-label="ติดต่อเรา">
                         <span class="link__title">@lang('phrase.footer.contact-us')</span>
                     </a>
                 </li>
@@ -142,11 +142,11 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
                 <div class="vertical-align-middle-xs">
                     <ul class="sitemap">
                         <li class="list-item">
-                            <a href="{{ url($lang) }}#section-categories" class="btn btn-border d-block"><i
+                            <a href="{{ url($lang) }}#section-categories" class="btn btn-border d-block" aria-label="ค้นหาธุรกิจ"><i
                                 class="icofont-search-2"></i> @lang('phrase.search-business')</a>
                             </li>
                         </ul>
-                        <a href="{{ url($lang . '/promotion-package') }}#ContactForm" class="btn btn-orange mt-3 d-block">
+                        <a href="{{ url($lang . '/promotion-package') }}#ContactForm" class="btn btn-orange mt-3 d-block" aria-label="ลงโฆษณา">
                             <span class="link__title">@lang('phrase.advertise')</span>
                         </a>
                     </div>
@@ -160,20 +160,20 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
 
                 <span> Copyright 2022 1-CE WIND CO., LTD. | All rights reserved.</span>
                 <a href="http://www.trustmarkthai.com/callbackData/popup.php?data=9a2-18-6-253d529d70a8c51101033f0566fe7d4165dd1cfbbf4&markID=firstmar"
-                class="ml-2"><img src="img/dbd-logo.svg"></a>
+                class="ml-2" aria-label="DBD Trust Mark"><img src="img/dbd-logo.svg" alt="DBD Trust Mark" loading="lazy" width="50" height="50"></a>
             </div>
 
             <div class="col-12 col-lg-6">
                 <ul class="list-menu">
                     <li class="list-item">
-                        <a href="{{ url($lang) }}/{{ $condition_path }}" target="_self"
-                        class="link link--primary">
-                        <span class="link__title">@lang('phrase.footer.terms-conditions')</span>
-                    </a>
+                    <a href="{{ url($lang) }}/{{ $condition_path }}" target="_self"
+                    class="link link--primary" aria-label="ข้อกำหนดและเงื่อนไข">
+                    <span class="link__title">@lang('phrase.footer.terms-conditions')</span>
+                </a>
                 </li>
                 <li class="list-item">
                     <a href="{{ url($lang) }}/{{ $policy_path }}" target="_self"
-                    class="link link--primary">
+                    class="link link--primary" aria-label="นโยบายความเป็นส่วนตัว">
                     <span class="link__title">@lang('phrase.footer.privacy-policy')</span>
                 </a>
             </li>
