@@ -72,6 +72,7 @@ html {
 }
 @font-face {
   font-family: 'Conv_SukhumvitSet-Medium';
+  font-display : swap;
   src: url('../fonts/SukhumvitSet-Medium.eot');
   src: local('☺'), url('../fonts/SukhumvitSet-Medium.woff') format('woff'), url('../fonts/SukhumvitSet-Medium.ttf') format('truetype'), url('../fonts/SukhumvitSet-Medium.svg') format('svg');
   font-weight: normal;
@@ -80,6 +81,7 @@ html {
 
 @font-face {
   font-family: 'Conv_SukhumvitSet-Light';
+  font-display : swap;
   src: url('../fonts/SukhumvitSet-Light.eot');
   src: local('☺'), url('../fonts/SukhumvitSet-Light.woff') format('woff'), url('../fonts/SukhumvitSet-Light.ttf') format('truetype'), url('../fonts/SukhumvitSet-Light.svg') format('svg');
   font-weight: normal;
@@ -88,6 +90,7 @@ html {
 
 @font-face {
   font-family: 'Conv_SukhumvitSet-Bold';
+  font-display: swap;
   src: url('../fonts/SukhumvitSet-Bold.eot');
   src: local('☺'), url('../fonts/SukhumvitSet-Bold.woff') format('woff'), url('../fonts/SukhumvitSet-Bold.ttf') format('truetype'), url('../fonts/SukhumvitSet-Bold.svg') format('svg');
   font-weight: normal;
@@ -106,6 +109,7 @@ html {
 
 @font-face {
   font-family:'Yu Gothic';
+  font-display: swap;
   src: url('..fonts/Yu Gothic Bold.eot');
   src: url('..fonts/Yu Gothic Bold.eot?#iefix') format('embedded-opentype'),
   url('..fonts/Yu Gothic Bold.woff2') format('woff2'),

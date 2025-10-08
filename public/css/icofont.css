@@ -278,6 +278,7 @@
 
 @font-face {
   font-family: "Font Awesome 5 Brands";
+  font-display: swap;
   font-style: normal;
   font-weight: normal;
   src: url(../fonts/fa-brands-400.eot);
@@ -290,6 +291,7 @@
 
 @font-face {
   font-family: "Font Awesome 5 Free";
+  font-display: swap;
   font-style: normal;
   font-weight: 400;
   src: url(../fonts/fa-regular-400.eot);
@@ -302,6 +304,7 @@
 
 @font-face {
   font-family: "Font Awesome 5 Free";
+  font-display: swap;
   font-style: normal;
   font-weight: 900;
   src: url(../fonts/fa-solid-900.eot);
