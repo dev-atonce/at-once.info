@@ -709,6 +709,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <a class="toggleCode btn btn-info text-white btn-sm m-2 text-bg-light">Show Code</a>
+                                                <p class="showCode p-2 border border-dark rounded rounded-2" style="display: none;">{{ $comp->more_th }}</p>
                                             </div>
                                             <div class="tab-pane fade" id="EN2" role="tabpanel"
                                                 aria-labelledby="EN2-tab">
@@ -719,6 +721,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <a class="toggleCode btn btn-info text-white btn-sm m-2 text-bg-light">Show Code</a>
+                                                <p class="showCode p-2 border border-dark rounded rounded-2" style="display: none;">{{ $comp->more_en }}</p>
 
                                             </div>
                                             <div class="tab-pane fade" id="JP2" role="tabpanel"
@@ -730,6 +734,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <a class="toggleCode btn btn-info text-white btn-sm m-2 text-bg-light">Show Code</a>
+                                                <p class="showCode p-2 border border-dark rounded rounded-2" style="display: none;">{{ $comp->more_jp }}</p>
                                             </div>
                                             <div class="tab-pane fade" id="CH2" role="tabpanel"
                                                 aria-labelledby="CH2-tab">
@@ -740,6 +746,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <a class="toggleCode btn btn-info text-white btn-sm m-2 text-bg-light">Show Code</a>
+                                                <p class="showCode p-2 border border-dark rounded rounded-2" style="display: none;">{{ $comp->more_zh }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -2438,4 +2446,13 @@
 
             return true;
         }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $(".toggleCode").click(function(){
+                $(this).html($(this).html() == "Show Code" ? "Hide Code" : "Show Code");
+                $(".showCode").toggle(); // สลับระหว่าง show / hide
+            });
+        });
     </script>

@@ -119,35 +119,34 @@
         fd.append('password',$('#login_password').val());
         fd.append('remember_me',($('#remember_me').is(':checked'))?$('#remember_me').val():'');
 
-        $.ajax({
+        axios({
           headers : { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
           method : 'post',
           url : 'authentication/request',
-          data : $("#login-form").serialize(),
-          success : function(res) {
-            if (res.status=='error') {
-              alert.error.find('strong').html(res.message);
-              $('#login-form').find('div.alert').remove();
-              $('#login-form').prepend(alert.error);              
-              $('button[data-content="sign-in"]').find('.spinner-border').remove();
-            }else{
-              alert.success.find('strong').html(res.message);
-              $('#login-form').find('div.alert').remove();
-              $('#login-form').prepend(alert.success);
-              $('button[data-content="sign-in"]').find('.spinner-border').remove();
-              setTimeout(function(){location.reload()},2000);
-            }
-          },error:function(){
-              $('#login-form').find('div.alert').remove();
-              $('#login-form').prepend(alert.error);
-              setTimeout(function(){ $('button[data-submit="signIn"]').find('.spinner-border').remove(); },1000);
+          data : $("#login-form").serialize()
+        }).then(function(res) {
+          if (res.data.status=='error') {
+            alert.error.find('strong').html(res.data.message);
+            $('#login-form').find('div.alert').remove();
+            $('#login-form').prepend(alert.error);              
+            $('button[data-content="sign-in"]').find('.spinner-border').remove();
+          }else{
+            alert.success.find('strong').html(res.data.message);
+            $('#login-form').find('div.alert').remove();
+            $('#login-form').prepend(alert.success);
+            $('button[data-content="sign-in"]').find('.spinner-border').remove();
+            setTimeout(function(){location.reload()},2000);
           }
-       })
+        }).catch(function(error){
+            $('#login-form').find('div.alert').remove();
+            $('#login-form').prepend(alert.error);
+            setTimeout(function(){ $('button[data-submit="signIn"]').find('.spinner-border').remove(); },1000);
+        })
     }
     function register(){
         $('button[data-submit="signUp"]').prepend(spinner);
         const re = { alert : $('<div class="alert alert-danger alert-dismissible fade show" role="alert"><strong>Something went wrong please try again.</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>') };
-        $.ajax({
+        axios({
             headers: { 
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') 
             },
@@ -158,24 +157,23 @@
                 email : $('input[name="register_email"]').val(),
                 password : $('input[name="register_password"]').val(),
                 condition : ($('input[name="condition"]').is(':checked'))?$('input[name="condition"]').val():'',
-            },
-            success : function(res) {
-              if(res.status=='error'){
-                  if($('#register-form').find('div.alert').length==0) {
-                    $('#register-form').prepend(re.alert);
-                  }
-                  $('button[data-submit="signUp"]').find('.spinner-border').remove();
-              }else{
-                  location.reload();
-                  $('#register-form').find('div.alert').remove();
-                  $('button[data-submit="signUp"]').find('.spinner-border').remove();
-              }
-            },error:function(){
-                if($('#register-form').find('div.alert').length==0) {
-                    $('#register-form').prepend(re.alert);
-                }
-                setTimeout(function(){ $('button[data-submit="signUp"]').find('.spinner-border').remove(); },1000);
             }
+        }).then(function(res) {
+          if(res.data.status=='error'){
+              if($('#register-form').find('div.alert').length==0) {
+                $('#register-form').prepend(re.alert);
+              }
+              $('button[data-submit="signUp"]').find('.spinner-border').remove();
+          }else{
+              location.reload();
+              $('#register-form').find('div.alert').remove();
+              $('button[data-submit="signUp"]').find('.spinner-border').remove();
+          }
+        }).catch(function(error){
+            if($('#register-form').find('div.alert').length==0) {
+                $('#register-form').prepend(re.alert);
+            }
+            setTimeout(function(){ $('button[data-submit="signUp"]').find('.spinner-border').remove(); },1000);
         })
     }
 })(jQuery);

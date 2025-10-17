@@ -247,13 +247,13 @@
                 <a class="nav-link pr-1" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
             </li>
             <li class="nav-item">
-                <span class="nav-link text-muted px-1">></span>
+                <a class="nav-link text-muted px-1 disabled" href="#" tabindex="-1" aria-disabled="true">></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link px-1" href="{{Session('lang')}}/{{ $row->key }}">{{ $row->category }}</a>
             </li>
-            <li class="nav-item"></li>
-                <span class="nav-link text-muted px-1">></span>
+            <li class="nav-item">
+                <a class="nav-link text-muted px-1 disabled" href="#" tabindex="-1" aria-disabled="true">></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active pl-1 text-primary" aria-current="page" href="#">{{ $row->name }}</a>
@@ -910,6 +910,200 @@
             }
         </style>
         @else
+        <section class="page">
+            <div class="container">
+                <div id="detail-box" class="">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="company-detail card-basic">
+                                <h1 class="mb-4">{{ $row->name }}</h1>
+                                <div class="mt-3">
+                                    <div class="flex-contact">
+                                        <p class="address"><i class="icofont-location-pin"></i>
+                                            {{ @$row->address }}
+                                        </p>
+                                    </div>
+                                    <div class="contact-tm text-center">
+                                        <div
+                                            class="detail-contact ch-tel @if ($row->phone == '') btn-no-info @endif">
+                                            <a class="tel" href="javascript:" style="text-decoration: none"
+                                                @if ($row->phone == '') disabled @endif>
+                                                <img src="images/icon/phone-call.svg" width="20" height="20" loading="lazy" alt="Phone Icon">
+                                                <span style="font-size: 18px;">@lang('phrase.contact.telephone')</span>
+                                            </a>
+                                            <div class=" col-lg-12 d-none">
+                                                <a class="tel-com text-light" style="font-size: 18px"
+                                                    href="tel:{{ $row->phone }}">{{ $row->phone }}</a>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="detail-contact ch-blue @if ($row->email == '' || $row->mail == 0) btn-no-info @endif">
+                                            <a class="mail" href="javascript:" lang="{{ Session('lang') }}"
+                                                category="{{ Request::segment(2) }}" tag="{{ $row->id }}"
+                                                text="{{ $row->name }}" data-email="{{ $row->email }}"
+                                                style="font-size: 18px; text-decoration: none"
+                                                @if ($row->email == '' || $row->mail == 0) disabled @endif>
+                                                <img src="images/icon/mail.svg" width="20" height="20" loading="lazy" alt="Mail Icon">
+                                                @lang('phrase.contact.inquiry')
+                                            </a>
+                                            <span class="d-none">{{ $row->email }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="contact-tm mt-2">
+                                        <div class="mr-1 button-sh-info mb-4 share-this-page">
+                                            <i class="icofont-share mr-1"></i> @lang('phrase.share')
+                                        </div>
+                                        {{-- <div class="ml-1 button-sh-info mb-4 information">
+                                                <i class="icofont-info-circle mr-1"></i> ขอข้อมูลเพิ่มเติม
+                                            </div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div> <!-- col-lg-8 -->
+                        <div class="col-lg-4">
+                            <div class="card-popup">
+                                <figure class="snip1205 navy">
+                                    <img src="images/detail/popup-basic.jpg"
+                                        alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')" class="img-fluid" loading="lazy" width="400" height="300">
+                                    <i class="icofont-search-2"></i>
+                                    <a href="https://www.at-once.info/th/web-marketing/cp/1-ce-wind"
+                                        target="_blank"></a>
+                                </figure>
+                                <!-- <div class="preview-full"><a href="https://www.at-once.info/th/online-marketing/cp/1-ce-wind">ดูตัวอย่าง Full Company Profile คลิก</a></div> -->
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="">
+                                <div class="">
+                                    <div class="contact-full">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-lg-12 form-title mb-3">
+                                                    <h5 class="font-weight-bold text-center">
+                                                        @lang('phrase.owner-basic')</h5>
+                                                    <h6 class="font-weight-bold text-center"
+                                                        style="color:#1f1f1f; font-size:18px">@lang('phrase.owner-interest')
+                                                    </h6>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="name">@lang('phrase.contact.name') :</label>
+                                                        <input type="text" name="name" class="form-control"
+                                                            id="name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="telephone">@lang('phrase.contact.telephone') :</label>
+                                                        <input type="text" name="telephone"
+                                                            class="form-control" id="telephone">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="email">@lang('phrase.contact.email') :</label>
+                                                        <input type="text" name="email" class="form-control"
+                                                            id="email">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label for="">@lang('phrase.contact-detail') :</label>
+                                                        <textarea name="detail" class="form-control" id="detail" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <center>
+                                                        <button type="submit"
+                                                            class="message-send2 mt-2 send-form">@lang('phrase.contact.send-form')</button>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="banner-atonce mt-2">
+                            <a href="https://www.at-once.info/th">
+                                <img src="images/banner-blog01.jpg" class="img-fluid"
+                                    alt="ร่วมเป็นส่วนหนึ่งกับเว็บไซต์ At Once เพิ่มโอกาสสร้างยอดขายให้กับธุรกิจของคุณได้ง่ายๆ"
+                                    width="100%" height="200" loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="popupBasic" class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content" style="border-radius: 15px;">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="ads">
+                            <img src="images/detail/popup-basic.jpg" alt="@lang('phrase.owner-basic') @lang('phrase.owner-interest')"
+                                class="img-fluid" loading="lazy" width="400" height="300">
+                            <h5 class="text-center mt-2">@lang('phrase.contact.interest') <a href="javascript:"
+                                    class="click-here font-weight-bold">@lang('phrase.contact.clickhere')</a></h5>
+                        </div>
+                        <div class="form d-none">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-12 form-title">
+                                        <h4 class="text-center my-2">@lang('phrase.contact.inquiry')</h4>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="name">@lang('phrase.contact.name') :</label>
+                                            <input type="text" name="name" class="form-control"
+                                                id="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="telephone">@lang('phrase.contact.telephone') :</label>
+                                            <input type="text" name="telephone" class="form-control"
+                                                id="telephone">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="email">@lang('phrase.contact.email') :</label>
+                                            <input type="text" name="email" class="form-control"
+                                                id="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label for="">@lang('phrase.contact-detail') :</label>
+                                            <textarea name="detail" class="form-control" id="detail" rows="9"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="d-flex">
+                                            <button type="button"
+                                                class="btn btn-light btn-block my-0 btn-cancel">Cancel</button>
+                                            <button type="submit"
+                                                class="btn btn-success btn-block my-0 btn-send">Send</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endif
 
         <section>
@@ -1712,3 +1906,42 @@
         if (languageSwitch) setCompapnayName();
     })
 </script>
+<!-- <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        if (!document.querySelector("#google_translate_element .goog-te-combo")) {
+            // ถ้า widget ยังไม่ถูก inject → เรียก init อีกครั้ง
+            googleTranslateElementInit();
+        }
+    });
+    // ดัก event ของ Google Translate select
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+        let select = document.querySelector("#google_translate_element select");
+        if (!select) return;
+
+        select.addEventListener("change", function () {
+            let lang = this.value;
+            lang = lang === "ja" ? "jp" : lang === "zh-CN" ? "zh" : lang;
+
+            if (lang === "jp" && "{{ !$row->detail_jp }}"){ return; }
+            if (lang === "en" && "{{ !$row->detail_en }}"){ return; }
+            if (lang === "zh" && "{{ !$row->detail_zh }}"){ return; }
+
+            if (lang === "th" || lang === "en" || lang === "jp" || lang === "zh") {
+                let pathParts = window.location.pathname.split("/");
+
+                // ลบ segment ภาษาเก่าออกถ้ามี (/th/... หรือ /en/...)
+                if (pathParts[1] === "th" || pathParts[1] === "en" || pathParts[1] === "jp" || pathParts[1] === "zh") {
+                    pathParts.splice(1, 1);
+                }
+
+                // สร้าง path ใหม่
+                let newPath = "/" + lang + pathParts.join("/");
+                window.location.href = newPath;
+                document.cookie = "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+                return false; // หยุดการทำงานของ Google Translate
+            }
+        });
+        }, 2000); // รอ widget โหลด
+    });
+</script> -->

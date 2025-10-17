@@ -75,6 +75,8 @@
 
     <base href="{{ url('/') }}">
     <link href="img/favicon.ico?v=1001" rel="shortcut icon" type="image/x-icon" />
+    <!-- Preload notification image -->
+    <link rel="preload" href="img/At-Once_warning.webp" as="image">
     <link rel="stylesheet" href="css/fontawesome.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fonts/icofont.css">
@@ -107,6 +109,55 @@
 
         .slick-dots li button:before {
             color: unset !important;
+        }
+
+        /* Notification Modal Styles */
+        #notificationModal .modal-content {
+            border: none;
+            border-radius: 15px;
+            overflow: visible;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: auto;
+            background: transparent;
+            position: relative;
+        }
+
+        #notificationModal .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            color: #ffffff;
+            z-index: 11;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #notificationModal .btn-close:hover {
+            background: rgba(255, 0, 0, 0.9);
+            border-color: #ffffff;
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            #notificationModal .modal-content {
+                max-width: calc(100% - 20px);
+            }
+            
+            #notificationModal .btn-close { 
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+                top: 5px;
+                right: 5px;
+            }
         }
     </style>
 </head>
@@ -506,6 +557,16 @@
     @include("$prefix.analytics.gtagBody")
     @include("$prefix.footer")
 
+    <!-- Notification Modal -->
+    <div class="modal fade d-flex justify-content-center align-items-center" id="notificationModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content" onclick="closeModal()">
+                <button type="button" class="btn-close" onclick="closeModal()" aria-label="Close">X</button>
+                <img src="img/At-Once_warning.webp" alt="แจ้งเตือน" class="img-fluid" style="width: 100%; height: auto; max-height: 70vh; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+
     <script src="js/jquery.js"></script>
     <!-- Optional JavaScript -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" integrity="sha512-gDBgGPXSeC2hx1W3S1CfSHbAValtLI8OArTGf0UVX7Fwb9Ak7HUE3LK9UEZxKGYVrIe0CJUVZDk9B2dIPwJ6VQ==" crossorigin="anonymous"></script> --}}
@@ -725,6 +786,16 @@
             const languageSwitch = e.target.closest('.goog-te-combo');
             if(languageSwitch) displayName();
         })
+
+        // Simple close function
+        function closeModal() {
+            $('#notificationModal').modal('hide');
+        }
+        // Auto show modal after 2 seconds
+        setTimeout(function() {
+            $('#notificationModal').modal('show');
+        }, 2000);
+        
     </script>
 </body>
 

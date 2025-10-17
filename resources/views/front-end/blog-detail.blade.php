@@ -87,13 +87,13 @@
                 <a class="nav-link pr-1" aria-current="page" href="{{Session('lang')}}">หน้าแรก</a>
             </li>
             <li class="nav-item">
-                <span class="nav-link text-muted px-1">></span>
+                <a class="nav-link text-muted px-1 disabled" href="#" tabindex="-1" aria-disabled="true">></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link px-1" href="{{Session('lang')}}/{{ $row->type == 'general' ? 'blog' : 'blog-company' }}">{{ $row->type == 'general' ? 'blog' : 'blog-company' }}</a>
             </li>
             <li class="nav-item">
-                <span class="nav-link text-muted px-1">></span>
+                <a class="nav-link text-muted px-1 disabled" href="#" tabindex="-1" aria-disabled="true">></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active pl-1 text-primary" aria-current="page" href="#">{{ $row->name }}</a>
@@ -542,19 +542,19 @@
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
     <script type="text/javascript" src="js/build/authentication.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js' defer></script>
 
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en" defer>
     </script>
-    <script src="plugin/sweetalert2/sweetalert2.all.js"></script>
-    <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
-    <script type="text/javascript" src="slick/slick.min.js?v=001"></script>
-    <script type="text/javascript" src="slick/custom.js"></script>
-    <script type="text/javascript" src="slick/main.js"></script>
+    <script src="plugin/sweetalert2/sweetalert2.all.js" defer></script>
+    <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js" defer></script>
+    <script type="text/javascript" src="js/custom.js" defer></script>
+    <script type="text/javascript" src="slick/slick.min.js?v=001" defer></script>
+    <script type="text/javascript" src="slick/custom.js" defer></script>
+    <script type="text/javascript" src="slick/main.js" defer></script>
     {{-- <script type="text/javascript" src="js/ads.js"></script> --}}
-    <script type="text/javascript" src="js/statistics.js?v=0001"></script>
-    <script type="text/javascript" src="js/custom-form-contact.js"></script>
+    <script type="text/javascript" src="js/statistics.js?v=0001" defer></script>
+    <script type="text/javascript" src="js/custom-form-contact.js" defer></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         $(function() {
@@ -652,21 +652,27 @@
             },
             submitHandler: function(form) {
                 inputs = $('#quotationForm').serialize();
-                const res = $.ajax({
+                axios({
                     method: 'post',
                     url: 'my/service/request/quotation',
                     data: inputs,
-                    async: false,
-                }).responseJSON;
-                alert = document.createElement('div');
-                alert.setAttribute('class',
-                    `alert${res.statusCode == 200 ?' alert-success': ' alert-danger'} text-center w-100`);
-                alert.innerHTML = `${res.message.replace('ที่','ที่ <br/>')}`;
-                $('#quotationForm').find('.alert')?.remove();
-                document.getElementById('quotationForm').querySelector('.row').prepend(alert);
-                document.getElementById('quotationForm').querySelector('[type="submit"]').setAttribute(
-                    'disabled', true);
-                reRender();
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                }).then((response) => {
+                    const res = response.data;
+                    alert = document.createElement('div');
+                    alert.setAttribute('class',
+                        `alert${res.statusCode == 200 ?' alert-success': ' alert-danger'} text-center w-100`);
+                    alert.innerHTML = `${res.message.replace('ที่','ที่ <br/>')}`;
+                    $('#quotationForm').find('.alert')?.remove();
+                    document.getElementById('quotationForm').querySelector('.row').prepend(alert);
+                    document.getElementById('quotationForm').querySelector('[type="submit"]').setAttribute(
+                        'disabled', true);
+                    reRender();
+                }).catch((error) => {
+                    console.error('Error:', error);
+                });
             }
         });
 
@@ -773,6 +779,46 @@
             })
         });
     </script>
+
+    <!-- <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            if (!document.querySelector("#google_translate_element .goog-te-combo")) {
+                // ถ้า widget ยังไม่ถูก inject → เรียก init อีกครั้ง
+                googleTranslateElementInit();
+            }
+        });
+        // ดัก event ของ Google Translate select
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+            let select = document.querySelector("#google_translate_element select");
+            if (!select) return;
+
+            select.addEventListener("change", function () {
+                let lang = this.value;
+                lang = lang === "ja" ? "jp" : lang === "zh-CN" ? "zh" : lang;
+
+                if (lang === "jp" && "{{ !$row->detail_jp }}"){ return; }
+                if (lang === "en" && "{{ !$row->detail_en }}"){ return; }
+                if (lang === "zh" && "{{ !$row->detail_zh }}"){ return; }
+
+                if (lang === "th" || lang === "en" || lang === "jp" || lang === "zh") {
+                    let pathParts = window.location.pathname.split("/");
+
+                    // ลบ segment ภาษาเก่าออกถ้ามี (/th/... หรือ /en/...)
+                    if (pathParts[1] === "th" || pathParts[1] === "en" || pathParts[1] === "jp" || pathParts[1] === "zh") {
+                        pathParts.splice(1, 1);
+                    }
+
+                    // สร้าง path ใหม่
+                    let newPath = "/" + lang + pathParts.join("/");
+                    window.location.href = newPath;
+                    document.cookie = "googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+                    return false; // หยุดการทำงานของ Google Translate
+                }
+            });
+            }, 2000); // รอ widget โหลด
+        });
+    </script> -->
 
 </body>
 
