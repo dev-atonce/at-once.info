@@ -558,7 +558,7 @@
     @include("$prefix.footer")
 
     <!-- Notification Modal -->
-    <div class="modal fade d-flex justify-content-center align-items-center" id="notificationModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="true" data-bs-keyboard="true">
+    <div class="modal fade d-flex justify-content-center align-items-center" id="notificationModal" tabindex="-1" aria-hidden="true" data-backdrop="true" data-keyboard="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content" onclick="closeModal()">
                 <button type="button" class="btn-close" onclick="closeModal()" aria-label="Close">X</button>
@@ -791,6 +791,17 @@
         function closeModal() {
             $('#notificationModal').modal('hide');
         }
+        
+        // Handle modal events properly
+        $('#notificationModal').on('hidden.bs.modal', function () {
+            // Remove modal backdrop if it remains
+            $('.modal-backdrop').remove();
+            $('body').removeClass('modal-open');
+            $('body').css('padding-right', '');
+            // Remove modal from DOM completely
+            $('#notificationModal').remove();
+        });
+        
         // Auto show modal after 2 seconds
         setTimeout(function() {
             $('#notificationModal').modal('show');

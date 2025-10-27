@@ -1196,8 +1196,8 @@
         <script type="text/javascript" src="slick/custom.js" defer></script>
         <script type="text/javascript" src="slick/main.js" defer></script>
 
-        <script type="text/javascript" src="js/jquery.validate-v1.18.js" defer></script>
-        <script type="text/javascript" src="js/build/authentication.js" defer></script>
+        <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
+        <script type="text/javascript" src="js/build/authentication.js"></script>
         <script type="text/javascript" src="js/build/social.media.js" defer></script>
         <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js" defer></script>
         <script type="text/javascript" src="js/blog.color.js" defer></script>
@@ -1883,7 +1883,7 @@
     }
 
     function setCompapnayName() {
-        let lng = getLanguageFromCookie();
+        let lng = getLanguageFromCookie() || '';
         lng = lng.replace('/auto/', '');
         let Heading = document.querySelector('.countOfClick');
         if (lng != 'th') {
@@ -1892,12 +1892,12 @@
             Heading.innerHTML = Heading.getAttribute('data-th')
         }
         let more_jp = Heading.getAttribute('more-jp');
-        if (more_jp == 'true') {
-            more = document.createElement('div');
-            more.innerHTML = '{!!$row->more_jp!!}'
-            document.querySelector('.detail-content').innerHTML = '';
-            document.querySelector('.detail-content').append(more);
-        }
+        // if (more_jp == 'true') {
+        //     more = document.createElement('div');
+        //     more.innerHTML = {!! json_encode($row->more_jp) !!};
+        //     document.querySelector('.detail-content').innerHTML = '';
+        //     document.querySelector('.detail-content').append(more);
+        // }
     }
     setCompapnayName()
 
