@@ -1899,7 +1899,7 @@
                     {
                         let companyLogo = "split/at_once.png";
                         let companyName = "At-once";
-                        const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 10 นาทีค่ะ';
+                        const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมงค่ะ';
                         let companyId = 64;
                         const popup = $(
                         `<div class="popup-dialog dialog-centered dialog-backdrop">    
@@ -1954,6 +1954,10 @@
                                                     <div class="col-12">
                                                         <label for="cardNumber" class="card-input__label">Company Name</label>
                                                         <input type="text" name="companyName" class="form-control" placeholder="ชื่อบริษัท" autocomplete="off"/>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label for="cardNumber" class="card-input__label">Email</label>
+                                                        <input type="email" name="email" class="form-control" placeholder="อีเมล์" autocomplete="off"/>
                                                     </div>
                                                     <div class="col-lg-12">
                                                         <div style="display:flex;justify-content: center;margin:15px 0 10px 0;">
@@ -2025,6 +2029,7 @@
                                 popup.find('input[name="name"]').val('');
                                 popup.find('input[name="telephone"]').val('');
                                 popup.find('input[name="companyName"]').val('');
+                                popup.find('input[name="email"]').val('');
                                 popup.find('input').removeClass('valid');
                                 $('.btn-confirm').attr("disabled", false);
                             })
@@ -2046,7 +2051,8 @@
                                 letteronly:'[0-9]+'},
                                 companyName:{ required:function(){
                                     return ($('#flexCheckDefault').is(':checked'))? false : true;
-                                }}
+                                }},
+                                email:{ required: false, email: true }
                             },
                             messages: {
                                 name: {
@@ -2061,6 +2067,9 @@
                                 company: {
                                     required: '{{ __('phrase.contact.validate.company') }}'
                                 },
+                                email: {
+                                    email: 'กรุณากรอกอีเมล์ให้ถูกต้อง'
+                                }
                             },
                             submitHandler: function (form) {
                                 
