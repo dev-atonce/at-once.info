@@ -530,7 +530,7 @@
                                                 class="icofont-verification-check text-success"></i>{{ $v->label }}</span>
                                         @foreach ($items as $i)
                                         <div class="pix1uw-0">
-                                            {{ @$i->name ? $i->name : $i->name_th }}
+                                            {{ $i->name ?? $i->name_th ?? $i->name_en ?? $i->name_zh ?? $i->name_jp ?? '' }}
                                         </div>
                                         @endforeach
                                     </div>
