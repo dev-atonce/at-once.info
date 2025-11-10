@@ -39,9 +39,11 @@
                                         <th>No.</th>
                                         <th>Name</th>
                                         <th>Telephone</th>
+                                        <th>Email</th>
                                         <th>User company</th>
                                         <th>Message</th>
                                         <th>Company</th>
+                                        <th>Category Name</th>
                                         <th>Created</th>
                                     </tr>
                                 </thead>
@@ -54,9 +56,11 @@
                                             <td>{{$item + $k}}</td>
                                             <td>{{$v->name}}</td>
                                             <td>{{$v->telephone}}</td>
+                                            <td>{{$v->email}}</td>
                                             <td>{{$v->user_company}}</td>
                                             <td>{{$v->message}}</td>
                                             <td>{{$v->company}}</td>
+                                            <td>{{$v->categoryName}}</td>
                                             <td>{{date('d F Y H:i',strtotime($v->created))}}</td>
                                         </tr>
                                     @endforeach

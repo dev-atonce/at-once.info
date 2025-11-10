@@ -1196,8 +1196,13 @@
         <script type="text/javascript" src="slick/custom.js" defer></script>
         <script type="text/javascript" src="slick/main.js" defer></script>
 
+        @if (@$customerStatus)
         <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
         <script type="text/javascript" src="js/build/authentication.js"></script>
+        @else
+        <script type="text/javascript" src="js/jquery.validate-v1.18.js" defer></script>
+        <script type="text/javascript" src="js/build/authentication.js" defer></script>
+        @endif
         <script type="text/javascript" src="js/build/social.media.js" defer></script>
         <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js" defer></script>
         <script type="text/javascript" src="js/blog.color.js" defer></script>

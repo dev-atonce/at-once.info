@@ -479,10 +479,11 @@ class CompanyCtrl extends Controller
                 $name = $request->name;
                 $telephone = $request->telephone;
                 $companyName = $request->companyName;
+                $email = $request->email;
                 $thisCompany = $request->thisCompany;
                 $page = $request->page;
 
-                $linemsg = "$page\nสวัสดีค่ะ ลูกค้ามีความต้องการให้ติดต่อกลับ กรุณาติดต่อกลับ\nผู้รับ: $thisCompany\nเบอร์โทร: $msisdn\n====================\nผู้ติดต่อ: $name\nเบอร์โทร: $telephone\nจากบริษัท: $companyName";
+                $linemsg = "$page\nสวัสดีค่ะ ลูกค้ามีความต้องการให้ติดต่อกลับ กรุณาติดต่อกลับ\nผู้รับ: $thisCompany\nเบอร์โทร: $msisdn\n====================\nผู้ติดต่อ: $name\nเบอร์โทร: $telephone\nอีเมล์: $email\nจากบริษัท: $companyName";
 
                 $message = [
                     'th' => "สวัสดีค่ะ ลูกค้ามีความต้องการให้ติดต่อกลับ กรุณาติดต่อกลับ, ผู้ติดต่อ: $name, เบอร์โทร: $telephone, บริษัท: $companyName",
@@ -516,6 +517,7 @@ class CompanyCtrl extends Controller
                                 // บันทึกข้อมูลการส่ง SMS ลงฐานข้อมูล
                                 $history->name = $name;
                                 $history->telephone = $telephone;
+                                $history->email = $email;
                                 $history->message = $linemsg;
                                 $history->company = $request->companyId;
                                 $history->user_company = $companyName;
@@ -552,6 +554,7 @@ class CompanyCtrl extends Controller
                         if ($noti->status == 200) {
                             $history->name = $name;
                             $history->telephone = $telephone;
+                            $history->email = $email;
                             $history->message = $linemsg;
                             $history->company = $request->companyId;
                             $history->user_company = $companyName;
@@ -580,7 +583,7 @@ class CompanyCtrl extends Controller
                 }
 
                 if ($company->line == true) {
-                    $linemsg = "$page\nสวัสดีค่ะ ลูกค้ามีความต้องการให้ติดต่อกลับ กรุณาติดต่อกลับ \nผู้รับ: $thisCompany\nเบอร์โทร: $msisdn\n====================\nผู้ติดต่อ: $name\nเบอร์โทร: $telephone\nจากบริษัท: $companyName";
+                    $linemsg = "$page\nสวัสดีค่ะ ลูกค้ามีความต้องการให้ติดต่อกลับ กรุณาติดต่อกลับ \nผู้รับ: $thisCompany\nเบอร์โทร: $msisdn\n====================\nผู้ติดต่อ: $name\nเบอร์โทร: $telephone\nอีเมล์: $email\nจากบริษัท: $companyName";
                     if ($company->token) {
                         $noti = \App\Http\Controllers\Api\LineNotiCtrl::lineNoti($linemsg, $company->token, $request->type);
                     } else {
@@ -589,6 +592,7 @@ class CompanyCtrl extends Controller
                     if ($noti->status == 200) {
                         $history->name = $name;
                         $history->telephone = $telephone;
+                        $history->email = $email;
                         $history->message = $linemsg;
                         $history->company = $request->companyId;
                         $history->user_company = $companyName;

@@ -37,6 +37,7 @@
                                         <th>At-once Customer</th>
                                         <th>ชื่อผู้ส่ง</th>
                                         <th>เบอร์โทรศัพท์</th>
+                                        <th>Email</th>
                                         <th>รายละเอียด</th>
                                         <th>Status</th>
                                     </tr>
@@ -54,6 +55,7 @@
                                                 <td class="name">{{ $row->company_name }}</td>
                                                 <td class="name">{{ $row->name }}</td>
                                                 <td class="telephone">{{ $row->telephone }}</td>
+                                                <td class="email">{{ $row->email }}</td>
 
                                                 <td class="content">
                                                     <span class="fixed-text">{{ $fixedText }}</span>
@@ -93,6 +95,7 @@
                                         <th>At-once Customer</th>
                                         <th>ชื่อผู้ส่ง</th>
                                         <th>เบอร์โทรศัพท์</th>
+                                        <th>Email</th>
                                         <th>รายละเอียด</th>
                                         <th>Action</th>
                                     </tr>
@@ -106,6 +109,7 @@
                                                 <td class="name">{{ $data->company_name }}</td>
                                                 <td class="name">{{ $data->name }}</td>
                                                 <td class="telephone">{{ $data->telephone }}</td>
+                                                <td class="email">{{ $data->email }}</td>
                                                 <td class="message">{{ $data->message }}</td>
 
                                                 <td class="status">
@@ -132,6 +136,7 @@
                                         <th>At-once Customer</th>
                                         <th>ชื่อผู้ส่ง</th>
                                         <th>เบอร์โทรศัพท์</th>
+                                        <th>Email</th>
                                         <th>รายละเอียด</th>
                                         <th>Action</th>
                                     </tr>
@@ -145,6 +150,7 @@
                                                 <td class="name">{{ $data->company_name }}</td>
                                                 <td class="name">{{ $data->name }}</td>
                                                 <td class="telephone">{{ $data->telephone }}</td>
+                                                <td class="email">{{ $data->email }}</td>
                                                 <td class="message">{{ $data->message }}</td>
 
                                                 <td class="status">

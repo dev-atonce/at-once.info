@@ -352,7 +352,7 @@ class HistoryMailCtrl extends Controller
         $date = $request->date;
         $date = explode('-', $date);
 
-        $data = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
+        $data = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'sms_history.email', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
             ->leftJoin('company', 'company', 'company.id')
             ->where('message', 'like', "%Pop-up from CP%")
             ->whereNull('status')
@@ -367,7 +367,7 @@ class HistoryMailCtrl extends Controller
             })
             ->latest()->paginate(8, ['*'], 'page_data');
 
-        $dataApprove = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
+        $dataApprove = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'sms_history.email', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
             ->leftJoin('company', 'company', 'company.id')
             ->where('message', 'like', "%Pop-up from CP%")
             ->where('status', 'approve')
@@ -378,7 +378,7 @@ class HistoryMailCtrl extends Controller
             })
             ->latest()->paginate(5, ['*'], 'page_dataApprove');
 
-        $dataReject = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
+        $dataReject = \App\Models\SMSHistoryMd::select(['sms_history.id', 'sms_history.name', 'sms_history.telephone', 'sms_history.email', 'message', 'sms_history.created', 'sms_history.type' , 'sms_history.status' , 'company.name_en as company_name'])
             ->leftJoin('company', 'company', 'company.id')
             ->where('message', 'like', "%Pop-up from CP%")
             ->where('status', 'reject')

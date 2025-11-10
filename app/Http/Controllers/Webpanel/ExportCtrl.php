@@ -1232,12 +1232,15 @@ description_th => $data->description_th\r\ndescription_jp => $data->description_
         try{
 
             $data = \App\Models\SMSHistoryMd::leftJoin('company as cp','sms_history.company','cp.id')
+            ->leftJoin('category', 'cp.category', 'category.id')
             ->select([
                 'sms_history.name',
                 'sms_history.user_company',
                 'sms_history.telephone',
+                'sms_history.email',
                 'sms_history.message',
                 'cp.name_en as company',
+                'category.name_en as categoryName',
                 'sms_history.created'
             ])
             ->get();
@@ -1250,7 +1253,7 @@ description_th => $data->description_th\r\ndescription_jp => $data->description_
                 "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
                 "Expires" => "0"
             );
-            $columns = array('No.', 'Name', 'User company', 'Telephone', 'Message', 'To Company', 'Created');
+            $columns = array('No.', 'Name', 'User company', 'Telephone', 'Email', 'Message', 'To Company', 'Category Name', 'Created');
             $callback = function () use ($data, $columns) {
                 $file = fopen('php://output', 'w');
                 fputs($file, (chr(0xEF) . chr(0xBB) . chr(0xBF))); // set ภาษาไทย
@@ -1261,8 +1264,10 @@ description_th => $data->description_th\r\ndescription_jp => $data->description_
                         $rs->name,
                         $rs->user_company,
                         $rs->telephone,
+                        $rs->email,
                         $rs->message,
                         $rs->company,
+                        $rs->categoryName,
                         $rs->created,
                     ]);
                 }

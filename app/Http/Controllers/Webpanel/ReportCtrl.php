@@ -31,12 +31,15 @@ class ReportCtrl extends Controller
                 ->get();
 
         $data = SMSHistoryMd::leftJoin('company as cp', 'sms_history.company', 'cp.id')
+            ->leftJoin('category', 'cp.category', 'category.id')
             ->select([
                 'sms_history.name',
                 'sms_history.user_company',
                 'sms_history.telephone',
+                'sms_history.email',
                 'sms_history.message',
                 'cp.name_en as company',
+                'category.name_en as categoryName',
                 'sms_history.created'
             ]);
 
