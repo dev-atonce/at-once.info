@@ -145,6 +145,13 @@
             transform: scale(1.1);
         }
 
+        #notification {
+            font-size: 16px;
+            padding: 2px 40px 2px 40px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
         /* Responsive */
         @media (max-width: 576px) {
             #notificationModal .modal-content {
@@ -158,12 +165,20 @@
                 top: 5px;
                 right: 5px;
             }
+
+            #notification {
+                font-size: 12px;
+                padding: 2px 10px 2px 10px;
+                line-height: 1.3;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body class="main_page">
     @include("$prefix.header")
+    <div id="notification"> <span class="text-danger">โปรดระวัง!!</span> เนื่องจากมีมิจฉาชีพแอบอ้างชื่อบริษัท ซึ่งทางบริษัทไม่มีนโยบายเชิญชวนให้ทำงานหรือประกาศรับสมัครงานผ่านช่องทางออนไลน์ใดๆทั้งสิ้น</div>
     @include("$prefix.filter-main")
 
     {{-- @include("$prefix.bigcategory-v2") --}}
@@ -558,14 +573,14 @@
     @include("$prefix.footer")
 
     <!-- Notification Modal -->
-    <div class="modal fade d-flex justify-content-center align-items-center" id="notificationModal" tabindex="-1" aria-hidden="true" data-backdrop="true" data-keyboard="true">
+    <!-- <div class="modal fade d-flex justify-content-center align-items-center" id="notificationModal" tabindex="-1" aria-hidden="true" data-backdrop="true" data-keyboard="true">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content" onclick="closeModal()">
                 <button type="button" class="btn-close" onclick="closeModal()" aria-label="Close">X</button>
                 <img src="img/At-Once_warning.webp" alt="แจ้งเตือน" class="img-fluid" style="width: 100%; height: auto; max-height: 70vh; border-radius: 10px;">
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script src="js/jquery.js"></script>
     <!-- Optional JavaScript -->

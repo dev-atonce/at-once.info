@@ -2180,6 +2180,13 @@ class CenterCtrl extends Controller
                     'filter' => []
                 ];
                 break;
+            default:
+                $data = (object)[
+                    'input' => [],
+                    'filter' => []
+                ];
+                break;
+                
         }
 
         return $data;
@@ -3467,6 +3474,9 @@ class CenterCtrl extends Controller
                 $data = [];
                 break;
             case 'retail-other': // 5.5.8
+                $data = [];
+                break;
+            default:
                 $data = [];
                 break;
         }
