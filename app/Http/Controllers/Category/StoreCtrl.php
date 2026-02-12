@@ -23,6 +23,7 @@ class StoreCtrl extends Controller
             ->select([
                 'company.id',
                 "company.name_$lang as name",
+                'company.name_en',
                 'company.logo',
                 "company.description_$lang as description",
                 'company.public',

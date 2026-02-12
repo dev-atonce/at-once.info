@@ -84,6 +84,7 @@ class PrefabricateOfficeCtrl extends Controller
             ->select([
                 'company.id',
                 "company.name_$lang as name",
+                'company.name_en',
                 'company.logo',
                 "company.description_$lang as description",
                 'company.public',
@@ -157,6 +158,7 @@ class PrefabricateOfficeCtrl extends Controller
         ->select([
             'company.id',
             "company.name_$lang as name",
+                'company.name_en',
             'company.logo',
             "company.description_$lang as description",
             'company.public',
@@ -210,6 +212,7 @@ class PrefabricateOfficeCtrl extends Controller
         $data = \App\Models\CompanyMd::select([
             'company.id','company.logo','cover','company.service',
             "company.name_$lang as name",
+                'company.name_en',
             "company.description_$lang as description","company.detail_$lang as detail","company.more_$lang as more",
             'company.email',
             "company.address_$lang as address",
@@ -898,6 +901,7 @@ class PrefabricateOfficeCtrl extends Controller
             'company.cover',
             'company.service',
             "company.name_$lang as name",
+                'company.name_en',
             "company.description_$lang as description",
             "company.detail_$lang as detail",
             "company.more_$lang as more",

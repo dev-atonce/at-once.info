@@ -92,6 +92,7 @@ class ContractorsCtrl extends Controller
             ->select([
                 'company.id',
                 "company.name_$lang as name",
+                'company.name_en',
                 'company.logo',
                 "company.description_$lang as description",
                 'company.public',
@@ -161,6 +162,7 @@ class ContractorsCtrl extends Controller
             'company.cover',
             'company.service',
             "company.name_$lang as name",
+            'company.name_en',
             "company.description_$lang as description",
             "company.detail_$lang as detail",
             "company.more_$lang as more",

@@ -105,7 +105,7 @@
                                         <a @if ($row->profile_url != '' && $row->profile_url != 'No') href="{{Session('lang')}}/{{ $module }}/cp/{{ $row->profile_url }}" @endif
                                             {{-- data-cp="{{$row->id}}" data-toggle="modal" data-id="{{$row->id}}" capture="index" data-target="#exampleModal" --}}
                                             href="{{ Session('lang') }}/{{ $module }}/cp/{{ $row->profile_url }}"
-                                            target="_blank" class="skiptranslate">{{ $row->name }}</a>
+                                            target="_blank" class="skiptranslate">{{ $row->name_en }}</a>
                                     </h3>
                                     @php $langP=(Session('lang')=='th')?'th':'en'; @endphp
                                     <div class="localtion">

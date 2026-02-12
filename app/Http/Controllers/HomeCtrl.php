@@ -121,6 +121,10 @@ class HomeCtrl extends Controller
             "company.website",
         ])
             ->leftJoin('category', 'company.category', '=', 'category.id')
+            ->leftJoin('our_customer', function ($join) {
+                $join->on('company.id', '=', 'our_customer.company')
+                    ->whereNull('our_customer.deleted');
+            })
             ->where(['company.public' => 1, 'category.status' => 1, 'category.coming_soon' => 0])
             ->when($category, function ($query) use ($category) {
                 $query->where('company.category', $category);
@@ -135,12 +139,14 @@ class HomeCtrl extends Controller
                         ->orWhereRaw('REPLACE(company.name_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.description_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.description_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.detail_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.detail_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        // ->orWhereRaw('REPLACE(company.detail_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        // ->orWhereRaw('REPLACE(company.detail_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(pk.province_name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(pk.province_name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"]);
+                        ->orWhereRaw('REPLACE(pk.province_name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        ->orWhereRaw('REPLACE(category.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"]);
                 });
             })
+            ->orderByRaw('our_customer.id IS NOT NULL DESC')
             ->orderBy('company.type', 'desc')
             ->groupBy('company.id')
             ->paginate(7);
