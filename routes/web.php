@@ -288,6 +288,7 @@ Route::middleware(['Language'])->group(function()use($category,$lang)
                 // {
                     Route::get("/$c/condition",[HomeCtrl::class,'condition']);
                     Route::get("/$c/privacy-policy",[HomeCtrl::class,'privacy']);
+                    Route::get("/$c/faq",[HomeCtrl::class,'faq']);
                     Route::get("/$c/confirmation",[HomeCtrl::class,'confirmation']);
                     Route::get("/$c/about-us",[\App\Http\Controllers\AboutCtrl::class,'index']);
                     Route::get("/$c/promotion-package",[HomeCtrl::class,'newPackage']);
@@ -340,6 +341,7 @@ Route::middleware(['Language'])->group(function()use($category,$lang)
             Route::get('/category',[HomeCtrl::class,'category']);
             Route::get('/condition',[HomeCtrl::class,'condition']);
             Route::get('/privacy-policy',[HomeCtrl::class,'privacy']);
+            Route::get('/faq',[HomeCtrl::class,'faq']);
             Route::get('/about-us',[HomeCtrl::class,'about']);
             Route::get('/contact',[HomeCtrl::class,'contact']);
             Route::put('/contact',[HomeCtrl::class,'contactStore']);

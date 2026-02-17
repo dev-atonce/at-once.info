@@ -1358,89 +1358,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-center mt-5">
-                            <h3 class="ff-prompt font-weight-bold ">FAQs</h3>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="accordion">
-                                <div class="accordion-item">
-                                    <button id="accordion-button-1" aria-expanded="true"><span
-                                            class="accordion-title">ฝากโปรไฟล์กับ At-Once มีค่าใช้จ่ายหรือไม่?</span><span
-                                            class="icon" aria-hidden="true"></span></button>
-                                    <div class="accordion-content">
-                                        <p class="mb-0">
-                                            ไม่มีค่าใช้จ่าย การฝากโปรไฟล์กับ At-Once เป็นบริการฟรี ซึ่งการมีโปรไฟล์อยู่บนเว็บไซต์ของ 
-                                            At-Once ช่วยให้ลูกค้าที่สนใจในธุรกิจของคุณสามารถจดจำแบรนด์ได้ง่ายขึ้น 
-                                            เข้าถึงข้อมูลบริการได้สะดวก และเพิ่มความน่าเชื่อถือ ซึ่งช่วยส่งเสริมโอกาสทางธุรกิจให้เติบโตได้อย่างมีประสิทธิภาพ
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-2" aria-expanded="false"><span
-                                            class="accordion-title">ต้องมีเว็บไซต์ของตัวเองหรือไม่ ถึงจะใช้บริการกับ At-Once</span><span
-                                            class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            ไม่จำเป็นต้องมีเว็บไซต์มาก่อน
-                                            หากคุณยังไม่มีเว็บไซต์ ก็ไม่ต้องกังวล เพราะเพียงแค่คุณฝากโปรไฟล์ธุรกิจไว้กับ At-Once 
-                                            ก็เปรียบเสมือนมี “หน้าร้านออนไลน์” ที่ช่วยให้กลุ่มเป้าหมายสามารถค้นหาและเข้าถึงธุรกิจของคุณได้ง่ายยิ่งขึ้น
-
-                                            At-Once พร้อมเป็นช่องทางการตลาดดิจิทัลที่ช่วยเพิ่มโอกาสในการสร้างความน่าเชื่อถือ และทำให้คุณเป็นที่รู้จักมากขึ้น
-                                            คุณสามารถเลือกใช้บริการที่เหมาะกับความต้องการของธุรกิจได้อย่างยืดหยุ่น 
-
-                                            ติดต่อเราเพื่อให้เราช่วยคุณเริ่มต้นได้เลย!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-3" aria-expanded="false">
-                                        <span class="accordion-title">เว็บไซต์มีความปลอดภัยในระดับใด?</span><span
-                                            class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            ทางเว็บไซต์ AT-ONCE จะไม่ได้สร้างเว็บไซต์ใหม่ให้กับบริษัทของท่าน
-                                            แต่ทีมงานของเรา
-                                            จะทำการสร้าง Company Profile
-                                            ให้กับบริษัทของท่าน โดยอยู่ภายใต้ Domain name ของเว็บไซต์ AT-ONCE
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-4" aria-expanded="false">
-                                        <span class="accordion-title">บริการรวมถึงการทำ SEO ด้วยหรือไม่?</span>
-                                        <span class="icon" aria-hidden="true"></span></button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            เรามี <strong>บริการทำ SEO</strong>
-                                            เว็บไซต์ด้วยการวิเคราะห์คีย์เวิร์ดที่เหมาะสม
-                                            เพื่อช่วยให้เว็บไซต์ของคุณติดอันดับการค้นหาใน Search Engine
-                                            และมีโอกาสในการเข้าถึงลูกค้าเป้าหมายได้ง่ายขึ้น
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <button id="accordion-button-5" aria-expanded="false">
-                                        <span
-                                            class="accordion-title">ทำ SEO Optimization ดียังไง?</span>
-                                        <span class="icon" aria-hidden="true"></span>
-                                    </button>
-                                    <div class="accordion-content">
-                                        <p>
-                                            SEO (Search Engine Optimization) คือการปรับแต่งเว็บไซต์ให้ติดอันดับผลการค้นหาใน Google โดยไม่ต้องเสียค่าโฆษณา
-                                            <ul>
-                                                <li>การทำ SEO ที่ดีช่วยให้เว็บไซต์ของคุณ</li>
-                                                <li>ถูกพบง่ายขึ้น เมื่อลูกค้าค้นหาสินค้าหรือบริการที่เกี่ยวข้อง</li>
-                                                <li>เพิ่มจำนวนผู้เข้าชมเว็บไซต์แบบต่อเนื่อง โดยไม่ต้องจ่ายโฆษณาทุกครั้ง</li>
-                                                <li>สร้างความน่าเชื่อถือ เพราะเว็บไซต์ที่ติดหน้าแรกมักถูกมองว่ามีคุณภาพ</li>
-                                                <li>ช่วยลดต้นทุนระยะยาว เมื่อเทียบกับการยิงแอดตลอดเวลา</li>
-                                                <li>เพิ่มโอกาสปิดการขาย เพราะเข้าถึงลูกค้าที่มีความต้องการจริง</li>
-                                            </ul>
-                                            At-Once มีบริการ SEO Optimization ที่เหมาะกับทุกขนาดธุรกิจ ทั้งเว็บไซต์ใหม่และเว็บไซต์ที่มีอยู่แล้ว เพื่อให้แบรนด์ของคุณเติบโตอย่างยั่งยืนในโลกออนไลน์
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            <a class="btn btn-lg px-5 py-3 rounded-pill ff-prompt font-weight-bold text-white" 
+                               href="{{ url(Session('lang') . '/faq') }}"
+                               style="background-color: var(--c-orange); border: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(243, 132, 36, 0.3);"
+                               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(243, 132, 36, 0.4)';"
+                               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(243, 132, 36, 0.3)';">
+                                <i class="fas fa-question-circle mr-2"></i> FAQs
+                            </a>
                         </div>
                     </div>
                 </div>

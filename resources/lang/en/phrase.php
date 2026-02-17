@@ -3322,6 +3322,7 @@ return [
         'job-search' => 'Find a job',
         'profile' => 'Profile',
         'advertising-rate' => 'Our services',
+        'faq' => 'FAQ',
         'free-profile' => 'Free profile',
         'marketing-blog' => 'Markting blog',
         'at-once-blog' => 'Blog from At Once',

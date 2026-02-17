@@ -571,6 +571,7 @@ return [
         'news' => '注目のニュース',
         'job-search' => 'Job Search',
         'advertising-rate' => '広告率',
+        'faq' => 'よくある質問',
     ],
     'footer' => [
         'copyright'=>'Copyright',

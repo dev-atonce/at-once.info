@@ -652,6 +652,26 @@ class HomeCtrl extends Controller
         ]);
     }
 
+    public function faq()
+    {
+        $lang = Session('lang');
+        $seo = \App\Helpers\SeoLandingPage::getLandingSeoKeyword($lang);
+        if (!$seo) {
+            $titles = ['th' => 'คำถามที่พบบ่อย - At-Once', 'en' => 'FAQ - At-Once', 'jp' => 'よくある質問 - At-Once', 'zh' => '常见问题 - At-Once'];
+            $seo = (object) [
+                'title' => $titles[$lang] ?? $titles['en'],
+                'title_th' => $titles['th'],
+                'seo_keyword' => '', 'seo_description' => '',
+                'seo_keyword_th' => '', 'seo_description_th' => ''
+            ];
+        }
+        return view("$this->prefix.faq", [
+            'prefix' => $this->prefix,
+            'module' => $this->category,
+            'seo' => $seo
+        ]);
+    }
+
     public function coin()
     {
         return view("$this->prefix.coin", [

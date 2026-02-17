@@ -41,6 +41,7 @@
         </li>
         {{-- <li><a href="{{ url(Session('lang') . '/new-promotion-package') }}">@lang('phrase.header.advertising-rate')</a></li> --}}
         <li><a href="{{ url(Session('lang') . '/promotion-package') }}" aria-label="View advertising rates and packages">@lang('phrase.header.advertising-rate')</a></li>
+        <li><a href="{{ url(Session('lang') . '/faq') }}" aria-label="FAQ">@lang('phrase.header.faq')</a></li>
         {{-- <li><a href="{{ url(Session('lang') .'/contact') }}">@lang('phrase.header.free-profile')</a></li> --}}
     </ul>
     {{-- <ul class="list-unstyled CTAs">
@@ -139,6 +140,7 @@
                     </li>
                     {{-- <li class="nav-item"><a class="nav-link bold" href="{{ url(Session('lang') . '/new-promotion-package') }}">@lang('phrase.header.advertising-rate')</a></li> --}}
                     <li class="nav-item"><a class="nav-link bold" href="{{ url(Session('lang') . '/promotion-package') }}" aria-label="View advertising rates and packages">@lang('phrase.header.advertising-rate')</a></li>
+                    <li class="nav-item"><a class="nav-link bold" href="{{ url(Session('lang') . '/faq') }}" aria-label="FAQ">@lang('phrase.header.faq')</a></li>
                     {{-- <li class="nav-item"><a class="nav-link bold" href="{{ Session('lang') }}/contact">@lang('phrase.header.free-profile')</a></li> --}}
                 </ul>
                 <ul class="navbar-nav ml-auto icon-profile">

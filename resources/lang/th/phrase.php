@@ -232,6 +232,7 @@ return [
         'job-search' => 'หางาน',
         'profile' => 'โปรไฟล์',
         'advertising-rate' => 'บริการของเรา',
+        'faq' => 'คำถามที่พบบ่อย',
         'free-profile' => 'ฝากโปรไฟล์ฟรี',
         'marketing-blog' => 'บทความการตลาด',
         'at-once-blog' => 'บทความจาก AT-ONCE',

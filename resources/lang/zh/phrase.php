@@ -2635,6 +2635,7 @@ return [
         'news' => '公司文章、评论、求职等等',
         'job-search' => '搜索工作',
         'advertising-rate' => '关于我们服务',
+        'faq' => '常見問題',
         'free-profile' => '免費個人資料',
         'marketing-blog' => '行銷部落格',
         'at-once-blog' => '文章來自 At-Once',
