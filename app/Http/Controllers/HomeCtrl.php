@@ -108,7 +108,7 @@ class HomeCtrl extends Controller
 
         $data = $cpMd::select([
             "company.id",
-            "company.name_$lang as name",
+            "company.name_en as name",
             "company.description_$lang as description",
             "company.detail_$lang as detail",
             "company.logo",
@@ -136,14 +136,17 @@ class HomeCtrl extends Controller
                 return $query->where(function ($query) use ($keywords) {
                     return $query
                         ->whereRaw('REPLACE(company.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        ->whereRaw('REPLACE(company.name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.name_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.description_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        ->orWhereRaw('REPLACE(company.description_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.description_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         // ->orWhereRaw('REPLACE(company.detail_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         // ->orWhereRaw('REPLACE(company.detail_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(pk.province_name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(pk.province_name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(category.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"]);
+                        ->orWhereRaw('REPLACE(category.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        ->orWhereRaw('REPLACE(category.name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"]);
                 });
             })
             ->orderByRaw('our_customer.id IS NOT NULL DESC')

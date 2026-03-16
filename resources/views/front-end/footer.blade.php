@@ -99,7 +99,7 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
     <div class="container">
         <div class="row">
             <div class="col-lg-2">
-                <div class="mb-1"><img src="img/at-once-tw.png" width="150" height="50" alt="{{ env('APP_NAME') }}" loading="lazy"></div>
+                <div class="mb-1"><img src="img/at-once-tw.png" width="150" alt="{{ env('APP_NAME') }}" loading="lazy"></div>
             </div>
             <div class="col-md-5 col-lg-4">
                 <p class="mb-0"><strong class="v1-orange" style="font-size: 24px;">At-Once </strong>- แอท วันซ์
