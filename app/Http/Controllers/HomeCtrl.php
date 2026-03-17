@@ -136,7 +136,7 @@ class HomeCtrl extends Controller
                 return $query->where(function ($query) use ($keywords) {
                     return $query
                         ->whereRaw('REPLACE(company.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->whereRaw('REPLACE(company.name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
+                        ->orWhereRaw('REPLACE(company.name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.name_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.description_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
                         ->orWhereRaw('REPLACE(company.description_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
