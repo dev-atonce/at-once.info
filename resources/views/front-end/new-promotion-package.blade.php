@@ -787,7 +787,7 @@
                 <div class="col-lg-12">
                     <h2 class="text-center">
                         <strong class=" text-primary ff-prompt">At-Once</strong>
-                        <strong class="ml-2 ff-prompt">เป็นมากกว่าเว็บไซต์รายชื่อบริษัท</strong>
+                        <strong class="ml-2 ff-prompt">แพลตฟอร์มจับคู่ธุรกิจ B2B ที่ช่วยให้ลูกค้าพบคุณ</strong>
                     </h2>
                     <!-- <p class="fs-20" style="text-indent: 40px;">นอกจากในส่วนของการออกแบบ และ พัฒนาเว็บไซต์แล้วนั้น
                         ทางเรายังให้บริการ<strong class="v1-orange">สร้างโปรไฟล์บริษัทออนไลน์</strong>
@@ -802,9 +802,12 @@
                         ที่สำคัญ At-Once คือแพลตฟอร์มที่เชื่อมโยงเครือข่ายผู้ประกอบการแบบ B2B ทั่วประเทศ ช่วยให้คุณเชื่อมต่อกับคู่ค้า พันธมิตร 
                         และลูกค้าใหม่ได้อย่างมีประสิทธิภาพในยุคดิจิทัล</p>
                     <h3 class="text-center mt-5">
-                        <strong class="fs-24">At-Once คือแพลตฟอร์มที่รวบรวมรายชื่อบริษัทในประเทศไทยไว้</strong><br>
-                        <strong class="ml-2 fs-24">มากกว่า <span class="fs-34 v1-orange">160,000</span>
-                            รายชื่อ</strong>
+                        <strong class="fs-24">At-Once เชื่อมโยงบริษัทที่กำลังมองหาสินค้าและบริการ </br>กับผู้ให้บริการที่ตรงความต้องการ ผ่านแพลตฟอร์ม B2B Matching
+                        </strong><br>
+                        <strong class="ml-2 fs-24">ที่ครอบคลุมกว่า <span class="fs-34 v1-orange">160,000</span>
+                            บริษัท</strong>
+                        <strong class="ml-2 fs-24">ใน <span class="fs-34 v1-orange">177</span>
+                            หมวดธุรกิจ</strong>
                     </h3>
                 </div>
             </div>

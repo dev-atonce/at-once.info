@@ -361,8 +361,8 @@
         <div class="page-section">
             <div class="container ">
                 <div class="text-white one-about mt-5">
-                    <h1 class="text-center" data-aos="zoom-in" data-aos-duration="200"><strong>เว็บไซต์
-                            <span>At-Once</span> เป็นเว็บสื่อกลาง<div class="mt-3">รวบรวมรายชื่อบริษัทในประเทศไทย
+                    <h1 class="text-center" data-aos="zoom-in" data-aos-duration="200"><strong>
+                            <span>At-Once</span> — แพลตฟอร์มจับคู่ธุรกิจ B2B<div class="mt-3">ที่เชื่อมโยงผู้ประกอบการไทยกว่า 160,000 ราย
                             </div></strong></h1>
                     <div data-aos="fade-up" data-aos-duration="400">
                         <img src="images/about/about-gall.png" class="img-fluid"
@@ -370,19 +370,7 @@
                     </div>
                     <div data-aos="fade-up" data-aos-duration="600">
                         <h2 class="text-center h4">
-                            At-once คือ แหล่งรวมรายชื่อบริษัท ครบวงจรที่ใหญ่ที่สุด<br>
-                            เราเป็นเสมือนสื่อกลาง ที่ช่วยอำนวยความสะดวกในการ <strong>ค้นหาบริษัท</strong>
-                            เพื่อการทำธุรกิจแบบ B2B <br> ด้วยฐานข้อมูล <strong>
-                                รวมรายชื่อบริษัท</strong>
-                            จากทุกภาคส่วน <strong>
-                                เว็บไซต์รวมรายชื่อบริษัท
-                            </strong> ของเราจึงเป็น <br> <strong> แหล่งรวมรายชื่อบริษัท
-                            </strong> ที่ครบถ้วนและน่าเชื่อถือ
-                            เรารวมข้อมูลสำคัญทุกอย่างที่เกี่ยวกับแต่ละบริษัทเอาไว้ให้ในที่เดียว <br>
-                            เช่น ข้อมูลการติดต่อ, ประเภทธุรกิจ, ผลิตภัณฑ์และบริการ ฯลฯ ด้วยฐานข้อมูลที่ครบครันของเรา
-                            <br>
-                            จึงทำให้การค้นหาและติดต่อบริษัทต่างๆ เป็นเรื่องง่าย คุณสามารถเริ่มใช้บริการได้ทันที <strong
-                                class="text-orange">ฟรีไม่มีค่าใช้จ่าย !</strong>
+                            At-Once คือแพลตฟอร์ม B2B Matching ที่ใหญ่ที่สุดในไทย <br> ช่วยให้ธุรกิจของคุณพบกับลูกค้า คู่ค้า และพันธมิตรที่ใช่
                         </h2>
                     </div>
                 </div>

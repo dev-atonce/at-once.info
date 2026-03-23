@@ -662,8 +662,9 @@ class HomeCtrl extends Controller
         if (!$seo) {
             $titles = ['th' => 'คำถามที่พบบ่อย - At-Once', 'en' => 'FAQ - At-Once', 'jp' => 'よくある質問 - At-Once', 'zh' => '常见问题 - At-Once'];
             $seo = (object) [
-                'title' => $titles[$lang] ?? $titles['en'],
-                'title_th' => $titles['th'],
+                // 'title' => $titles[$lang] ?? $titles['en'],
+                'title' => 'คำถามที่พบบ่อย | At-Once แพลตฟอร์มจับคู่ธุรกิจ B2B ประเทศไทย',
+                'title_th' => 'คำถามที่พบบ่อย | At-Once แพลตฟอร์มจับคู่ธุรกิจ B2B ประเทศไทย',
                 'seo_keyword' => '', 'seo_description' => '',
                 'seo_keyword_th' => '', 'seo_description_th' => ''
             ];

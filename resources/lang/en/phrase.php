@@ -5,7 +5,8 @@ return [
     'comming-soon' => 'Comming Soon',
     'recommend-industry' => 'Recommend Industry',
     'all-industry' => 'All Industry',
-    'caption' => 'แหล่งรวมรายชื่อบริษัทชั้นนำในประเทศไทย',
+    'caption' => 'ค้นหาพันธมิตรธุรกิจที่ใช่ — จับคู่กับบริษัทที่ตรงความต้องการของคุณ',
+    'search_box' => 'ค้นหาพันธมิตรหรือบริการที่คุณต้องการ...',
     'concept' => [
         '1' => '検索した複数の企業に一括問合せができる！',
         '2' => '登録不要、登録料、手数料なし！',

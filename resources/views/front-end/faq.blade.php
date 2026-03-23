@@ -56,9 +56,8 @@
                             </button>
                             <div class="accordion-content">
                                 <p class="mb-0">
-                                    <strong>At-Once</strong> คือแพลตฟอร์มรวบรวมรายชื่อบริษัทและธุรกิจที่ใหญ่ที่สุดในไทย <strong>(มากกว่า 160,000 รายชื่อ)</strong>
-                                    เราเปรียบเสมือน "ทางลัด" ที่ช่วย<strong>สร้างตัวตนออนไลน์ (Company Profile)</strong> ให้ธุรกิจของคุณถูกค้นพบได้ง่ายขึ้นบน 
-                                    <strong>Google</strong> ช่วยเพิ่มความน่าเชื่อถือ และเชื่อมโยงคุณเข้ากับคู่ค้าแบบ B2B ทั่วประเทศ
+                                    <strong>At-Once</strong> คือแพลตฟอร์มจับคู่ธุรกิจ <strong>B2B</strong> ที่ใหญ่ที่สุดในประเทศไทย เราเชื่อมโยงผู้ที่กำลังมองหาบริการหรือสินค้า กับผู้ให้บริการที่ตรงความต้องการ 
+                                    ครอบคลุมกว่า <strong>160,000</strong> บริษัท ใน <strong>177</strong> หมวดธุรกิจ — พบพันธมิตรที่ใช่ได้ทันที <strong>ฟรี!</strong>
                                 </p>
                             </div>
                         </div>
@@ -133,6 +132,18 @@
                                 <p class="mb-0">
                                     ง่ายมากครับ! เพียงแค่กรอกรายละเอียดใน<a href="{{ url(Session('lang') . '/promotion-package') }}"><strong>หน้าเว็บไซต์</strong></a> หรือติดต่อทีมงานที่เบอร์ <strong>082-875-7539 </strong>
                                     ทีมงานมืออาชีพของเราพร้อมจะติดต่อกลับเพื่อพูดคุยแผนการตลาดที่เหมาะกับธุรกิจของคุณ
+                                </p>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button id="accordion-button-8" aria-expanded="false">
+                                <span class="accordion-title">At-Once ต่างจากเว็บไซต์รวมรายชื่อบริษัททั่วไปอย่างไร?</span>
+                                <span class="icon" aria-hidden="true"></span>
+                            </button>
+                            <div class="accordion-content">
+                                <p class="mb-0">
+                                    แตกต่างจาก <strong>directory site</strong> ทั่วไปตรงที่ <strong>At-Once</strong> ออกแบบมาเพื่อ <strong>'การจับคู่ธุรกิจ'</strong> 
+                                    โดยเฉพาะ ผู้ใช้สามารถเปรียบเทียบผู้ให้บริการ ติดต่อโดยตรง และรับการแนะนำที่ตรงกับความต้องการ ไม่ใช่แค่การค้นหารายชื่อเพื่อโทรหา
                                 </p>
                             </div>
                         </div>

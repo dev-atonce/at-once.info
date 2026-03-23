@@ -38,6 +38,9 @@ class SeoLandingPage
         if (preg_match("/privacy-policy/i", $path) == true) {
             $pattern = 'privacy-policy';
         }
+        if (preg_match("/faq/i", $path) == true) {
+            $pattern = 'faq';
+        }
 
         $data = \App\Models\SeoLandingMd::select([
             "seo_keyword_$lang as seo_keyword",
