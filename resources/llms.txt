@@ -1,0 +1,66 @@
+# AT-ONCE
+
+> AT-ONCE (at-once.info/th) คือแพลตฟอร์มจับคู่ธุรกิจ B2B ชั้นนำในประเทศไทย ทำหน้าที่เป็นสื่อกลางเชื่อมต่อระหว่างบริษัทผู้ให้บริการและผู้ต้องการบริการในทุกอุตสาหกรรม ผ่านฐานข้อมูลบริษัทที่ลงทะเบียนกว่า 120,000 รายในประเทศไทย
+
+AT-ONCE ไม่ใช่ฐานข้อมูลบริษัททั่วไป แต่เป็น **แพลตฟอร์ม B2B Business Matching** ที่ช่วยให้ธุรกิจค้นหาพันธมิตร ผู้ให้บริการ หรือลูกค้าเป้าหมายได้อย่างตรงจุดและรวดเร็ว ผ่านระบบค้นหาตามหมวดหมู่อุตสาหกรรมกว่า 177 ประเภท
+
+## หน้าหลักและข้อมูลทั่วไป
+
+- [หน้าหลัก](https://at-once.info/th): ค้นหาพันธมิตรธุรกิจและบริษัทในประเทศไทย
+- [เกี่ยวกับเรา](https://at-once.info/th/about-us): รายละเอียดบริการและวิธีการใช้งาน AT-ONCE
+- [บริการของเรา](https://at-once.info/th/promotion-package): แพ็กเกจสำหรับบริษัทที่ต้องการลงทะเบียนและเพิ่มการมองเห็น
+- [คำถามที่พบบ่อย](https://at-once.info/th/faq): FAQ เกี่ยวกับการใช้งานแพลตฟอร์ม
+
+## หมวดหมู่ธุรกิจหลัก
+
+### สำนักงานและบริการธุรกิจทั่วไป
+
+- [วีซ่า](https://at-once.info/th/visa-support): บริการวีซ่าและใบอนุญาตทำงานในประเทศไทย
+- [รับจัดตั้งบริษัท](https://at-once.info/th/company-registration): บริการจดทะเบียนบริษัทในไทย
+- [สำนักงานทางกฎหมาย](https://at-once.info/th/law-firm): ที่ปรึกษากฎหมายธุรกิจ
+- [ที่ปรึกษาทางธุรกิจ](https://at-once.info/th/business-consulting): Business Consulting
+- [รับจัดทำบัญชี](https://at-once.info/th/accounting): บริการบัญชีและภาษี
+- [แปลภาษา และล่าม](https://at-once.info/th/translation-interpreter): บริการแปลภาษาญี่ปุ่น-ไทย-อังกฤษ
+- [บริษัทจัดหางาน](https://at-once.info/th/recruitment-agency): Recruitment Agency
+- [โลจิสติกส์ คลังสินค้า และการจัดส่ง](https://at-once.info/th/logistics-warehouse-delivery): บริการโลจิสติกส์
+- [บริการรถเช่า](https://at-once.info/th/car-rental): บริการเช่ารถ
+- [การพัฒนาเว็บไซต์](https://at-once.info/th/website-development): Web Development
+- [ระบบ IOT และ DX](https://at-once.info/th/system-iot-dx): Digital Transformation
+
+### การตลาดและสนับสนุนการขาย
+
+- [การตลาดผ่านเว็บไซต์](https://at-once.info/th/web-marketing): Digital Marketing
+- [การโฆษณาและการเผยแพร่](https://at-once.info/th/advertising-publisment): Advertising
+- [ศูนย์รับแจ้ง](https://at-once.info/th/call-center): Call Center
+
+### การเงิน
+
+- [ธนาคารและสินเชื่อแฟคตอริ่ง](https://at-once.info/th/financial): Financial Services
+- [ลีสซิ่ง](https://at-once.info/th/leasing): Leasing
+- [ประกันภัย](https://at-once.info/th/insurance): Insurance
+
+### โรงงานและการผลิต
+
+- [เครื่องจักรและอุปกรณ์](https://at-once.info/th/other-machine-equipment): Industrial Machinery
+- [หุ่นยนต์และระบบอัตโนมัติ](https://at-once.info/th/robot-automation): Robot & Automation
+- [อุตสาหกรรมยานยนต์](https://at-once.info/th/automotive-motorcycle-industrial): Automotive Industry
+- [อุปกรณ์ควบคุมคุณภาพ](https://at-once.info/th/qc-equipment): QC Equipment
+- [พลังงานแสงอาทิตย์และกังหันลม](https://at-once.info/th/solar-windmilling-service): Renewable Energy
+
+### บริการอื่น ๆ
+
+- [โรงแรมและที่พัก](https://at-once.info/th/hotel-accommodation): Hotel & Accommodation
+- [บริษัทท่องเที่ยว](https://at-once.info/th/travel-agency): Travel Agency
+- [บริษัทรับจัดงานและนิทรรศการ](https://at-once.info/th/event-organizer-exhibition): Event Organizer
+- [ของขวัญและของชำร่วย](https://at-once.info/th/gift-suvenir): Gift & Souvenir
+
+## บทความและคอนเทนต์
+
+- [บทความจาก AT-ONCE](https://at-once.info/th/blog): บทความข้อมูลธุรกิจในประเทศไทย
+- [บทความจากลูกค้า/รีวิว](https://at-once.info/th/blog-company): รีวิวและบทความจากบริษัทสมาชิก
+- [บทความการตลาด](https://at-once.info/th/blog-package): บทความด้านการตลาดดิจิทัล
+
+## Optional
+
+- [ลงทะเบียนบริษัท (ฟรี)](https://at-once.info/th): บริษัทสามารถลงทะเบียนได้ฟรี เพื่อแสดงข้อมูลและรับการติดต่อจากลูกค้า B2B
+- [แพ็กเกจพรีเมียม](https://at-once.info/th/promotion-package): สำหรับบริษัทที่ต้องการเพิ่มการมองเห็นและ Lead Generation ในตลาด B2B ไทย

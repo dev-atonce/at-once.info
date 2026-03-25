@@ -207,6 +207,11 @@ Route::get('robots.txt',function(){
     echo "Disallow: /webpanel";
 });
 
+Route::get('/llms.txt', function () {
+    return response(file_get_contents(base_path('resources/llms.txt')), 200)
+        ->header('Content-Type', 'text/plain; charset=UTF-8');
+});
+
 
 // Short URL Short URL Short URL
 // Short URL Short URL Short URL
