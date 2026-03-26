@@ -104,8 +104,8 @@ $blog_path = @$categoryId == '' ? $lang . '/blog' : $lang . "/$module/blog";
             <div class="col-md-5 col-lg-4">
                 <p class="mb-0"><strong class="v1-orange" style="font-size: 24px;">At-Once </strong>- แอท วันซ์
                 </p>
-                <p> เพิ่มโอกาสในการขายสินค้าและบริการของคุณ <br class="d-none d-lg-block">
-                ด้วย เครื่องมือและแผนการตลาดออนไลน์ โดยทีมงานมืออาชีพ</p>
+                <p> แพลตฟอร์มจับคู่ธุรกิจ B2B อันดับ 1 ในไทย <br class="d-none d-lg-block">
+                เชื่อมโยงผู้ประกอบการกว่า 160,000 รายใน 177 หมวดธุรกิจ </p>
             </div>
             <div class="d-md-none d-lg-block col-lg-1"></div>
             <div class="col-5 col-md-3 col-lg-2 pl-md-4">

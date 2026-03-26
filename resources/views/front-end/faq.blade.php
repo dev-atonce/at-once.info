@@ -10,6 +10,29 @@
 
     <title>{{ $seo->title ?? $seo->title_th ?? __('faq.page_title') }}</title>
 
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "At-Once คืออะไร?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "At-Once คือแพลตฟอร์มจับคู่ธุรกิจ B2B ที่ใหญ่ที่สุดในประเทศไทย เชื่อมโยงผู้ซื้อและผู้ให้บริการกว่า 160,000 รายใน 177 หมวดธุรกิจ"
+                }
+            }, {
+                "@type": "Question",
+                "name": "At-Once ต่างจากเว็บไซต์รวมรายชื่อบริษัททั่วไปอย่างไร?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "At-Once ออกแบบมาเพื่อการจับคู่ธุรกิจโดยเฉพาะ ไม่ใช่แค่รายชื่อบริษัท ผู้ใช้สามารถเปรียบเทียบผู้ให้บริการและติดต่อโดยตรงได้ทันที"
+                }
+            }]
+        }
+    </script>
+
     <meta property="og:title" content="{{ $seo->title ?? $seo->title_th ?? __('faq.page_title') }}">
     <meta property="og:description" content="{{ $seo->seo_description ?? $seo->seo_description_th ?? '' }}">
     <meta property="og:image" content="{{ url('img/logo-bg-white.jpg') }}">

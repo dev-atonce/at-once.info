@@ -27,7 +27,53 @@
                 "@type": "Country",
                 "name": "Thailand"
             }
+        }
+    </script>
+    <!-- WebApplication Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "At-Once B2B Business Matching Platform",
+            "url": "https://at-once.info/th",
+            "description": "At-Once คือแพลตฟอร์มจับคู่ธุรกิจ B2B ที่ใหญ่ที่สุดในประเทศไทย เชื่อมโยงผู้ซื้อและผู้ให้บริการกว่า 160,000 รายใน 177 หมวดธุรกิจ",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "THB",
+                "description": "ลงทะเบียนฟรี — ค้นหาพันธมิตรธุรกิจได้ทันที"
+            },
+            "provider": {
+                "@type": "Organization",
+                "name": "1-CE WIND CO., LTD.",
+                "url": "https://at-once.info/th"
             }
+        }
+    </script>
+    <!-- Service Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "B2B Business Matching",
+            "name": "At-Once — บริการจับคู่ธุรกิจ B2B",
+            "description": "บริการเชื่อมโยงผู้ประกอบการและบริษัทในประเทศไทย ช่วยให้ธุรกิจพบกับลูกค้า คู่ค้า และพันธมิตรที่ตรงความต้องการ",
+            "provider": {
+                "@type": "Organization",
+                "name": "At-Once",
+                "url": "https://at-once.info/th"
+            },
+            "areaServed": {
+                "@type": "Country",
+                "name": "Thailand"
+            },
+            "audience": {
+                "@type": "BusinessAudience",
+                "audienceType": "B2B Companies in Thailand"
+            }
+        }
     </script>
 
     <meta property="og:title" content="{{ $seo->title ? $seo->title : $seo->title_th }}">
@@ -489,7 +535,7 @@
             </div>
         </div>
     </section>
-    
+
     @include("$prefix.analytics.gtagBody")
     @include("$prefix.footer")
 
