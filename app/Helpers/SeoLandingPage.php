@@ -75,6 +75,10 @@ class SeoLandingPage
         ])
         ->find($id);
 
+        if ($data && $data->title) {
+            $data->title = str_replace(" - ", " | ค้นหาพันธมิตร B2B | ", $data->title);
+        }
+
         return $data;
     }
 }
