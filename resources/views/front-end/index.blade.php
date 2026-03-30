@@ -199,8 +199,17 @@
             text-align: center;
         }
 
+        #back-to-top {
+            right: unset !important;
+            left: 40px !important;
+            bottom: 20px !important;
+        }
+
         /* Responsive */
         @media (max-width: 576px) {
+            .slick-dots {
+                width: auto !important;
+            }
             #notificationModal .modal-content {
                 max-width: calc(100% - 20px);
             }
@@ -218,6 +227,10 @@
                 padding: 2px 10px 2px 10px;
                 line-height: 1.3;
                 text-align: center;
+            }
+
+            #back-to-top {
+                left: 20px !important;
             }
         }
     </style>
@@ -628,6 +641,8 @@
             </div>
         </div>
     </div> -->
+
+    @include('front-end.components.chatbot')
 
     <script src="js/jquery.js"></script>
     <!-- Optional JavaScript -->
