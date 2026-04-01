@@ -5,11 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta name="keywords" content="{{ $seo->seo_keyword }}">
-    <meta name="description" content="{{ $seo->seo_description }}">
+    <meta name="keywords" content="{{ $seo->seo_keyword ?? '' }}">
+    <meta name="description" content="{{ !empty($seo->seo_description) ? $seo->seo_description : 'ค้นหาบริษัท'.($categoryName ?? 'ชั้นนำ').'กว่า 700 บริษัทบน At-Once เปรียบเทียบและติดต่อได้เลย' }}">
     <meta name="author" content="at-once.info">
 
-    <title>{{ $seo->title }}</title>
+    <title>
+        @if(!empty($seo->title))
+            {{ $seo->title }}
+        @elseif(!empty($seo->seo_keyword))
+            {{ $seo->seo_keyword }}
+        @else
+            รายชื่อบริษัท{{ $categoryName ?? 'ที่น่าเชื่อถือ' }} | แพลตฟอร์มB2B อันดับ1ในไทย - At-Once
+        @endif
+    </title>
 
     <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
@@ -55,8 +63,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="google-site-verification" content="SBEehLLGMBDzOMbSEIBIf15L3etk2d7P1_cYrwo97rk" />
 
-    <meta property="og:title" content="{{ $seo->title }}">
-    <meta property="og:description" content="{{ $seo->seo_description }}">
+    <meta property="og:title" content="{{ !empty($seo->title) ? $seo->title : (!empty($seo->seo_keyword) ? $seo->seo_keyword : 'รายชื่อบริษัท'.($categoryName ?? 'ที่น่าเชื่อถือ').' | แพลตฟอร์มB2B อันดับ1ในไทย - At-Once') }}">
+    <meta property="og:description" content="{{ !empty($seo->seo_description) ? $seo->seo_description : 'ค้นหาบริษัท'.($categoryName ?? 'ชั้นนำ').'กว่า 700 บริษัทบน At-Once เปรียบเทียบและติดต่อได้เลย' }}">
     <meta property="og:image" content="{{ url('img/logo-bg-white.jpg') }}">
     <meta property="og:url" content="{{ url(Session('lang')) }}">
 
