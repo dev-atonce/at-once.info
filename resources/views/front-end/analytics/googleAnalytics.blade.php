@@ -52,4 +52,21 @@
     })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
 </script>
 
-<link rel="canonical" href="{{ Request::url() }}" />
+@php
+    $segments = request()->segments();
+    $currentLang = @$segments[0];
+    
+    if(in_array($currentLang, ['th', 'en', 'jp', 'zh'])) {
+        $pathWithoutLang = implode('/', array_slice($segments, 1));
+    } else {
+        $pathWithoutLang = implode('/', $segments);
+    }
+@endphp
+
+<link rel="alternate" hreflang="th"        href="{{ url('th/' . $pathWithoutLang) }}" />
+<link rel="alternate" hreflang="ja"        href="{{ url('jp/' . $pathWithoutLang) }}" />
+<link rel="alternate" hreflang="en"        href="{{ url('en/' . $pathWithoutLang) }}" />
+<link rel="alternate" hreflang="zh"        href="{{ url('zh/' . $pathWithoutLang) }}" />
+<link rel="alternate" hreflang="x-default" href="{{ url('th/' . $pathWithoutLang) }}" />
+
+<link rel="canonical" href="{{ url('th/' . $pathWithoutLang) }}" />
