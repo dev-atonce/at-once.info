@@ -17,6 +17,15 @@ use \App\Http\Controllers\DemoCtrl;
 
 $lang = ['th','en' , 'jp' , 'zh'];
 
+$brokenLangs = 'ko|ar|vi|id|fr|de|hi|bn|it|jw|ms|my|lo|ru|ta|te|pa|mr|pt';
+
+Route::get('{lang}/{path}', function ($lang, $path) {
+    return redirect('/th/' . $path, 301);
+})->where(['lang' => $brokenLangs, 'path' => '.*']);
+
+Route::get('{lang}', function ($lang) {
+    return redirect('/th', 301);
+})->where('lang', $brokenLangs);
 
 Route::get('clear/cache',function(){
     Artisan::call('config:cache');
