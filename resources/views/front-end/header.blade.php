@@ -76,7 +76,7 @@
             <a class="navbar-brand mx-auto bold" href="{{ Session('lang') }}" aria-label="At-Once homepage">
                 {{-- <img src="img/at-once-black.png" class="d-inline-block align-top at-logo img-fluid" alt="At-Once ค้นหาบริษัทและธุรกิจต่างๆ ในประเทศไทย" ><br> --}}
                 <img src="img/at-once-tw.webp" class="d-inline-block align-top at-logo img-fluid"
-                    alt="At-Once ค้นหาบริษัทและธุรกิจต่างๆ ในประเทศไทย" loading="lazy"><br>
+                    alt="At-Once" loading="lazy"><br>
             </a>
             <a id="sidebarCollapse" class=" d-lg-none navbar-toggler-right"><span
                     class="navbar-toggler-icon"></span></a>
