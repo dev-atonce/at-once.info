@@ -665,7 +665,7 @@
             infinite: true,
             slidesToShow: 5,
             slidesToScroll: 1,
-            arrows: false,
+            arrows: true,
             autoplay: true,
             autoplaySpeed: 0,
             speed: 4500,
@@ -705,6 +705,19 @@
         };
 
         const sl = $('.recommend-customer').slick(settings);
+
+        $('.recommend-customer').on('mousedown touchstart', '.slick-arrow, .slick-dots li button', function() {
+            if (sl && sl[0] && sl[0].slick) {
+                sl[0].slick.animating = false; 
+                sl[0].slick.options.speed = 500;
+                sl[0].slick.options.cssEase = 'ease';
+            }
+        });
+
+        $('.recommend-customer').on('afterChange', function(event, slick, currentSlide) {
+            slick.options.speed = 4500;
+            slick.options.cssEase = 'linear';
+        });
 
         $(window).on('resize', function() {
             if ($(window).width() > 420 && !sl.hasClass('slick-initialized')) {
