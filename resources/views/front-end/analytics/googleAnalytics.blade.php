@@ -7,13 +7,17 @@
     gtag('config', 'G-PLZ5N3RPSC');
 </script>
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8033466435262098" crossorigin="anonymous"></script>
-
-<!-- GTM + Hotjar: load after page is interactive -->
+<!-- GTM + Hotjar + AdSense: load after page is interactive -->
 <script>
 window.addEventListener('load', function() {
     setTimeout(function() {
+        // Google AdSense
+        var adsScript = document.createElement('script');
+        adsScript.async = true;
+        adsScript.crossOrigin = 'anonymous';
+        adsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8033466435262098';
+        document.head.appendChild(adsScript);
+
         // Google Tag Manager
         (function(w,d,s,l,i){
             w[l]=w[l]||[];
