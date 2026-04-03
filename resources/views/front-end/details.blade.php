@@ -109,21 +109,41 @@
     <base href="{{ url('/') }}">
     <link href="img/favicon.ico?v=1001" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="fonts/icofont.css">
     <link href="css/style.css?v=0004" rel="stylesheet">
-    <link href="css/panel-box.css?v=0001" rel="stylesheet">
-    <link href="css/gallery.css?v=002" rel="stylesheet">
     <link href="css/detail.css?v=0001" rel="stylesheet">
-    @if ($row->type == 'full')
-    <link href="css/blog.css?v=005" rel="stylesheet">
-    @endif
     <link href="css/header-footer.css" rel="stylesheet">
-    <link href="slick/slick.min.css?v=0002" rel="stylesheet">
-    <link href="slick/slick-custom.css?v=0002" rel="stylesheet">
-    <link href="css/social.media.css" rel="stylesheet">
-    <link href="css/validate.css" rel="stylesheet">
-    <link href="css/popup-contact.css" rel="stylesheet">
-    <link href="css/card-list.css" rel="stylesheet">
+
+    <link rel="preload" href="fonts/icofont.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="fonts/icofont.css"></noscript>
+    
+    <link rel="preload" href="css/panel-box.css?v=0001" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/panel-box.css?v=0001"></noscript>
+
+    <link rel="preload" href="css/gallery.css?v=002" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/gallery.css?v=002"></noscript>
+
+    @if ($row->type == 'full')
+    <link rel="preload" href="css/blog.css?v=005" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/blog.css?v=005"></noscript>
+    @endif
+
+    <link rel="preload" href="slick/slick.min.css?v=0002" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="slick/slick.min.css?v=0002"></noscript>
+
+    <link rel="preload" href="slick/slick-custom.css?v=0002" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="slick/slick-custom.css?v=0002"></noscript>
+
+    <link rel="preload" href="css/social.media.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/social.media.css"></noscript>
+
+    <link rel="preload" href="css/validate.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/validate.css"></noscript>
+
+    <link rel="preload" href="css/popup-contact.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/popup-contact.css"></noscript>
+
+    <link rel="preload" href="css/card-list.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/card-list.css"></noscript>
 
     <style type="text/css">
         .btn-no-info {
@@ -1188,7 +1208,7 @@
         <script src="js/bootstrap.min.js" defer></script>
         <script type="text/javascript" src="js/gallery-box.js" defer></script>
         <script src="js/jquery.mCustomScrollbar.concat.min.js" defer></script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en" async></script>
+        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en" async></script>
         <script type="text/javascript" src="js/custom.js?v=0002" defer></script>
         <script type="text/javascript" src="js/fancybox.js" defer></script>
 

@@ -106,7 +106,7 @@ return [
 		'generator-construction',
 		'maintenance-for-facility-construction',
 		'conveyor-shatter-rack-construction',
-		'heavy-machinery',
+		'heavy-machinery-service',
 		'construction-machine',
 		'door-window',
 		'fuel-gas-construction',
