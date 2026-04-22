@@ -3409,7 +3409,6 @@ return [
             'dir_west'        => 'West',
             'room_corner'     => 'Corner Room',
             'room_regular'    => 'Regular Room',
-            'gallery'         => 'Gallery',
         ],
         'hero' => [
             'type_1_bed_corner' => '1 Bedroom Corner',
@@ -3420,7 +3419,7 @@ return [
             'subtitle'          => 'High Floor Unit • Ready to Move In',
             'status_rent'       => 'For rent',
             'status_ready'      => 'Ready to move in',
-            'floor'             => 'Floor :floor', 
+            'floor'             => 'On the :floorth floor', 
             'project_name'      => 'Life Ladprao Valley',
         ],
         'highlight' => [
@@ -3461,7 +3460,7 @@ return [
         'contact' => [
             'update_notice' => 'Room availability is constantly updated. Contact us via LINE or call us today.',
             'line_id'       => 'ID LINE : @309uddun',
-            'click_to_add'  => 'Click to add Line: https://lin.ee/ZcTZCL4',
+            'click_to_add'  => 'Click to add Line:',
             'media_desc'    => 'To receive the latest updated photos and videos of available rooms.',
             'tel_th'        => 'Tel: (TH) 02-080-6106',
             'tel_jp'        => 'Tel: (JP) +662-630-4848 to 51',

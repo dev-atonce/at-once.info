@@ -3654,7 +3654,6 @@ return [
             'dir_west'        => 'ตก',
             'room_corner'     => 'ห้องมุม',
             'room_regular'    => 'ห้องปกติ',
-            'gallery'         => 'Gallery',
         ],
         'hero' => [
             'type_1_bed_corner' => '1 Bedroom Corner',

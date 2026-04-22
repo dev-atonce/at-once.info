@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>@lang('phrase.condo.title') - At-Once</title>
+    <title>@lang('phrase.condo.hero.title') - At-Once</title>
 
     <base href="{{ url('/') }}">
     
@@ -131,6 +131,12 @@
             margin-right: 20px;
             border-radius: 3px;
         }
+        @if(Session('lang') === 'jp')
+        .main-heading::before {width: 108px;}
+        .main-heading { font-size: 50px; }
+        .sub-heading { font-size: 30px; }
+        .details h4 { font-size: 30px; }
+        @endif
         .sub-heading {
             font-size: 40px;
             margin-top: 30px;
@@ -273,29 +279,29 @@
         <div class="container position-relative">
             
             <!-- 1. HEADER ICONS -->
-            <div class="lang-switch">TH</div>
+            <div class="lang-switch">{{ strtoupper(Session('lang', 'th')) }}</div>
 
             <!-- 2. HERO SECTION -->
             <div class="hero-card mb-5">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="mb-3">
-                            <span class="tag-pill tag-graytop">1 Bedroom Corner</span>
-                            <span class="tag-pill tag-graytop">2 Bedroom</span>
-                            <span class="tag-pill tag-graytop">1 Bedroom</span>
-                            <span class="tag-pill tag-graytop">Studio</span>
+                            <span class="tag-pill tag-graytop">@lang('phrase.condo.hero.type_1_bed_corner')</span>
+                            <span class="tag-pill tag-graytop">@lang('phrase.condo.hero.type_2_bed')</span>
+                            <span class="tag-pill tag-graytop">@lang('phrase.condo.hero.type_1_bed')</span>
+                            <span class="tag-pill tag-graytop">@lang('phrase.condo.hero.type_studio')</span>
                         </div>
-                        <h2 class="text-bold" style="font-size: 45px; margin-bottom: 5px;">Room for Rent</h2>
-                        <p style="font-size: 18px; opacity: 0.9;">High Floor Unit • Ready to Move In</p>
+                        <h2 class="text-bold" style="font-size: 45px; margin-bottom: 5px;">@lang('phrase.condo.hero.title')</h2>
+                        <p style="font-size: 18px; opacity: 0.9;">@lang('phrase.condo.hero.subtitle')</p>
                     </div>
                 </div>
 
                 <div class="info-block d-none d-md-block">
-                    <div class="main-heading">ว่างให้เช่า</div>
-                    <div class="sub-heading">พร้อมเข้าอยู่</div>
+                    <div class="main-heading">@lang('phrase.condo.hero.status_rent')</div>
+                    <div class="sub-heading">@lang('phrase.condo.hero.status_ready')</div>
                     <div class="details">
-                        <h4>ห้องพักชั้น 37</h4>
-                        <p>Life Ladprao Valley</p>
+                        <h4>@lang('phrase.condo.hero.floor', ['floor' => '37'])</h4>
+                        <p>@lang('phrase.condo.hero.project_name')</p>
                     </div>
                 </div>
 
@@ -312,11 +318,11 @@
                     <img src="images/condo/room-highlight.jpg" class="feature-img" alt="Room Highlight" loading="lazy">
                 </div>
                 <div class="col-lg-5 pl-lg-5">
-                    <h3 class="title-medium mb-4">Highlight</h3>
-                    <p>ห้องพักให้เช่าแต่งครบ พร้อมเข้าอยู่ทันที<br>มีบริการหลังการขาย และรองรับภาษาญี่ปุ่น</p>
+                    <h3 class="title-medium mb-4">@lang('phrase.condo.highlight.title')</h3>
+                    <p>@lang('phrase.condo.highlight.desc_1')<br>@lang('phrase.condo.highlight.desc_2')</p>
                     <div class="d-flex mt-4">
-                        <a href="#" class="btn-custom-outline mr-3">สอบถามเพิ่มเติม</a>
-                        <a href="#" class="btn-custom-gradient">นัดดูห้อง</a>
+                        <a href="#" class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
+                        <a href="#" class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
                     </div>
                 </div>
             </div>
@@ -324,33 +330,33 @@
             <!-- 4. LOCATION & FACILITIES -->
             <div class="row align-items-center mb-5 py-4">
                 <div class="col-lg-6 pr-lg-5 mb-4 mb-lg-0">
-                    <h3 class="title-medium mb-4">Location & Facilities</h3>
+                    <h3 class="title-medium mb-4">@lang('phrase.condo.location.title')</h3>
                     
                     <div class="d-flex mb-3">
-                        <div class="mr-3 mt-1">การเดินทาง :</div>
+                        <div class="mr-3 mt-1 text-nowrap flex-shrink-0">@lang('phrase.condo.location.transport')</div>
                         <div>
-                            <span class="tag-pill tag-beige">เดิน 6 นาทีถึง BTS ห้าแยกลาดพร้าว</span>
-                            <span class="tag-pill tag-beige">เดิน 12 นาทีถึง MRT พหลโยธิน</span>
+                            <span class="tag-pill tag-beige">@lang('phrase.condo.location.bts_distance')</span>
+                            <span class="tag-pill tag-beige">@lang('phrase.condo.location.mrt_distance')</span>
                         </div>
                     </div>
                     
                     <div class="d-flex mb-3">
-                        <div class="mr-3 mt-1">สถานที่ใกล้เคียง :</div>
+                        <div class="mr-3 mt-1 text-nowrap flex-shrink-0">@lang('phrase.condo.location.nearby')</div>
                         <div>
-                            <span class="tag-pill tag-gray">Central Plaza Ladprao</span>
-                            <span class="tag-pill tag-gray">Union Mall</span>
-                            <span class="tag-pill tag-gray">Lotus's</span>
+                            <span class="tag-pill tag-gray">@lang('phrase.condo.location.place_central')</span>
+                            <span class="tag-pill tag-gray">@lang('phrase.condo.location.place_union')</span>
+                            <span class="tag-pill tag-gray">@lang('phrase.condo.location.place_lotus')</span>
                         </div>
                     </div>
 
                     <div class="d-flex">
-                        <div class="mr-3 mt-1" style="min-width: 75px;">ส่วนกลาง :</div>
+                        <div class="mr-3 mt-1 text-nowrap flex-shrink-0">@lang('phrase.condo.facility.title')</div>
                         <div>
-                            <span class="tag-pill tag-orange">สระว่ายน้ำ 3 สระ</span>
-                            <span class="tag-pill tag-orange">ฟิตเนส & ซาวน่า</span>
-                            <span class="tag-pill tag-orange">Co-working space & Meeting room</span>
-                            <span class="tag-pill tag-orange">ทิ้งขยะได้ 24 ชม.</span>
-                            <span class="tag-pill tag-orange">ระบบรักษาความปลอดภัย 24 ชม.</span>
+                            <span class="tag-pill tag-orange">@lang('phrase.condo.facility.pool')</span>
+                            <span class="tag-pill tag-orange">@lang('phrase.condo.facility.fitness')</span>
+                            <span class="tag-pill tag-orange">@lang('phrase.condo.facility.coworking')</span>
+                            <span class="tag-pill tag-orange">@lang('phrase.condo.facility.trash')</span>
+                            <span class="tag-pill tag-orange">@lang('phrase.condo.facility.security')</span>
                         </div>
                     </div>
                 </div>
@@ -363,7 +369,7 @@
             <!-- 5. ROOM TYPES & GALLERY -->
             <div class="row mb-5">
                 <div class="col-12 text-center mb-5">
-                    <h3 class="title-medium">Room Types & Gallery</h3>
+                    <h3 class="title-medium">@lang('phrase.condo.room_types.title')</h3>
                 </div>
                 
                 <!-- Studio -->
@@ -371,26 +377,26 @@
                     <div class="room-card-wrapper mx-auto ml-lg-0 mr-lg-auto w-100">
                         <div class="room-card">
                             <div class="room-card-header">
-                                <h4>Studio</h4>
+                                <h4>@lang('phrase.condo.room_types.studio_title')</h4>
                                 <span class="gallery-badge">Gallery</span>
                             </div>
                             <div class="room-card-img-wrapper">
                                 <img src="images/condo/studio.jpg" alt="Studio" loading="lazy">
                             </div>
                             <div class="room-card-info">
-                                Size: 28 - 29 Sq.M.<br>
-                                Price: เริ่มต้น 18,000 THB/เดือน
+                                @lang('phrase.condo.room_types.studio_size')<br>
+                                @lang('phrase.condo.room_types.studio_price')
                             </div>
                         </div>
                         <div class="room-tags-wrapper">
                             <div class="d-flex flex-wrap mb-2">
-                                <span class="tag-pill tag-orange">ห้องปกติ</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.room_regular')</span>
                             </div>
                             <div class="d-flex flex-wrap">
-                                <span class="tag-pill tag-orange">เหนือ</span>
-                                <span class="tag-pill tag-orange">ใต้</span>
-                                <span class="tag-pill tag-orange">ออก</span>
-                                <span class="tag-pill tag-orange">ตก</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_north')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_south')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_east')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_west')</span>
                             </div>
                         </div>
                     </div>
@@ -401,27 +407,27 @@
                     <div class="room-card-wrapper mx-auto w-100">
                         <div class="room-card">
                             <div class="room-card-header">
-                                <h4>1 Bedroom</h4>
+                                <h4>@lang('phrase.condo.room_types.bed_1_title')</h4>
                                 <span class="gallery-badge">Gallery</span>
                             </div>
                             <div class="room-card-img-wrapper">
                                 <img src="images/condo/1bed.jpg" alt="1 Bedroom" loading="lazy">
                             </div>
                             <div class="room-card-info">
-                                Size: 34 - 37 Sq.M.<br>
-                                Price: เริ่มต้น 23,000 THB/เดือน
+                                @lang('phrase.condo.room_types.bed_1_size')<br>
+                                @lang('phrase.condo.room_types.bed_1_price')
                             </div>
                         </div>
                         <div class="room-tags-wrapper">
                             <div class="d-flex flex-wrap mb-2">
-                                <span class="tag-pill tag-orange">ห้องมุม</span>
-                                <span class="tag-pill tag-orange">ห้องปกติ</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.room_corner')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.room_regular')</span>
                             </div>
                             <div class="d-flex flex-wrap">
-                                <span class="tag-pill tag-orange">เหนือ</span>
-                                <span class="tag-pill tag-orange">ใต้</span>
-                                <span class="tag-pill tag-orange">ออก</span>
-                                <span class="tag-pill tag-orange">ตก</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_north')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_south')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_east')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_west')</span>
                             </div>
                         </div>
                     </div>
@@ -432,26 +438,26 @@
                     <div class="room-card-wrapper mx-auto mr-lg-0 ml-lg-auto w-100">
                         <div class="room-card">
                             <div class="room-card-header">
-                                <h4>2 Bedroom</h4>
+                                <h4>@lang('phrase.condo.room_types.bed_2_title')</h4>
                                 <span class="gallery-badge">Gallery</span>
                             </div>
                             <div class="room-card-img-wrapper">
                                 <img src="images/condo/2bed.jpg" alt="2 Bedroom" loading="lazy">
                             </div>
                             <div class="room-card-info">
-                                Size: 47 - 66 Sq.M.<br>
-                                Price: เริ่มต้น 35,000 THB/เดือน
+                                @lang('phrase.condo.room_types.bed_2_size')<br>
+                                @lang('phrase.condo.room_types.bed_2_price')
                             </div>
                         </div>
                         <div class="room-tags-wrapper">
                             <div class="d-flex flex-wrap mb-2">
-                                <span class="tag-pill tag-orange">ห้องปกติ</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.room_regular')</span>
                             </div>
                             <div class="d-flex flex-wrap">
-                                <span class="tag-pill tag-orange">เหนือ</span>
-                                <span class="tag-pill tag-orange">ใต้</span>
-                                <span class="tag-pill tag-orange">ออก</span>
-                                <span class="tag-pill tag-orange">ตก</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_north')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_south')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_east')</span>
+                                <span class="tag-pill tag-orange">@lang('phrase.condo.common.dir_west')</span>
                             </div>
                         </div>
                     </div>
@@ -467,8 +473,8 @@
                 
                 <div class="col-md-5 text-md-left text-center mb-4 mb-md-0">
                     <div class="footer-text-main">
-                        ห้องมีการอัปเดตเข้า-ออกตลอดเวลา ทัก LINE หรือโทรหาเราวันนี้<br>
-                        เพื่อรับรูปภาพและวิดีโอห้องว่างอัปเดตล่าสุด
+                        @lang('phrase.condo.contact.update_notice')<br>
+                        @lang('phrase.condo.contact.media_desc')
                     </div>
                 </div>
                 
@@ -480,15 +486,15 @@
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end">
                         
                         <div class="mb-4 mb-lg-0">
-                            <p class="mb-1 footer-contact-text">ID LINE : @309uddun</p>
-                            <p class="mb-1 footer-contact-text">คลิกเพื่อแอดไลน์: <a href="https://lin.ee/ZcTZCL4" class="text-white text-decoration-underline">https://lin.ee/ZcTZCL4</a></p>
-                            <p class="mb-1 footer-contact-text">Tel: (TH) 02-080-6106</p>
-                            <p class="mb-0 footer-contact-text">Tel: (JP)+662-630-4848 ถึง 51</p>
+                            <p class="mb-1 footer-contact-text">@lang('phrase.condo.contact.line_id')</p>
+                            <p class="mb-1 footer-contact-text">@lang('phrase.condo.contact.click_to_add') <a href="https://lin.ee/ZcTZCL4" class="text-white text-decoration-underline">https://lin.ee/ZcTZCL4</a></p>
+                            <p class="mb-1 footer-contact-text">@lang('phrase.condo.contact.tel_th')</p>
+                            <p class="mb-0 footer-contact-text">@lang('phrase.condo.contact.tel_jp')</p>
                         </div>
                         
                         <div class="d-flex justify-content-center justify-content-lg-end pb-lg-1">
-                            <a href="#" class="btn-custom-outline mr-3">สอบถามเพิ่มเติม</a>
-                            <a href="#" class="btn-custom-gradient">นัดดูห้อง</a>
+                            <a href="#" class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
+                            <a href="#" class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
                         </div>
                         
                     </div>
