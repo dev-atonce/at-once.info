@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ Session('lang') ?? 'th' }}">
+<html lang="{{ Session('lang') }}">
 <head>
     @include("$prefix.analytics.googleAnalytics")
     <meta charset="utf-8">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/style.css?v=1">
     
     <style>
+        /* --- 1. CORE & GLOBAL --- */
         :root {
             --bg-main: #F3ECE6;
             --text-dark: #382F27;
@@ -32,7 +33,7 @@
 
         body.main_page {
             background-color: var(--bg-main);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Conv_SukhumvitSet-Light', sans-serif;
             color: var(--text-dark);
         }
 
@@ -42,10 +43,12 @@
             overflow-x: hidden;
         }
 
+        /* --- 2. TYPOGRAPHY SYSTEM --- */
         .title-large { font-weight: 700; font-size: clamp(40px, 5vw, 74px); color: var(--text-brown); line-height: 1.1; }
         .title-medium { font-weight: 200; font-size: clamp(28px, 3vw, 47px); }
         .text-bold { font-weight: 600; color: var(--text-brown); }
 
+        /* --- 3. UI COMPONENTS (Tags & Buttons) --- */
         .tag-pill {
             display: inline-block;
             padding: 4px 16px;
@@ -55,7 +58,8 @@
             margin-bottom: 8px;
             color: var(--text-dark);
         }
-        .tag-gray { background: var(--tag-gray); border-radius: 8px; }
+        .tag-graytop { background: var(--tag-gray); border-radius: 8px; }
+        .tag-gray { background: var(--tag-gray); }
         .tag-beige { background: var(--tag-beige); }
         .tag-orange { background: var(--tag-orange-light); }
 
@@ -63,7 +67,7 @@
             border: 1px solid var(--btn-outline);
             background: #E4CDB9;
             border-radius: 16px;
-            padding: 8px 20px;
+            padding: 1px 20px;
             color: var(--text-dark);
             text-decoration: none;
             transition: 0.3s;
@@ -74,11 +78,12 @@
             background: linear-gradient(62.54deg, #F3ECE6 17.1%, #BA783F 301.36%);
             border: 1px solid #544B43;
             border-radius: 17px;
-            padding: 8px 20px;
+            padding: 1px 20px;
             color: var(--text-dark);
             text-decoration: none;
         }
 
+        /* --- 4. HERO SECTION --- */
         .hero-card {
             background-image: url('images/condo/hero_bg.svg');
             background-size: 100% 100%;
@@ -99,7 +104,7 @@
             transform: translateX(-50%);
             z-index: 1;
         }
-        .thai-info-block {
+        .info-block {
             position: absolute;
             top: 190px;
             right: 40px;
@@ -107,32 +112,47 @@
             z-index: 2;
             color: var(--text-dark);
         }
-        .thai-main-heading {
+        .main-heading {
+            font-family: 'Conv_SukhumvitSet-Bold', sans-serif;
             font-weight: 700;
-            font-size: clamp(30px, 4vw, 55px);
+            font-size: 74px;
             margin-bottom: 0;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
-        .thai-sub-heading {
-            font-size: 24px;
-            margin-top: -5px;
+        .main-heading::before {
+            content: "";
+            display: inline-block;
+            width: 126px;
+            height: 6px;
+            background-color: currentColor;
+            margin-right: 20px;
+            border-radius: 3px;
+        }
+        .sub-heading {
+            font-size: 40px;
+            margin-top: 30px;
             opacity: 0.8;
+            font-family: 'Conv_SukhumvitSet-Light', sans-serif; 
         }
-        .thai-details {
+        .details {
             margin-top: 20px;
             text-align: left;
         }
-        .thai-details h4 {
-            font-weight: 700;
-            font-size: 28px;
-            margin-bottom: 0px;
+        .details h4 {
+            font-family: 'Conv_SukhumvitSet-Bold', sans-serif;
+            font-size: 40px;
             color: #382F27;
+            margin-top: 10px;
         }
-        .thai-details p {
-            font-size: clamp(30px, 4vw, 44px);
-            font-weight: 200;
-            line-height: 1.1;
+        .details p {
+            font-family: 'Conv_SukhumvitSet-Light', sans-serif;
+            font-size: 47px;
             color: #382F27;
+            margin-top: 20px;
+            opacity: 0.8;
         }
         .lang-switch {
             position: absolute;
@@ -150,6 +170,7 @@
             font-size: 24px;
         }
 
+        /* --- 5. IMAGE WRAPPERS --- */
         .feature-img {
             width: 100%;
             border-radius: 24px;
@@ -158,10 +179,10 @@
             min-height: 400px;
         }
 
+        /* --- 6. ROOM CARD COMPONENT --- */
         .room-card-wrapper {
             max-width: 336px;
         }
-        
         .room-card {
             background: var(--bg-card-alt);
             border-radius: 45px 45px 45px 20px;
@@ -172,24 +193,18 @@
             display: flex;
             flex-direction: column;
         }
-        
-        .room-card:hover {
-            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08);
-        }
-
+        .room-card:hover { box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08); }
         .room-card-header {
             text-align: right;
             padding-right: 30px;
             margin-bottom: 15px;
         }
-
         .room-card-header h4 {
             font-weight: 700;
             font-size: 22px;
             margin-bottom: 5px;
             color: var(--text-dark);
         }
-
         .gallery-badge {
             display: inline-block;
             background: #5F564E;
@@ -202,44 +217,54 @@
             top: 60px;
             z-index: 2;
         }
-
         .room-card-img-wrapper {
             width: 115%;
             margin-bottom: 20px;
         }
-
         .room-card-img-wrapper img {
             width: 100%;
             height: 275px;
             object-fit: cover;
             border-radius: 31px;
         }
-
         .room-card-info {
             padding-right: 30px;
             font-size: 15px;
             color: var(--text-dark);
             line-height: 1.5;
         }
-
         .room-tags-wrapper {
             padding-top: 15px;
             padding-left: 10px;
         }
 
-        /* Footer Action */
+        /* --- 7. FOOTER ACTION --- */
         .footer-action {
             background: var(--footer-bg);
             padding: 50px 0;
             color: white;
             margin-top: 60px;
         }
+        .footer-action .container {
+            max-width: 1600px !important;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
         .footer-line {
-            width: 4px;
+            width: 6px;
             height: 147px;
-            background: var(--text-dark);
+            background-color: var(--text-dark);
+            border-radius: 3px;
             margin: 0 auto;
         }
+        .footer-text-main {
+            line-height: 1.6;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 0;
+            width: 100%;
+        }
+        .footer-contact-text { font-size: 16px; }
     </style>
 </head>
 <body class="main_page">
@@ -247,26 +272,28 @@
     <section class="page condo-landing-page">
         <div class="container position-relative">
             
+            <!-- 1. HEADER ICONS -->
             <div class="lang-switch">TH</div>
 
+            <!-- 2. HERO SECTION -->
             <div class="hero-card mb-5">
                 <div class="row">
                     <div class="col-md-7">
                         <div class="mb-3">
-                            <span class="tag-pill tag-gray">1 Bedroom Corner</span>
-                            <span class="tag-pill tag-gray">2 Bedroom</span>
-                            <span class="tag-pill tag-gray">1 Bedroom</span>
-                            <span class="tag-pill tag-gray">Studio</span>
+                            <span class="tag-pill tag-graytop">1 Bedroom Corner</span>
+                            <span class="tag-pill tag-graytop">2 Bedroom</span>
+                            <span class="tag-pill tag-graytop">1 Bedroom</span>
+                            <span class="tag-pill tag-graytop">Studio</span>
                         </div>
                         <h2 class="text-bold" style="font-size: 45px; margin-bottom: 5px;">Room for Rent</h2>
                         <p style="font-size: 18px; opacity: 0.9;">High Floor Unit • Ready to Move In</p>
                     </div>
                 </div>
 
-                <div class="thai-info-block d-none d-md-block">
-                    <div class="thai-main-heading">—— ว่างให้เช่า</div>
-                    <div class="thai-sub-heading">พร้อมเข้าอยู่</div>
-                    <div class="thai-details">
+                <div class="info-block d-none d-md-block">
+                    <div class="main-heading">ว่างให้เช่า</div>
+                    <div class="sub-heading">พร้อมเข้าอยู่</div>
+                    <div class="details">
                         <h4>ห้องพักชั้น 37</h4>
                         <p>Life Ladprao Valley</p>
                     </div>
@@ -279,6 +306,7 @@
                 </div>
             </div>
 
+            <!-- 3. HIGHLIGHT SECTION -->
             <div class="row align-items-center mb-5">
                 <div class="col-lg-7 mb-4 mb-lg-0">
                     <img src="images/condo/room-highlight.jpg" class="feature-img" alt="Room Highlight" loading="lazy">
@@ -293,12 +321,13 @@
                 </div>
             </div>
 
+            <!-- 4. LOCATION & FACILITIES -->
             <div class="row align-items-center mb-5 py-4">
                 <div class="col-lg-6 pr-lg-5 mb-4 mb-lg-0">
                     <h3 class="title-medium mb-4">Location & Facilities</h3>
                     
                     <div class="d-flex mb-3">
-                        <strong class="mr-3 mt-1" style="min-width: 120px;">การเดินทาง :</strong>
+                        <div class="mr-3 mt-1">การเดินทาง :</div>
                         <div>
                             <span class="tag-pill tag-beige">เดิน 6 นาทีถึง BTS ห้าแยกลาดพร้าว</span>
                             <span class="tag-pill tag-beige">เดิน 12 นาทีถึง MRT พหลโยธิน</span>
@@ -306,7 +335,7 @@
                     </div>
                     
                     <div class="d-flex mb-3">
-                        <strong class="mr-3 mt-1" style="min-width: 120px;">สถานที่ใกล้เคียง :</strong>
+                        <div class="mr-3 mt-1">สถานที่ใกล้เคียง :</div>
                         <div>
                             <span class="tag-pill tag-gray">Central Plaza Ladprao</span>
                             <span class="tag-pill tag-gray">Union Mall</span>
@@ -315,7 +344,7 @@
                     </div>
 
                     <div class="d-flex">
-                        <strong class="mr-3 mt-1" style="min-width: 120px;">ส่วนกลาง :</strong>
+                        <div class="mr-3 mt-1" style="min-width: 75px;">ส่วนกลาง :</div>
                         <div>
                             <span class="tag-pill tag-orange">สระว่ายน้ำ 3 สระ</span>
                             <span class="tag-pill tag-orange">ฟิตเนส & ซาวน่า</span>
@@ -331,11 +360,13 @@
                 </div>
             </div>
 
+            <!-- 5. ROOM TYPES & GALLERY -->
             <div class="row mb-5">
                 <div class="col-12 text-center mb-5">
                     <h3 class="title-medium">Room Types & Gallery</h3>
                 </div>
                 
+                <!-- Studio -->
                 <div class="col-lg-4 col-md-6 mb-5 d-flex">
                     <div class="room-card-wrapper mx-auto ml-lg-0 mr-lg-auto w-100">
                         <div class="room-card">
@@ -347,8 +378,8 @@
                                 <img src="images/condo/studio.jpg" alt="Studio" loading="lazy">
                             </div>
                             <div class="room-card-info">
-                                Size: 26 - 29 Sq.M.<br>
-                                Price: เริ่มต้น 16,000 THB/เดือน
+                                Size: 28 - 29 Sq.M.<br>
+                                Price: เริ่มต้น 18,000 THB/เดือน
                             </div>
                         </div>
                         <div class="room-tags-wrapper">
@@ -365,6 +396,7 @@
                     </div>
                 </div>
 
+                <!-- 1 Bedroom -->
                 <div class="col-lg-4 col-md-6 mb-5 d-flex">
                     <div class="room-card-wrapper mx-auto w-100">
                         <div class="room-card">
@@ -395,6 +427,7 @@
                     </div>
                 </div>
 
+                <!-- 2 Bedroom -->
                 <div class="col-lg-4 col-md-6 mb-5 mx-auto d-flex">
                     <div class="room-card-wrapper mx-auto mr-lg-0 ml-lg-auto w-100">
                         <div class="room-card">
@@ -406,13 +439,13 @@
                                 <img src="images/condo/2bed.jpg" alt="2 Bedroom" loading="lazy">
                             </div>
                             <div class="room-card-info">
-                                Size: 47 - 50 Sq.M.<br>
+                                Size: 47 - 66 Sq.M.<br>
                                 Price: เริ่มต้น 35,000 THB/เดือน
                             </div>
                         </div>
                         <div class="room-tags-wrapper">
                             <div class="d-flex flex-wrap mb-2">
-                                <span class="tag-pill tag-orange">ห้องมุม</span>
+                                <span class="tag-pill tag-orange">ห้องปกติ</span>
                             </div>
                             <div class="d-flex flex-wrap">
                                 <span class="tag-pill tag-orange">เหนือ</span>
@@ -427,29 +460,30 @@
         </div>
     </section>
 
+    <!-- 6. FOOTER ACTION -->
     <section class="footer-action">
         <div class="container">
             <div class="row align-items-center">
                 
                 <div class="col-md-5 text-md-left text-center mb-4 mb-md-0">
-                    <h4 style="line-height: 1.6; font-size: clamp(20px, 2vw, 24px); font-weight: 400; margin-bottom: 0;">
+                    <div class="footer-text-main">
                         ห้องมีการอัปเดตเข้า-ออกตลอดเวลา ทัก LINE หรือโทรหาเราวันนี้<br>
                         เพื่อรับรูปภาพและวิดีโอห้องว่างอัปเดตล่าสุด
-                    </h4>
+                    </div>
                 </div>
                 
                 <div class="col-md-1 d-none d-md-flex justify-content-center">
-                    <div class="footer-line" style="background-color: #382F27; width: 6px; border-radius: 3px;"></div>
+                    <div class="footer-line"></div>
                 </div>
                 
                 <div class="col-md-6 text-center text-md-left">
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end">
                         
                         <div class="mb-4 mb-lg-0">
-                            <p class="mb-1" style="font-size: 16px;">ID LINE : @309uddun</p>
-                            <p class="mb-1" style="font-size: 16px;">คลิกเพื่อแอดไลน์: <a href="https://lin.ee/ZcTZCL4" class="text-white text-decoration-underline">https://lin.ee/ZcTZCL4</a></p>
-                            <p class="mb-1" style="font-size: 16px;">Tel: (TH) 02-080-6106</p>
-                            <p class="mb-0" style="font-size: 16px;">Tel: (JP)+662-630-4848 ถึง 51</p>
+                            <p class="mb-1 footer-contact-text">ID LINE : @309uddun</p>
+                            <p class="mb-1 footer-contact-text">คลิกเพื่อแอดไลน์: <a href="https://lin.ee/ZcTZCL4" class="text-white text-decoration-underline">https://lin.ee/ZcTZCL4</a></p>
+                            <p class="mb-1 footer-contact-text">Tel: (TH) 02-080-6106</p>
+                            <p class="mb-0 footer-contact-text">Tel: (JP)+662-630-4848 ถึง 51</p>
                         </div>
                         
                         <div class="d-flex justify-content-center justify-content-lg-end pb-lg-1">
