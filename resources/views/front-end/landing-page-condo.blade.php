@@ -160,23 +160,72 @@
             margin-top: 20px;
             opacity: 0.8;
         }
-        .lang-switch {
+        /* --- 5. LANG SWITCHER --- */
+        .lang-switcher {
             position: absolute;
             top: 20px;
             right: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            z-index: 10;
             background: #6D3C11;
+            border-radius: 30px 8px 30px 30px;
+            overflow: hidden;
+        }
+        .lang-options {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            overflow: hidden;
+            max-width: 0;
+            opacity: 0;
+            white-space: nowrap;
+            transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.3s ease;
+            background: transparent;
+        }
+        .lang-options.open {
+            max-width: 110px;
+            opacity: 1;
+        }
+        .lang-opt {
+            color: #ECDED2;
+            width: 55px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 400;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
+            opacity: 0.7;
+        }
+        .lang-opt:hover { opacity: 1; color: #ECDED2; text-decoration: none; background: rgba(255,255,255,0.1); }
+        .lang-opt.active { opacity: 1; font-weight: 600; }
+        .lang-current {
+            background: transparent;
             color: #ECDED2;
             width: 60px;
             height: 60px;
-            border-radius: 30px 8px 30px 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 400;
             font-size: 24px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            flex-shrink: 0;
+            user-select: none;
         }
-
-        /* --- 5. IMAGE WRAPPERS --- */
+        .lang-current:focus, .lang-current:active, .lang-opt:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+        /* --- 6. IMAGE WRAPPERS --- */
         .feature-img {
             width: 100%;
             border-radius: 24px;
@@ -185,7 +234,7 @@
             min-height: 400px;
         }
 
-        /* --- 6. ROOM CARD COMPONENT --- */
+        /* --- 7. ROOM CARD COMPONENT --- */
         .room-card-wrapper {
             max-width: 336px;
         }
@@ -244,7 +293,7 @@
             padding-left: 10px;
         }
 
-        /* --- 7. FOOTER ACTION --- */
+        /* --- 8. FOOTER ACTION --- */
         .footer-action {
             background: var(--footer-bg);
             padding: 50px 0;
@@ -279,7 +328,17 @@
         <div class="container position-relative">
             
             <!-- 1. HEADER ICONS -->
-            <div class="lang-switch">{{ strtoupper(Session('lang', 'th')) }}</div>
+            @php $currentLang = Session('lang', 'th'); $langs = ['jp', 'en', 'th']; @endphp
+            <div class="lang-switcher" id="langSwitcher">
+                <div class="lang-options" id="langOptions">
+                    @foreach($langs as $l)
+                        @if($l !== $currentLang)
+                            <a href="{{ url('/' . $l . '/condo') }}" class="lang-opt">{{ strtoupper($l) }}</a>
+                        @endif
+                    @endforeach
+                </div>
+                <button class="lang-current" id="langCurrentBtn" onclick="toggleLangSwitcher(event)">{{ strtoupper($currentLang) }}</button>
+            </div>
 
             <!-- 2. HERO SECTION -->
             <div class="hero-card mb-5">
@@ -508,5 +567,27 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/custom.js?v=0008"></script>
+    <script>
+        function toggleLangSwitcher(e) {
+            e.stopPropagation();
+            var switcher = document.getElementById('langSwitcher');
+            var options  = document.getElementById('langOptions');
+            var isOpen   = switcher.classList.contains('open');
+            if (isOpen) {
+                switcher.classList.remove('open');
+                options.classList.remove('open');
+            } else {
+                switcher.classList.add('open');
+                options.classList.add('open');
+            }
+        }
+        document.addEventListener('click', function(e) {
+            var switcher = document.getElementById('langSwitcher');
+            if (switcher && !switcher.contains(e.target)) {
+                switcher.classList.remove('open');
+                document.getElementById('langOptions').classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
