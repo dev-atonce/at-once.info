@@ -452,7 +452,7 @@
                     <h3 class="title-medium mb-4">@lang('phrase.condo.location.title')</h3>
                     
                     <div class="d-flex mb-3">
-                        <div class="mr-3 mt-1 text-nowrap flex-shrink-0">@lang('phrase.condo.location.transport')</div>
+                        <div class="mr-3 mt-1 text-nowrap shrink-0">@lang('phrase.condo.location.transport')</div>
                         <div>
                             <span class="tag-pill tag-beige">@lang('phrase.condo.location.bts_distance')</span>
                             <span class="tag-pill tag-beige">@lang('phrase.condo.location.mrt_distance')</span>
@@ -460,7 +460,7 @@
                     </div>
                     
                     <div class="d-flex mb-3">
-                        <div class="mr-3 mt-1 text-nowrap flex-shrink-0">@lang('phrase.condo.location.nearby')</div>
+                        <div class="mr-3 mt-1 text-nowrap shrink-0">@lang('phrase.condo.location.nearby')</div>
                         <div>
                             <span class="tag-pill tag-gray">@lang('phrase.condo.location.place_central')</span>
                             <span class="tag-pill tag-gray">@lang('phrase.condo.location.place_union')</span>
@@ -469,7 +469,7 @@
                     </div>
 
                     <div class="d-flex">
-                        <div class="mr-3 mt-1 text-nowrap flex-shrink-0">@lang('phrase.condo.facility.title')</div>
+                        <div class="mr-3 mt-1 text-nowrap shrink-0">@lang('phrase.condo.facility.title')</div>
                         <div>
                             <span class="tag-pill tag-orange">@lang('phrase.condo.facility.pool')</span>
                             <span class="tag-pill tag-orange">@lang('phrase.condo.facility.fitness')</span>
@@ -626,8 +626,8 @@
                     <div class="inline-contact-wrapper text-left">
                         
                         <div class="inline-contact-header flex-column flex-lg-row">
-                            <h4 class="inline-contact-title">ติดต่อเรา</h4>
-                            <p class="inline-contact-subtitle">*กรอกรายละเอียดด้านล่างจากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมง</p>
+                            <h4 class="inline-contact-title">@lang('phrase.condo.inline_form.contact_us')</h4>
+                            <p class="inline-contact-subtitle">@lang('phrase.condo.inline_form.instruction')</p>
                         </div>
 
                         <form id="inlineBusinessCard" onsubmit="return false;">
@@ -640,17 +640,17 @@
                             <div class="form-row mt-1">
                                 <div class="col-md-4 mb-3 mb-md-0">
                                     <div class="inline-input-group">
-                                        <input type="text" name="name" class="form-control" placeholder="ชื่อ" autocomplete="off">
+                                        <input type="text" name="name" class="form-control" placeholder="@lang('phrase.condo.inline_form.name')" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3 mb-md-0">
                                     <div class="inline-input-group">
-                                        <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทร" autocomplete="off">
+                                        <input type="text" name="telephone" class="form-control" placeholder="@lang('phrase.condo.inline_form.telephone')" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3 mb-md-0">
                                     <div class="inline-input-group">
-                                        <input type="email" name="email" class="form-control" placeholder="อีเมล" autocomplete="off">
+                                        <input type="email" name="email" class="form-control" placeholder="@lang('phrase.condo.inline_form.email')" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -661,7 +661,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <button type="submit" class="btn-custom-gradient w-100 btn-inline-submit" style="padding: 14px 20px; font-size: 18px; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-                                        <i class="fas fa-paper-plane mr-2"></i> ส่งข้อมูลติดต่อ
+                                        <i class="fas fa-paper-plane mr-2"></i> @lang('phrase.condo.inline_form.send')
                                     </button>
                                 </div>
                             </div>
@@ -827,7 +827,6 @@
                         messageResponse(code, res.data.message);
                         popup.find('input[name="name"]').val('');
                         popup.find('input[name="telephone"]').val('');
-                        popup.find('input[name="companyName"]').val('');
                         popup.find('input[name="email"]').val('');
                         popup.find('input').removeClass('valid');
                         $('.btn-confirm').attr("disabled", false);
@@ -842,7 +841,6 @@
                     rules: {
                         name: { required: true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+' },
                         telephone: { required: true, letteronly:'[0-9]+' },
-                        companyName: { required: true },
                         email: { required: true, email: true }
                     },
                     messages: {
@@ -854,9 +852,6 @@
                             required: '{{ __('phrase.contact.validate.telephone') }}',
                             minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
                             letteronly: 'กรุณากรอกตัวเลข'
-                        },
-                        companyName: {
-                            required: '{{ __('phrase.contact.validate.company') }}'
                         },
                         email: {
                             required: 'กรุณากรอกอีเมล',
@@ -942,22 +937,22 @@
                 errorElement: "span",
                 rules: {
                     name:{ required:true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+'},
-                    telephone:{ required:true, minlength: 9, letteronly:'[0-9]+'},
+                    telephone:{ required:true, letteronly:'[0-9]+'},
                     email:{ required: true, email: true }
                 },
                 messages: {
                     name: {
-                        required: 'กรุณากรอกชื่อ',
-                        letteronly: 'กรุณากรอกตัวอักษร'
+                        required: '{{ __('phrase.condo.validate.name_required') }}',
+                        letteronly: '{{ __('phrase.condo.validate.name_letteronly') }}'
                     },
                     telephone: {
-                        required: 'กรุณากรอกเบอร์โทรศัพท์',
-                        minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
-                        letteronly: 'กรุณากรอกตัวเลข'
+                        required: '{{ __('phrase.condo.validate.tel_required') }}',
+                        minlength: '{{ __('phrase.condo.validate.tel_minlength') }}',
+                        letteronly: '{{ __('phrase.condo.validate.tel_letteronly') }}'
                     },
                     email: {
-                        required: 'กรุณากรอกอีเมล',
-                        email: 'กรุณากรอกอีเมล์ให้ถูกต้อง'
+                        required: '{{ __('phrase.condo.validate.email_required') }}',
+                        email: '{{ __('phrase.condo.validate.email_email') }}'
                     }
                 },
                 submitHandler: function (form) {

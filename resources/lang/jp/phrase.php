@@ -725,5 +725,23 @@ return [
             'tel_th'        => 'Tel: (TH) 02-080-6106',
             'tel_jp'        => 'Tel: (JP) +662-630-4848 ~ 51',
         ],
+        'inline_form' => [
+            'contact_us'  => 'お問い合わせ',
+            'instruction' => '*以下の詳細をご記入ください。当社のスタッフが24時間以内にご連絡いたします。',
+            'name'       => 'お名前',
+            'telephone'  => '電話番号',
+            'email'      => 'メールアドレス',
+            'send'       => '連絡先情報を送信する',
+        ],
+        'validate' => [
+            'name_required'   => 'お名前を入力してください',
+            'name_letteronly' => '文字のみを入力してください',
+            'tel_required'    => '電話番号を入力してください',
+            'tel_minlength'   => '有効な電話番号を入力してください',
+            'tel_letteronly'  => '数字のみを入力してください',
+            'email_required'  => 'メールアドレスを入力してください',
+            'email_email'     => '有効なメール形式を入力してください',
+            'company_required'=> '会社名を入力してください',
+        ],
     ],
 ];
