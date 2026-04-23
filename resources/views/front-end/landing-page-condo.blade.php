@@ -435,7 +435,7 @@
                 <div class="lang-options" id="langOptions">
                     @foreach($langs as $l)
                         @if($l !== $currentLang)
-                            <a href="{{ url('/' . $l . '/condo') }}" class="lang-opt">{{ strtoupper($l) }}</a>
+                            <a href="{{ url('/' . $l . '/rent-condo-life-ladprao-valley') }}" class="lang-opt">{{ strtoupper($l) }}</a>
                         @endif
                     @endforeach
                 </div>

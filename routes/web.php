@@ -341,7 +341,7 @@ Route::middleware(['Language'])->group(function()use($category,$lang)
 
             Route::get('/our-business',[HomeCtrl::class,'ourBusiness']);
             Route::get('/landing-page',[HomeCtrl::class,'landingPage']);
-            Route::get('/condo', function () {
+            Route::get('/rent-condo-life-ladprao-valley', function () {
                 return view('front-end.landing-page-condo', [
                     'prefix' => 'front-end'
                 ]);
