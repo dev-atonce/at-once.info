@@ -340,6 +340,46 @@
             width: 100%;
         }
         .footer-contact-text { font-size: 16px; }
+
+        /* --- 9. INLINE CONTACT FORM --- */
+        .inline-contact-wrapper {
+            width: 100%;
+        }
+        .inline-contact-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: #FFFFFF;
+        }
+        .inline-contact-title {
+            font-weight: 500;
+            font-size: 24px;
+            margin: 0;
+        }
+        .inline-contact-subtitle {
+            font-weight: 400;
+            font-size: 16px;
+            margin: 0;
+            opacity: 0.9;
+        }
+        .inline-input-group input {
+            background-color: var(--bg-main);
+            border: none;
+            border-radius: 10px;
+            height: 50px;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: var(--text-dark);
+            width: 100%;
+        }
+        .inline-input-group input::placeholder {
+            color: rgba(84, 75, 67, 0.6);
+        }
+        .inline-input-group input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--btn-outline);
+        }
     </style>
 </head>
 <body class="main_page">
@@ -580,6 +620,57 @@
                 </div>
                 
             </div>
+
+            <div id="footer-popup-trigger" class="row mt-5" style="display: none;">
+                <div class="col-12">
+                    <div class="inline-contact-wrapper text-left">
+                        
+                        <div class="inline-contact-header flex-column flex-lg-row">
+                            <h4 class="inline-contact-title">ติดต่อเรา</h4>
+                            <p class="inline-contact-subtitle">*กรอกรายละเอียดด้านล่างจากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมง</p>
+                        </div>
+
+                        <form id="inlineBusinessCard" onsubmit="return false;">
+                            <input type="hidden" name="thisCompany" value="At-once">
+                            <input type="hidden" name="lang" value="{{ Session('lang', 'th') }}">
+                            <input type="hidden" name="type" value="customer">
+                            <input type="hidden" name="page" value="Inline Form from Condo Landing Page">
+                            <input type="hidden" name="companyId" value="64">
+
+                            <div class="form-row mt-1">
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="inline-input-group">
+                                        <input type="text" name="name" class="form-control" placeholder="ชื่อ" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="inline-input-group">
+                                        <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทร" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="inline-input-group">
+                                        <input type="email" name="email" class="form-control" placeholder="อีเมล" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row mt-4 align-items-center">
+                                <div class="col-md-8 d-flex justify-content-md-start justify-content-center mb-3 mb-md-0">
+                                    <div id="captcha_container_inline" style="transform: scale(0.9); transform-origin: left center;"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn-custom-gradient w-100 btn-inline-submit" style="padding: 14px 20px; font-size: 18px; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                                        <i class="fas fa-paper-plane mr-2"></i> ส่งข้อมูลติดต่อ
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -618,35 +709,16 @@
         function PopupBusinessCard(action)
         {
             let page = 'Pop-up from Condo Landing Page';
-            let upTime = Boolean(localStorage.getItem('upTime'));
             let pop = JSON.parse(localStorage.getItem('PopupBUsinessCard'));
             
-            // Allow testing popup directly if needed without uptime
-            // if(upTime===true)
-            // {
-                let companyLogo = "split/at_once.png";
-                let companyName = "At-once";
-                const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมงค่ะ';
-                let companyId = 64; 
+            let companyLogo = "split/at_once.png";
+            let companyName = "At-once";
+            const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมงค่ะ';
+            let companyId = 64; 
 
-                const popup = $(
-                `<div class="popup-dialog dialog-centered dialog-backdrop">
-                    <div style="display:${pop?.minimize==true?'block':'none'}">
-                        <a class="dialog-toggle contact-circle" toggle-show="'+action+'">
-                            <div class="button-circle">
-                                    <div class="img-circle" onclick="PopupMinimize(false)">
-                                        <img src="${companyLogo}" class="img-fluid" alt="logo">
-                                    </div>
-                                    <div class="button-messenger alert alert-dismissible fade show" role="alert"> ติดต่อบริษัท คลิก
-                                        <span class="close-icon-wrapper" aria-hidden="true"><i class="fas fa-times fa-1x"></i></span>
-                                        <div class="drawer"><div class="speech_bubble_arrow"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="tawk-badge tawk-flex tawk-flex-center tawk-flex-middle tawk-min-badge heartBeat" style="inset: auto auto 145px 40px;"><i class="icofont-ui-touch-phone"></i></span>
-                        </a>
-                    </div>
-                    <div class="card-bussiness dialog-content${pop?.minimize==true?' d-none':''}" style="border-radius:8px; display:flex; flex-direction:column; -webkit-transition:opacity 400ms ease-in; -moz-transition:opacity 400ms ease-in; transition: opacity 400ms ease-in;">
+            const popup = $(
+            `<div class="popup-dialog dialog-centered dialog-backdrop">
+                <div class="card-bussiness dialog-content${pop?.minimize==true?' d-none':''}" style="border-radius:8px; display:flex; flex-direction:column; -webkit-transition:opacity 400ms ease-in; -moz-transition:opacity 400ms ease-in; transition: opacity 400ms ease-in;">
                         <a href="javascript:" class="dialog-minimize" onclick="PopupMinimize(true)">
                             <span><i class="fas fa-times"></i></span>
                         </a>
@@ -678,10 +750,6 @@
                                             <div class="col-12">
                                                 <label for="cardNumber" class="card-input__label">Telephone</label>
                                                 <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" autocomplete="off"/>
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="cardNumber" class="card-input__label">Company Name</label>
-                                                <input type="text" name="companyName" class="form-control" placeholder="ชื่อบริษัท" autocomplete="off"/>
                                             </div>
                                             <div class="col-12">
                                                 <label for="cardNumber" class="card-input__label">Email</label>
@@ -731,6 +799,10 @@
                         }
                     }))
                 }
+                
+                if(pop?.minimize == true) {
+                    $('#footer-popup-trigger').show();
+                }
 
                 const messageResponse = (code, msg) => 
                 {
@@ -768,18 +840,10 @@
                     ignore: [],
                     errorElement: "span",
                     rules: {
-                        name:{ required:function(){
-                            return ($('#flexCheckDefault').is(':checked'))? false : true;
-                        },
-                        letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+'},
-                        telephone:{ required:function(){
-                            return ($('#flexCheckDefault').is(':checked'))? false : true;
-                        },
-                        letteronly:'[0-9]+'},
-                        companyName:{ required:function(){
-                            return ($('#flexCheckDefault').is(':checked'))? false : true;
-                        }},
-                        email:{ required: false, email: true }
+                        name: { required: true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+' },
+                        telephone: { required: true, letteronly:'[0-9]+' },
+                        companyName: { required: true },
+                        email: { required: true, email: true }
                     },
                     messages: {
                         name: {
@@ -795,35 +859,15 @@
                             required: '{{ __('phrase.contact.validate.company') }}'
                         },
                         email: {
+                            required: 'กรุณากรอกอีเมล',
                             email: 'กรุณากรอกอีเมล์ให้ถูกต้อง'
                         }
                     },
                     submitHandler: function (form) {
-                        if(!$('#flexCheckDefault').is(':checked')){
-                            sendTo();
-                            $('.btn-confirm').attr("disabled", true);
-                        }
+                        sendTo();
+                        $('.btn-confirm').attr("disabled", true);
                     }
-                })
-
-                popup.on('click','.close-icon-wrapper',function(){
-                    $(this).parent().remove();
                 });
-
-                popup.on('click','button[type="submit"]',function(){
-                    if($('#flexCheckDefault').is(':checked')){
-                        PopupMinimize(true)
-                    }
-                })
-
-                popup.on('click','#flexCheckDefault',function(){
-                    if($(this).is(':checked')){
-                        localStorage.setItem('dontShowAgain',true);
-                    }else{
-                        localStorage.setItem('dontShowAgain',false);
-                    }
-                })
-            // }
         }
 
         function Countdown() {
@@ -843,18 +887,85 @@
             if(Boolean(e)===true){
                 popup.removeClass('dialog-backdrop');
                 popup.find('.dialog-content').removeClass('d-block').addClass('d-none');
-                popup.find('.dialog-toggle').parent().css('display','block');
-                popup.find('.dialog-toggle').attr('toggle-show','false')
+                $('#footer-popup-trigger').show();
                 localStorage.setItem("PopupBusinessCard",JSON.stringify({minimize: Boolean(e)}));
             }else{
                 popup.addClass('dialog-backdrop');
                 popup.find('.dialog-content').removeClass('d-none');
-                popup.find('.dialog-toggle').parent().css('display','none');
-                popup.find('.dialog-toggle').attr('toggle-show','true')
+                $('#footer-popup-trigger').hide();
                 localStorage.setItem("PopupBusinessCard",JSON.stringify({minimize: Boolean(e)}));
             }
         }
-        
+        // --- Inline footer form logic ---
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if(typeof grecaptcha !== 'undefined' && $('#captcha_container_inline').length) {
+                    grecaptcha.render('captcha_container_inline', {
+                        'sitekey' : '6LcEE6ooAAAAAN8ZnN5uTezCAeCpAvB6fGuugnKB',
+                        'callback' : function(response) {
+                            $('#inlineBusinessCard .btn-inline-submit').removeAttr('disabled');
+                        }
+                    });
+                }
+            }, 1000);
+
+            const messageResponseInline = (code, msg) => {
+                $('#inlineBusinessCard').find('.alert').remove();
+                let alert = $('<div class="alert alert-'+code+' mt-3" style="width:100%">'+msg+'</div>');
+                $('#inlineBusinessCard').append(alert);
+            };
+
+            const sendInlineTo = async () => {
+                let inputs = $("#inlineBusinessCard").serialize();
+                await axios({
+                    method: 'post',
+                    url: `api/send/sms`,
+                    data: inputs
+                })
+                .then((res) => {
+                    let code = 'danger';
+                    if(res.data.status=='success'){
+                        code = 'success';
+                        $('#inlineBusinessCard').find('input[name="name"]').val('');
+                        $('#inlineBusinessCard').find('input[name="telephone"]').val('');
+                        $('#inlineBusinessCard').find('input[name="email"]').val('');
+                        $('#inlineBusinessCard').find('input').removeClass('valid');
+                    }
+                    messageResponseInline(code, res.data.message);
+                    $('.btn-inline-submit').attr("disabled", true);
+                })
+                .catch(err => console.log(err));
+            };
+
+            $('#inlineBusinessCard').validate({
+                ignore: [],
+                errorElement: "span",
+                rules: {
+                    name:{ required:true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+'},
+                    telephone:{ required:true, minlength: 9, letteronly:'[0-9]+'},
+                    email:{ required: true, email: true }
+                },
+                messages: {
+                    name: {
+                        required: 'กรุณากรอกชื่อ',
+                        letteronly: 'กรุณากรอกตัวอักษร'
+                    },
+                    telephone: {
+                        required: 'กรุณากรอกเบอร์โทรศัพท์',
+                        minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+                        letteronly: 'กรุณากรอกตัวเลข'
+                    },
+                    email: {
+                        required: 'กรุณากรอกอีเมล',
+                        email: 'กรุณากรอกอีเมล์ให้ถูกต้อง'
+                    }
+                },
+                submitHandler: function (form) {
+                    sendInlineTo();
+                }
+            });
+        });
+
         Countdown();
     </script>
 </body>
