@@ -122,9 +122,7 @@
             position: relative;
             left: 50%;
             transform: translateX(-50%) scale(1);
-            transform-origin: top center;
             z-index: 1;
-            transition: transform 0.3s ease;
         }
         /* Hero left-column title */
         .hero-title {
@@ -199,6 +197,7 @@
             .hero-title          { font-size: 40px; }
             .info-block          { top: 160px; right: 30px; }
         }
+
         /* ── Responsive: 1200px → 992px ──────────────────────────── */
         @media (max-width: 1199px) {
             .main-heading        { font-size: 50px; }
@@ -208,7 +207,7 @@
             .details p           { font-size: 33px; margin-top: 14px; }
             .hero-title          { font-size: 34px; }
             .info-block          { top: 130px; right: 24px; }
-            .hero-img            { transform: translateX(-50%) scale(0.88); }
+            .hero-img            { max-height: 640px; }
         }
 
         /* ── Responsive: 992px → 768px ───────────────────────────── */
@@ -220,7 +219,7 @@
             .details p           { font-size: 26px; margin-top: 10px; }
             .hero-title          { font-size: 28px; }
             .info-block          { top: 100px; right: 16px; }
-            .hero-img            { transform: translateX(-50%) scale(0.75); }
+            .hero-img            { max-height: 550px; }
             .hero-card           { padding: 28px; }
         }
         /* --- 5. LANG SWITCHER --- */
