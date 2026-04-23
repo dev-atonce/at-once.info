@@ -121,9 +121,17 @@
             display: block;
             position: relative;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) scale(1);
+            transform-origin: top center;
             z-index: 1;
+            transition: transform 0.3s ease;
         }
+        /* Hero left-column title */
+        .hero-title {
+            font-size: 45px;
+            margin-bottom: 5px;
+        }
+        /* Info block — absolutely positioned over the SVG background */
         .info-block {
             position: absolute;
             top: 190px;
@@ -161,7 +169,7 @@
             font-size: 40px;
             margin-top: 30px;
             opacity: 0.8;
-            font-family: 'Conv_SukhumvitSet-Light', sans-serif; 
+            font-family: 'Conv_SukhumvitSet-Light', sans-serif;
         }
         .details {
             margin-top: 20px;
@@ -179,6 +187,41 @@
             color: #382F27;
             margin-top: 20px;
             opacity: 0.8;
+        }
+
+        /* ── Responsive: 1400px → 1200px ─────────────────────────── */
+        @media (max-width: 1399px) {
+            .main-heading        { font-size: 62px; }
+            .main-heading::before{ width: 100px; }
+            .sub-heading         { font-size: 34px; }
+            .details h4          { font-size: 34px; }
+            .details p           { font-size: 40px; }
+            .hero-title          { font-size: 40px; }
+            .info-block          { top: 160px; right: 30px; }
+        }
+        /* ── Responsive: 1200px → 992px ──────────────────────────── */
+        @media (max-width: 1199px) {
+            .main-heading        { font-size: 50px; }
+            .main-heading::before{ width: 80px; }
+            .sub-heading         { font-size: 28px; margin-top: 20px; }
+            .details h4          { font-size: 28px; }
+            .details p           { font-size: 33px; margin-top: 14px; }
+            .hero-title          { font-size: 34px; }
+            .info-block          { top: 130px; right: 24px; }
+            .hero-img            { transform: translateX(-50%) scale(0.88); }
+        }
+
+        /* ── Responsive: 992px → 768px ───────────────────────────── */
+        @media (max-width: 991px) {
+            .main-heading        { font-size: 40px; }
+            .main-heading::before{ width: 60px; height: 4px; margin-right: 14px; }
+            .sub-heading         { font-size: 22px; margin-top: 14px; }
+            .details h4          { font-size: 22px; }
+            .details p           { font-size: 26px; margin-top: 10px; }
+            .hero-title          { font-size: 28px; }
+            .info-block          { top: 100px; right: 16px; }
+            .hero-img            { transform: translateX(-50%) scale(0.75); }
+            .hero-card           { padding: 28px; }
         }
         /* --- 5. LANG SWITCHER --- */
         .lang-switcher {
@@ -410,7 +453,7 @@
                             <span class="tag-pill tag-graytop">@lang('phrase.condo.hero.type_1_bed')</span>
                             <span class="tag-pill tag-graytop">@lang('phrase.condo.hero.type_studio')</span>
                         </div>
-                        <h2 class="text-bold" style="font-size: 45px; margin-bottom: 5px;">@lang('phrase.condo.hero.title')</h2>
+                        <h2 class="text-bold hero-title">@lang('phrase.condo.hero.title')</h2>
                         <p style="font-size: 18px; opacity: 0.9;">@lang('phrase.condo.hero.subtitle')</p>
                     </div>
                 </div>
