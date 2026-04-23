@@ -580,8 +580,8 @@
                     <h3 class="title-medium mb-4">@lang('phrase.condo.highlight.title')</h3>
                     <p>@lang('phrase.condo.highlight.desc_1')<br>@lang('phrase.condo.highlight.desc_2')</p>
                     <div class="d-flex mt-4">
-                        <a href="#" class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
-                        <a href="#" class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
+                        <a class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
+                        <a class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
                     </div>
                 </div>
             </div>
@@ -752,8 +752,8 @@
                         </div>
                         
                         <div class="d-flex justify-content-center justify-content-lg-end pb-lg-1">
-                            <a href="#" class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
-                            <a href="#" class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
+                            <a class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
+                            <a class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
                         </div>
                         
                     </div>
