@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>@lang('phrase.condo.hero.title') - At-Once</title>
+    <title>Life Ladprao Valley - At-Once</title>
 
     <base href="{{ url('/') }}">
     
@@ -92,7 +92,6 @@
             text-decoration: none;
             transition: 0.3s;
         }
-        .btn-custom-outline:hover { background: #d8be1; }
         
         .btn-custom-gradient {
             background: linear-gradient(62.54deg, #F3ECE6 17.1%, #BA783F 301.36%);
@@ -1118,9 +1117,9 @@
 
         // --- Gallery Lightbox ---
         @php
-            $studioImages = array_map(fn($f) => 'images/condo/studio_gallery/'.basename($f), glob(public_path('images/condo/studio_gallery/*.jpg')));
-            $bed1Images   = array_map(fn($f) => 'images/condo/1bed_gallery/'.basename($f),   glob(public_path('images/condo/1bed_gallery/*.jpg')));
-            $bed2Images   = array_map(fn($f) => 'images/condo/2bed_gallery/'.basename($f),   glob(public_path('images/condo/2bed_gallery/*.jpg')));
+            $studioImages = array_map(fn($f) => 'images/condo/studio_gallery/'.basename($f), glob(public_path('images/condo/studio_gallery/*.jpg')) ?: []);
+            $bed1Images   = array_map(fn($f) => 'images/condo/1bed_gallery/'.basename($f),   glob(public_path('images/condo/1bed_gallery/*.jpg'))   ?: []);
+            $bed2Images   = array_map(fn($f) => 'images/condo/2bed_gallery/'.basename($f),   glob(public_path('images/condo/2bed_gallery/*.jpg'))   ?: []);
         @endphp
 
         var galleryData = {
