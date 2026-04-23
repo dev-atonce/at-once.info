@@ -422,6 +422,105 @@
             outline: none;
             box-shadow: 0 0 0 2px var(--btn-outline);
         }
+
+        /* --- 10. GALLERY LIGHTBOX --- */
+        #galleryLightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(30, 22, 15, 0.92);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #galleryLightbox.active {
+            display: flex;
+        }
+        .gallery-lb-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            color: #ECDED2;
+            font-size: 32px;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            z-index: 10001;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .gallery-lb-close:hover { opacity: 1; }
+        .gallery-lb-img-wrap {
+            width: 100%;
+            max-width: 880px;
+            max-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 0 60px;
+        }
+        .gallery-lb-img-wrap img {
+            max-width: 100%;
+            max-height: 78vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-lb-img-wrap img.loaded {
+            opacity: 1;
+        }
+        .gallery-lb-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(236, 222, 210, 0.15);
+            border: 1px solid rgba(236, 222, 210, 0.3);
+            color: #ECDED2;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 10001;
+            line-height: 1;
+        }
+        .gallery-lb-btn:hover {
+            background: rgba(236, 222, 210, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .gallery-lb-prev { left: 6px; }
+        .gallery-lb-next { right: 6px; }
+        .gallery-lb-counter {
+            color: rgba(236, 222, 210, 0.75);
+            font-size: 14px;
+            margin-top: 16px;
+            letter-spacing: 1px;
+        }
+        .gallery-lb-title {
+            color: #ECDED2;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 14px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+        .room-card-wrapper {
+            cursor: pointer;
+        }
+        .room-card-wrapper:hover .room-card {
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.13);
+        }
     </style>
 </head>
 <body class="main_page">
@@ -535,7 +634,7 @@
                 
                 <!-- Studio -->
                 <div class="col-lg-4 col-md-6 mb-5 d-flex">
-                    <div class="room-card-wrapper mx-auto ml-lg-0 mr-lg-auto w-100">
+                    <div class="room-card-wrapper mx-auto ml-lg-0 mr-lg-auto w-100" onclick="openGallery('studio')" role="button" aria-label="Studio Gallery">
                         <div class="room-card">
                             <div class="room-card-header">
                                 <h4>@lang('phrase.condo.room_types.studio_title')</h4>
@@ -565,7 +664,7 @@
 
                 <!-- 1 Bedroom -->
                 <div class="col-lg-4 col-md-6 mb-5 d-flex">
-                    <div class="room-card-wrapper mx-auto w-100">
+                    <div class="room-card-wrapper mx-auto w-100" onclick="openGallery('1bed')" role="button" aria-label="1 Bedroom Gallery">
                         <div class="room-card">
                             <div class="room-card-header">
                                 <h4>@lang('phrase.condo.room_types.bed_1_title')</h4>
@@ -596,7 +695,7 @@
 
                 <!-- 2 Bedroom -->
                 <div class="col-lg-4 col-md-6 mb-5 mx-auto d-flex">
-                    <div class="room-card-wrapper mx-auto mr-lg-0 ml-lg-auto w-100">
+                    <div class="room-card-wrapper mx-auto mr-lg-0 ml-lg-auto w-100" onclick="openGallery('2bed')" role="button" aria-label="2 Bedroom Gallery">
                         <div class="room-card">
                             <div class="room-card-header">
                                 <h4>@lang('phrase.condo.room_types.bed_2_title')</h4>
@@ -715,6 +814,18 @@
 
         </div>
     </section>
+
+    <!-- Gallery Lightbox Modal -->
+    <div id="galleryLightbox" role="dialog" aria-modal="true" aria-label="Image Gallery">
+        <button class="gallery-lb-close" id="galleryLbClose" aria-label="Close gallery">&times;</button>
+        <div class="gallery-lb-title" id="galleryLbTitle"></div>
+        <div class="gallery-lb-img-wrap" id="galleryLbImgWrap">
+            <button class="gallery-lb-btn gallery-lb-prev" id="galleryLbPrev" aria-label="Previous image">&#8249;</button>
+            <img id="galleryLbImg" src="" alt="Gallery Image">
+            <button class="gallery-lb-btn gallery-lb-next" id="galleryLbNext" aria-label="Next image">&#8250;</button>
+        </div>
+        <div class="gallery-lb-counter" id="galleryLbCounter"></div>
+    </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/axios.min.js"></script>
@@ -1004,6 +1115,89 @@
         });
 
         Countdown();
+
+        // --- Gallery Lightbox ---
+        @php
+            $studioImages = array_map(fn($f) => 'images/condo/studio_gallery/'.basename($f), glob(public_path('images/condo/studio_gallery/*.jpg')));
+            $bed1Images   = array_map(fn($f) => 'images/condo/1bed_gallery/'.basename($f),   glob(public_path('images/condo/1bed_gallery/*.jpg')));
+            $bed2Images   = array_map(fn($f) => 'images/condo/2bed_gallery/'.basename($f),   glob(public_path('images/condo/2bed_gallery/*.jpg')));
+        @endphp
+
+        var galleryData = {
+            'studio': {
+                title: 'Studio',
+                images: {!! json_encode($studioImages) !!}
+            },
+            '1bed': {
+                title: '1 Bedroom',
+                images: {!! json_encode($bed1Images) !!}
+            },
+            '2bed': {
+                title: '2 Bedroom',
+                images: {!! json_encode($bed2Images) !!}
+            }
+        };
+
+        var currentGallery = null;
+        var currentIndex = 0;
+
+        function openGallery(type) {
+            currentGallery = galleryData[type];
+            currentIndex = 0;
+            document.getElementById('galleryLbTitle').textContent = currentGallery.title;
+            document.getElementById('galleryLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            showGalleryImage(0);
+        }
+
+        function showGalleryImage(index) {
+            var img = document.getElementById('galleryLbImg');
+            img.classList.remove('loaded');
+            img.onload = function() { img.classList.add('loaded'); };
+            img.src = currentGallery.images[index];
+            img.alt = currentGallery.title + ' - Image ' + (index + 1);
+            document.getElementById('galleryLbCounter').textContent =
+                (index + 1) + ' / ' + currentGallery.images.length;
+            currentIndex = index;
+        }
+
+        function galleryPrev() {
+            var n = currentGallery.images.length;
+            showGalleryImage((currentIndex - 1 + n) % n);
+        }
+
+        function galleryNext() {
+            var n = currentGallery.images.length;
+            showGalleryImage((currentIndex + 1) % n);
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+            currentGallery = null;
+        }
+
+        document.getElementById('galleryLbClose').addEventListener('click', closeGallery);
+        document.getElementById('galleryLbPrev').addEventListener('click', galleryPrev);
+        document.getElementById('galleryLbNext').addEventListener('click', galleryNext);
+
+        // Close when clicking the dark backdrop (outside the image wrap)
+        document.getElementById('galleryLightbox').addEventListener('click', function(e) {
+            var wrap = document.getElementById('galleryLbImgWrap');
+            var title = document.getElementById('galleryLbTitle');
+            var counter = document.getElementById('galleryLbCounter');
+            if (!wrap.contains(e.target) && e.target !== title && e.target !== counter) {
+                closeGallery();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!currentGallery) return;
+            if (e.key === 'ArrowLeft')  galleryPrev();
+            if (e.key === 'ArrowRight') galleryNext();
+            if (e.key === 'Escape')     closeGallery();
+        });
     </script>
 </body>
 </html>
