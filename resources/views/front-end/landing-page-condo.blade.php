@@ -16,6 +16,26 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css?v=1">
     
+    <!-- Popup Business Card CSS & Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="fonts/icofont.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link href="css/popup-contact.css" rel="stylesheet">
+    
+    <style>
+        .card-bussiness {
+            max-width: 500px !important;
+            margin: 1.75rem auto;
+            min-height: auto !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .dialog-centered {
+            min-height: auto !important;
+        }
+    </style>
+    
     <style>
         /* --- 1. CORE & GLOBAL --- */
         :root {
@@ -564,9 +584,12 @@
     </section>
 
     <script src="js/jquery.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/custom.js?v=0008"></script>
+    <script type="text/javascript" src="js/jquery.validate-v1.18.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         function toggleLangSwitcher(e) {
             e.stopPropagation();
@@ -588,6 +611,251 @@
                 document.getElementById('langOptions').classList.remove('open');
             }
         });
+
+        // --- Popup Business Card ---
+        var lang = "{{ Session('lang', 'th') }}";
+
+        function PopupBusinessCard(action)
+        {
+            let page = 'Pop-up from Condo Landing Page';
+            let upTime = Boolean(localStorage.getItem('upTime'));
+            let pop = JSON.parse(localStorage.getItem('PopupBUsinessCard'));
+            
+            // Allow testing popup directly if needed without uptime
+            // if(upTime===true)
+            // {
+                let companyLogo = "split/at_once.png";
+                let companyName = "At-once";
+                const caption = 'ขอบคุณสำหรับความสนใจในบริษัทของเราหากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมงค่ะ';
+                let companyId = 64; 
+
+                const popup = $(
+                `<div class="popup-dialog dialog-centered dialog-backdrop">
+                    <div style="display:${pop?.minimize==true?'block':'none'}">
+                        <a class="dialog-toggle contact-circle" toggle-show="'+action+'">
+                            <div class="button-circle">
+                                    <div class="img-circle" onclick="PopupMinimize(false)">
+                                        <img src="${companyLogo}" class="img-fluid" alt="logo">
+                                    </div>
+                                    <div class="button-messenger alert alert-dismissible fade show" role="alert"> ติดต่อบริษัท คลิก
+                                        <span class="close-icon-wrapper" aria-hidden="true"><i class="fas fa-times fa-1x"></i></span>
+                                        <div class="drawer"><div class="speech_bubble_arrow"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="tawk-badge tawk-flex tawk-flex-center tawk-flex-middle tawk-min-badge heartBeat" style="inset: auto auto 145px 40px;"><i class="icofont-ui-touch-phone"></i></span>
+                        </a>
+                    </div>
+                    <div class="card-bussiness dialog-content${pop?.minimize==true?' d-none':''}" style="border-radius:8px; display:flex; flex-direction:column; -webkit-transition:opacity 400ms ease-in; -moz-transition:opacity 400ms ease-in; transition: opacity 400ms ease-in;">
+                        <a href="javascript:" class="dialog-minimize" onclick="PopupMinimize(true)">
+                            <span><i class="fas fa-times"></i></span>
+                        </a>
+                            <input type="hidden" name="company" value="${companyId}">
+                            <div class="dialog-header">
+                                    <div class="card-cover" style="background-image: url(https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80)"></div>
+                                </div>
+                                <div class="dialog-body mt-4">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <img src="${companyLogo}" class="img-fluid card-avatar" alt="avatar">
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="dialog-content">
+                                            <div class="card-fullname">${companyName}</div>${caption}</div>
+                                        </div>
+                                    </div>
+                                    <form id="businessCard" onsubmit="return false;">
+                                        <input type="hidden" name="thisCompany" value="${companyName}">
+                                        <input type="hidden" name="lang" value="${lang}">
+                                        <input type="hidden" name="type" value="customer">
+                                        <input type="hidden" name="page" value="${page}">
+                                        <input type="hidden" name="companyId" value="${companyId}">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Name</label>
+                                                <input type="text" name="name" class="form-control" placeholder="ชื่อ" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Telephone</label>
+                                                <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Company Name</label>
+                                                <input type="text" name="companyName" class="form-control" placeholder="ชื่อบริษัท" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Email</label>
+                                                <input type="email" name="email" class="form-control" placeholder="อีเมล์" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div style="display:flex;justify-content: center;margin:15px 0 10px 0;">
+                                                    <div id="captcha_container"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="dialog-footer mt-3">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-confirm" style="minWidth:100;margin:0 5px 0 0" disabled="">Confirm</button>
+                                            <button type="button" class="btn btn-secondary" onclick="PopupMinimize(true)" style="minWidth:100; margin:0 0 0 5px">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+            
+                if ($(document).find('.popup-dialog').length==0) 
+                {
+                    $(document).find('body').append(popup);
+
+                    var loadCaptcha = function() {
+                        captchaContainer = grecaptcha.render('captcha_container', {
+                            'sitekey' : '6LcEE6ooAAAAAN8ZnN5uTezCAeCpAvB6fGuugnKB',
+                            'callback' : function(response) {
+                                document.querySelector('#businessCard').querySelector('[type="submit"]').removeAttribute('disabled');
+                            }
+                        });
+                    };
+                    loadCaptcha();
+                    
+                    axios({
+                        method: 'post',
+                        url: `api/statistics/show-popup`,
+                        data: {
+                            companyId: companyId,
+                        }
+                    }).then((res => {
+                        if(res.data == false){
+                            console.log(res.status)
+                        }
+                    }))
+                }
+
+                const messageResponse = (code, msg) => 
+                {
+                    popup.find('.alert').remove();
+                    let alert = $('<label class="alert alert-'+code+' text-center" style="width:100%">'+msg+'</alert>');
+                    popup.find('form').prepend(alert);
+                }
+                const sendTo = async () => 
+                {
+                    let inputs = $("#businessCard").serialize();
+                    await axios({
+                        method: 'post',
+                        url: `api/send/sms`,
+                        data: inputs
+                    })
+                    .then((res) => {
+                        grecaptcha.reset(captchaContainer);
+                        let code = 'danger';
+                        if(res.data.status=='success'){
+                            code = 'success';
+                        }
+                        messageResponse(code, res.data.message);
+                        popup.find('input[name="name"]').val('');
+                        popup.find('input[name="telephone"]').val('');
+                        popup.find('input[name="companyName"]').val('');
+                        popup.find('input[name="email"]').val('');
+                        popup.find('input').removeClass('valid');
+                        $('.btn-confirm').attr("disabled", false);
+                    })
+                    .catch(err => console.log(err));
+                }
+
+                
+                $('#businessCard').validate({
+                    ignore: [],
+                    errorElement: "span",
+                    rules: {
+                        name:{ required:function(){
+                            return ($('#flexCheckDefault').is(':checked'))? false : true;
+                        },
+                        letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+'},
+                        telephone:{ required:function(){
+                            return ($('#flexCheckDefault').is(':checked'))? false : true;
+                        },
+                        letteronly:'[0-9]+'},
+                        companyName:{ required:function(){
+                            return ($('#flexCheckDefault').is(':checked'))? false : true;
+                        }},
+                        email:{ required: false, email: true }
+                    },
+                    messages: {
+                        name: {
+                            required: '{{ __('phrase.contact.validate.name') }}',
+                            letteronly: 'กรุณากรอกตัวอักษร'
+                        },
+                        telephone: {
+                            required: '{{ __('phrase.contact.validate.telephone') }}',
+                            minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+                            letteronly: 'กรุณากรอกตัวเลข'
+                        },
+                        companyName: {
+                            required: '{{ __('phrase.contact.validate.company') }}'
+                        },
+                        email: {
+                            email: 'กรุณากรอกอีเมล์ให้ถูกต้อง'
+                        }
+                    },
+                    submitHandler: function (form) {
+                        if(!$('#flexCheckDefault').is(':checked')){
+                            sendTo();
+                            $('.btn-confirm').attr("disabled", true);
+                        }
+                    }
+                })
+
+                popup.on('click','.close-icon-wrapper',function(){
+                    $(this).parent().remove();
+                });
+
+                popup.on('click','button[type="submit"]',function(){
+                    if($('#flexCheckDefault').is(':checked')){
+                        PopupMinimize(true)
+                    }
+                })
+
+                popup.on('click','#flexCheckDefault',function(){
+                    if($(this).is(':checked')){
+                        localStorage.setItem('dontShowAgain',true);
+                    }else{
+                        localStorage.setItem('dontShowAgain',false);
+                    }
+                })
+            // }
+        }
+
+        function Countdown() {
+            let timeLeft = 1;
+                const interval = setInterval(function(){
+                    if (timeLeft == 0){
+                        clearInterval(interval);
+                        PopupBusinessCard(true)
+                    }else{
+                        timeLeft--;
+                    }
+                },1000)
+        }
+        function PopupMinimize(e)
+        {
+            const popup = $('.popup-dialog');
+            if(Boolean(e)===true){
+                popup.removeClass('dialog-backdrop');
+                popup.find('.dialog-content').removeClass('d-block').addClass('d-none');
+                popup.find('.dialog-toggle').parent().css('display','block');
+                popup.find('.dialog-toggle').attr('toggle-show','false')
+                localStorage.setItem("PopupBusinessCard",JSON.stringify({minimize: Boolean(e)}));
+            }else{
+                popup.addClass('dialog-backdrop');
+                popup.find('.dialog-content').removeClass('d-none');
+                popup.find('.dialog-toggle').parent().css('display','none');
+                popup.find('.dialog-toggle').attr('toggle-show','true')
+                localStorage.setItem("PopupBusinessCard",JSON.stringify({minimize: Boolean(e)}));
+            }
+        }
+        
+        Countdown();
     </script>
 </body>
 </html>
