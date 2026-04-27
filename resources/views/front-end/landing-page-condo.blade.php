@@ -745,10 +745,9 @@
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end">
                         
                         <div class="mb-4 mb-lg-0">
-                            <p class="mb-1 footer-contact-text">@lang('phrase.condo.contact.line_id')</p>
-                            <p class="mb-1 footer-contact-text">@lang('phrase.condo.contact.click_to_add') <a href="https://lin.ee/ZcTZCL4" class="text-white text-decoration-underline">https://lin.ee/ZcTZCL4</a></p>
-                            <p class="mb-1 footer-contact-text">@lang('phrase.condo.contact.tel_th')</p>
-                            <p class="mb-0 footer-contact-text">@lang('phrase.condo.contact.tel_jp')</p>
+                            <p class="mb-1 footer-contact-text">LINE ID: At-Once OA</p>
+                            <p class="mb-1 footer-contact-text">Tel (TH): 02-168-8494</p>
+                            <p class="mb-0 footer-contact-text">Tel (JP/EN): 081-116-1641</p>
                         </div>
                         
                         <div class="d-flex justify-content-center justify-content-lg-end pb-lg-1">

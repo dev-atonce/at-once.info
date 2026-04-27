@@ -719,11 +719,7 @@ return [
         ],
         'contact' => [
             'update_notice' => '客室は常に最新の状態に更新されています。LINEまたはお電話にてお気軽にお問い合わせください。',
-            'line_id'       => 'ID LINE : @309uddun',
-            'click_to_add'  => 'LINEを追加するにはクリック:',
             'media_desc'    => '空室状況に関する最新の写真や動画を受け取るには、こちらをクリックしてください。',
-            'tel_th'        => 'Tel: (TH) 02-080-6106',
-            'tel_jp'        => 'Tel: (JP) +662-630-4848 ~ 51',
         ],
         'inline_form' => [
             'contact_us'  => 'お問い合わせ',

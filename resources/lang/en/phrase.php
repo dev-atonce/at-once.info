@@ -3459,11 +3459,7 @@ return [
         ],
         'contact' => [
             'update_notice' => 'Room availability is constantly updated. Contact us via LINE or call us today.',
-            'line_id'       => 'ID LINE : @309uddun',
-            'click_to_add'  => 'Click to add Line:',
             'media_desc'    => 'To receive the latest updated photos and videos of available rooms.',
-            'tel_th'        => 'Tel: (TH) 02-080-6106',
-            'tel_jp'        => 'Tel: (JP) +662-630-4848 to 51',
         ],
         'inline_form' => [
             'contact_us'  => 'Contact Us',
