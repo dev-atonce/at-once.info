@@ -189,7 +189,7 @@ Route::get('/{lang}/real-estate-agent/{seg3}',function(){
 Route::get('{lang}/logistics/{seg3}',function(){
     $lang = Request::segment(1);
     $seg3 = Request::segment(3);
-    return redirec('{lang}/logistics-werehouse-delivery/{seg3}',301);
+    return redirect('{lang}/logistics-werehouse-delivery/{seg3}',301);
 });
 Route::get('{lang}/logistics/blog/{url}',function(){
     $lang = Request::segment(1);
@@ -212,6 +212,11 @@ Route::get('/llms.txt', function () {
         ->header('Content-Type', 'text/plain; charset=UTF-8');
 });
 
+// ─────────────────────────────────────────────────────────────────
+// REDIRECTS FOR MERGED CATEGORIES
+// ─────────────────────────────────────────────────────────────────
+Route::redirect('/{lang}/oa-machine', '/{lang}/office-appliance', 301);
+Route::redirect('/{lang}/office-equipment-maintenance', '/{lang}/office-appliance', 301);
 
 // Short URL Short URL Short URL
 // Short URL Short URL Short URL

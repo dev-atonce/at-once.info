@@ -82,22 +82,10 @@ class FilterCtrl extends Controller
                 $data['language'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','web-language')->get();
                 $data['location'] = \App\Models\ProvinceMd::select('province_id as key','province_name_th as name_th')->orderBy('province_name_th','asc')->get();
                 break;
-            case 14: ///////------- Co-Working -------///////
+            case 14: ///////------- Office Appliance -------///////
                 $data['location'] = \App\Models\ProvinceMd::select('province_id as key','province_name_th as name_th')->orderBy('province_name_th','asc')->get();
-                $data['type'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','co-working-type')->get();
-                $data['service'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','co-working-service')->get();                
-                $data['seat'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','co-working-seat')->get();
-                break;
-            case 15: ///////------- Office Rent -------///////
-                $data['service'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','office-rent-service')->get();
-                $data['contract'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','office-rent-contract')->get();
-                $data['location'] = \App\Models\ProvinceMd::select('province_id as key','province_name_th as name_th')->orderBy('province_name_th','asc')->get();
-                break;
-            case 16: ///////------- Heavy Machinery -------///////
-                $data['type']  = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','construction-type')->get();
-                $data['service']  = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','construction-service')->get();
-                $data['rental']  = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','construction-rental')->get();
-                $data['location'] = \App\Models\ProvinceMd::select('province_id as key','province_name_th as name_th')->orderBy('province_name_th','asc')->get();
+                $data['type'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->whereIn('type', ['types-of-electrical-appliances', 'type-of-electrical-equipment', 'office-appliance-type'])->get();
+                $data['service'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->whereIn('type', ['office-rent-service', 'office-appliance-service'])->get();                
                 break;
             case 17: ///////------- Forklift
                 $data['service'] = \App\Models\ChoiceMd::select('key',"name_th",'name_jp')->where('type','forklift-service')->get();
@@ -274,42 +262,19 @@ class FilterCtrl extends Controller
                 $data['other'] = \App\Models\Filter\CpOtherMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_other.other","=","ch.key")->where(['ch.type'=>'web-other-service','cp_other._id'=>$cid]);
                 $data['language'] = \App\Models\Filter\CpLanguageMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_language.language","=","ch.key")->where(['ch.type'=>'web-language ','cp_language._id'=>$cid]);                                                   
                 break;
-            case 14: ///////======= Prefabricate Office =======///////
+            case 14: ///////======= Office Appliance =======///////
                 $data['location'] = \App\Models\Filter\CpLocationMd::select("ch.province_id as key","ch.province_name_$langP as name")
                 ->leftJoin("provinces as ch","cp_location.location","=","ch.province_id")
-                ->where([
-                    'cp_location.type'=>'co-working',
-                    'cp_location._id'=>$cid
-                ]);
-            $data['type'] = \App\Models\Filter\CpTypeMd::select("ch.key","ch.name_$lang as name")
+                ->where(['cp_location._id'=>$cid])
+                ->whereIn('cp_location.type', ['office-appliance']);
+                $data['type'] = \App\Models\Filter\CpTypeMd::select("ch.key","ch.name_$lang as name")
                 ->leftJoin("choice as ch","cp_type._type","=","ch.key")
-                ->where([
-                    'ch.type' => 'co-working-type',
-                    'cp_type._id' => $cid
-                ]);
-            $data['service']= \App\Models\Filter\CpServiceMd::select("ch.key","ch.name_$lang as name")
+                ->where(['cp_type._id' => $cid])
+                ->whereIn('ch.type', ['types-of-electrical-appliances', 'type-of-electrical-equipment', 'office-appliance-type']);
+                $data['service']= \App\Models\Filter\CpServiceMd::select("ch.key","ch.name_$lang as name")
                 ->leftJoin("choice as ch","cp_service.service","=","ch.key")
-                ->where([
-                    'ch.type' => 'co-working-service',
-                    'cp_service._id' => $cid
-                ]);
-            $data['seat'] = \App\Models\Filter\CpSeatMd::select("ch.key","ch.name_$lang as name")
-                ->leftJoin("choice as ch","cp_seat.seat","=","ch.key")
-                ->where([
-                    'ch.type' => 'co-working-seat',
-                    'cp_seat._id'=>$cid
-                ]);
-                break;
-            case 15: 
-                $data['location']= \App\Models\Filter\CpLocationMd::select("ch.province_id as key","ch.province_name_$langP as name")->leftJoin("provinces as ch","cp_location.location","=","ch.province_id")->where(['cp_location.type'=>'office-rent','cp_location._id'=>$cid]);
-                $data['service']= \App\Models\Filter\CpServiceMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_service.service","=","ch.key")->where(['ch.type'=>'office-rent-service','cp_service._id'=>$cid]);                                               
-                $data['contract']= \App\Models\Filter\CpContractMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_contract.contract","=","ch.key")->where(['ch.type'=>'office-rent-contract','cp_contract._id'=>$cid]);
-                break;
-            case 16: ///////======= Heavy Machinery =======///////
-                $data['location']= \App\Models\Filter\CpLocationMd::select("ch.province_id as key","ch.province_name_$langP as name")->leftJoin("provinces as ch","cp_location.location","=","ch.province_id")->where(['cp_location.type'=>'construction-machine','cp_location._id'=>$cid]);
-                $data['type'] = \App\Models\Filter\CpTypeMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_type._type","=","ch.key")->where(['ch.type'=>'construction-type','cp_type._id'=>$cid]);
-                $data['service']= \App\Models\Filter\CpServiceMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_service.service","=","ch.key")->where(['ch.type'=>'construction-service','cp_service._id'=>$cid]);
-                $data['rental'] = \App\Models\Filter\CpRentalMd::select("ch.key","ch.name_$lang as name")->leftJoin("choice as ch","cp_rental.rental","=","ch.key")->where(['ch.type'=>'construction-rental','cp_rental._id'=>$cid]);   
+                ->where(['cp_service._id' => $cid])
+                ->whereIn('ch.type', ['office-rent-service', 'office-appliance-service']);
                 break;
             case 17: ///////======= Forklift =======///////
                 $data['location']= \App\Models\Filter\CpLocationMd::select("ch.province_id as key","ch.province_name_$langP as name")->leftJoin("provinces as ch","cp_location.location","=","ch.province_id")->where(['cp_location.type'=>'forklift','cp_location._id'=>$cid]);

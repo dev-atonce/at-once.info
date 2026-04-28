@@ -72,8 +72,7 @@ class OfficeApplianceCtrl extends Controller
         {
             $type = array_filter(explode(',',$request->type));
             $service = array_filter(explode(',',$request->service));
-            $seat = array_filter(explode(',',$request->seat));
-            $count = count($location)+count($type)+count($service)+count($seat);
+            $count = count($location)+count($type)+count($service);
             $data['count'] = $count;
             $data['rows']->when($request->type,function($query)use($type){ 
                 $length = count($type);
@@ -86,12 +85,6 @@ class OfficeApplianceCtrl extends Controller
                 return $query->leftJoin('cp_service as sv','company.id','=','sv._id')
                     ->whereIn('sv.service',$service)
                     ->havingRaw('COUNT(sv.id) >= ?',[$length]);
-            })
-            ->when($request->seat,function($query)use($seat){
-                $length = count($seat);
-                return $query->leftJoin('cp_seat as st','company.id','=','st._id')
-                    ->whereIn('st.seat',$seat)
-                    ->havingRaw('COUNT(st.id) >= ?',[$length]);
             });
         }else{
             $type = array_filter(explode(',',$request->type));
@@ -759,15 +752,6 @@ class OfficeApplianceCtrl extends Controller
             $html.='</div></li></ul></div></div>';
         }
         
-        if(@$filters['seat']->count()>0){
-            $html.='<div class="row"><div class="col-lg-2"><h5 class="title bold"><i class="icofont-verification-check text-success"></i>'.__("phrase.$this->category.filter.seat").'</h5></div><div class="col-lg-10">';
-            $html.='<ul class="ey7ls2-0"><li class="fa-Dycg"><div class="bDELcg">';
-            foreach(@$filters['seat']->get() as $k => $v){
-                $html.='<div class="pix1uw-0 ggGntR">'.$v->name.'</div>';
-            }
-            $html.='</div></li></ul></div></div>';
-        }
-    
         $html.='</div>';
         return $html;
     }
