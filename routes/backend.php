@@ -621,5 +621,8 @@ Route::middleware(['Webpanel'])->group(function () use ($category) {
             Route::get('/', [\App\Http\Controllers\Webpanel\TodolistCtrl::class, 'index']);
             Route::post('/description', [\App\Http\Controllers\Webpanel\TodolistCtrl::class, 'updateDescription']);
         });
+        Route::prefix('chatbot-logs')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Webpanel\ChatbotLogCtrl::class, 'index']);
+        });
     });
 });

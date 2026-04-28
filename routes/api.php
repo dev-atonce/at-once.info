@@ -177,3 +177,6 @@ foreach ($category as $key => $v) {
 Route::get('/line/noti', [\App\Http\Controllers\Api\LineNotiCtrl::class, 'notification']);
 Route::get('/getOnlineOfMonth', [\App\Http\Controllers\Api\DashboardCtrl::class, 'getOnlineOfMonth']);
 Route::get('/getDesignedOfMonth', [\App\Http\Controllers\Api\DashboardCtrl::class, 'getDesignedOfMonth']);
+
+// Chatbot Log
+Route::post('/chatbot/log', [\App\Http\Controllers\Api\ChatbotLogCtrl::class, 'store']);
