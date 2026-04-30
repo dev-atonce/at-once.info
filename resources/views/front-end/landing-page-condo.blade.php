@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="fonts/icofont.css">
     <link rel="stylesheet" href="css/animate.css">
     <link href="css/popup-contact.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/validate.css" media="all">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <style>
         .card-bussiness {
@@ -799,7 +801,7 @@
                                     <div id="captcha_container_inline" style="transform: scale(0.9); transform-origin: left center;"></div>
                                 </div>
                                 <div class="col-md-4">
-                                    <button type="submit" class="btn-custom-gradient w-100 btn-inline-submit" style="padding: 14px 20px; font-size: 18px; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+                                    <button type="submit" class="btn-custom-gradient w-100 btn-inline-submit" disabled style="padding: 14px 20px; font-size: 18px; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
                                         <i class="fas fa-paper-plane mr-2"></i> @lang('phrase.condo.inline_form.send')
                                     </button>
                                 </div>
@@ -856,6 +858,11 @@
 
         // --- Popup Business Card ---
         var lang = "{{ Session('lang', 'th') }}";
+
+        // Register custom 'letteronly' validator
+        jQuery.validator.addMethod("letteronly", function(value, element, param) {
+            return value.match(new RegExp("." + param + "$"));
+        });
 
         function PopupBusinessCard(action)
         {
@@ -989,6 +996,7 @@
                 $('#businessCard').validate({
                     ignore: [],
                     errorElement: "span",
+                    errorClass: "invalid",
                     rules: {
                         name: { required: true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+' },
                         telephone: { required: true, letteronly:'[0-9]+' },
@@ -1085,7 +1093,8 @@
 
             $('#inlineBusinessCard').validate({
                 ignore: [],
-                errorElement: "span",
+                errorElement: "em",
+                errorClass: "invalid",
                 rules: {
                     name:{ required:true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+'},
                     telephone:{ required:true, letteronly:'[0-9]+'},
