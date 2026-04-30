@@ -2,9 +2,16 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header py-2 px-3">
                     <span class="breadcrumb-item"><a href="{{ url("$prefix/dashboard") }}">Dashboard</a></span>
-                    <span class="breadcrumb-item active">Chatbot Logs</span>
+                    <span class="breadcrumb-item active text-dark">Chatbot Logs</span>
+                    <div class="card-header-actions mr-2">
+                        <small class="badge badge-secondary">
+                            <a href="{{ url("$prefix/chatbot-logs/export") }}" target="_blank">
+                                <i class="fas fa-file-export"></i> Export .csv
+                            </a>
+                        </small>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
