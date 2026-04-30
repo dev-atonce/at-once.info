@@ -747,7 +747,7 @@
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end">
                         
                         <div class="mb-4 mb-lg-0">
-                            <p class="mb-1 footer-contact-text">LINE ID: At-Once OA</p>
+                            <p class="mb-1 footer-contact-text">LINE ID: @431xnkdu</p>
                             <p class="mb-1 footer-contact-text">Tel (TH): 02-168-8494</p>
                             <p class="mb-0 footer-contact-text">Tel (JP/EN): 081-116-1641</p>
                         </div>
