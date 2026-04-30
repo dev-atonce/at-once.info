@@ -528,3 +528,15 @@ Route::fallback(function () {
     
     return redirect('/th', 301);
 });
+
+// ============================================================
+// Chatbot Click Tracking — Record click then redirect to profile
+// ============================================================
+Route::get(
+    '/chatbot/{lang}/{category}/cp/{url}',
+    [\App\Http\Controllers\ChatbotClickCtrl::class, 'track']
+)->where([
+    'lang'     => 'th|en|jp|zh',
+    'category' => '[0-9A-Za-z-]+',
+    'url'      => '[0-9A-Za-z_-]+',
+]);
