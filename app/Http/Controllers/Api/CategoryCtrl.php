@@ -133,7 +133,7 @@ class CategoryCtrl extends Controller
         foreach(\App\Models\CategoryMainMd::select($select)->where('status',1)->get() as $i => $m)
         {
             $main[$i] = $m;
-            $sub = \App\Models\CategorySubMd::where(['category_main'=>$m->id])->select($select2)->get();
+            $sub = \App\Models\CategorySubMd::where(['category_main'=>$m->id])->select($select2)->orderBy('sort')->orderBy('id')->get();
             $main[$i]['sub'] =  $sub;
             foreach($sub as $j => $s){
                 $main[$i]['sub'][$j]['category'] = \App\Models\CategoryMd::where('category_sub',$s->id)

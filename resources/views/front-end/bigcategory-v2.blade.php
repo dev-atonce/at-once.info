@@ -57,7 +57,7 @@
             <div class="table-body">
                 <div class="row bg-white m-0" style="border-radius: 15px; overflow: hidden;">
                     <div class="step3">
-                        @foreach (\App\Models\CategorySubMd::where('category_main', 1)->select('id', "name_$lang as name", 'name_th', 'icon', 'category_main as main')->get() as $j => $s)
+                        @foreach (\App\Models\CategorySubMd::where('category_main', 1)->select('id', "name_$lang as name", 'name_th', 'icon', 'category_main as main')->orderBy('sort')->orderBy('id')->get() as $j => $s)
                             <div class="col-12 col-lg-12 col-md-12">
                                 <h3 class="mt-3 mb-2 border-bottom --c-blue">
                                     <small>{{ $s->name ? $s->name : $s->name_th }}</small></h3>
