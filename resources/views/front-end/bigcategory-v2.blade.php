@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-12 col-lg-12 col-md-12 px-2 pb-3">
                                 <div class="-grid collection-list">
-                                    @foreach (\App\Models\CategoryMd::where('category_sub', $s->id)->select('id', "name_$lang as name", 'name_th', 'image', 'category_sub as sub', 'key', 'coming_soon')->orderBy('coming_soon')->get() as $c)
+                                    @foreach (\App\Models\CategoryMd::where('category_sub', $s->id)->select('id', "name_$lang as name", 'name_th', 'image', 'category_sub as sub', 'key', 'coming_soon')->orderBy('coming_soon')->orderBy('no')->get() as $c)
                                         @php($href = $c->coming_soon != 1 ? "$lang/$c->key" : 'javascript:')
                                         <a class="text-dark" href="{{ $href }}" target="_blank"
                                             style="text-decoration: none;">

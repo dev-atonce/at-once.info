@@ -138,6 +138,8 @@ class CategoryCtrl extends Controller
             foreach($sub as $j => $s){
                 $main[$i]['sub'][$j]['category'] = \App\Models\CategoryMd::where('category_sub',$s->id)
                     ->select($select3)
+                    ->orderBy('coming_soon')
+                    ->orderBy('no')
                     ->get()
                     ->toArray();
             }
