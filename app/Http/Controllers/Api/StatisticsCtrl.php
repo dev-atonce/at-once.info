@@ -211,10 +211,15 @@ class StatisticsCtrl extends Controller
             ->count();
 
         //Blogs total
-        $blogTotal = BlogMd::where('company', $cid)->sum('view');
-        $blogMonthly = BlogStMd::where('company', $cid)->when($request->range, function ($query) use ($range) {
+        $b = BlogStMd::where('company', $cid);
+        $blogTotal = $b->count();
+        $blogMonthly = $b->when($request->range, function ($query) use ($range) {
             $query->whereDate('created', '>=', $range[0])
                 ->whereDate('created', '<=', $range[1]);
+        }, function ($query) {
+            // No explicit range selected → default to the current month
+            $query->whereYear('created', now()->year)
+                ->whereMonth('created', now()->month);
         })
             ->count();
 
