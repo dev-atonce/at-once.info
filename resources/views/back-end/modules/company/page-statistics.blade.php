@@ -4,9 +4,46 @@
     div.dataTables_wrapper div.dataTables_length select {
         width: -webkit-fill-available !important;
     }
+
+    #statLoading {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.65);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        border-radius: inherit;
+    }
+
+    #statLoading.show {
+        display: flex;
+    }
+
+    #statLoading .stat-spinner {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto;
+        border: 6px solid #d6dce5;
+        border-top-color: #321fdb;
+        border-radius: 50%;
+        animation: statSpin 0.8s linear infinite;
+    }
+
+    @keyframes statSpin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 
-<div class="card">
+<div class="card position-relative">
+    <div id="statLoading">
+        <div class="text-center">
+            <div class="stat-spinner"></div>
+            <div class="mt-2 font-weight-bold text-primary">Loading…</div>
+        </div>
+    </div>
     <div class="card-body">
         <div class="row mb-3">
             <div class="col-lg-12 col-xs-12 position-relative">
@@ -591,6 +628,23 @@
             series: [{ name: 'Blog Views', data: res.series.map(s => s.total) }]
         });
     }
+    
+    function showLoading() {
+        document.getElementById('statLoading').classList.add('show');
+    }
+    function hideLoading() {
+        document.getElementById('statLoading').classList.remove('show');
+    }
+    function withLoading(work) {
+        showLoading();
+        setTimeout(function() {
+            try {
+                work();
+            } finally {
+                hideLoading();
+            }
+        }, 50);
+    }
 
     staticClick();
     fetchGraph();
@@ -622,11 +676,13 @@
                 const endDate = picker.endDate.format('YYYY-MM-DD');
                 request = StartDate + ',' + endDate;
             }
-            staticClick({
-                'range': request
-            });
-            fetchLocate({
-                'range': request
+            withLoading(function() {
+                staticClick({
+                    'range': request
+                });
+                fetchLocate({
+                    'range': request
+                });
             });
         }
 
@@ -636,13 +692,17 @@
             picker.setStartDate(moment().startOf('month'));
             picker.setEndDate(moment());
             $('input[name="daterange"]').val('');
-            staticClick('');
-            fetchLocate('');
+            withLoading(function() {
+                staticClick('');
+                fetchLocate('');
+            });
         }
 
         const blogGraphBtn = e.target.closest('.btn-blog-graph');
         if (blogGraphBtn) {
-            fetchBlogGraph($('#blogFrom').val(), $('#blogTo').val());
+            withLoading(function() {
+                fetchBlogGraph($('#blogFrom').val(), $('#blogTo').val());
+            });
         }
 
         const graphBtn = e.target.closest('.btn-graph');
