@@ -164,6 +164,7 @@ foreach ($category as $key => $v) {
         Route::put('store/counter', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'storeCounter']);
 
         Route::get('{id}/statistics/dataGraph', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'chartReport'])->where('id', '[0-9]+');
+        Route::get('{id}/statistics/blogGraph', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'blogGraph'])->where('id', '[0-9]+');
         Route::get("{id}/statistics/report", [\App\Http\Controllers\Api\StatisticsCtrl::class, 'reportStatistics'])->where(['id' => '[0-9]+']);
     });
 }

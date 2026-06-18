@@ -74,7 +74,7 @@
                         <div style="min-height:100px;" class="d-flex flex-column align-items-start">
                             <div class="">
                                 <div class="text-value-lg monthly">0</div>
-                                <div>Monthly Blog View</div>
+                                <div class="blog-period-label">Selected Date Range Blog View</div>
                             </div>
                             <div class="">
                                 <div class="text-value-lg blogTotal">0</div>
@@ -173,6 +173,22 @@
 
 <div class="card">
     <div class="card-body">
+        <h3 class="text-center">Blog Views</h3>
+        <div class="form-inline justify-content-center mb-3">
+            <label class="mr-2 mb-0">From</label>
+            <input type="month" id="blogFrom" class="form-control mr-3">
+            <label class="mr-2 mb-0">To</label>
+            <input type="month" id="blogTo" class="form-control mr-3">
+            <button type="button" class="btn btn-outline-primary btn-blog-graph">
+                <i class="fas fa-search"></i>&nbsp;Show
+            </button>
+        </div>
+        <div id="blogview"></div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
         <div class="row">
             <div class="col-lg-12">
                 <table class="table table-striped" id="stBrowser" style="width:100%;">
@@ -232,9 +248,11 @@
         locale: {
             format: 'DD/MM/YYYY'
         },
-        startDate: formatDate(dateCreate),
-        minDate: formatDate(dateCreate),
-        maxDate: moment(new Date()).format("DD/MM/YYYY")
+        autoApply: true,
+        startDate: moment().startOf('month'),
+        endDate: moment(),
+        minDate: moment('20000101', 'YYYYMMDD'),
+        maxDate: moment()
     });
 
     $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
@@ -542,34 +560,58 @@
         });
     }
 
+    // Blog Views chart — custom month range (YYYY-MM .. YYYY-MM). Empty = last 6 months.
+    function fetchBlogGraph(from, to) {
+        let url = 'api/' + category + '/' + cid + '/statistics/blogGraph';
+        const params = [];
+        if (from) params.push('from=' + from);
+        if (to) params.push('to=' + to);
+        if (params.length) url += '?' + params.join('&');
+
+        const res = $.ajax({ url: url, async: false }).responseJSON;
+        if (!res || !res.series) return;
+
+        // Reflect the resolved range back into the inputs (handles the default 6-month case).
+        $('#blogFrom').val(res.from);
+        $('#blogTo').val(res.to);
+
+        Highcharts.chart('blogview', {
+            chart: { type: 'column' },
+            title: { text: 'Blog Views', align: 'center' },
+            xAxis: {
+                categories: res.series.map(s => s.label),
+                crosshair: true,
+                accessibility: { description: 'Monthly' }
+            },
+            yAxis: { min: 0, title: { text: 'Total (views)' } },
+            plotOptions: { column: { pointPadding: 0.2, borderWidth: 0 } },
+            series: [{ name: 'Blog Views', data: res.series.map(s => s.total) }]
+        });
+    }
+
     staticClick();
     fetchGraph();
     fetchLocate();
+    fetchBlogGraph();
 
     document.addEventListener('click', function(e) {
         const exportClick = e.target.closest('.export-click');
         if (exportClick) {
             e.preventDefault();
-            let testDate = document.querySelector('#daterange').value;
-            testDate = testDate.split(' - ');
-            start = testDate[0].split('/');
-            end = testDate[1].split('/');
-            StartDate = `${start[2]}-${start[1]}-${start[0]}`;
-            endDate = `${end[2]}-${end[1]}-${end[0]}`;
-            let request = StartDate + ',' + endDate;
+            const picker = $('input[name="daterange"]').data('daterangepicker');
+            const StartDate = picker.startDate.format('YYYY-MM-DD');
+            const endDate = picker.endDate.format('YYYY-MM-DD');
             let newUrl = exportClick.getAttribute('href') + `?range=${StartDate},${endDate}`;
             window.open(newUrl, '_blank', "width=1200,height=800");
         }
 
         const searchBtn = e.target.closest('.btn-search');
         if (searchBtn) {
-            let testDate = document.querySelector('#daterange').value;
-            testDate = testDate.split(' - ');
-            start = testDate[0].split('/');
-            end = testDate[1].split('/');
-            StartDate = `${start[2]}-${start[1]}-${start[0]}`;
-            endDate = `${end[2]}-${end[1]}-${end[0]}`;
-            let request = StartDate + ',' + endDate;
+            // Read the selected dates directly from the picker (robust, no string parsing)
+            const picker = $('input[name="daterange"]').data('daterangepicker');
+            const StartDate = picker.startDate.format('YYYY-MM-DD');
+            const endDate = picker.endDate.format('YYYY-MM-DD');
+            const request = StartDate + ',' + endDate;
             staticClick({
                 'range': request
             });
@@ -580,8 +622,20 @@
 
         const resetBtn = e.target.closest('.btn-reset');
         if (resetBtn) {
+            // Restore the picker to the current month and clear the filter
+            const picker = $('input[name="daterange"]').data('daterangepicker');
+            picker.setStartDate(moment().startOf('month'));
+            picker.setEndDate(moment());
+            $('input[name="daterange"]').val(
+                moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY')
+            );
             staticClick('');
             fetchLocate('');
+        }
+
+        const blogGraphBtn = e.target.closest('.btn-blog-graph');
+        if (blogGraphBtn) {
+            fetchBlogGraph($('#blogFrom').val(), $('#blogTo').val());
         }
 
         const graphBtn = e.target.closest('.btn-graph');
