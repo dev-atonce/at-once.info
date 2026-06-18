@@ -143,6 +143,85 @@ class StatisticsCtrl extends Controller
         return response()->json($data);
     }
 
+    public function blogStat(Request $request, $id)
+    {
+        $range = array_filter(explode(',', $request->range));
+
+        $views = BlogStMd::where('blog', $id);
+        $viewTotal = $views->count();
+        $viewRange = $views->when($request->range, function ($q) use ($range) {
+            $q->whereDate('created', '>=', $range[0])->whereDate('created', '<=', $range[1]);
+        })->count();
+
+        $contact = DB::table('blog_clicks')->where('blogId', $id);
+        $contactTotal = $contact->count();
+        $contactRange = $contact->when($request->range, function ($q) use ($range) {
+            $q->whereDate('created', '>=', $range[0])->whereDate('created', '<=', $range[1]);
+        })->count();
+
+        return response()->json([
+            'viewTotal'    => $viewTotal,
+            'viewRange'    => $viewRange,
+            'contactTotal' => $contactTotal,
+            'contactRange' => $contactRange,
+        ]);
+    }
+
+    public function blogStatGraph(Request $request, $id)
+    {
+        try {
+            $end = $request->to
+                ? Carbon::createFromFormat('Y-m', $request->to)->endOfMonth()
+                : Carbon::now()->endOfMonth();
+            $start = $request->from
+                ? Carbon::createFromFormat('Y-m', $request->from)->startOfMonth()
+                : (clone $end)->startOfMonth()->subMonths(5);
+
+            if ($start->gt($end)) {
+                $swap  = (clone $start)->endOfMonth();
+                $start = (clone $end)->startOfMonth();
+                $end   = $swap;
+            }
+
+            $rows = BlogStMd::selectRaw('YEAR(created) year, MONTH(created) month, COUNT(id) total')
+                ->where('blog', $id)
+                ->whereBetween('created', [
+                    $start->format('Y-m-d 00:00:00'),
+                    $end->format('Y-m-d 23:59:59'),
+                ])
+                ->groupBy('year', 'month')
+                ->get()
+                ->keyBy(function ($r) {
+                    return $r->year . '-' . str_pad($r->month, 2, '0', STR_PAD_LEFT);
+                });
+
+            $series = [];
+            $cursor = (clone $start)->startOfMonth();
+            $last   = (clone $end)->startOfMonth();
+            while ($cursor->lte($last)) {
+                $key = $cursor->format('Y-m');
+                $series[] = [
+                    'year'  => (int) $cursor->year,
+                    'month' => (int) $cursor->month,
+                    'label' => $cursor->format('M Y'),
+                    'total' => isset($rows[$key]) ? (int) $rows[$key]->total : 0,
+                ];
+                $cursor->addMonth();
+            }
+
+            return response()->json([
+                'from'   => $start->format('Y-m'),
+                'to'     => $end->format('Y-m'),
+                'series' => $series,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => 500,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
     public function popup(Request $request, $cid = null)
     {
         $range = array_filter(explode(',', $request->range));

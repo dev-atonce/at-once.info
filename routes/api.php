@@ -93,6 +93,9 @@ Route::prefix('ai-updata-by-piatec')->group(function () {
 });
 
 Route::prefix('blog')->group(function () {
+    Route::get('/{id}/stat/summary', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'blogStat'])->where('id', '[0-9]+');
+    Route::get('/{id}/stat/graph', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'blogStatGraph'])->where('id', '[0-9]+');
+
     Route::get('/all', [\App\Http\Controllers\Api\BlogCtrl::class, 'getAllBlog']);
     Route::get('/all/{type}', [\App\Http\Controllers\Api\BlogCtrl::class, 'getAllBlog'])->where(['type' => '[a-z-]+']);
     Route::get('/company', [\App\Http\Controllers\Api\BlogCtrl::class, 'blogCompany']);
