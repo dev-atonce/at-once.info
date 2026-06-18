@@ -249,11 +249,14 @@
             format: 'DD/MM/YYYY'
         },
         autoApply: true,
+        autoUpdateInput: false,
         startDate: moment().startOf('month'),
         endDate: moment(),
         minDate: moment('20000101', 'YYYYMMDD'),
         maxDate: moment()
     });
+
+    $('input[name="daterange"]').attr('placeholder', 'All-time');
 
     $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
@@ -598,20 +601,27 @@
         const exportClick = e.target.closest('.export-click');
         if (exportClick) {
             e.preventDefault();
-            const picker = $('input[name="daterange"]').data('daterangepicker');
-            const StartDate = picker.startDate.format('YYYY-MM-DD');
-            const endDate = picker.endDate.format('YYYY-MM-DD');
-            let newUrl = exportClick.getAttribute('href') + `?range=${StartDate},${endDate}`;
+            const hasRange = $('input[name="daterange"]').val().trim() !== '';
+            let newUrl = exportClick.getAttribute('href');
+            if (hasRange) {
+                const picker = $('input[name="daterange"]').data('daterangepicker');
+                const StartDate = picker.startDate.format('YYYY-MM-DD');
+                const endDate = picker.endDate.format('YYYY-MM-DD');
+                newUrl += `?range=${StartDate},${endDate}`;
+            }
             window.open(newUrl, '_blank', "width=1200,height=800");
         }
 
         const searchBtn = e.target.closest('.btn-search');
         if (searchBtn) {
-            // Read the selected dates directly from the picker (robust, no string parsing)
-            const picker = $('input[name="daterange"]').data('daterangepicker');
-            const StartDate = picker.startDate.format('YYYY-MM-DD');
-            const endDate = picker.endDate.format('YYYY-MM-DD');
-            const request = StartDate + ',' + endDate;
+            const hasRange = $('input[name="daterange"]').val().trim() !== '';
+            let request = '';
+            if (hasRange) {
+                const picker = $('input[name="daterange"]').data('daterangepicker');
+                const StartDate = picker.startDate.format('YYYY-MM-DD');
+                const endDate = picker.endDate.format('YYYY-MM-DD');
+                request = StartDate + ',' + endDate;
+            }
             staticClick({
                 'range': request
             });
@@ -622,13 +632,10 @@
 
         const resetBtn = e.target.closest('.btn-reset');
         if (resetBtn) {
-            // Restore the picker to the current month and clear the filter
             const picker = $('input[name="daterange"]').data('daterangepicker');
             picker.setStartDate(moment().startOf('month'));
             picker.setEndDate(moment());
-            $('input[name="daterange"]').val(
-                moment().startOf('month').format('DD/MM/YYYY') + ' - ' + moment().format('DD/MM/YYYY')
-            );
+            $('input[name="daterange"]').val('');
             staticClick('');
             fetchLocate('');
         }
