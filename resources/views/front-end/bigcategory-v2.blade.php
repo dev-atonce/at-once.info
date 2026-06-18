@@ -57,14 +57,14 @@
             <div class="table-body">
                 <div class="row bg-white m-0" style="border-radius: 15px; overflow: hidden;">
                     <div class="step3">
-                        @foreach (\App\Models\CategorySubMd::where('category_main', 1)->select('id', "name_$lang as name", 'name_th', 'icon', 'category_main as main')->get() as $j => $s)
+                        @foreach (\App\Models\CategorySubMd::where('category_main', 1)->select('id', "name_$lang as name", 'name_th', 'icon', 'category_main as main')->orderBy('sort')->orderBy('id')->get() as $j => $s)
                             <div class="col-12 col-lg-12 col-md-12">
                                 <h3 class="mt-3 mb-2 border-bottom --c-blue">
                                     <small>{{ $s->name ? $s->name : $s->name_th }}</small></h3>
                             </div>
                             <div class="col-12 col-lg-12 col-md-12 px-2 pb-3">
                                 <div class="-grid collection-list">
-                                    @foreach (\App\Models\CategoryMd::where('category_sub', $s->id)->select('id', "name_$lang as name", 'name_th', 'image', 'category_sub as sub', 'key', 'coming_soon')->orderBy('coming_soon')->get() as $c)
+                                    @foreach (\App\Models\CategoryMd::where('category_sub', $s->id)->select('id', "name_$lang as name", 'name_th', 'image', 'category_sub as sub', 'key', 'coming_soon')->orderBy('coming_soon')->orderBy('no')->get() as $c)
                                         @php($href = $c->coming_soon != 1 ? "$lang/$c->key" : 'javascript:')
                                         <a class="text-dark" href="{{ $href }}" target="_blank"
                                             style="text-decoration: none;">
