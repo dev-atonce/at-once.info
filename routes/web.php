@@ -346,6 +346,11 @@ Route::middleware(['Language'])->group(function()use($category,$lang)
                     'prefix' => 'front-end'
                 ]);
             });
+            Route::get('/15k-value-package', function () {
+                return view('front-end.15k-value-package', [
+                    'prefix' => 'front-end'
+                ]);
+            });
             Route::get('/coin',[HomeCtrl::class,'coin']);
             Route::get('/search',[HomeCtrl::class,'search']);
             Route::get('/category',[HomeCtrl::class,'category']);
