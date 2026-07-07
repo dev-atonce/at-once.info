@@ -31,340 +31,100 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (scoped to .lp-15k, does not touch the existing header/footer) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: {
+                preflight: false
+            },
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue-dark': '#1e3a8a',
+                        'brand-blue': '#2563eb',
+                        'brand-blue-light': '#dbeafe',
+                        'brand-orange': '#ea580c',
+                        'brand-orange-hover': '#c2410c',
+                        'brand-yellow': '#facc15',
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
-        /* Custom Modern Styling for 15k Value Package Landing Page */
-        :root {
-            --primary-navy: #1A315F;
-            --secondary-navy: #0E2439;
-            --accent-orange: #FF7700;
-            --accent-orange-hover: #E06600;
-            --text-light: #F8FAFC;
-            --text-dark: #1E293B;
-            --card-bg-glass: rgba(255, 255, 255, 0.08);
-            --card-border-glass: rgba(255, 255, 255, 0.15);
-        }
-
-        body.main_page {
-            font-family: 'Prompt', 'Inter', sans-serif;
-            color: var(--text-dark);
-            background-color: #F8FAFC;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 100%);
-            padding: 80px 0 100px;
-            color: var(--text-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -20%;
-            width: 80%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 119, 0, 0.15) 0%, transparent 60%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-tag {
-            background-color: rgba(255, 119, 0, 0.2);
-            border: 1px solid var(--accent-orange);
-            color: var(--accent-orange);
-            font-weight: 600;
-            font-size: 14px;
-            padding: 6px 18px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-title {
-            font-size: clamp(32px, 4vw, 52px);
-            font-weight: 700;
-            line-height: 1.25;
-            margin-bottom: 20px;
-        }
-
-        .hero-description {
-            font-size: clamp(16px, 1.8vw, 20px);
-            color: #CBD5E1;
-            font-weight: 300;
-            margin-bottom: 35px;
-            line-height: 1.6;
-        }
-
-        /* Glassmorphism Card */
-        .glass-card {
-            background: var(--card-bg-glass);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--card-border-glass);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 119, 0, 0.4);
-        }
-
-        .price-tag {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--accent-orange);
+        /* Icon font used by the "Why AT-Once" section */
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
             line-height: 1;
-            margin-bottom: 5px;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
         }
 
-        .price-period {
-            font-size: 14px;
-            color: #94A3B8;
-            margin-bottom: 20px;
-            display: block;
+        /* Minimal, scoped reset so Tailwind utility classes render as designed
+           without disturbing the site-wide Bootstrap header/footer styling.
+           :where() keeps the ".lp-15k" scope at zero specificity so these
+           rules behave like Tailwind's own preflight: they lose to ANY
+           Tailwind utility class (e.g. text-3xl), but still win (by source
+           order) over Bootstrap's plain h1-h6/ul/button element defaults. */
+        :where(.lp-15k) :where(*, *::before, *::after) {
+            box-sizing: border-box;
         }
 
-        .feature-list {
+        .lp-15k {
+            font-family: 'Prompt', sans-serif;
+        }
+
+        :where(.lp-15k) :where(h1, h2, h3, h4) {
+            margin: 0;
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        :where(.lp-15k) :where(p) {
+            margin: 0;
+        }
+
+        :where(.lp-15k) :where(ul, ol) {
             list-style: none;
+            margin: 0;
             padding: 0;
-            margin: 0 0 30px;
         }
 
-        .feature-list li {
-            padding-left: 28px;
-            position: relative;
-            margin-bottom: 12px;
-            font-size: 15px;
-            color: #E2E8F0;
-        }
-
-        .feature-list li::before {
-            content: "\f00c";
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: var(--accent-orange);
-        }
-
-        /* CTA Buttons */
-        .btn-cta {
-            background-color: var(--accent-orange);
-            color: white !important;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 14px 30px;
-            border-radius: 50px;
-            border: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 119, 0, 0.3);
-            text-align: center;
-            width: 100%;
-        }
-
-        .btn-cta:hover {
-            background-color: var(--accent-orange-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 119, 0, 0.4);
-        }
-
-        .btn-cta-secondary {
+        :where(.lp-15k) :where(button) {
+            font-family: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0;
             background-color: transparent;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white !important;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 12px 30px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            text-align: center;
-            display: inline-block;
-            width: 100%;
+            background-image: none;
+            border: none;
+            text-align: inherit;
+            cursor: pointer;
         }
 
-        .btn-cta-secondary:hover {
-            border-color: white;
-            background-color: rgba(255, 255, 255, 0.1);
+        :where(.lp-15k) :where(a) {
+            color: inherit;
+            text-decoration: inherit;
         }
 
-        /* Details Section */
-        .details-section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-navy);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 16px;
-            color: #64748B;
-            text-align: center;
-            margin-bottom: 50px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .benefit-card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #E2E8F0;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border-color: rgba(26, 49, 95, 0.15);
-        }
-
-        .benefit-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background-color: rgba(26, 49, 95, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-navy);
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .benefit-card:hover .benefit-icon {
-            background-color: var(--primary-navy);
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .benefit-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--primary-navy);
-            margin-bottom: 12px;
-        }
-
-        .benefit-desc {
-            font-size: 14px;
-            color: #64748B;
-            line-height: 1.6;
-        }
-
-        /* Comparison Section */
-        .comparison-section {
-            background-color: #F1F5F9;
-            padding: 80px 0;
-        }
-
-        .comparison-table {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .comparison-header {
-            background: var(--primary-navy);
-            color: white;
-            padding: 25px;
-            font-size: 20px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .comparison-row {
-            display: flex;
-            border-bottom: 1px solid #E2E8F0;
-            align-items: center;
-        }
-
-        .comparison-row:last-child {
-            border-bottom: none;
-        }
-
-        .comparison-cell {
-            padding: 20px;
-            flex: 1;
-            text-align: center;
-            font-size: 15px;
-        }
-
-        .comparison-label {
-            text-align: left;
-            font-weight: 500;
-            color: var(--primary-navy);
-            flex: 1.5;
-            padding-left: 30px;
-        }
-
-        .text-check {
-            color: #22C55E;
-            font-size: 18px;
-        }
-
-        .text-cross {
-            color: #EF4444;
-            font-size: 18px;
-        }
-
-        /* Statistics Section */
-        .stats-section {
-            background-color: var(--primary-navy);
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 40px;
-            font-weight: 700;
-            color: var(--accent-orange);
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #94A3B8;
-        }
-
-        /* Final Call to Action Section */
-        .cta-bottom-section {
-            padding: 80px 0;
-            text-align: center;
-            background: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%);
-        }
-
-        .cta-box {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .card-bussiness {
-            margin: 1.75rem auto;
+        :where(.lp-15k) :where(svg) {
+            display: block;
+            vertical-align: middle;
         }
     </style>
 </head>
@@ -372,184 +132,283 @@
 <body class="main_page">
     @include("$prefix.header")
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container hero-content">
-            <div class="row align-items-center">
-                <div class="col-lg-7 mb-5 mb-lg-0">
-                    <div class="hero-tag">Special Package</div>
-                    <h1 class="hero-title">ขยายโอกาสทางธุรกิจแบบก้าวกระโดดด้วย 15K Value Package</h1>
-                    <p class="hero-description">
-                        แพ็กเกจโปรโมทธุรกิจที่ครอบคลุมและคุ้มค่าที่สุดบน At-Once ช่วยเพิ่มประสิทธิภาพการค้นหาลูกค้า B2B แปลภาษาได้หลากหลาย และส่งตรงผู้สนใจใช้บริการตรงถึงมือคุณอย่างมีประสิทธิภาพ
-                    </p>
-                    <div class="row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <button class="btn-cta trigger-contact-popup" aria-label="สมัครสมาชิกแพ็กเกจ 15k">สมัครแพ็กเกจเลย</button>
+    <div class="lp-15k text-slate-800 antialiased">
+        <!-- BEGIN: Hero Section -->
+        <header class="text-white py-20 text-center relative overflow-hidden" style="background: linear-gradient(to bottom, #172554 0%, #1e40af 100%);">
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                <span class="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-6 backdrop-blur-sm">แพลตฟอร์ม B2B Matching อันดับ 1 ในไทย</span>
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+                    อยากหาลูกค้า B2B ในไทย<br>
+                    แต่ยังไม่มีเว็บไซต์?
+                </h1>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-yellow mb-6">
+                    ไม่ใช่ปัญหาอีกต่อไป!
+                </h2>
+                <p class="text-lg md:text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+                    AT-Once ให้ธุรกิจของคุณมีหน้าร้านออนไลน์พร้อมเข้าถึงลูกค้า B2B ไทยได้ทันที ไม่ต้องลงทุนสร้างเว็บเอง
+                </p>
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 py-8">
+                    <div class="md:border-r md:border-white/20">
+                        <div class="text-3xl font-bold text-brand-yellow mb-1">150,000+</div>
+                        <div class="text-sm text-blue-200">ยอดเข้าชม/เดือน</div>
+                    </div>
+                    <div class="md:border-r md:border-white/20">
+                        <div class="text-3xl font-bold text-brand-yellow mb-1">35,000+</div>
+                        <div class="text-sm text-blue-200">ผู้ใช้จริง/เดือน</div>
+                    </div>
+                    <div class="md:border-r md:border-white/20">
+                        <div class="text-3xl font-bold text-brand-yellow mb-1">160,000+</div>
+                        <div class="text-sm text-blue-200">บริษัทในฐานข้อมูล</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-brand-yellow mb-1">177</div>
+                        <div class="text-sm text-blue-200">หมวดธุรกิจ</div>
+                    </div>
+                </div>
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a class="trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-medium text-lg flex items-center transition duration-300" href="javascript:;" aria-label="เริ่มต้นสมัครแพ็กเกจวันนี้">
+                        เริ่มต้นวันนี้ <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    </a>
+                    <a class="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium text-lg transition duration-300" href="{{ url('/') }}" aria-label="ดูตัวอย่างแพลตฟอร์ม">
+                        ดูตัวอย่าง
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- END: Hero Section -->
+
+        <!-- BEGIN: Why AT-Once Section -->
+        <section class="py-20" style="background-color: #FFFEFE;">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">ทำไมต้อง AT-ONCE</span>
+                    <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">AT-Once คือแพลตฟอร์มที่เชื่อมโยง<br>ผู้ซื้อกับผู้ขาย B2B ทั่วประเทศไทย</h2>
+                    <p class="text-slate-600 max-w-3xl mx-auto">เราช่วยให้ธุรกิจของคุณถูกค้นพบโดยลูกค้าที่ใช่ ด้วยโปรไฟล์บริษัทออนไลน์ที่สร้างง่าย พร้อมระบบ Inquiry โดยตรง</p>
+                </div>
+                <div class="grid grid-cols-1 gap-12 max-w-3xl mx-auto">
+                    <!-- Feature 1 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">storefront</span></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-blue-dark mb-2">หน้าร้านออนไลน์พร้อมใช้งานทันที</h3>
+                            <p class="text-slate-600 text-sm">ไม่ต้องสร้างเว็บเอง เราจัดทำ Company Profile ให้พร้อม พร้อม Dashboard ส่วนตัวเพื่อดูสถิติได้ตลอดเวลา</p>
                         </div>
-                        <div class="col-sm-6">
-                            <button class="btn-cta-secondary trigger-contact-popup" aria-label="สอบถามข้อมูลรายละเอียดเพิ่มเติม">สอบถามรายละเอียดเพิ่มเติม</button>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">group</span></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-blue-dark mb-2">เข้าถึงลูกค้า B2B กว่า 35,000 คน/เดือน</h3>
+                            <p class="text-slate-600 text-sm">แพลตฟอร์มที่ลูกค้าไทยใช้ค้นหาซัพพลายเออร์จริง ครอบคลุม 177 หมวดธุรกิจ ทุกขนาดทุกประเภท</p>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">mail</span></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-blue-dark mb-2">รับ Inquiry ฟรี ไม่มีค่าใช้จ่ายเพิ่ม</h3>
+                            <p class="text-slate-600 text-sm">ทีมงานคัดกรองและส่งต่อ Inquiry จากผู้ซื้อถึงทีม Sales ของคุณโดยตรง ไม่ตกหล่นทุก Lead</p>
+                        </div>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">bar_chart</span></div>
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-blue-dark mb-2">ติดตามผลได้จริงผ่าน Dashboard</h3>
+                            <p class="text-slate-600 text-sm">ดู Views, Inquiries และ Engagement ได้ตลอดเวลา อัปเดตข้อมูลได้เองไม่จำกัด</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="glass-card text-center">
-                        <h2 class="h4 text-white mb-3">15K Value Package</h2>
-                        <div class="price-tag">15,000 บาท</div>
-                        <span class="price-period">ต่อปี (เฉลี่ยเพียง 1,250 บ./เดือน)</span>
-                        <ul class="feature-list text-left">
-                            <li>ลงข้อมูลโปรไฟล์ธุรกิจอย่างละเอียดครบถ้วน</li>
-                            <li>รองรับการแปล 4 ภาษา (TH, EN, JP, ZH)</li>
-                            <li>ระบบจัดอันดับ Priority เพิ่มโอกาสการแสดงผล</li>
-                            <li>รับข้อมูลผู้ติดต่อผ่าน Line Notify ทันที</li>
-                            <li>สถิติวิเคราะห์จำนวนผู้เข้าชมแบบละเอียด</li>
-                            <li>การช่วยเหลือจากเจ้าหน้าที่สนับสนุนส่วนตัว</li>
+            </div>
+        </section>
+        <!-- END: Why AT-Once Section -->
+
+        <!-- BEGIN: Value Package Section -->
+        <section class="py-20" style="background-color: #F4F6FB;">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">VALUE PACKAGE</span>
+                    <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">ราคาเริ่มต้นที่คุ้มค่า</h2>
+                    <p class="text-slate-600">เริ่มต้นเพียง 15,000 บาท/ปี หรือเฉลี่ยแค่ 43 บาทต่อวัน</p>
+                </div>
+                <div class="bg-white border-2 border-brand-blue rounded-2xl shadow-xl overflow-hidden mt-12 max-w-2xl mx-auto flex flex-col items-center">
+                    <!-- Badge -->
+                    <div class="bg-brand-orange text-white px-6 py-1 rounded-full text-sm font-bold inline-flex items-center shadow-md mb-4 mx-auto">
+                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        แนะนำสำหรับธุรกิจที่เริ่มต้น
+                    </div>
+                    <div class="p-8 pt-10 text-center border-b border-gray-100">
+                        <h3 class="text-2xl font-bold text-brand-blue-dark mb-4">Value Package</h3>
+                        <div class="flex justify-center items-end mb-2">
+                            <span class="text-5xl font-bold text-brand-blue">15,000</span>
+                            <span class="text-xl text-gray-500 ml-1 font-medium pb-1">฿/ปี</span>
+                        </div>
+                        <p class="text-brand-orange font-medium text-sm">เฉลี่ยเพียง 43 บาทต่อวัน!</p>
+                    </div>
+                    <div class="p-8">
+                        <ul class="text-left mb-8">
+                            <li class="flex items-start py-4 border-b border-gray-100">
+                                <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <span class="text-slate-700">Professional Company Profile บนแพลตฟอร์ม B2B ที่มีผู้ใช้งานจริง</span>
+                            </li>
+                            <li class="flex items-start py-4 border-b border-gray-100">
+                                <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <span class="text-slate-700">Backend Dashboard — ดู Views &amp; Inquiries ได้ตลอด 24 ชม.</span>
+                            </li>
+                            <li class="flex items-start py-4 border-b border-gray-100">
+                                <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <span class="text-slate-700">อัปโหลดเนื้อหาไม่จำกัด เพื่อทดสอบตลาดไทย</span>
+                            </li>
+                            <li class="flex items-start py-4 border-b border-gray-100">
+                                <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <span class="text-slate-700">Free Inquiry Handling — ส่ง Lead ให้ฟรีไม่มีค่าใช้จ่ายเพิ่ม</span>
+                            </li>
+                            <li class="flex items-start py-4 border-b border-gray-100">
+                                <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <span class="text-slate-700">ไม่ต้องสร้างเว็บเอง ลดต้นทุนหลายหมื่นบาท</span>
+                            </li>
+                            <li class="flex items-start py-4">
+                                <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <span class="text-slate-700">ทีมซัพพอร์ตพร้อมช่วยเหลือ</span>
+                            </li>
                         </ul>
-                        <button class="btn-cta trigger-contact-popup" aria-label="รับสิทธิ์ประโยชน์แพ็กเกจพิเศษ">รับสิทธิ์แพ็กเกจพิเศษนี้</button>
+                        <a class="trigger-contact-popup block w-full bg-brand-blue hover:bg-brand-blue-dark text-white text-center py-3 rounded-md font-medium transition duration-300 mt-4" href="javascript:;" aria-label="สมัคร Value Package เริ่มต้นได้วันนี้">
+                            สมัครเลย — เริ่มต้นได้วันนี้
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- END: Value Package Section -->
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="stat-number">120,000+</div>
-                    <div class="stat-label">ผู้ประกอบการลงทะเบียน</div>
+        <!-- BEGIN: 3 Easy Steps Section -->
+        <section class="py-20 bg-white border-t border-gray-100">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">ขั้นตอน</span>
+                    <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">เริ่มต้นง่ายใน 3 ขั้นตอน</h2>
+                    <p class="text-slate-600">ไม่ต้องมีความรู้ด้านเทคนิค เริ่มได้ทันทีภายในวันเดียว</p>
                 </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="stat-number">177+</div>
-                    <div class="stat-label">หมวดหมู่ธุรกิจ B2B ครอบคลุม</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="stat-number">1,500,000+</div>
-                    <div class="stat-label">ผู้เข้าชมแพลตฟอร์มรายปี</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Details Section -->
-    <section class="details-section">
-        <div class="container">
-            <h2 class="section-title">ฟีเจอร์และคุณประโยชน์ที่คุณจะได้รับ</h2>
-            <p class="section-subtitle">ยกระดับธุรกิจของคุณขึ้นสู่อีกขั้น ด้วยเครื่องมือทางการตลาดที่ออกแบบมาสำหรับธุรกิจ B2B โดยเฉพาะ</p>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fas fa-search-plus"></i></div>
-                        <h3 class="benefit-title">SEO Optimization</h3>
-                        <p class="benefit-desc">โปรไฟล์บริษัทของคุณจะถูกปรับแต่งโครงสร้างให้สอดคล้องตามหลัก SEO ช่วยให้หน้าเว็บของคุณติดอันดับการค้นหาบน Google ได้ง่ายและเสถียรยิ่งขึ้น</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                    <!-- Connecting Line (visible on md+) -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -z-10 -translate-y-1/2"></div>
+                    <!-- Step 1 -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                        <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">1</div>
+                        <h3 class="font-bold text-brand-blue-dark mb-2">กรอกข้อมูลบริษัท</h3>
+                        <p class="text-slate-500 text-sm">กรอกข้อมูลธุรกิจ ประเภทบริการ และข้อมูลติดต่อ</p>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fas fa-language"></i></div>
-                        <h3 class="benefit-title">Multilingual Translations</h3>
-                        <p class="benefit-desc">รองรับการแปลข้อมูลธุรกิจของคุณออกเป็น 4 ภาษาหลัก (ไทย, อังกฤษ, ญี่ปุ่น, จีน) ช่วยเปิดประตูต้อนรับลูกค้าและผู้แทนการค้าจากต่างประเทศอย่างมืออาชีพ</p>
+                    <!-- Step 2 -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                        <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">2</div>
+                        <h3 class="font-bold text-brand-blue-dark mb-2">ทีมงานจัดทำโปรไฟล์</h3>
+                        <p class="text-slate-500 text-sm">ทีมงาน AT-Once ออกแบบและจัดทำ Company Profile ให้</p>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fas fa-bell"></i></div>
-                        <h3 class="benefit-title">Instant Line Alerts</h3>
-                        <p class="benefit-desc">ทุกครั้งที่มีลูกค้ากรอกฟอร์มแสดงความสนใจติดต่อบริการจากโปรไฟล์ของคุณ ระบบจะแจ้งเตือนข้อความผ่าน Line Notify ส่งตรงไปยังทีมขายของคุณทันที</p>
+                    <!-- Step 3 -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                        <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">3</div>
+                        <h3 class="font-bold text-brand-blue-dark mb-2">เริ่มรับ Inquiry</h3>
+                        <p class="text-slate-500 text-sm">โปรไฟล์ขึ้นแพลตฟอร์ม ลูกค้าเริ่มพบเจอและส่ง Inquiry ได้ทันที</p>
                     </div>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
-                        <h3 class="benefit-title">Performance Analytics</h3>
-                        <p class="benefit-desc">ระบบรายงานสถิติหลังบ้านแบบละเอียด ช่วยให้คุณสามารถเข้าถึงข้อมูลการคลิกเข้าชม การแชร์ และพฤติกรรมลูกค้าได้ทุกเวลาเพื่อนำไปใช้วางแผนต่อยอด</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fas fa-award"></i></div>
-                        <h3 class="benefit-title">Priority Placement</h3>
-                        <p class="benefit-desc">จัดอันดับการแสดงรายชื่อบริษัทของคุณให้อยู่ในอันดับต้น ๆ ภายในหมวดหมู่ธุรกิจของคุณ ช่วยดึงดูดสายตาและสร้างความน่าเชื่อถือได้เป็นอันดับแรก</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="benefit-card">
-                        <div class="benefit-icon"><i class="fas fa-headset"></i></div>
-                        <h3 class="benefit-title">Dedicated Account Manager</h3>
-                        <p class="benefit-desc">เจ้าหน้าที่ดูแลประสานงานส่วนบุคคล คอยช่วยเหลือ แนะนำแนวทางการปรับปรุงโปรไฟล์ และช่วยอำนวยความสะดวกในการจัดทำหน้าเว็บของท่านตลอดระยะเวลาแพ็กเกจ</p>
+                    <!-- Step 4 -->
+                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                        <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">4</div>
+                        <h3 class="font-bold text-brand-blue-dark mb-2">ติดตามผลผ่าน Dashboard</h3>
+                        <p class="text-slate-500 text-sm">ดูสถิติ Views และ Inquiries ได้แบบ Real-time ตลอด 24 ชม.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- END: 3 Easy Steps Section -->
 
-    <!-- Comparison Section -->
-    <section class="comparison-section">
-        <div class="container">
-            <h2 class="section-title">เปรียบเทียบความแตกต่าง</h2>
-            <p class="section-subtitle">ดูความคุ้มค่าที่แตกต่างระหว่างสิทธิ์ใช้งานทั่วไปกับ 15K Value Package ที่มอบประสิทธิภาพสูงสุด</p>
-            <div class="comparison-table">
-                <div class="comparison-header">ตารางเปรียบเทียบสิทธิประโยชน์</div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">ฟีเจอร์ / สิทธิประโยชน์</div>
-                    <div class="comparison-cell font-weight-bold">Free Plan</div>
-                    <div class="comparison-cell font-weight-bold text-primary">15K Value Package</div>
+        <!-- BEGIN: Highlights Section -->
+        <section class="py-20 bg-slate-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">ทำไมต้องเลือก</span>
+                    <h2 class="text-3xl font-bold text-brand-blue-dark">จุดเด่นของ AT-Once</h2>
                 </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">ข้อมูลประวัติและรูปภาพบริษัท</div>
-                    <div class="comparison-cell"><i class="fas fa-check text-check"></i></div>
-                    <div class="comparison-cell"><i class="fas fa-check text-check"></i></div>
-                </div>
-                
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">การรองรับระบบ 4 ภาษา (TH, EN, JP, ZH)</div>
-                    <div class="comparison-cell"><i class="fas fa-times text-cross"></i> (เฉพาะภาษาหลัก)</div>
-                    <div class="comparison-cell"><i class="fas fa-check text-check"></i> (แปลทุกภาษา)</div>
-                </div>
-
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">การแจ้งเตือนทันทีผ่าน LINE Notify</div>
-                    <div class="comparison-cell"><i class="fas fa-times text-cross"></i></div>
-                    <div class="comparison-cell"><i class="fas fa-check text-check"></i></div>
-                </div>
-
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">การแสดงอันดับผู้ให้บริการ (Priority list)</div>
-                    <div class="comparison-cell">อันดับทั่วไป</div>
-                    <div class="comparison-cell font-weight-bold text-primary">อันดับพิเศษต้นหมวดหมู่</div>
-                </div>
-
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">ผู้ดูแลบัญชีและอัพเดทข้อมูลส่วนตัว</div>
-                    <div class="comparison-cell"><i class="fas fa-times text-cross"></i></div>
-                    <div class="comparison-cell"><i class="fas fa-check text-check"></i></div>
-                </div>
-
-                <div class="comparison-row">
-                    <div class="comparison-cell comparison-label">การแสดงรายละเอียดสินค้า/บริการเสริม</div>
-                    <div class="comparison-cell">จำกัด 3 รายการ</div>
-                    <div class="comparison-cell font-weight-bold text-primary">ไม่จำกัดจำนวนรายการ</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bottom Call to Action -->
-    <section class="cta-bottom-section">
-        <div class="container">
-            <div class="cta-box">
-                <h2 class="h1 font-weight-bold var(--primary-navy) mb-3">ยกระดับธุรกิจของคุณวันนี้</h2>
-                <p class="text-muted mb-5">โอกาสทองในการเข้าถึงลูกค้าธุรกิจและสร้างเครือข่าย B2B ในประเทศไทยและต่างประเทศที่ครอบคลุมมากที่สุด ทีมงานยินดีให้คำปรึกษาฟรี!</p>
-                <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-5">
-                        <button class="btn-cta btn-lg trigger-contact-popup" aria-label="สนใจสมัครสมาชิก 15k package">สนใจสมัครแพ็กเกจ คลิกที่นี่</button>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Highlight 1 -->
+                    <div class="md:border-r md:border-gray-200 pr-6">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                            <div class="text-brand-blue mb-4 flex justify-center">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            </div>
+                            <h3 class="font-bold text-brand-blue-dark mb-2">Cost-Effective</h3>
+                            <p class="text-slate-500 text-xs">วิธีที่คุ้มค่าที่สุดในการมี Online Presence ในไทย</p>
+                        </div>
+                    </div>
+                    <!-- Highlight 2 -->
+                    <div class="md:border-r md:border-gray-200 pr-6">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                            <div class="text-brand-blue mb-4 flex justify-center">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            </div>
+                            <h3 class="font-bold text-brand-blue-dark mb-2">เริ่มได้ทันที</h3>
+                            <p class="text-slate-500 text-xs">ไม่ต้องรอสร้างเว็บ ไม่ต้องมีความรู้ด้านเทคนิค</p>
+                        </div>
+                    </div>
+                    <!-- Highlight 3 -->
+                    <div class="md:border-r md:border-gray-200 pr-6">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                            <div class="text-brand-blue mb-4 flex justify-center">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            </div>
+                            <h3 class="font-bold text-brand-blue-dark mb-2">Market Insight</h3>
+                            <p class="text-slate-500 text-xs">เห็นข้อมูล Engagement ของลูกค้าไทยจาก Dashboard จริง</p>
+                        </div>
+                    </div>
+                    <!-- Highlight 4 -->
+                    <div>
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                            <div class="text-brand-blue mb-4 flex justify-center">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                            </div>
+                            <h3 class="font-bold text-brand-blue-dark mb-2">ทีมซัพพอร์ต</h3>
+                            <p class="text-slate-500 text-xs">ทีมงานมืออาชีพพร้อมช่วยตลอดการใช้งาน</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- END: Highlights Section -->
+
+        <!-- BEGIN: Footer CTA Section -->
+        <section class="bg-brand-blue-dark text-white py-16 from-[#1e3a8a] via-[#1e40af] to-[#3b82f6] bg-gradient-to-br">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4">พร้อมเริ่มต้นขยายธุรกิจสู่ตลาดไทย?</h2>
+                <p class="text-blue-200 mb-8">ติดต่อเราได้เลยวันนี้ ทีมงานพร้อมช่วยคุณเริ่มต้น</p>
+                <div class="inline-block bg-brand-blue-dark border-2 border-brand-yellow rounded-xl px-8 py-4 mb-8">
+                    <div class="flex items-end justify-center">
+                        <span class="text-4xl font-bold text-brand-yellow">15,000</span>
+                        <span class="text-lg text-white ml-2 pb-1 font-medium">฿/ปี</span>
+                    </div>
+                    <div class="text-sm text-blue-200 mt-1">เฉลี่ยเพียง 43 บาทต่อวัน</div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition" href="tel:0655285587">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        065-528-5587
+                    </a>
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition" href="mailto:marketing2@at-once.info">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        marketing2@at-once.info
+                    </a>
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition" href="https://at-once.info/th" target="_blank">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        at-once.info/th
+                    </a>
+                </div>
+                <button class="trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-bold text-lg transition duration-300" aria-label="สมัคร Value Package เลย">
+                    สมัคร Value Package เลย
+                </button>
+            </div>
+        </section>
+        <!-- END: Footer CTA Section -->
+    </div>
 
     @include("$prefix.footer")
 
