@@ -129,6 +129,48 @@
             vertical-align: middle;
         }
 
+        @media (prefers-reduced-motion: no-preference) {
+            :where(.lp-15k) .reveal {
+                opacity: 0;
+                transform: translateY(22px);
+                transition: opacity .7s cubic-bezier(.16, 1, .3, 1), transform .7s cubic-bezier(.16, 1, .3, 1);
+            }
+
+            :where(.lp-15k) .reveal.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            :where(.lp-15k) .reveal-d1 { transition-delay: .08s; }
+            :where(.lp-15k) .reveal-d2 { transition-delay: .16s; }
+            :where(.lp-15k) .reveal-d3 { transition-delay: .24s; }
+            :where(.lp-15k) .reveal-d4 { transition-delay: .32s; }
+            :where(.lp-15k) .reveal-d5 { transition-delay: .4s; }
+            :where(.lp-15k) .reveal-d6 { transition-delay: .48s; }
+
+            /* Step connector "draws itself" left-to-right once the row is in
+               view — a motion choice tied to what the line means (sequence),
+               not decoration for its own sake. */
+            :where(.lp-15k) .step-connector {
+                transform: scaleX(0);
+                transform-origin: left center;
+                transition: transform 1s cubic-bezier(.16, 1, .3, 1) .15s;
+            }
+
+            :where(.lp-15k) .step-connector.is-visible {
+                transform: scaleX(1);
+            }
+
+            :where(.lp-15k) .badge-pulse {
+                animation: lp15k-badge-pulse 2.4s ease-out infinite;
+            }
+
+            @keyframes lp15k-badge-pulse {
+                0%, 100% { box-shadow: 0 0 0 0 rgba(234, 88, 12, .45); }
+                70% { box-shadow: 0 0 0 10px rgba(234, 88, 12, 0); }
+            }
+        }
+
         html, body {
             overflow-x: hidden;
         }
@@ -147,42 +189,42 @@
         <!-- BEGIN: Hero Section -->
         <header class="text-white py-20 text-center relative overflow-hidden" style="background: linear-gradient(to bottom, #172554 0%, #1e40af 100%);">
             <div class="max-w-4xl mx-auto px-4 relative z-10">
-                <span class="inline-block bg-white/20 text-brand-yellow text-sm px-4 py-1 rounded-full mb-6 backdrop-blur-sm">แพลตฟอร์ม B2B Matching อันดับ 1 ในไทย</span>
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+                <span class="reveal reveal-load inline-block bg-white/20 text-brand-yellow text-sm px-4 py-1 rounded-full mb-6 backdrop-blur-sm">แพลตฟอร์ม B2B Matching อันดับ 1 ในไทย</span>
+                <h1 class="reveal reveal-load reveal-d1 text-4xl md:text-5xl font-bold leading-tight mb-4">
                     อยากหาลูกค้า B2B ในไทย<br>
                     แต่ยังไม่มีเว็บไซต์?
                 </h1>
-                <h2 class="text-3xl md:text-4xl font-bold text-brand-yellow mb-6">
+                <h2 class="reveal reveal-load reveal-d2 text-3xl md:text-4xl font-bold text-brand-yellow mb-6">
                     ไม่ใช่ปัญหาอีกต่อไป!
                 </h2>
-                <p class="text-lg md:text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
+                <p class="reveal reveal-load reveal-d3 text-lg md:text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
                     AT-Once ให้ธุรกิจของคุณมีหน้าร้านออนไลน์พร้อมเข้าถึงลูกค้า B2B ไทยได้ทันที ไม่ต้องลงทุนสร้างเว็บเอง
                 </p>
                 <!-- Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 mb-12 py-8">
+                <div class="reveal reveal-load reveal-d4 grid grid-cols-2 md:grid-cols-4 mb-12 py-8">
                     <div class="border-r border-white/20 px-4">
-                        <div class="text-3xl font-bold text-brand-yellow mb-1">150,000+</div>
+                        <div class="text-3xl font-bold text-brand-yellow mb-1"><span class="stat-value" data-target="150000" data-suffix="+">150,000+</span></div>
                         <div class="text-sm text-blue-200">ยอดเข้าชม/เดือน</div>
                     </div>
                     <div class="md:border-r md:border-white/20 px-4">
-                        <div class="text-3xl font-bold text-brand-yellow mb-1">35,000+</div>
+                        <div class="text-3xl font-bold text-brand-yellow mb-1"><span class="stat-value" data-target="35000" data-suffix="+">35,000+</span></div>
                         <div class="text-sm text-blue-200">ผู้ใช้จริง/เดือน</div>
                     </div>
                     <div class="border-r border-white/20 px-4">
-                        <div class="text-3xl font-bold text-brand-yellow mb-1">160,000+</div>
+                        <div class="text-3xl font-bold text-brand-yellow mb-1"><span class="stat-value" data-target="160000" data-suffix="+">160,000+</span></div>
                         <div class="text-sm text-blue-200">บริษัทในฐานข้อมูล</div>
                     </div>
                     <div class="px-4">
-                        <div class="text-3xl font-bold text-brand-yellow mb-1">177</div>
+                        <div class="text-3xl font-bold text-brand-yellow mb-1"><span class="stat-value" data-target="177" data-suffix="">177</span></div>
                         <div class="text-sm text-blue-200">หมวดธุรกิจ</div>
                     </div>
                 </div>
                 <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a class="trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-medium text-lg flex items-center transition duration-300" href="javascript:;" aria-label="เริ่มต้นสมัครแพ็กเกจวันนี้">
-                        เริ่มต้นวันนี้ <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <div class="reveal reveal-load reveal-d5 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a class="group trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-medium text-lg flex items-center transition duration-300 transform hover:scale-105 active:scale-95" href="javascript:;" aria-label="เริ่มต้นสมัครแพ็กเกจวันนี้">
+                        เริ่มต้นวันนี้ <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                     </a>
-                    <a class="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium text-lg transition duration-300" href="{{ url((Session('lang') ? Session('lang') : 'th') . '/promotion-package') }}" aria-label="ดูตัวอย่างแพลตฟอร์ม">
+                    <a class="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium text-lg transition duration-300 transform hover:scale-105 active:scale-95" href="{{ url((Session('lang') ? Session('lang') : 'th') . '/promotion-package') }}" aria-label="ดูตัวอย่างแพลตฟอร์ม">
                         ดูตัวอย่าง
                     </a>
                 </div>
@@ -193,39 +235,39 @@
         <!-- BEGIN: Why AT-Once Section -->
         <section class="py-20" style="background-color: #FFFEFE;">
             <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-16">
+                <div class="reveal reveal-scroll text-center mb-16">
                     <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">ทำไมต้อง AT-ONCE</span>
                     <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">AT-Once คือแพลตฟอร์มที่เชื่อมโยง<br>ผู้ซื้อกับผู้ขาย B2B ทั่วประเทศไทย</h2>
                     <p class="text-slate-600 max-w-3xl mx-auto">เราช่วยให้ธุรกิจของคุณถูกค้นพบโดยลูกค้าที่ใช่ ด้วยโปรไฟล์บริษัทออนไลน์ที่สร้างง่าย พร้อมระบบ Inquiry โดยตรง</p>
                 </div>
                 <div class="grid grid-cols-1 gap-12 max-w-3xl mx-auto">
                     <!-- Feature 1 -->
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">storefront</span></div>
+                    <div class="reveal reveal-scroll group flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">storefront</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">หน้าร้านออนไลน์พร้อมใช้งานทันที</h3>
                             <p class="text-slate-600 text-sm">ไม่ต้องสร้างเว็บเอง เราจัดทำ Company Profile ให้พร้อม พร้อม Dashboard ส่วนตัวเพื่อดูสถิติได้ตลอดเวลา</p>
                         </div>
                     </div>
                     <!-- Feature 2 -->
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">group</span></div>
+                    <div class="reveal reveal-scroll reveal-d1 group flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">group</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">เข้าถึงลูกค้า B2B กว่า 35,000 คน/เดือน</h3>
                             <p class="text-slate-600 text-sm">แพลตฟอร์มที่ลูกค้าไทยใช้ค้นหาซัพพลายเออร์จริง ครอบคลุม 177 หมวดธุรกิจ ทุกขนาดทุกประเภท</p>
                         </div>
                     </div>
                     <!-- Feature 3 -->
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">mail</span></div>
+                    <div class="reveal reveal-scroll reveal-d2 group flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">mail</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">รับ Inquiry ฟรี ไม่มีค่าใช้จ่ายเพิ่ม</h3>
                             <p class="text-slate-600 text-sm">ทีมงานคัดกรองและส่งต่อ Inquiry จากผู้ซื้อถึงทีม Sales ของคุณโดยตรง ไม่ตกหล่นทุก Lead</p>
                         </div>
                     </div>
                     <!-- Feature 4 -->
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6"><span class="material-symbols-outlined text-3xl">bar_chart</span></div>
+                    <div class="reveal reveal-scroll reveal-d3 group flex items-start">
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">bar_chart</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">ติดตามผลได้จริงผ่าน Dashboard</h3>
                             <p class="text-slate-600 text-sm">ดู Views, Inquiries และ Engagement ได้ตลอดเวลา อัปเดตข้อมูลได้เองไม่จำกัด</p>
@@ -244,9 +286,9 @@
                     <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">ราคาเริ่มต้นที่คุ้มค่า</h2>
                     <p class="text-slate-600">เริ่มต้นเพียง 15,000 บาท/ปี หรือเฉลี่ยแค่ 43 บาทต่อวัน</p>
                 </div>
-                <div class="bg-white border-2 border-brand-blue rounded-2xl shadow-xl mt-12 max-w-2xl mx-auto flex flex-col items-center relative">
+                <div class="reveal reveal-scroll bg-white border-2 border-brand-blue rounded-2xl shadow-xl mt-12 max-w-2xl mx-auto flex flex-col items-center relative transition-transform duration-300 hover:-translate-y-1">
                     <!-- Badge -->
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-orange text-white px-6 py-1 rounded-full text-sm font-bold inline-flex items-center shadow-md z-10">
+                    <div class="badge-pulse absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-orange text-white px-6 py-1 rounded-full text-sm font-bold inline-flex items-center shadow-md z-10">
                         <svg class="w-4 h-4 mr-1 text-brand-yellow" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                         แนะนำสำหรับธุรกิจที่เริ่มต้น
                     </div>
@@ -285,7 +327,7 @@
                                 <span class="text-slate-700">ทีมซัพพอร์ตพร้อมช่วยเหลือ</span>
                             </li>
                         </ul>
-                        <a class="trigger-contact-popup block w-full bg-brand-blue hover:bg-brand-blue-dark text-white text-center py-3 rounded-md font-medium transition duration-300 mt-4" href="javascript:;" aria-label="สมัคร Value Package เริ่มต้นได้วันนี้">
+                        <a class="trigger-contact-popup block w-full bg-brand-blue hover:bg-brand-blue-dark text-white text-center py-3 rounded-md font-medium transition duration-300 mt-4 transform hover:scale-[1.02] active:scale-95" href="javascript:;" aria-label="สมัคร Value Package เริ่มต้นได้วันนี้">
                             สมัครเลย — เริ่มต้นได้วันนี้
                         </a>
                     </div>
@@ -297,34 +339,34 @@
         <!-- BEGIN: 3 Easy Steps Section -->
         <section class="py-20 bg-white border-t border-gray-100">
             <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-16">
+                <div class="reveal reveal-scroll text-center mb-16">
                     <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">ขั้นตอน</span>
                     <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">เริ่มต้นง่ายใน 3 ขั้นตอน</h2>
                     <p class="text-slate-600">ไม่ต้องมีความรู้ด้านเทคนิค เริ่มได้ทันทีภายในวันเดียว</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
                     <!-- Connecting Line (visible on md+) -->
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -z-10 -translate-y-1/2"></div>
+                    <div class="step-connector reveal-scroll hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -z-10 -translate-y-1/2"></div>
                     <!-- Step 1 -->
-                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                    <div class="reveal reveal-scroll bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                         <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">1</div>
                         <h3 class="font-bold text-brand-blue-dark mb-2">กรอกข้อมูลบริษัท</h3>
                         <p class="text-slate-500 text-sm">กรอกข้อมูลธุรกิจ ประเภทบริการ และข้อมูลติดต่อ</p>
                     </div>
                     <!-- Step 2 -->
-                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                    <div class="reveal reveal-scroll reveal-d1 bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                         <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">2</div>
                         <h3 class="font-bold text-brand-blue-dark mb-2">ทีมงานจัดทำโปรไฟล์</h3>
                         <p class="text-slate-500 text-sm">ทีมงาน AT-Once ออกแบบและจัดทำ Company Profile ให้</p>
                     </div>
                     <!-- Step 3 -->
-                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                    <div class="reveal reveal-scroll reveal-d2 bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                         <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">3</div>
                         <h3 class="font-bold text-brand-blue-dark mb-2">เริ่มรับ Inquiry</h3>
                         <p class="text-slate-500 text-sm">โปรไฟล์ขึ้นแพลตฟอร์ม ลูกค้าเริ่มพบเจอและส่ง Inquiry ได้ทันที</p>
                     </div>
                     <!-- Step 4 -->
-                    <div class="bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10">
+                    <div class="reveal reveal-scroll reveal-d3 bg-white border border-gray-200 rounded-xl p-6 text-center shadow-sm relative z-10 transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                         <div class="w-12 h-12 bg-brand-blue text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 border-4 border-white shadow-sm" style="background-color: rgb(30, 84, 161);">4</div>
                         <h3 class="font-bold text-brand-blue-dark mb-2">ติดตามผลผ่าน Dashboard</h3>
                         <p class="text-slate-500 text-sm">ดูสถิติ Views และ Inquiries ได้แบบ Real-time ตลอด 24 ชม.</p>
@@ -337,14 +379,14 @@
         <!-- BEGIN: Highlights Section -->
         <section class="py-20 bg-slate-50">
             <div class="max-w-6xl mx-auto px-4">
-                <div class="text-center mb-12">
+                <div class="reveal reveal-scroll text-center mb-12">
                     <span class="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-2 block">ทำไมต้องเลือก</span>
                     <h2 class="text-3xl font-bold text-brand-blue-dark">จุดเด่นของ AT-Once</h2>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <!-- Highlight 1 -->
-                    <div>
-                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                    <div class="reveal reveal-scroll">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                             <div class="text-brand-blue mb-4 flex justify-center">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             </div>
@@ -353,8 +395,8 @@
                         </div>
                     </div>
                     <!-- Highlight 2 -->
-                    <div>
-                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                    <div class="reveal reveal-scroll reveal-d1">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                             <div class="text-brand-blue mb-4 flex justify-center">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             </div>
@@ -363,8 +405,8 @@
                         </div>
                     </div>
                     <!-- Highlight 3 -->
-                    <div>
-                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                    <div class="reveal reveal-scroll reveal-d2">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                             <div class="text-brand-blue mb-4 flex justify-center">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             </div>
@@ -373,8 +415,8 @@
                         </div>
                     </div>
                     <!-- Highlight 4 -->
-                    <div>
-                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
+                    <div class="reveal reveal-scroll reveal-d3">
+                        <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full transition-transform duration-300 hover:-translate-y-1 hover:shadow-md">
                             <div class="text-brand-blue mb-4 flex justify-center">
                                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                             </div>
@@ -390,30 +432,30 @@
         <!-- BEGIN: Footer CTA Section -->
         <section class="bg-brand-blue-dark text-white py-16 from-[#1e3a8a] via-[#1e40af] to-[#3b82f6] bg-gradient-to-br">
             <div class="max-w-4xl mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-4">พร้อมเริ่มต้นขยายธุรกิจสู่ตลาดไทย?</h2>
-                <p class="text-blue-200 mb-8">ติดต่อเราได้เลยวันนี้ ทีมงานพร้อมช่วยคุณเริ่มต้น</p>
-                <div class="inline-block bg-brand-blue-dark border-2 border-brand-yellow rounded-xl px-8 py-4 mb-8">
+                <h2 class="reveal reveal-scroll text-3xl font-bold mb-4">พร้อมเริ่มต้นขยายธุรกิจสู่ตลาดไทย?</h2>
+                <p class="reveal reveal-scroll reveal-d1 text-blue-200 mb-8">ติดต่อเราได้เลยวันนี้ ทีมงานพร้อมช่วยคุณเริ่มต้น</p>
+                <div class="reveal reveal-scroll reveal-d2 inline-block bg-brand-blue-dark border-2 border-brand-yellow rounded-xl px-8 py-4 mb-8">
                     <div class="flex items-end justify-center">
                         <span class="text-4xl font-bold text-brand-yellow">15,000</span>
                         <span class="text-lg text-white ml-2 pb-1 font-medium">฿/ปี</span>
                     </div>
                     <div class="text-sm text-blue-200 mt-1">เฉลี่ยเพียง 43 บาทต่อวัน</div>
                 </div>
-                <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white" href="tel:0655285587">
+                <div class="reveal reveal-scroll reveal-d3 flex flex-wrap justify-center gap-4 mb-8">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white transform hover:-translate-y-0.5" href="tel:0655285587">
                         <i class="fab fa-line mr-2" style="font-size: 1rem;"></i>
                         065-528-5587
                     </a>
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white" href="mailto:marketing2@at-once.info">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white transform hover:-translate-y-0.5" href="mailto:marketing2@at-once.info">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                         marketing2@at-once.info
                     </a>
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white" href="https://at-once.info/th" target="_blank">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white transform hover:-translate-y-0.5" href="https://at-once.info/th" target="_blank">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                         at-once.info/th
                     </a>
                 </div>
-                <button class="trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-bold text-lg transition duration-300" aria-label="สมัคร Value Package เลย">
+                <button class="reveal reveal-scroll reveal-d4 trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-bold text-lg transition duration-300 transform hover:scale-105 active:scale-95" aria-label="สมัคร Value Package เลย">
                     สมัคร Value Package เลย
                 </button>
             </div>
@@ -608,6 +650,55 @@
                 }
             });
         });
+
+        // --- Motion layer: reveal-on-load, reveal-on-scroll, stat count-up ---
+        (function() {
+            var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function animateCount(el) {
+                var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+                var suffix = el.getAttribute('data-suffix') || '';
+                if (reduceMotion) {
+                    el.textContent = target.toLocaleString('en-US') + suffix;
+                    return;
+                }
+                var duration = 1400;
+                var start = null;
+                function step(timestamp) {
+                    if (start === null) start = timestamp;
+                    var progress = Math.min((timestamp - start) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    var current = Math.round(target * eased);
+                    el.textContent = current.toLocaleString('en-US') + suffix;
+                    if (progress < 1) window.requestAnimationFrame(step);
+                }
+                window.requestAnimationFrame(step);
+            }
+
+            window.addEventListener('load', function() {
+                document.querySelectorAll('.lp-15k .reveal-load').forEach(function(el) {
+                    el.classList.add('is-visible');
+                });
+                document.querySelectorAll('.lp-15k .stat-value').forEach(function(el) {
+                    animateCount(el);
+                });
+            });
+
+            var revealScrollEls = document.querySelectorAll('.lp-15k .reveal-scroll');
+            if ('IntersectionObserver' in window && !reduceMotion) {
+                var io = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+                revealScrollEls.forEach(function(el) { io.observe(el); });
+            } else {
+                revealScrollEls.forEach(function(el) { el.classList.add('is-visible'); });
+            }
+        })();
     </script>
 </body>
 
