@@ -418,6 +418,7 @@
 
     <!-- Scripts -->
     <script src="js/jquery.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery-popup.js"></script>
@@ -427,27 +428,176 @@
     <script type="text/javascript" src="js/build/authentication.js"></script>
     <script type="text/javascript" src="js/js.device.detector-master/dist/jquery.device.detector.js"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en"></script>
-    <script src="js/package-popup.js?v=4"></script>
     <script src="plugin/sweetalert2/sweetalert2.all.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <script>
+        // --- Popup Business Card ---
+        var lang = "{{ Session('lang', 'th') }}";
+
+        jQuery.validator.addMethod("letteronly", function(value, element, param) {
+            return value.match(new RegExp("." + param + "$"));
+        });
+
+        function PopupBusinessCard() {
+            let page = 'Pop-up from 15k Value Package Landing Page';
+            let companyLogo = "split/at_once.png";
+            let companyName = "At-once";
+            const caption = 'ขอบคุณสำหรับความสนใจใน 15K Value Package หากลูกค้าต้องการสอบถามข้อมูลเพิ่มเติม สามารถกรอกรายละเอียดด้านล่าง จากนั้นจะมีเจ้าหน้าที่ติดต่อกลับภายใน 24 ชั่วโมงค่ะ';
+            let companyId = 64;
+
+            const popup = $(
+            `<div class="popup-dialog dialog-centered dialog-backdrop">
+                <div class="card-bussiness dialog-content" style="border-radius:8px; display:flex; flex-direction:column; -webkit-transition:opacity 400ms ease-in; -moz-transition:opacity 400ms ease-in; transition: opacity 400ms ease-in;">
+                        <a href="javascript:" class="dialog-minimize" onclick="PopupMinimize()">
+                            <span><i class="fas fa-times"></i></span>
+                        </a>
+                            <input type="hidden" name="company" value="${companyId}">
+                            <div class="dialog-header">
+                                    <div class="card-cover" style="background-image: url(https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80)"></div>
+                                </div>
+                                <div class="dialog-body mt-4">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <img src="${companyLogo}" class="img-fluid card-avatar" alt="avatar">
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="dialog-content">
+                                            <div class="card-fullname">${companyName}</div>${caption}</div>
+                                        </div>
+                                    </div>
+                                    <form id="businessCard" onsubmit="return false;">
+                                        <input type="hidden" name="thisCompany" value="${companyName}">
+                                        <input type="hidden" name="lang" value="${lang}">
+                                        <input type="hidden" name="type" value="customer">
+                                        <input type="hidden" name="page" value="${page}">
+                                        <input type="hidden" name="companyId" value="${companyId}">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Name</label>
+                                                <input type="text" name="name" class="form-control" placeholder="ชื่อ" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Telephone</label>
+                                                <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Email</label>
+                                                <input type="email" name="email" class="form-control" placeholder="อีเมล์" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div style="display:flex;justify-content: center;margin:15px 0 10px 0;">
+                                                    <div id="captcha_container"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="dialog-footer mt-3">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="submit" class="btn btn-confirm" style="minWidth:100;margin:0 5px 0 0" disabled="">Confirm</button>
+                                            <button type="button" class="btn btn-secondary" onclick="PopupMinimize()" style="minWidth:100; margin:0 0 0 5px">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>`);
+
+            $(document).find('body').append(popup);
+
+            grecaptcha.ready(function() {
+                var captchaContainer = grecaptcha.render('captcha_container', {
+                    'sitekey' : '6LcEE6ooAAAAAN8ZnN5uTezCAeCpAvB6fGuugnKB',
+                    'callback' : function(response) {
+                        document.querySelector('#businessCard').querySelector('[type="submit"]').removeAttribute('disabled');
+                    }
+                });
+
+                axios({
+                    method: 'post',
+                    url: `api/statistics/show-popup`,
+                    data: {
+                        companyId: companyId,
+                    }
+                }).then((res => {
+                    if(res.data == false){
+                        console.log(res.status)
+                    }
+                }))
+
+                const messageResponse = (code, msg) =>
+                {
+                    popup.find('.alert').remove();
+                    let alert = $('<label class="alert alert-'+code+' text-center" style="width:100%">'+msg+'</alert>');
+                    popup.find('form').prepend(alert);
+                }
+                const sendTo = async () =>
+                {
+                    let inputs = $("#businessCard").serialize();
+                    await axios({
+                        method: 'post',
+                        url: `api/send/sms`,
+                        data: inputs
+                    })
+                    .then((res) => {
+                        grecaptcha.reset(captchaContainer);
+                        let code = 'danger';
+                        if(res.data.status=='success'){
+                            code = 'success';
+                        }
+                        messageResponse(code, res.data.message);
+                        popup.find('input[name="name"]').val('');
+                        popup.find('input[name="telephone"]').val('');
+                        popup.find('input[name="email"]').val('');
+                        popup.find('input').removeClass('valid');
+                        $('.btn-confirm').attr("disabled", false);
+                    })
+                    .catch(err => console.log(err));
+                }
+
+                $('#businessCard').validate({
+                    ignore: [],
+                    errorElement: "span",
+                    errorClass: "invalid",
+                    rules: {
+                        name: { required: true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+' },
+                        telephone: { required: true, letteronly:'[0-9]+' },
+                        email: { required: true, email: true }
+                    },
+                    messages: {
+                        name: {
+                            required: '{{ __('phrase.contact.validate.name') }}',
+                            letteronly: 'กรุณากรอกตัวอักษร'
+                        },
+                        telephone: {
+                            required: '{{ __('phrase.contact.validate.telephone') }}',
+                            minlength: 'กรุณากรอกเบอร์โทรให้ถูกต้อง',
+                            letteronly: 'กรุณากรอกตัวเลข'
+                        },
+                        email: {
+                            required: 'กรุณากรอกอีเมล',
+                            email: 'กรุณากรอกอีเมล์ให้ถูกต้อง'
+                        }
+                    },
+                    submitHandler: function (form) {
+                        sendTo();
+                        $('.btn-confirm').attr("disabled", true);
+                    }
+                });
+            });
+        }
+
+        function PopupMinimize() {
+            $('.popup-dialog').remove();
+        }
+
         $(document).ready(function() {
-            // Trigger contact popup immediately on clicking any CTA button
+            // Open the reference-style contact popup on every CTA button click
             $(document).on('click', '.trigger-contact-popup', function(e) {
                 e.preventDefault();
-                
-                // Force state in localStorage
-                localStorage.setItem("PopupCard", JSON.stringify({show: true, toggle: 'content'}));
-                
+
                 if ($(document).find('.popup-dialog').length == 0) {
-                    // Call the PopupCard function from package-popup.js
-                    PopupCard(true);
-                } else {
-                    // Open the popup if it exists
-                    $('.popup-dialog').addClass('dialog-backdrop');
-                    $('.popup-dialog .dialog-content').removeClass('d-none').addClass('d-block');
-                    $('.popup-dialog .dialog-bar').removeClass('d-block').addClass('d-none');
+                    PopupBusinessCard();
                 }
             });
         });
