@@ -37,8 +37,10 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
+            important: '.lp-15k',
             corePlugins: {
-                preflight: false
+                preflight: false,
+                container: false
             },
             theme: {
                 extend: {
@@ -72,18 +74,18 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Minimal, scoped reset so Tailwind utility classes render as designed
-           without disturbing the site-wide Bootstrap header/footer styling.
-           :where() keeps the ".lp-15k" scope at zero specificity so these
-           rules behave like Tailwind's own preflight: they lose to ANY
-           Tailwind utility class (e.g. text-3xl), but still win (by source
-           order) over Bootstrap's plain h1-h6/ul/button element defaults. */
         :where(.lp-15k) :where(*, *::before, *::after) {
             box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: currentColor;
         }
 
         .lp-15k {
             font-family: 'Prompt', sans-serif;
+            color: #1e293b;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         :where(.lp-15k) :where(h1, h2, h3, h4) {
@@ -126,9 +128,14 @@
             display: block;
             vertical-align: middle;
         }
-        
-        .collapse {
-            visibility: visible !important;
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        #topheader {
+            position: relative;
+            z-index: 1050 !important;
         }
     </style>
 </head>
@@ -136,11 +143,11 @@
 <body class="main_page">
     @include("$prefix.header")
 
-    <div class="lp-15k text-slate-800 antialiased">
+    <div class="lp-15k">
         <!-- BEGIN: Hero Section -->
         <header class="text-white py-20 text-center relative overflow-hidden" style="background: linear-gradient(to bottom, #172554 0%, #1e40af 100%);">
             <div class="max-w-4xl mx-auto px-4 relative z-10">
-                <span class="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-6 backdrop-blur-sm">แพลตฟอร์ม B2B Matching อันดับ 1 ในไทย</span>
+                <span class="inline-block bg-white/20 text-brand-yellow text-sm px-4 py-1 rounded-full mb-6 backdrop-blur-sm">แพลตฟอร์ม B2B Matching อันดับ 1 ในไทย</span>
                 <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
                     อยากหาลูกค้า B2B ในไทย<br>
                     แต่ยังไม่มีเว็บไซต์?
@@ -152,20 +159,20 @@
                     AT-Once ให้ธุรกิจของคุณมีหน้าร้านออนไลน์พร้อมเข้าถึงลูกค้า B2B ไทยได้ทันที ไม่ต้องลงทุนสร้างเว็บเอง
                 </p>
                 <!-- Stats -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 py-8">
-                    <div class="md:border-r md:border-white/20">
+                <div class="grid grid-cols-2 md:grid-cols-4 mb-12 py-8">
+                    <div class="border-r border-white/20 px-4">
                         <div class="text-3xl font-bold text-brand-yellow mb-1">150,000+</div>
                         <div class="text-sm text-blue-200">ยอดเข้าชม/เดือน</div>
                     </div>
-                    <div class="md:border-r md:border-white/20">
+                    <div class="md:border-r md:border-white/20 px-4">
                         <div class="text-3xl font-bold text-brand-yellow mb-1">35,000+</div>
                         <div class="text-sm text-blue-200">ผู้ใช้จริง/เดือน</div>
                     </div>
-                    <div class="md:border-r md:border-white/20">
+                    <div class="border-r border-white/20 px-4">
                         <div class="text-3xl font-bold text-brand-yellow mb-1">160,000+</div>
                         <div class="text-sm text-blue-200">บริษัทในฐานข้อมูล</div>
                     </div>
-                    <div>
+                    <div class="px-4">
                         <div class="text-3xl font-bold text-brand-yellow mb-1">177</div>
                         <div class="text-sm text-blue-200">หมวดธุรกิจ</div>
                     </div>
@@ -175,7 +182,7 @@
                     <a class="trigger-contact-popup bg-brand-orange hover:bg-brand-orange-hover text-white px-8 py-3 rounded-md font-medium text-lg flex items-center transition duration-300" href="javascript:;" aria-label="เริ่มต้นสมัครแพ็กเกจวันนี้">
                         เริ่มต้นวันนี้ <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                     </a>
-                    <a class="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium text-lg transition duration-300" href="{{ url('/') }}" aria-label="ดูตัวอย่างแพลตฟอร์ม">
+                    <a class="bg-transparent border border-white hover:bg-white/10 text-white px-8 py-3 rounded-md font-medium text-lg transition duration-300" href="{{ url((Session('lang') ? Session('lang') : 'th') . '/promotion-package') }}" aria-label="ดูตัวอย่างแพลตฟอร์ม">
                         ดูตัวอย่าง
                     </a>
                 </div>
@@ -237,13 +244,13 @@
                     <h2 class="text-3xl font-bold text-brand-blue-dark mb-4">ราคาเริ่มต้นที่คุ้มค่า</h2>
                     <p class="text-slate-600">เริ่มต้นเพียง 15,000 บาท/ปี หรือเฉลี่ยแค่ 43 บาทต่อวัน</p>
                 </div>
-                <div class="bg-white border-2 border-brand-blue rounded-2xl shadow-xl overflow-hidden mt-12 max-w-2xl mx-auto flex flex-col items-center">
+                <div class="bg-white border-2 border-brand-blue rounded-2xl shadow-xl mt-12 max-w-2xl mx-auto flex flex-col items-center relative">
                     <!-- Badge -->
-                    <div class="bg-brand-orange text-white px-6 py-1 rounded-full text-sm font-bold inline-flex items-center shadow-md mb-4 mx-auto">
-                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-orange text-white px-6 py-1 rounded-full text-sm font-bold inline-flex items-center shadow-md z-10">
+                        <svg class="w-4 h-4 mr-1" fill="yellow" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                         แนะนำสำหรับธุรกิจที่เริ่มต้น
                     </div>
-                    <div class="p-8 pt-10 text-center border-b border-gray-100">
+                    <div class="px-8 pt-10 pb-0 text-center">
                         <h3 class="text-2xl font-bold text-brand-blue-dark mb-4">Value Package</h3>
                         <div class="flex justify-center items-end mb-2">
                             <span class="text-5xl font-bold text-brand-blue">15,000</span>
@@ -251,7 +258,7 @@
                         </div>
                         <p class="text-brand-orange font-medium text-sm">เฉลี่ยเพียง 43 บาทต่อวัน!</p>
                     </div>
-                    <div class="p-8">
+                    <div class="px-8 pt-0 pb-6">
                         <ul class="text-left mb-8">
                             <li class="flex items-start py-4 border-b border-gray-100">
                                 <svg class="w-5 h-5 text-brand-blue mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -336,32 +343,38 @@
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                     <!-- Highlight 1 -->
-                    <div class="md:border-r md:border-gray-200 pr-6">
+                    <div>
                         <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
                             <div class="text-brand-blue mb-4 flex justify-center">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
                             </div>
-                            <h3 class="font-bold text-brand-blue-dark mb-2">Cost-Effective</h3>
+                            <h4 class="font-bold text-brand-blue-dark mb-2">Cost-Effective</h4>
                             <p class="text-slate-500 text-xs">วิธีที่คุ้มค่าที่สุดในการมี Online Presence ในไทย</p>
                         </div>
                     </div>
                     <!-- Highlight 2 -->
-                    <div class="md:border-r md:border-gray-200 pr-6">
+                    <div>
                         <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
                             <div class="text-brand-blue mb-4 flex justify-center">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                                </svg>
                             </div>
-                            <h3 class="font-bold text-brand-blue-dark mb-2">เริ่มได้ทันที</h3>
+                            <h4 class="font-bold text-brand-blue-dark mb-2">เริ่มได้ทันที</h4>
                             <p class="text-slate-500 text-xs">ไม่ต้องรอสร้างเว็บ ไม่ต้องมีความรู้ด้านเทคนิค</p>
                         </div>
                     </div>
                     <!-- Highlight 3 -->
-                    <div class="md:border-r md:border-gray-200 pr-6">
+                    <div>
                         <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
                             <div class="text-brand-blue mb-4 flex justify-center">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605" />
+                                </svg>
                             </div>
-                            <h3 class="font-bold text-brand-blue-dark mb-2">Market Insight</h3>
+                            <h4 class="font-bold text-brand-blue-dark mb-2">Market Insight</h4>
                             <p class="text-slate-500 text-xs">เห็นข้อมูล Engagement ของลูกค้าไทยจาก Dashboard จริง</p>
                         </div>
                     </div>
@@ -369,9 +382,11 @@
                     <div>
                         <div class="bg-white p-6 rounded-xl text-center shadow-sm border border-gray-100 h-full">
                             <div class="text-brand-blue mb-4 flex justify-center">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                                </svg>
                             </div>
-                            <h3 class="font-bold text-brand-blue-dark mb-2">ทีมซัพพอร์ต</h3>
+                            <h4 class="font-bold text-brand-blue-dark mb-2">ทีมซัพพอร์ต</h4>
                             <p class="text-slate-500 text-xs">ทีมงานมืออาชีพพร้อมช่วยตลอดการใช้งาน</p>
                         </div>
                     </div>
@@ -393,15 +408,15 @@
                     <div class="text-sm text-blue-200 mt-1">เฉลี่ยเพียง 43 บาทต่อวัน</div>
                 </div>
                 <div class="flex flex-wrap justify-center gap-4 mb-8">
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition" href="tel:0655285587">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white" href="tel:0655285587">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                         065-528-5587
                     </a>
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition" href="mailto:marketing2@at-once.info">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white" href="mailto:marketing2@at-once.info">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                         marketing2@at-once.info
                     </a>
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition" href="https://at-once.info/th" target="_blank">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white" href="https://at-once.info/th" target="_blank">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                         at-once.info/th
                     </a>
