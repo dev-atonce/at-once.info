@@ -442,9 +442,9 @@
                     <div class="text-sm text-blue-200 mt-1">เฉลี่ยเพียง 43 บาทต่อวัน</div>
                 </div>
                 <div class="reveal reveal-scroll reveal-d3 flex flex-wrap justify-center gap-4 mb-8">
-                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white transform hover:-translate-y-0.5" href="tel:0655285587">
+                    <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white transform hover:-translate-y-0.5" href="https://line.me/ti/p/~@431xnkdu" target="_blank" aria-label="ติดต่อผ่าน LINE">
                         <i class="fab fa-line mr-2" style="font-size: 1rem;"></i>
-                        065-528-5587
+                        @431xnkdu
                     </a>
                     <a class="flex items-center bg-white/10 hover:bg-white/20 px-6 py-2 rounded border border-white/20 transition text-white transform hover:-translate-y-0.5" href="mailto:marketing2@at-once.info">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
