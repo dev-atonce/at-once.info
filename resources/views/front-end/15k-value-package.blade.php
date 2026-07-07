@@ -126,6 +126,10 @@
             display: block;
             vertical-align: middle;
         }
+        
+        .collapse {
+            visibility: visible !important;
+        }
     </style>
 </head>
 
