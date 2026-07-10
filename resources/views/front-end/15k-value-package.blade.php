@@ -675,7 +675,7 @@
                 window.requestAnimationFrame(step);
             }
 
-            window.addEventListener('load', function() {
+            document.addEventListener('DOMContentLoaded', function() {
                 document.querySelectorAll('.lp-15k .reveal-load').forEach(function(el) {
                     el.classList.add('is-visible');
                 });
