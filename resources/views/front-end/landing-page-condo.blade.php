@@ -766,10 +766,10 @@
                             <p class="mb-0 footer-contact-text">Tel (JP/EN): 081-116-1641</p>
                         </div>
                         
-                        <div class="d-flex justify-content-center justify-content-lg-end pb-lg-1">
+                        <!-- <div class="d-flex justify-content-center justify-content-lg-end pb-lg-1">
                             <a class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
                             <a class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
-                        </div>
+                        </div> -->
                         
                     </div>
                 </div>
