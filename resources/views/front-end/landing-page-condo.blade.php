@@ -590,7 +590,7 @@
                     <h3 class="title-medium mb-4">@lang('phrase.condo.highlight.title')</h3>
                     <p>@lang('phrase.condo.highlight.desc_1')<br>@lang('phrase.condo.highlight.desc_2')</p>
                     <div class="d-flex mt-4">
-                        <a class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
+                        <a href="javascript:void(0)" onclick="scrollToInquiry()" class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
                         <a href="https://line.me/ti/p/@431xnkdu" target="_blank" class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
                     </div>
                 </div>
@@ -1219,6 +1219,17 @@
             if (e.key === 'ArrowRight') galleryNext();
             if (e.key === 'Escape')     closeGallery();
         });
+
+        function scrollToInquiry() {
+            if (typeof PopupMinimize === 'function') {
+                PopupMinimize(true);
+            } else {
+                $('#footer-popup-trigger').show();
+            }
+            $('html, body').animate({
+                scrollTop: $('#footer-popup-trigger').offset().top - 50
+            }, 800);
+        }
     </script>
 </body>
 </html>
