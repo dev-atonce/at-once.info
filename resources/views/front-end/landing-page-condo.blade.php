@@ -591,7 +591,7 @@
                     <p>@lang('phrase.condo.highlight.desc_1')<br>@lang('phrase.condo.highlight.desc_2')</p>
                     <div class="d-flex mt-4">
                         <a class="btn-custom-outline mr-3">@lang('phrase.condo.common.btn_inquiry')</a>
-                        <a class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
+                        <a href="https://line.me/ti/p/@431xnkdu" target="_blank" class="btn-custom-gradient">@lang('phrase.condo.common.btn_appointment')</a>
                     </div>
                 </div>
             </div>
