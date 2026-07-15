@@ -107,6 +107,7 @@ class HomeCtrl extends Controller
         $category = $request->category;
         $cpMd = \App\Models\CompanyMd::class;
         $shouldLoadBlog = $request->boolean('load_blog') || $request->filled('blog_page') || $request->get('partial') === 'blogs';
+        $customerRandomSeed = (int) now()->format('YmdHi');
 
         $seo = \App\Helpers\SeoLandingPage::getLandingSeoKeyword($lang);
 
@@ -144,10 +145,10 @@ class HomeCtrl extends Controller
         }
 
         $companyPage = (int)$request->get('company_page', 1);
-        $companyCacheKey = 'search:company:' . md5(json_encode([$lang, $keywordNoSpace, $category, $companyPerPage, $companyPage]));
+        $companyCacheKey = 'search:company:' . md5(json_encode([$lang, $keywordNoSpace, $category, $companyPerPage, $companyPage, $customerRandomSeed]));
         $companyCacheHit = Cache::has($companyCacheKey);
         $companyQueryStart = microtime(true);
-        $data = Cache::remember($companyCacheKey, 60, function () use ($cpMd, $lang, $category, $request, $keywordNoSpace, $companyPerPage) {
+        $data = Cache::remember($companyCacheKey, 60, function () use ($cpMd, $lang, $category, $request, $keywordNoSpace, $companyPerPage, $customerRandomSeed) {
             return $cpMd::select([
                 "company.id",
                 "company.name_en as name",
@@ -190,6 +191,7 @@ class HomeCtrl extends Controller
                     });
                 })
                 ->orderByRaw('our_customer.id IS NOT NULL DESC')
+                ->orderByRaw('CASE WHEN our_customer.id IS NOT NULL THEN RAND(?) ELSE 0 END DESC', [$customerRandomSeed])
                 ->orderBy('company.type', 'desc')
                 ->groupBy('company.id')
                 ->paginate($companyPerPage, ['*'], 'company_page');
@@ -254,6 +256,15 @@ class HomeCtrl extends Controller
                 ->groupBy('_id');
         }
 
+        $ourCustomerCompanyIds = $companyIds->isNotEmpty()
+            ? DB::table('our_customer')
+                ->whereIn('company', $companyIds)
+                ->whereNull('deleted')
+                ->pluck('company')
+                ->unique()
+                ->values()
+            : collect();
+
         $companyRows->transform(function ($row) use ($locationByCompany, $galleryByCompany) {
             $row->search_locations = ($locationByCompany->get($row->id) ?? collect())
                 ->pluck('province')
@@ -273,6 +284,14 @@ class HomeCtrl extends Controller
                 'query_ms' => $companyQueryMs,
                 'total_matched' => $data->total(),
                 'cache_hit' => $companyCacheHit,
+                'our_customer_on_page' => $ourCustomerCompanyIds->count(),
+                'non_customer_on_page' => $companyIds->count() - $ourCustomerCompanyIds->count(),
+                'our_customer_ids_on_page' => $ourCustomerCompanyIds->all(),
+                'our_customer_names_on_page' => $companyRows
+                    ->whereIn('id', $ourCustomerCompanyIds)
+                    ->pluck('name')
+                    ->values()
+                    ->all(),
             ],
             'blog' => [
                 'per_page' => $blogPerPage,

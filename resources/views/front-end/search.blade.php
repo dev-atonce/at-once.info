@@ -320,6 +320,9 @@
     <script>
         console.log('[search debug]', @json($searchDebug));
         console.log('[search debug] company page rows:', {{ $searchDebug['company']['page_rows'] }}, '/ total matched:', {{ $searchDebug['company']['total_matched'] }}, '/ query:', {{ $searchDebug['company']['query_ms'] }}, 'ms', '/ cache:', {{ $searchDebug['company']['cache_hit'] ? 'true' : 'false' }});
+        console.log('[search debug] our_customer on page:', {{ $searchDebug['company']['our_customer_on_page'] }}, '/ non-customer on page:', {{ $searchDebug['company']['non_customer_on_page'] }});
+        console.log('[search debug] our_customer ids:', @json($searchDebug['company']['our_customer_ids_on_page']));
+        console.log('[search debug] our_customer names:', @json($searchDebug['company']['our_customer_names_on_page']));
         console.log('[search debug] blog page rows:', {{ $searchDebug['blog']['page_rows'] }}, '/ total matched:', {{ $searchDebug['blog']['total_matched'] }}, '/ query:', {{ $searchDebug['blog']['query_ms'] }}, 'ms', '/ cache:', {{ $searchDebug['blog']['cache_hit'] ? 'true' : 'false' }});
     </script>
     @endif
