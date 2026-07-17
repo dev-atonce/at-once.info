@@ -243,7 +243,7 @@
                 <div class="grid grid-cols-1 gap-12 max-w-3xl mx-auto">
                     <!-- Feature 1 -->
                     <div class="reveal reveal-scroll group flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">storefront</span></div>
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl notranslate" translate="no">storefront</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">หน้าร้านออนไลน์พร้อมใช้งานทันที</h3>
                             <p class="text-slate-600 text-sm">ไม่ต้องสร้างเว็บเอง เราจัดทำ Company Profile ให้พร้อม พร้อม Dashboard ส่วนตัวเพื่อดูสถิติได้ตลอดเวลา</p>
@@ -251,7 +251,7 @@
                     </div>
                     <!-- Feature 2 -->
                     <div class="reveal reveal-scroll reveal-d1 group flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">group</span></div>
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl notranslate" translate="no">group</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">เข้าถึงลูกค้า B2B กว่า 35,000 คน/เดือน</h3>
                             <p class="text-slate-600 text-sm">แพลตฟอร์มที่ลูกค้าไทยใช้ค้นหาซัพพลายเออร์จริง ครอบคลุม 177 หมวดธุรกิจ ทุกขนาดทุกประเภท</p>
@@ -259,7 +259,7 @@
                     </div>
                     <!-- Feature 3 -->
                     <div class="reveal reveal-scroll reveal-d2 group flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">mail</span></div>
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl notranslate" translate="no">mail</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">รับ Inquiry ฟรี ไม่มีค่าใช้จ่ายเพิ่ม</h3>
                             <p class="text-slate-600 text-sm">ทีมงานคัดกรองและส่งต่อ Inquiry จากผู้ซื้อถึงทีม Sales ของคุณโดยตรง ไม่ตกหล่นทุก Lead</p>
@@ -267,7 +267,7 @@
                     </div>
                     <!-- Feature 4 -->
                     <div class="reveal reveal-scroll reveal-d3 group flex items-start">
-                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl">bar_chart</span></div>
+                        <div class="flex-shrink-0 w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue mr-6 transition-colors duration-300 group-hover:bg-brand-blue group-hover:text-white"><span class="material-symbols-outlined text-3xl notranslate" translate="no">bar_chart</span></div>
                         <div>
                             <h3 class="text-xl font-bold text-brand-blue-dark mb-2">ติดตามผลได้จริงผ่าน Dashboard</h3>
                             <p class="text-slate-600 text-sm">ดู Views, Inquiries และ Engagement ได้ตลอดเวลา อัปเดตข้อมูลได้เองไม่จำกัด</p>
