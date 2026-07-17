@@ -356,9 +356,9 @@
                     </a>
                 </div>
                 <div class="col-12">
-                    <a href="{{ Session('lang') }}/promotion-package" target="_blank" class="sponsor">
+                    <a href="{{ Session('lang') }}/15k-value-package" target="_blank" class="sponsor">
                         <div class="top-company">
-                            <img src="{{ asset('upload/banner-19052023-132246.jpeg') }}" class="img-fluid img-banner" width="100%" alt="สนใจลงโฆษณา">
+                            <img src="{{ asset('upload/banner-17072026-161323.png') }}" class="img-fluid img-banner" width="100%" alt="สนใจลงโฆษณา">
                         </div>
                     </a>
                 </div>
