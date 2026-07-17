@@ -107,7 +107,7 @@ class HomeCtrl extends Controller
         $category = $request->category;
         $cpMd = \App\Models\CompanyMd::class;
         $shouldLoadBlog = $request->boolean('load_blog') || $request->filled('blog_page') || $request->get('partial') === 'blogs';
-        $customerRandomSeed = (int) now()->format('YmdHi');
+        $companyRandomSeed = (int) now()->format('YmdHi');
 
         $seo = \App\Helpers\SeoLandingPage::getLandingSeoKeyword($lang);
 
@@ -145,10 +145,10 @@ class HomeCtrl extends Controller
         }
 
         $companyPage = (int)$request->get('company_page', 1);
-        $companyCacheKey = 'search:company:' . md5(json_encode([$lang, $keywordNoSpace, $category, $companyPerPage, $companyPage, $customerRandomSeed]));
+        $companyCacheKey = 'search:company:' . md5(json_encode([$lang, $keywordNoSpace, $category, $companyPerPage, $companyPage, $companyRandomSeed]));
         $companyCacheHit = Cache::has($companyCacheKey);
         $companyQueryStart = microtime(true);
-        $data = Cache::remember($companyCacheKey, 60, function () use ($cpMd, $lang, $category, $request, $keywordNoSpace, $companyPerPage, $customerRandomSeed) {
+        $data = Cache::remember($companyCacheKey, 60, function () use ($cpMd, $lang, $category, $request, $keywordNoSpace, $companyPerPage, $companyRandomSeed) {
             return $cpMd::select([
                 "company.id",
                 "company.name_en as name",
@@ -191,8 +191,7 @@ class HomeCtrl extends Controller
                     });
                 })
                 ->orderByRaw('our_customer.id IS NOT NULL DESC')
-                ->orderByRaw('CASE WHEN our_customer.id IS NOT NULL THEN RAND(?) ELSE 0 END DESC', [$customerRandomSeed])
-                ->orderBy('company.type', 'desc')
+                ->orderByRaw('RAND(?)', [$companyRandomSeed])
                 ->groupBy('company.id')
                 ->paginate($companyPerPage, ['*'], 'company_page');
         });
