@@ -528,6 +528,10 @@
                                                 <input type="text" name="telephone" class="form-control" placeholder="เบอร์โทรศัพท์" autocomplete="off"/>
                                             </div>
                                             <div class="col-12">
+                                                <label for="cardNumber" class="card-input__label">Company Name</label>
+                                                <input type="text" name="companyName" class="form-control" placeholder="ชื่อบริษัท" autocomplete="off"/>
+                                            </div>
+                                            <div class="col-12">
                                                 <label for="cardNumber" class="card-input__label">Email</label>
                                                 <input type="email" name="email" class="form-control" placeholder="อีเมล์" autocomplete="off"/>
                                             </div>
@@ -592,6 +596,7 @@
                             code = 'success';
                         }
                         messageResponse(code, res.data.message);
+                        popup.find('input[name="companyName"]').val('');
                         popup.find('input[name="name"]').val('');
                         popup.find('input[name="telephone"]').val('');
                         popup.find('input[name="email"]').val('');
@@ -606,11 +611,15 @@
                     errorElement: "span",
                     errorClass: "invalid",
                     rules: {
+                        companyName: { required: true },
                         name: { required: true, letteronly: '[a-zA-Zก-ฮฤฤๅฦฦๅะ ัา ำ ิ ี ึ ื ุ ูเแโใไ ็ ่ ้ ๊ ๋ ์]+' },
                         telephone: { required: true, letteronly:'[0-9]+' },
                         email: { required: true, email: true }
                     },
                     messages: {
+                        companyName: {
+                            required: 'กรุณากรอกชื่อบริษัท'
+                        },
                         name: {
                             required: '{{ __('phrase.contact.validate.name') }}',
                             letteronly: 'กรุณากรอกตัวอักษร'
