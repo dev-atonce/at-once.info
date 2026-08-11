@@ -177,6 +177,9 @@
                                                     </label>
                                                 </td>
                                                 <td data-label="Actions :">
+                                                    <a href="{{ url("$prefix$segment/statistics/$row->id") }}"
+                                                        class="btn btn-info btn-sm" title="Statistics"><i
+                                                            class="fas fa-chart-bar"></i></a>
                                                     <a href="{{ url("$prefix$segment/$row->id") }}"
                                                         class="btn btn-warning btn-sm" title="Edit"><i
                                                             class="far fa-edit"></i></a>
