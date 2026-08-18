@@ -2106,6 +2106,13 @@ class MemberCtrl extends Controller
                         (object)['field'=>'location','request'=>$request->location,'model'=>\App\Models\Filter\CpLocationMd::class],
                     ];
                     break;
+                case 'bangpakong': // 2.7.3
+                    $filter['data'] = [
+                        (object)['field'=>'country','request'=>$request->country,'model'=>\App\Models\CompanyMd::class],
+
+                        (object)['field'=>'location','request'=>$request->location,'model'=>\App\Models\Filter\CpLocationMd::class],
+                    ];
+                    break;
                 case '': // 2.7.3
                     $filter['data'] = [
                         (object)['field'=>'country','request'=>$request->country,'model'=>\App\Models\CompanyMd::class],

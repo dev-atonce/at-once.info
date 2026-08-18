@@ -4680,6 +4680,23 @@ return [
             'location' => '地址',
         ],
     ],
+    // 2.7.3
+    'bangpakong' => [
+        'caption' => '泰国 Bangpakong 工业区公司',
+        'title-industry' => 'Bangpakong 工业区公司',
+        'allCompany' => '所有公司',
+        'search-title' => '搜索 Bangpakong 工业区公司',
+        'form-caption' => '公司联系表',
+        'form-limit' => '您可以发送最多邮件 :max 公司',
+        'sendto' => '送到',
+        'search-place' => '搜索公司名称',
+        'click-concept' => '公司发送联系邮件',
+        'tag' => [],
+        'filter' => [
+            'service' => '其他服务',
+            'location' => '地址',
+        ],
+    ],
 
     // 3.1.1
     'developer' => [

@@ -235,14 +235,11 @@
                                                         target="_blank" class="skiptranslate">{{ $row->name }}</a>
                                                 </h5>
                                             </div>
-                                            @php
-                                                $langP = Session('lang') == 'th' ? 'th' : 'en';
-                                            @endphp
                                             <div class="search-company-location">
-                                                @foreach ($row->location()->select("pv.province_name_$langP as province")->leftJoin('provinces as pv', 'cp_location.location', '=', 'pv.province_id')->where('cp_location._id', $row->id)->get() as $k => $v)
+                                                @foreach (($row->search_locations ?? []) as $province)
                                                     <span class="badge-location"><i
                                                             class="fas fa-map-marker-alt fa-fw"></i>
-                                                        {{ $v->province }}</span>
+                                                        {{ $province }}</span>
                                                 @endforeach
                                             </div>
                                             <div class="search-company-description">
@@ -256,14 +253,14 @@
                                         <div
                                             class="col-lg-2 @if ($row->type != 'basic') d-flex flex-column justify-content-between @else d-flex justify-content-center align-items-center @endif">
                                             @php
-                                                $galleryRaw = $row->gallery()->where('_id', $row->id);
-                                                $count = $galleryRaw->get()->count();
+                                                $galleryItems = $row->search_gallery ?? collect();
+                                                $count = $galleryItems->count();
                                             @endphp
                                             @if ($row->type == 'full')
                                                 <div class="light-g d-none d-lg-block">
                                                     <div class="gallery-flex relative-gall"
                                                         id="lightg{{ $k }}">
-                                                        @foreach ($galleryRaw->get() as $kg => $vg)
+                                                        @foreach ($galleryItems as $kg => $vg)
                                                             <a href="{{ $vg->image }}"
                                                                 style="background-image:url({{ str_replace('.', '-sm.', $vg->image) }});background-position:center;background-size:cover;border-radius:4px; @if ($kg >= 4) position:relative;display:none; @endif">
                                                                 <img src="{{ str_replace('.', '-sm.', $vg->image) }}"
@@ -292,7 +289,7 @@
                                 </div>
                             @endforeach
                             <div class="d-flex justify-content-center algin-items-center">
-                                {{ $rows->appends($_GET)->links() }}
+                                {{ $rows->appends(request()->except(['company_page', 'page']))->links() }}
                             </div>
                         </div>
                     </div>
@@ -302,93 +299,15 @@
                 <div class="search-blog">
                     <div class="row">
                         <h5 class="mb-4">
-                            <span class="ml-2">หมวดหมู่บทความ <em>{{ @$blogs->total() }}</em> บทความ</span>
+                            <span class="ml-2">หมวดหมู่บทความ <em>{{ $shouldLoadBlog ? @$blogs->total() : '...' }}</em> บทความ</span>
                         </h5>
                     </div>
-                    <div class="row">
-                        @foreach ($blogs as $k => $v)
-                        @php
-                            if ($v->type == 'general') {
-                                $bullet = '--c-skyblue';
-                                $border = '--border-skyblue';
-                            }
-                            if ($v->type == 'job-search' || $v->type == 'want-to-sale' || $v->type == 'want-to-buy' || $v->type == 'promotion' || $v->type == 'customer' || $v->type == 'selfedit' || $v->type == 'review') {
-                                $bullet = '--c-blue';
-                                $border = '--border-blue';
-                            }
-                            if ($v->type == 'marketing-blog') {
-                                $bullet = '--c-orange';
-                                $border = '--border-orange';
-                            }
-                        @endphp
-                            <div class="col-md-6 col-lg-3 d-flex blog-list" data-key="{{ $v->key }}">
-                                <div class="blog-container">
-                                    <div class="blog-header">
-                                        <div class="post-meta">
-                                            @if ($v->by != '')
-                                                <a class="company-logo" data-name="{{ $v->by }}"
-                                                    href="{{ Session('lang') }}/{{ $v->key }}/cp/{{ $v->by_url }}">
-                                                    <img src="{{ $v->by_logo }}" alt="">
-                                                </a>
-                                                <div class="createdby">
-                                                    <div><a href="{{ Session('lang') }}/{{ $v->key }}/cp/{{ $v->by_url }}"
-                                                            class="written-by">
-                                                            @if ($v->by != '')
-                                                                {{ $v->by }}
-                                                            @endif
-                                                        </a></div>
-                                                    @if ($v->categoryName != '')
-                                                        <div class="industry-name"><i
-                                                                class="fas fa-circle bullet {{@$bullet}}"></i>
-                                                            {{ $v->categoryName }}</div>
-                                                    @endif
-                                                </div>
-                                            @else
-                                                <a class="company-logo" href="{{ Session('lang') }}"
-                                                    data-name=""><img src="img/at-once.jpg"></a>
-                                                <div class="createdby">
-                                                    <div class="written-by">
-                                                        {{ env('APP_NAME') }}
-                                                    </div>
-                                                    @if ($v->categoryName != '')
-                                                        <div class="industry-name"><i
-                                                                class="fas fa-circle bullet {{@$bullet}}"></i>
-                                                            {{ $v->categoryName }}</div>
-                                                    @endif
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <div class="blog-cover">
-                                            <a href="{{ Session('lang') }}/blog/{{ $v->url }}"><img
-                                                    src="{{ str_replace('.', '-xs.', $v->images) }}" class=""
-                                                    alt="{{ $v->name }}"></a>
-                                        </div>
-                                    </div>
-                                    <div class="blog-body">
-                                        <div>
-                                            <ul class="published-date">
-                                                <li class=""><i class="far fa-calendar-alt"></i>
-                                                    {{ date('d-m-y', strtotime($v->publish)) }}</li>
-                                                <li class=""><i class="far fa-eye"></i> {{ $v->view }}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="blog-title">
-                                            <a href="{{ Session('lang') }}/blog/{{ $v->url }}">
-                                                <h4 class="mb-2">{{ $v->name }}</h4>
-                                            </a>
-                                        </div>
-                                        <p>{{ $v->detail }}</p>
-                                    </div>
-                                    <div class="blog-footer">
-                                        <div class="border-3x {{@$border}}"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="d-flex justify-content-center algin-items-center">
-                        {{ $blogs->appends($_GET)->links() }}
+                    <div id="blog-section-content">
+                        @if ($shouldLoadBlog)
+                            @include('front-end.partials.search-blog-list', ['blogs' => $blogs])
+                        @else
+                            <div class="text-center py-4 text-muted">กำลังโหลดบทความ...</div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -397,6 +316,33 @@
 
     @include("$prefix.footer")
 
+    @if (!empty($searchDebug))
+    <script>
+        console.log('[search debug]', @json($searchDebug));
+        console.log('[search debug] company page rows:', {{ $searchDebug['company']['page_rows'] }}, '/ total matched:', {{ $searchDebug['company']['total_matched'] }}, '/ query:', {{ $searchDebug['company']['query_ms'] }}, 'ms', '/ cache:', {{ $searchDebug['company']['cache_hit'] ? 'true' : 'false' }});
+        console.log('[search debug] our_customer on page:', {{ $searchDebug['company']['our_customer_on_page'] }}, '/ non-customer on page:', {{ $searchDebug['company']['non_customer_on_page'] }});
+        console.log('[search debug] our_customer ids:', @json($searchDebug['company']['our_customer_ids_on_page']));
+        console.log('[search debug] our_customer names:', @json($searchDebug['company']['our_customer_names_on_page']));
+        console.log('[search debug] blog page rows:', {{ $searchDebug['blog']['page_rows'] }}, '/ total matched:', {{ $searchDebug['blog']['total_matched'] }}, '/ query:', {{ $searchDebug['blog']['query_ms'] }}, 'ms', '/ cache:', {{ $searchDebug['blog']['cache_hit'] ? 'true' : 'false' }});
+    </script>
+    @endif
+    @if (!$shouldLoadBlog)
+    <script>
+        (function() {
+            const container = document.getElementById('blog-section-content');
+            if (!container) return;
+            const url = new URL(window.location.href);
+            url.searchParams.set('load_blog', '1');
+            url.searchParams.set('partial', 'blogs');
+            fetch(url.toString(), {
+                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+            })
+            .then(res => res.text())
+            .then(html => { container.innerHTML = html; })
+            .catch(() => { container.innerHTML = '<div class="text-center py-4 text-danger">โหลดบทความไม่สำเร็จ</div>'; });
+        })();
+    </script>
+    @endif
     <script src="js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">

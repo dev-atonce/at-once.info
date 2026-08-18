@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Mail\Contact;
 use App\Mail\ContactToMe;
 use Illuminate\Support\Facades\Auth;
@@ -101,78 +103,204 @@ class HomeCtrl extends Controller
     {
         $lang = Session('lang');
         $keywords = $request->keywords;
+        $keywordNoSpace = str_replace(' ', '', (string)$keywords);
         $category = $request->category;
         $cpMd = \App\Models\CompanyMd::class;
+        $shouldLoadBlog = $request->boolean('load_blog') || $request->filled('blog_page') || $request->get('partial') === 'blogs';
+        $companyRandomSeed = (int) now()->format('YmdHi');
 
         $seo = \App\Helpers\SeoLandingPage::getLandingSeoKeyword($lang);
 
-        $data = $cpMd::select([
-            "company.id",
-            "company.name_en as name",
-            "company.description_$lang as description",
-            "company.detail_$lang as detail",
-            "company.logo",
-            "category.key as category",
-            "company.profile_url",
-            "category.name_$lang as categoryName",
-            "company.type",
-            "company.facebook",
-            "company.line",
-            "company.website",
-        ])
-            ->leftJoin('category', 'company.category', '=', 'category.id')
-            ->leftJoin('our_customer', function ($join) {
-                $join->on('company.id', '=', 'our_customer.company')
-                    ->whereNull('our_customer.deleted');
-            })
-            ->where(['company.public' => 1, 'category.status' => 1, 'category.coming_soon' => 0])
-            ->when($category, function ($query) use ($category) {
-                $query->where('company.category', $category);
-            })
-            ->when($request->keywords, function ($query) use ($keywords) {
-                $query
-                    ->leftJoin('cp_location as lk', 'company.id', '=', 'lk._id')
-                    ->leftJoin('provinces as pk', 'pk.province_id', '=', 'lk.location');
-                return $query->where(function ($query) use ($keywords) {
-                    return $query
-                        ->whereRaw('REPLACE(company.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.name_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.description_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.description_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(company.description_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        // ->orWhereRaw('REPLACE(company.detail_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        // ->orWhereRaw('REPLACE(company.detail_jp," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(pk.province_name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(pk.province_name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(category.name_th," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"])
-                        ->orWhereRaw('REPLACE(category.name_en," ","") LIKE ?', ["%" . str_replace(' ', '', $keywords) . "%"]);
-                });
-            })
-            ->orderByRaw('our_customer.id IS NOT NULL DESC')
-            ->orderBy('company.type', 'desc')
-            ->groupBy('company.id')
-            ->paginate(7);
+        $companyPerPage = 7;
+        $blogPerPage = 12;
 
-        $qryBlog = \App\Models\BlogMd::select(['blog.id', "blog.name_$lang as name", "category.key as category", 'blog.publish', 'blog.images', 'blog.view', 'blog.type', 'blog.url_th as url', 'cp.logo as by_logo', "cp.name_$lang as by", 'cp.profile_url as by_url', 'category.key', "category.name_$lang as categoryName"])
-            ->leftJoin('company as cp', 'blog.company', '=', 'cp.id')
-            ->leftJoin('category', 'blog.category', '=', 'category.id')
-            ->where(function ($query) use ($keywords, $lang) {
-                $query->where('blog.name_th', 'like', "%$keywords%")
-                    ->orWhere('blog.name_jp', 'like', "%$keywords%")
-                    ->orWhere('blog.detail_th', 'like', "%$keywords%")
-                    ->orWhere('blog.detail_jp', 'like', "%$keywords%")
-                    ->orWhere('blog.description_th', 'like', "%$keywords%")
-                    ->orWhere('blog.description_jp', 'like', "%$keywords%")
-                    ->orWhere("cp.name_$lang", 'like', "%$keywords%");
-            })
-            ->when($request->category, function ($query) use ($category) {
-                $query->where('blog.category', $category);
-            })
-            ->where('blog.status', 1)
-            ->where(['category.status' => 1, 'category.coming_soon' => 0])
-            ->orderBy('blog.id', 'desc')
-            ->paginate(12);
+        if ($request->get('partial') === 'blogs') {
+            $blogPage = (int)$request->get('blog_page', 1);
+            $blogCacheKey = 'search:blog:' . md5(json_encode([$lang, $keywords, $category, $blogPerPage, $blogPage]));
+            $qryBlog = Cache::remember($blogCacheKey, 60, function () use ($lang, $keywords, $category, $request, $blogPerPage) {
+                return \App\Models\BlogMd::select(['blog.id', "blog.name_$lang as name", "category.key as category", 'blog.publish', 'blog.images', 'blog.view', 'blog.type', 'blog.url_th as url', 'cp.logo as by_logo', "cp.name_$lang as by", 'cp.profile_url as by_url', 'category.key', "category.name_$lang as categoryName"])
+                    ->leftJoin('company as cp', 'blog.company', '=', 'cp.id')
+                    ->leftJoin('category', 'blog.category', '=', 'category.id')
+                    ->where(function ($query) use ($keywords, $lang) {
+                        $query->where('blog.name_th', 'like', "%$keywords%")
+                            ->orWhere('blog.name_jp', 'like', "%$keywords%")
+                            ->orWhere('blog.detail_th', 'like', "%$keywords%")
+                            ->orWhere('blog.detail_jp', 'like', "%$keywords%")
+                            ->orWhere('blog.description_th', 'like', "%$keywords%")
+                            ->orWhere('blog.description_jp', 'like', "%$keywords%")
+                            ->orWhere("cp.name_$lang", 'like', "%$keywords%");
+                    })
+                    ->when($request->category, function ($query) use ($category) {
+                        $query->where('blog.category', $category);
+                    })
+                    ->where('blog.status', 1)
+                    ->where(['category.status' => 1, 'category.coming_soon' => 0])
+                    ->orderBy('blog.id', 'desc')
+                    ->paginate($blogPerPage, ['*'], 'blog_page');
+            });
+
+            return view('front-end.partials.search-blog-list', [
+                'blogs' => $qryBlog,
+            ]);
+        }
+
+        $companyPage = (int)$request->get('company_page', 1);
+        $companyCacheKey = 'search:company:' . md5(json_encode([$lang, $keywordNoSpace, $category, $companyPerPage, $companyPage, $companyRandomSeed]));
+        $companyCacheHit = Cache::has($companyCacheKey);
+        $companyQueryStart = microtime(true);
+        $data = Cache::remember($companyCacheKey, 60, function () use ($cpMd, $lang, $category, $request, $keywordNoSpace, $companyPerPage, $companyRandomSeed) {
+            return $cpMd::select([
+                "company.id",
+                "company.name_en as name",
+                "company.description_$lang as description",
+                "company.detail_$lang as detail",
+                "company.logo",
+                "category.key as category",
+                "company.profile_url",
+                "category.name_$lang as categoryName",
+                "company.type",
+                "company.facebook",
+                "company.line",
+                "company.website",
+            ])
+                ->leftJoin('category', 'company.category', '=', 'category.id')
+                ->leftJoin('our_customer', function ($join) {
+                    $join->on('company.id', '=', 'our_customer.company')
+                        ->whereNull('our_customer.deleted');
+                })
+                ->where(['company.public' => 1, 'category.status' => 1, 'category.coming_soon' => 0])
+                ->when($category, function ($query) use ($category) {
+                    $query->where('company.category', $category);
+                })
+                ->when($request->keywords, function ($query) use ($keywordNoSpace) {
+                    $query
+                        ->leftJoin('cp_location as lk', 'company.id', '=', 'lk._id')
+                        ->leftJoin('provinces as pk', 'pk.province_id', '=', 'lk.location');
+                    return $query->where(function ($query) use ($keywordNoSpace) {
+                        return $query
+                            ->whereRaw('REPLACE(company.name_th," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(company.name_en," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(company.name_jp," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(company.description_th," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(company.description_en," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(company.description_jp," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(pk.province_name_th," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(pk.province_name_en," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(category.name_th," ","") LIKE ?', ["%$keywordNoSpace%"])
+                            ->orWhereRaw('REPLACE(category.name_en," ","") LIKE ?', ["%$keywordNoSpace%"]);
+                    });
+                })
+                ->orderByRaw('our_customer.id IS NOT NULL DESC')
+                ->orderByRaw('RAND(?)', [$companyRandomSeed])
+                ->groupBy('company.id')
+                ->paginate($companyPerPage, ['*'], 'company_page');
+        });
+
+        $companyQueryMs = round((microtime(true) - $companyQueryStart) * 1000, 2);
+
+        $blogCacheHit = false;
+        $blogQueryStart = microtime(true);
+        if ($shouldLoadBlog) {
+            $blogPage = (int)$request->get('blog_page', 1);
+            $blogCacheKey = 'search:blog:' . md5(json_encode([$lang, $keywords, $category, $blogPerPage, $blogPage]));
+            $blogCacheHit = Cache::has($blogCacheKey);
+            $qryBlog = Cache::remember($blogCacheKey, 60, function () use ($lang, $keywords, $category, $request, $blogPerPage) {
+                return \App\Models\BlogMd::select(['blog.id', "blog.name_$lang as name", "category.key as category", 'blog.publish', 'blog.images', 'blog.view', 'blog.type', 'blog.url_th as url', 'cp.logo as by_logo', "cp.name_$lang as by", 'cp.profile_url as by_url', 'category.key', "category.name_$lang as categoryName"])
+                    ->leftJoin('company as cp', 'blog.company', '=', 'cp.id')
+                    ->leftJoin('category', 'blog.category', '=', 'category.id')
+                    ->where(function ($query) use ($keywords, $lang) {
+                        $query->where('blog.name_th', 'like', "%$keywords%")
+                            ->orWhere('blog.name_jp', 'like', "%$keywords%")
+                            ->orWhere('blog.detail_th', 'like', "%$keywords%")
+                            ->orWhere('blog.detail_jp', 'like', "%$keywords%")
+                            ->orWhere('blog.description_th', 'like', "%$keywords%")
+                            ->orWhere('blog.description_jp', 'like', "%$keywords%")
+                            ->orWhere("cp.name_$lang", 'like', "%$keywords%");
+                    })
+                    ->when($request->category, function ($query) use ($category) {
+                        $query->where('blog.category', $category);
+                    })
+                    ->where('blog.status', 1)
+                    ->where(['category.status' => 1, 'category.coming_soon' => 0])
+                    ->orderBy('blog.id', 'desc')
+                    ->paginate($blogPerPage, ['*'], 'blog_page');
+            });
+        } else {
+            $qryBlog = new LengthAwarePaginator([], 0, $blogPerPage, 1, [
+                'path' => $request->url(),
+                'pageName' => 'blog_page',
+            ]);
+        }
+
+        $blogQueryMs = round((microtime(true) - $blogQueryStart) * 1000, 2);
+
+        // ลด N+1: preload location + gallery สำหรับ rows ในหน้านี้ครั้งเดียว
+        $companyRows = $data->getCollection();
+        $companyIds = $companyRows->pluck('id')->filter()->values();
+        $langP = Session('lang') == 'th' ? 'th' : 'en';
+        $locationByCompany = collect();
+        $galleryByCompany = collect();
+
+        if ($companyIds->isNotEmpty()) {
+            $locationByCompany = DB::table('cp_location')
+                ->select(['cp_location._id', "pv.province_name_$langP as province"])
+                ->leftJoin('provinces as pv', 'cp_location.location', '=', 'pv.province_id')
+                ->whereIn('cp_location._id', $companyIds)
+                ->get()
+                ->groupBy('_id');
+
+            $galleryByCompany = \App\Models\Filter\CpGalleryMd::select(['_id', 'image'])
+                ->whereIn('_id', $companyIds)
+                ->get()
+                ->groupBy('_id');
+        }
+
+        $ourCustomerCompanyIds = $companyIds->isNotEmpty()
+            ? DB::table('our_customer')
+                ->whereIn('company', $companyIds)
+                ->whereNull('deleted')
+                ->pluck('company')
+                ->unique()
+                ->values()
+            : collect();
+
+        $companyRows->transform(function ($row) use ($locationByCompany, $galleryByCompany) {
+            $row->search_locations = ($locationByCompany->get($row->id) ?? collect())
+                ->pluck('province')
+                ->filter()
+                ->values();
+            $row->search_gallery = $galleryByCompany->get($row->id) ?? collect();
+            return $row;
+        });
+        $data->setCollection($companyRows);
+
+        $searchDebug = [
+            'keywords' => $keywords,
+            'company' => [
+                'per_page' => $companyPerPage,
+                'current_page' => $data->currentPage(),
+                'page_rows' => $data->count(),
+                'query_ms' => $companyQueryMs,
+                'total_matched' => $data->total(),
+                'cache_hit' => $companyCacheHit,
+                'our_customer_on_page' => $ourCustomerCompanyIds->count(),
+                'non_customer_on_page' => $companyIds->count() - $ourCustomerCompanyIds->count(),
+                'our_customer_ids_on_page' => $ourCustomerCompanyIds->all(),
+                'our_customer_names_on_page' => $companyRows
+                    ->whereIn('id', $ourCustomerCompanyIds)
+                    ->pluck('name')
+                    ->values()
+                    ->all(),
+            ],
+            'blog' => [
+                'per_page' => $blogPerPage,
+                'current_page' => $qryBlog->currentPage(),
+                'page_rows' => $qryBlog->count(),
+                'query_ms' => $blogQueryMs,
+                'total_matched' => $qryBlog->total(),
+                'cache_hit' => $blogCacheHit,
+            ],
+        ];
 
         try {
             return view("$this->prefix.search", [
@@ -181,7 +309,9 @@ class HomeCtrl extends Controller
                 'moduleName' => 'Search',
                 'rows' => $data,
                 'blogs' => $qryBlog,
-                'seo' => $seo
+                'seo' => $seo,
+                'searchDebug' => $searchDebug,
+                'shouldLoadBlog' => $shouldLoadBlog,
             ]);
         } catch (\ErrorException $e) {
             dd($e->getMessage());
