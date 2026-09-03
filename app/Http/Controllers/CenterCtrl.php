@@ -394,6 +394,9 @@ class CenterCtrl extends Controller
             case 'pintong': // 2.7.2
                 $data = \App\Http\Controllers\Category\PintongCtrl::index($request);
                 break;
+            case 'bangpakong': // 2.7.3
+                $data = \App\Http\Controllers\Category\BangpakongCtrl::index($request);
+                break;
             // case '': // 2.7.3
             //     break;
             // case '': // 2.7.4
@@ -1634,6 +1637,12 @@ class CenterCtrl extends Controller
                 ];
                 break;
             case 'pintong': // 2.7.2
+                $data = (object)[
+                    'input' => [],
+                    'filter' => []
+                ];
+                break;
+            case 'bangpakong': // 2.7.3
                 $data = (object)[
                     'input' => [],
                     'filter' => []
@@ -3013,6 +3022,9 @@ class CenterCtrl extends Controller
                 $data = [];
                 break;
             case 'pintong': // 2.7.2
+                $data = [];
+                break;
+            case 'bangpakong': // 2.7.3
                 $data = [];
                 break;
             // case '': // 2.7.3

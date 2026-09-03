@@ -353,6 +353,31 @@
     {{-- <section class="industry-recommend mt-3">
             @include('front-end.industry')
         </section> --}}
+    <style>
+        .banner-condo .slick-dots {
+            display: none !important;
+        }
+    </style>
+    <section class="banner-condo page-cp mt-3">
+        <div class="container">
+            <div class="top-cp row">
+                <div class="col-12">
+                    <a href="{{ Session('lang') }}/rent-condo-life-ladprao-valley" target="_blank" class="sponsor">
+                        <div class="top-company">
+                            <img src="{{ asset('images/condo/12.png') }}" class="img-fluid img-banner" width="100%" alt="เช่าคอนโด Life Ladprao Valley">
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12">
+                    <a href="{{ Session('lang') }}/15k-value-package" target="_blank" class="sponsor">
+                        <div class="top-company">
+                            <img src="{{ asset('upload/banner-17072026-161323.png') }}" class="img-fluid img-banner" width="100%" alt="สนใจลงโฆษณา">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="section-categories" class="section-category py-3" style="background-color: #f3f3f3;">
         <div class="container">
             <div class="category-content">

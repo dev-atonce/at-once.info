@@ -197,6 +197,7 @@ Route::middleware(['Webpanel'])->group(function () use ($category) {
         // Blog Blog Blog Blog Blog Blog Blog
         Route::get('/blog-type', [\App\Http\Controllers\Webpanel\BlogCtrl::class, 'index']);
         Route::prefix('blog')->group(function () {
+            Route::get('/statistics/{id}', [\App\Http\Controllers\Webpanel\BlogCtrl::class, 'statistic'])->where('id', '[0-9]+');
             Route::get('/add/{category}', [\App\Http\Controllers\Webpanel\BlogCtrl::class, 'add'])->where('category', '[a-z_-]+');
             Route::get('/add', [\App\Http\Controllers\Webpanel\BlogCtrl::class, 'add']);
             Route::post('/insert/{category}', [\App\Http\Controllers\Webpanel\BlogCtrl::class, 'insert'])->where('category', '[a-z_-]+');

@@ -101,6 +101,7 @@ return [
 		'other-service',
 		'amata',
 		'pintong',
+		'bangpakong',
 		'developer',
 		'compressor-construction',
 		'generator-construction',

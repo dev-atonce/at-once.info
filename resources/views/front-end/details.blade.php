@@ -225,6 +225,35 @@
         .hider-img img {
             display: none !important;
         }
+        #asuto-detail .asuto-cover-wrapper {
+            position: relative;
+        }
+
+        #asuto-detail .asuto-cover-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #asuto-detail .cover-click {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
+        /* DEBUG: ให้เห็นพื้นที่กด */
+        #asuto-detail .cover-click-left {
+            left: 0;
+            /*background: rgba(255, 0, 0, 0.2);*/
+        }
+
+        #asuto-detail .cover-click-right {
+            right: 0;
+            /*background: rgba(0, 0, 255, 0.2);*/
+        }
     </style>
 </head>
 
@@ -464,7 +493,11 @@
 
         <section class="mt-5">
             <div class="container">
-                <div class="detail-content {{$row->type == 'semi' ? 'hider-img' : ''}}">
+                <div class="detail-content {{$row->type == 'semi' ? 'hider-img' : ''}}" 
+                    @if($row->id == 484)
+                        id="asuto-detail"
+                    @endif
+                >
                     {!! $row->more ? $row->more : $row->more_th !!}
                 </div>
             </div>
@@ -1911,7 +1944,7 @@
         if (languageSwitch) setCompapnayName();
     })
 </script>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         if (!document.querySelector("#google_translate_element .goog-te-combo")) {
             // ถ้า widget ยังไม่ถูก inject → เรียก init อีกครั้ง
@@ -1949,4 +1982,83 @@
         });
         }, 2000); // รอ widget โหลด
     });
-</script> -->
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detail = document.querySelector('#asuto-detail');
+    console.log('[ASUTO] detail:', detail);
+
+    if (!detail) {
+        console.error('[ASUTO] ❌ #asuto-detail not found');
+        return;
+    }
+
+    const coverImage = detail.querySelector('img');
+    console.log('[ASUTO] coverImage:', coverImage);
+
+    if (!coverImage) {
+        console.error('[ASUTO] ❌ cover image not found');
+        return;
+    }
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'asuto-cover-wrapper';
+
+    coverImage.parentNode.insertBefore(wrapper, coverImage);
+    wrapper.appendChild(coverImage);
+
+    const leftClick = document.createElement('div');
+    leftClick.className = 'cover-click cover-click-left';
+
+    const rightClick = document.createElement('div');
+    rightClick.className = 'cover-click cover-click-right';
+
+    wrapper.appendChild(leftClick);
+    wrapper.appendChild(rightClick);
+
+    console.log('[ASUTO] left click area:', leftClick);
+    console.log('[ASUTO] right click area:', rightClick);
+
+    // =========================
+    // LEFT
+    // =========================
+    leftClick.addEventListener('click', function (e) {
+        console.log('[ASUTO] 🔴 LEFT CLICKED', e);
+
+        const target = document.querySelector('#logistics-section');
+
+        console.log('[ASUTO] logistics target:', target);
+
+        if (!target) {
+            console.error('[ASUTO] ❌ #logistics-section not found');
+            return;
+        }
+
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+
+    // =========================
+    // RIGHT
+    // =========================
+    rightClick.addEventListener('click', function (e) {
+        console.log('[ASUTO] 🔵 RIGHT CLICKED', e);
+
+        const target = document.querySelector('#digital-section');
+
+        console.log('[ASUTO] digital target:', target);
+
+        if (!target) {
+            console.error('[ASUTO] ❌ #digital-section not found');
+            return;
+        }
+
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
+</script>
