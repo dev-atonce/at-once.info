@@ -515,6 +515,24 @@
                                     <input type="text" name="line" value="" class="form-control" placeholder="" >
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>LinkedIn</label>
+                                    <input type="text" name="linkedin" value="" class="form-control" placeholder="https://www.linkedin.com/company/at-once" >
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>Instagram</label>
+                                    <input type="text" name="instagram" value="" class="form-control" placeholder="https://www.instagram.com/atonce.info" >
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label>TikTok</label>
+                                    <input type="text" name="tiktok" value="" class="form-control" placeholder="https://www.tiktok.com/@atonce.info" >
+                                </div>
+                            </div>
                             <div class="col-lg-12">
                                 <ul class="nav nav-tabs" id="myTab3" role="tablist">
                                     <li class="nav-item" role="presentation">

@@ -2545,6 +2545,38 @@ html:lang(jp) .toggle {
 .none-info.facebook-contact, .none-info.line-contact, .none-info.web-contact, .none-info.ch-blue, .none-info.ch-orang {
   background-color: #888!important;
 }
+.detail-contact-02 svg {
+  width: 1em;
+  height: 1em;
+  fill: #ffffff;
+}
+.detail-contact-02.linkedin-contact {
+  background-color: #0a66c2;
+}
+.detail-contact-02.instagram-contact {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+.detail-contact-02.tiktok-contact {
+  background-color: #000000;
+}
+.none-info.linkedin-contact, .none-info.instagram-contact, .none-info.tiktok-contact {
+  background: #888!important;
+}
+/* 6 contact buttons: shrink as circles to fit the box instead of overflowing */
+.box-info-ds .social-box {
+  gap: 8px;
+}
+.box-info-ds .social-box > a {
+  flex: 0 1 44px;
+  min-width: 0;
+}
+.box-info-ds .social-box .detail-contact-02 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  font-size: 20px;
+}
 
 html:lang(jp) .detail-contact-02 {
   font-size: 12px;
