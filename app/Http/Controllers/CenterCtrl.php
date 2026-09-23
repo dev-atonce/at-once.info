@@ -641,7 +641,12 @@ class CenterCtrl extends Controller
         }
 
         $online = $data['rows']->get()->count();
-        $rows = $data['rows']->orderBy('our_customer.id', 'desc')->orderByRaw("FIELD(company.type, 'full', 'semi', 'basic')")->inRandomOrder()->limit(20)->get();
+        $rows = $data['rows']
+            ->reorder()
+            ->orderByRaw('our_customer.id IS NULL')
+            ->orderByRaw("IF(our_customer.id IS NULL, FIELD(company.type, 'full', 'semi', 'basic'), 0)")
+            ->inRandomOrder()
+            ->limit(20)->get();
 
         return ['rows' => $rows, 'online' => $online, 'aboutThis' => $aboutThis];
 
