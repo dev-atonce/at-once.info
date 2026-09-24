@@ -2025,6 +2025,9 @@ document.addEventListener('DOMContentLoaded', function () {
     leftClick.addEventListener('click', function (e) {
         console.log('[ASUTO] 🔴 LEFT CLICKED', e);
 
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({event: 'asuto_banner_click', banner_side: 'left'});
+
         const target = document.querySelector('#logistics-section');
 
         console.log('[ASUTO] logistics target:', target);
@@ -2045,6 +2048,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================
     rightClick.addEventListener('click', function (e) {
         console.log('[ASUTO] 🔵 RIGHT CLICKED', e);
+
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({event: 'asuto_banner_click', banner_side: 'right'});
 
         const target = document.querySelector('#digital-section');
 
