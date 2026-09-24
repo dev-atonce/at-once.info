@@ -283,6 +283,40 @@ class BlogCtrl extends Controller
             return view($this->path . '.alert.sweet.error', ['url' => url($this->prefix . '/blog/add/' . $type)]);
         }
     }
+    public function statistic(Request $request, $id = null)
+    {
+        $blog = \App\Models\BlogMd::select([
+            "blog.id",
+            "blog.name_th",
+            "blog.name_en",
+            "blog.company",
+            "blog.created",
+            "company.name_th as companyName",
+        ])
+            ->leftJoin('company', 'blog.company', 'company.id')
+            ->where('blog.id', $id)
+            ->first();
+
+        if (!$blog) {
+            return redirect('webpanel/blog-type');
+        }
+
+        return view("$this->path.modules.blog.index", [
+            'css' => [
+                "https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css",
+            ],
+            'js' => [
+                "back-end/jquery-3.5.1/jquery-3.5.1.min.js",
+            ],
+            'path' => $this->path,
+            'prefix' => 'webpanel',
+            'folder' => 'blog',
+            'page' => 'statistics',
+            'segment' => "/blog-type",
+            'blog' => $blog,
+        ]);
+    }
+
     public function edit(Request $request, $id = null, $cate = null)
     {
         //-- Query Blog

@@ -2118,6 +2118,23 @@ return [
             'location' => 'Location'
         ],
     ],
+    // 2.7.3
+    'bangpakong' => [
+        'caption' => 'Bangpakong industrial estate companies in Thailand',
+        'title-industry' => "Bangpakong industrial estate company",
+        'allCompany' => 'All companies',
+        'search-title' => 'Search for companies in Bangpakong industrial estate',
+        'form-caption' => 'Company contact form',
+        'form-limit' => 'You can send up to :max emails',
+        'sendto' => 'Send to',
+        'search-place' => 'Search by company name',
+        'click-concept' => 'company to send contact email',
+        'tag' => [],
+        'filter' => [
+            'service' => 'Service',
+            'location' => 'Location'
+        ],
+    ],
 
     // 3.1.1
     'developer' => [

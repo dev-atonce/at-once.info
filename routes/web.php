@@ -17,6 +17,15 @@ use \App\Http\Controllers\DemoCtrl;
 
 $lang = ['th','en' , 'jp' , 'zh'];
 
+$brokenLangs = 'ko|ar|vi|id|fr|de|hi|bn|it|jw|ms|my|lo|ru|ta|te|pa|mr|pt';
+
+Route::get('{lang}/{path}', function ($lang, $path) {
+    return redirect('/th/' . $path, 301);
+})->where(['lang' => $brokenLangs, 'path' => '.*']);
+
+Route::get('{lang}', function ($lang) {
+    return redirect('/th', 301);
+})->where('lang', $brokenLangs);
 
 Route::get('clear/cache',function(){
     Artisan::call('config:cache');
@@ -343,6 +352,11 @@ Route::middleware(['Language'])->group(function()use($category,$lang)
             Route::get('/landing-page',[HomeCtrl::class,'landingPage']);
             Route::get('/rent-condo-life-ladprao-valley', function () {
                 return view('front-end.landing-page-condo', [
+                    'prefix' => 'front-end'
+                ]);
+            });
+            Route::get('/15k-value-package', function () {
+                return view('front-end.15k-value-package', [
                     'prefix' => 'front-end'
                 ]);
             });

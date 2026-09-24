@@ -5,10 +5,20 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="{{ @$seo->seo_keyword ? @$seo->seo_keyword : @$seo->seo_keyword_th }}">
-    <meta name="description" content="{{ @$seo->seo_description ? @$seo->seo_description :  @$seo->seo_description_th }}">
+    <meta name="keywords" content="{{ @$seo->seo_keyword ? @$seo->seo_keyword : (@$seo->seo_keyword_th ?? '') }}">
+    <meta name="description" content="{{ !empty($seo->seo_description) ? $seo->seo_description : (!empty($seo->seo_description_th) ? $seo->seo_description_th : 'ค้นหาบริษัท'.($categoryName ?? 'ชั้นนำ').'กว่า 700 บริษัทบน At-Once เปรียบเทียบและติดต่อได้เลย') }}">
 
-    <title>{{ @$seo->title ? @$seo->title : @$seo->title_th }}</title>
+    <title>
+        @if(!empty($seo->title))
+            {{ $seo->title }}
+        @elseif(!empty($seo->title_th))
+            {{ $seo->title_th }}
+        @elseif(!empty($seo->seo_keyword))
+            {{ $seo->seo_keyword }}
+        @else
+            รายชื่อบริษัท{{ $categoryName ?? 'ที่น่าเชื่อถือ' }} | แพลตฟอร์มB2B อันดับ1ในไทย - At-Once
+        @endif
+    </title>
 
     <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
@@ -29,8 +39,8 @@
             }
     </script>
 
-    <meta property="og:title" content="{{ @$seo->title ? @$seo->title : @$seo->title_th }}">
-    <meta property="og:description" content="{{ @$seo->seo_description ? @$seo->seo_description :  @$seo->seo_description_th }}">
+    <meta property="og:title" content="{{ !empty($seo->title) ? $seo->title : (!empty($seo->title_th) ? $seo->title_th : 'รายชื่อบริษัท'.($categoryName ?? 'ที่น่าเชื่อถือ').' | แพลตฟอร์มB2B อันดับ1ในไทย - At-Once') }}">
+    <meta property="og:description" content="{{ !empty($seo->seo_description) ? $seo->seo_description : (!empty($seo->seo_description_th) ? $seo->seo_description_th : 'ค้นหาบริษัท'.($categoryName ?? 'ชั้นนำ').'กว่า 700 บริษัทบน At-Once เปรียบเทียบและติดต่อได้เลย') }}">
     <meta property="og:image" content="{{ url('img/logo-bg-white.jpg') }}">
     <meta property="og:url" content="{{ url('') . '/' . Session('lang') . '/blog' }}">
 

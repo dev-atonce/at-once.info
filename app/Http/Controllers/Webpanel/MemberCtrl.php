@@ -502,6 +502,9 @@ class MemberCtrl extends Controller
         $data->facebook = $request->facebook;
         $data->facebook = $request->facebook;
         $data->line = $request->line;
+        $data->linkedin = $request->linkedin;
+        $data->instagram = $request->instagram;
+        $data->tiktok = $request->tiktok;
         $data->address_th = $request->address_th;
         $data->address_en = $request->address_en;
         $data->address_jp = $request->address_jp;
@@ -687,6 +690,9 @@ class MemberCtrl extends Controller
             'company.title_jp',
             'company.title_zh',
             'company.add_by_number',
+            'company.linkedin',
+            'company.instagram',
+            'company.tiktok',
         ])
             ->leftJoin('members as mb', 'mb.id', '=', 'company._id')
             ->leftJoin('domestic as dmt', 'dmt.id', '=', 'company._id')
@@ -763,6 +769,9 @@ class MemberCtrl extends Controller
         $data->website = $request->website;
         $data->facebook = $request->facebook;
         $data->line = $request->line;
+        $data->linkedin = $request->linkedin;
+        $data->instagram = $request->instagram;
+        $data->tiktok = $request->tiktok;
         $data->address_th = $request->address_th;
         $data->address_en = $request->address_en;
         $data->address_jp = $request->address_jp;
@@ -1673,6 +1682,12 @@ class MemberCtrl extends Controller
                     ];
                     break;
                 case 'pintong': // 2.7.2
+                    $filter['data'] = [
+
+                        (object)['field' => 'location', 'request' => $request->location, 'model' => \App\Models\Filter\CpLocationMd::class],
+                    ];
+                    break;
+                case 'bangpakong': // 2.7.3
                     $filter['data'] = [
 
                         (object)['field' => 'location', 'request' => $request->location, 'model' => \App\Models\Filter\CpLocationMd::class],

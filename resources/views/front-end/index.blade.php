@@ -199,8 +199,17 @@
             text-align: center;
         }
 
+        #back-to-top {
+            right: unset !important;
+            left: 40px !important;
+            bottom: 20px !important;
+        }
+
         /* Responsive */
         @media (max-width: 576px) {
+            .slick-dots {
+                width: auto !important;
+            }
             #notificationModal .modal-content {
                 max-width: calc(100% - 20px);
             }
@@ -218,6 +227,10 @@
                 padding: 2px 10px 2px 10px;
                 line-height: 1.3;
                 text-align: center;
+            }
+
+            #back-to-top {
+                left: 20px !important;
             }
         }
     </style>
@@ -356,9 +369,9 @@
                     </a>
                 </div>
                 <div class="col-12">
-                    <a href="{{ Session('lang') }}/promotion-package" target="_blank" class="sponsor">
+                    <a href="{{ Session('lang') }}/15k-value-package" target="_blank" class="sponsor">
                         <div class="top-company">
-                            <img src="{{ asset('upload/banner-19052023-132246.jpeg') }}" class="img-fluid img-banner" width="100%" alt="สนใจลงโฆษณา">
+                            <img src="{{ asset('upload/banner-17072026-161323.png') }}" class="img-fluid img-banner" width="100%" alt="สนใจลงโฆษณา">
                         </div>
                     </a>
                 </div>
@@ -654,6 +667,8 @@
         </div>
     </div> -->
 
+    @include('front-end.components.chatbot')
+
     <script src="js/jquery.js"></script>
     <!-- Optional JavaScript -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.10.0/js/lightgallery.min.js" integrity="sha512-gDBgGPXSeC2hx1W3S1CfSHbAValtLI8OArTGf0UVX7Fwb9Ak7HUE3LK9UEZxKGYVrIe0CJUVZDk9B2dIPwJ6VQ==" crossorigin="anonymous"></script> --}}
@@ -690,7 +705,7 @@
             infinite: true,
             slidesToShow: 5,
             slidesToScroll: 1,
-            arrows: false,
+            arrows: true,
             autoplay: true,
             autoplaySpeed: 0,
             speed: 4500,
@@ -730,6 +745,19 @@
         };
 
         const sl = $('.recommend-customer').slick(settings);
+
+        $('.recommend-customer').on('mousedown touchstart', '.slick-arrow, .slick-dots li button', function() {
+            if (sl && sl[0] && sl[0].slick) {
+                sl[0].slick.animating = false; 
+                sl[0].slick.options.speed = 500;
+                sl[0].slick.options.cssEase = 'ease';
+            }
+        });
+
+        $('.recommend-customer').on('afterChange', function(event, slick, currentSlide) {
+            slick.options.speed = 4500;
+            slick.options.cssEase = 'linear';
+        });
 
         $(window).on('resize', function() {
             if ($(window).width() > 420 && !sl.hasClass('slick-initialized')) {

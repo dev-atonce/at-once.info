@@ -4,9 +4,6 @@
     }
 
     #section-top {
-        position: sticky;
-        top: 0;
-        z-index: 8;
         background-color: rgba(255, 255, 255, 0.7);
         backdrop-filter: saturate(180%) blur(10px);
     }
