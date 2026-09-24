@@ -106,9 +106,13 @@
     (function () {
         var label = document.getElementById('chatbot-label');
         var loader = document.getElementById('chatbot-loader');
+        var btnBound = false;
+
         var observer = new MutationObserver(function () {
             var btn = document.getElementById('dify-chatbot-bubble-button');
-            if (btn) {
+
+            if (btn && !btnBound) {
+                btnBound = true;
                 observer.disconnect();
                 if (loader) {
                     loader.classList.add('hidden');
@@ -122,6 +126,8 @@
                         label.style.display = 'none';
                     }, { once: true });
                 }
+                // Auto-open the chat window as soon as the bubble button is ready.
+                btn.click();
             }
         });
         observer.observe(document.body, { childList: true, subtree: true });
