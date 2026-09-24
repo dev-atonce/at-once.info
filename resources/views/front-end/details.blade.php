@@ -1609,8 +1609,9 @@
 
     // Tel button click handler - optimized
     $(document).on('click', 'button.tel-top', function() {
+        PopupMinimize(false);
         $('.tel-com-top').toggleClass('d-none d-flex');
-        
+
         if ($('.tel-com-top').hasClass('d-flex')) {
             const locationData = converseToJson(geoIp);
             
@@ -1629,6 +1630,7 @@
     });
 
     $('a.tel').on('click', function() {
+        PopupMinimize(false);
         $('.tel-com').parent().toggleClass('d-none d-block');
         if ($('.tel-com').parent().hasClass('d-block')) {
             axios.post('api/' + category + '/store/statistics/click', {

@@ -1447,6 +1447,7 @@
     });
 
     $('button.tel-top').on('click', function() {
+        PopupMinimize(false);
         $('.tel-com-top').toggleClass('d-none d-flex');
         if ($('.tel-com-top').hasClass('d-flex')) {
             axios({
@@ -1464,6 +1465,7 @@
     })
 
     $('a.tel').on('click', function() {
+        PopupMinimize(false);
         $('.tel-com').parent().toggleClass('d-none d-block');
         if ($('.tel-com').parent().hasClass('d-block')) {
 
