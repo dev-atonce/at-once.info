@@ -941,6 +941,27 @@
                                                 class="form-control" placeholder="">
                                         </div>
                                     </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>LinkedIn</label>
+                                            <input type="text" name="linkedin" value="{{ $comp->linkedin }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>Instagram</label>
+                                            <input type="text" name="instagram" value="{{ $comp->instagram }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>TikTok</label>
+                                            <input type="text" name="tiktok" value="{{ $comp->tiktok }}"
+                                                class="form-control">
+                                        </div>
+                                    </div>
                                     <div class="col-lg-12">
                                         <ul class="nav nav-tabs" id="myTab3" role="tablist">
                                             <li class="nav-item" role="presentation">
