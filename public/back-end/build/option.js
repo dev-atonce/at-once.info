@@ -102,6 +102,7 @@ if($('#formEdit').length>0)
 {
     $(document).on('click','.btn-outline-danger',function(){
         const $this = $(this), id = $(this).parent().parent().find('input[name="opt_id[]"]').val();
+        console.log($this)
         if(typeof id !== typeof undefined){ destroy(id) }else{ $this.parent().parent().parent().remove(); }
     }) 
 }

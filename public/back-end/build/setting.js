@@ -41,114 +41,7 @@ if($('#menuForm').length>0){
     });
 }
 $(document).on('change','#position',function(){
-    val = $('option:selected',this).val();
-    disabled = {};
-    switch (val) {
-        case 'main':
-            disabled.icon = false;
-            disabled.st = true;
-            disabled.nd = true;
-            disabled.rd = true;
-        break;
-        case 'secondary': 
-            iconDisabled = true;
-            disabled.st = false;
-            disabled.nd = true;
-            disabled.rd = true;
-            $('#icon').removeClass('error');
-        break;
-        case 'third': 
-            disabled.icon = true;
-            disabled.st = false;
-            disabled.nd = false;
-            disabled.rd = true;
-            $('#icon').removeClass('error');
-        break;
-        case 'fourth': 
-            disabled.icon = true;
-            disabled.st = false;
-            disabled.nd = false;
-            disabled.rd = false;
-            $('#icon').removeClass('error');
-        break;
-    }
-    $('#icon').prop('disabled',disabled.icon);
-    $('#_id').prop('selectedIndex',0).prop('disabled',disabled.st);
-    $('#secondary').prop('selectedIndex',0).prop('disabled',disabled.nd);
-    $('#third').prop('selectedIndex',0).prop('disabled',disabled.rd);
-    // if(val=='secondary' || val=='third'){
-    //     iconDisabled = true;
-    //     $('#icon').removeClass('error');
-    //     $('#_id').prop('selectedIndex',0).prop('disabled',false);
-    // }else{
-    //     $('#_id').prop('disabled',true); 
-    // }
-    // $('#icon').prop('disabled',disabled);
-    
-})
-$(document).on('change','#_id',function(){
-    position = $('option:selected','#position').val();
-    main = $('option:selected',this).val();
-    if(position == 'third' || position == 'fourth')
-    {
-        data = getCategory('secondary',main);
-        secondarySl = document.querySelector('#secondary');
-        secondaryOp = secondarySl.querySelectorAll('option');
-        if(secondaryOp.length > 1 )
-        {
-            Array.from(secondaryOp).map(function(v,k){
-                if (k > 0) v.remove();
-            })
-        }
-        data.map(function(v,k){
-            option = document.createElement('option'); 
-            option.value = v.id;
-            option.innerHTML = v.name;
-            secondarySl.appendChild(option);
-        })
-    }
-})
-$(document).on('change','#secondary',function(){
-    position = $('option:selected','#position').val(); 
-    secondary = $('option:selected','#secondary').val();
-    if(position == 'fourth'){
-        data = getCategory('third',secondary);
-        thirdSl = document.querySelector('#third');
-        thirdOp = thirdSl.querySelectorAll('option');
-        if(thirdOp.length > 1 ) Array.from(thirdOp).map(function(v,k){ if (k > 0) v.remove(); })
-        data.map(function(v,k){
-            option = document.createElement('option');
-            option.value = v.id;
-            option.innerHTML = v.name;
-            thirdSl.appendChild(option);
-        })
-    }
-})
-document.addEventListener('click',function(e){
-    const addmoreBtn = e.target.closest('.add-more');
-    if(addmoreBtn){
-        countMenuItem = document.querySelectorAll('.add-more-content > .col-lg-12');
-        col = document.createElement('div');
-        col.classList.add('col-lg-12');
-        col.innerHTML = `<div class="border rounded p-2 mb-2">
-            <small>${countMenuItem.length}.</small>
-            <div class="input-group input-group-sm mb-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" for="username">Name</span>
-                </div>
-                <input type="text" class="form-control form-control-sm" name="name[]">
-            </div>
-            <div class="input-group input-group-sm">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" for="url">URL</span>
-                </div>
-                <input type="text" class="form-control form-control-sm" name="url[]">
-            </div>
-        </div>`;
-        addMoreContent = document.querySelector('.add-more-content');
-        addMoreContent.append(col);
-    }
-    const sortBtn = e.target.closest('.sort-category');
+    if($('option:selected',this).val()=='secondary'){ $('#icon').prop('disabled',true).removeClass('error'); }else{ $('#icon').prop('disabled',false); }
 })
 $('#icon').on('keyup',function(){
     $('#icon-preview').html($(this).val());
@@ -185,11 +78,7 @@ function destroy(id)
         }
     });
 }
+$(document).on('change','#position',function(){
+    if($('option:selected',this).val()=='secondary'){ $('#_id').prop('selectedIndex',0).prop('disabled',false) }else{ $('#_id').prop('disabled',true) }
+})
 
-function getCategory(position,id) {
-    return data = $.ajax({
-        async:false,
-        url:`webpanel/get/category/${position}/${id}`,
-        error:function(err){ alert(err) }
-    }).responseJSON;
-}

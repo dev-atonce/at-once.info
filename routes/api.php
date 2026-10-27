@@ -97,7 +97,6 @@ Route::prefix('ai-updata-by-piatec')->group(function () {
 Route::prefix('blog')->group(function () {
     Route::get('/{id}/stat/summary', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'blogStat'])->where('id', '[0-9]+');
     Route::get('/{id}/stat/graph', [\App\Http\Controllers\Api\StatisticsCtrl::class, 'blogStatGraph'])->where('id', '[0-9]+');
-
     Route::get('/all', [\App\Http\Controllers\Api\BlogCtrl::class, 'getAllBlog']);
     Route::get('/all/{type}', [\App\Http\Controllers\Api\BlogCtrl::class, 'getAllBlog'])->where(['type' => '[a-z-]+']);
     Route::get('/company', [\App\Http\Controllers\Api\BlogCtrl::class, 'blogCompany']);
@@ -183,6 +182,5 @@ foreach ($category as $key => $v) {
 Route::get('/line/noti', [\App\Http\Controllers\Api\LineNotiCtrl::class, 'notification']);
 Route::get('/getOnlineOfMonth', [\App\Http\Controllers\Api\DashboardCtrl::class, 'getOnlineOfMonth']);
 Route::get('/getDesignedOfMonth', [\App\Http\Controllers\Api\DashboardCtrl::class, 'getDesignedOfMonth']);
-
 // Chatbot Log
 Route::post('/chatbot/log', [\App\Http\Controllers\Api\ChatbotLogCtrl::class, 'store']);
