@@ -15,7 +15,7 @@
     <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "Organization",
             "name": "At-Once",
             "url": "https://at-once.info",
@@ -45,7 +45,7 @@
     @endphp
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "{{ $row->name }}",
             "url": "https://at-once.info/th/{{ $row->key }}/cp/{{ $row->profile_url }}",
@@ -75,7 +75,7 @@
     <!-- BreadcrumbList Schema -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {

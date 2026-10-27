@@ -55,7 +55,7 @@ return [
         'ftp' => [
             'driver' => 'ftp',
             'host'  => env('FTP_HOST'),
-            'port'  => env('FTP_PORT'),
+            'port'  => (int) env('FTP_PORT', 21),
             'username' => env('FTP_USER'),
             'password' => env('FTP_PASSWORD'),
             'root' => '/public_html'

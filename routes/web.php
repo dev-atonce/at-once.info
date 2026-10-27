@@ -237,10 +237,6 @@ Route::prefix('my/service')->group(function(){
 
 });
 
-Route::prefix('read')->group(function(){
-    Route::get('pdf',[\App\Http\Controllers\ReadCtrl::class,'pdfRead']);
-});
-
 /**
  *
  * DEMO
