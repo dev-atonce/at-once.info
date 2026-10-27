@@ -1002,7 +1002,7 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush list team-member">
                     @foreach (\App\Models\UsersMd::select(['users.*', 'upo.position as positionName'])->leftJoin('user_position as upo', 'users.position', '=', 'upo.id')->where('status', 'active')->get() as $k => $v)
-                        @php($diff = $v->last_seen != '' ? Carbon\Carbon::parse($v->last_seen)->diffInMinutes() : 3)
+                        @php($diff = $v->last_seen != '' ? (int) Carbon\Carbon::parse($v->last_seen)->diffInMinutes(absolute: true) : 3)
                         <li class="list-group-item member" data-id="{{ $v->id }}">
                             <div class="row align-items-center">
                                 <div class="position">
