@@ -111,7 +111,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fonts/icofont.css">
     <link href="css/style.css?v=0004" rel="stylesheet">
-    <link href="css/panel-box.css?v=0003" rel="stylesheet">
+    <link href="css/panel-box.css?v=0004" rel="stylesheet">
     <link href="css/gallery.css?v=002" rel="stylesheet">
     <link href="css/detail.css?v=0001" rel="stylesheet">
     @if ($row->type == 'full')

@@ -356,7 +356,7 @@
     <style>
         .banner-condo .slick-dots {
             display: none !important;
-        }
+    }
     </style>
     <section class="banner-condo page-cp mt-3">
         <div class="container">

@@ -192,7 +192,7 @@
   display: block;
   overflow: hidden;
   margin: 0;
-  padding: 0px;
+  padding: 10px;
 }
 .slick-list:focus
 {

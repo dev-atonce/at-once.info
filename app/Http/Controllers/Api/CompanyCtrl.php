@@ -387,4 +387,217 @@ class CompanyCtrl extends Controller
 
     }
 
+    public function updateCompanyTranslateByN8N(Request $request)
+    {
+        try {
+            $data = \App\Models\CompanyMd::find($request->id);
+            if (!$data) {
+                return response()->json(['status' => 'error', 'data' => 'Company not found']);
+            }
+            // อัปเดตเฉพาะฟิลด์ที่มีค่ามา
+            foreach (['name_jp','address_th', 'address_en', 'description_th', 'description_en', 'email', 'phone', 'gmap', 'type', 'website'] as $field) {
+                if ($request->filled($field)) {
+                    $data->$field = $request->$field;
+                }
+            }
+            // ถ้ามีการแก้ไขภาษาเพิ่มเติม
+            if ($request->filled('more_th') || $request->filled('more_jp')) {
+                $data->edited = now();
+                $data->edited_by = "AI-Piatec";
+            }
+            $data->updated = now();
+            $data->updated_by = "AI-Piatec";
+            $data->save();
+            return response()->json(['status' => 'success', 'data' => $data]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'data' => $e->getMessage()]);
+        }
+    }
+
+    public function getIncompleteCompanies(Request $request)
+    {
+        try{
+            $skip = $request->skip ?? 0;
+            $limit = $request->limit ?? 100;
+
+            $data = \App\Models\CompanyMd::select([
+                'company._id AS members_id',
+                'company.id AS company_id',
+                'company.type',
+                'company.name_th',
+                'company.name_en',
+                'company.email',
+                'company.address_th',
+                'company.phone',
+                'company.description_th',
+                \DB::raw("CONCAT('".url('/th')."/', category.key, '/cp/', company.profile_url) AS full_profile_url")
+            ])
+            ->join('category', 'company.category', '=', 'category.id')
+            ->whereNotNull('company.profile_url')
+            ->whereNotNull('category.key')
+            ->where('company.type', '=', 'basic')
+            ->where(function($query) {
+                $query->whereNull('company.address_th')
+                      ->orWhereNull('company.phone')
+                      ->orWhere('company.description_th', '');
+            })
+            ->skip($skip)
+            ->limit($limit)
+            ->get();
+
+            return response()->json($data);
+
+        }catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'data' => $e]);
+        }
+    }
+
+    public function updateCompaniesByCSV(Request $request)
+    {
+        try {
+            // ตรวจสอบว่ามีไฟล์ CSV หรือไม่
+            if (!$request->hasFile('csv_file')) {
+                return response()->json(['status' => 'error', 'data' => 'CSV file is required']);
+            }
+
+            $file = $request->file('csv_file');
+            
+            // ตรวจสอบประเภทไฟล์
+            if ($file->getClientOriginalExtension() !== 'csv') {
+                return response()->json(['status' => 'error', 'data' => 'File must be CSV format']);
+            }
+
+            $csvData = [];
+            $handle = fopen($file->getPathname(), 'r');
+            
+            // อ่าน header row
+            $headers = fgetcsv($handle);
+            
+            // ตรวจสอบ required columns
+            $requiredColumns = ['id'];
+            $missingColumns = array_diff($requiredColumns, $headers);
+            if (!empty($missingColumns)) {
+                fclose($handle);
+                return response()->json(['status' => 'error', 'data' => 'Missing required columns: ' . implode(', ', $headers)]);
+            }
+
+            $results = [
+                'success' => [],
+                'errors' => [],
+                'total_processed' => 0,
+                'success_count' => 0,
+                'error_count' => 0
+            ];
+
+            // อ่านข้อมูลทีละแถว
+            while (($row = fgetcsv($handle)) !== false) {
+                $results['total_processed']++;
+                
+                // สร้าง array จาก header และ data
+                $rowData = array_combine($headers, $row);
+                
+                try {
+                    $company = \App\Models\CompanyMd::find($rowData['id']);
+                    
+                    if (!$company) {
+                        $results['errors'][] = [
+                            'row' => $results['total_processed'],
+                            'id' => $rowData['id'],
+                            'error' => 'Company not found'
+                        ];
+                        $results['error_count']++;
+                        continue;
+                    }
+
+                    // อัปเดตเฉพาะฟิลด์ที่มีค่ามา
+                    $updatedFields = [];
+                    foreach (['address_th', 'address_en', 'description_th', 'description_en', 'name_th', 'name_en', 'name_jp', 'name_zh', 'detail_th', 'detail_en', 'detail_jp', 'detail_zh', 'more_th', 'more_en', 'more_jp', 'more_zh', 'type'] as $field) {
+                        if (isset($rowData[$field]) && $rowData[$field] !== '') {
+                            $company->$field = $rowData[$field];
+                            $updatedFields[] = $field;
+                        }
+                    }
+
+                    // ถ้ามีการแก้ไขภาษาเพิ่มเติม
+                    if (isset($rowData['more_th']) && $rowData['more_th'] !== '' || isset($rowData['more_jp']) && $rowData['more_jp'] !== '') {
+                        $company->edited = now();
+                        $company->edited_by = "AI-Piatec";
+                    }
+
+                    $company->updated = now();
+                    $company->updated_by = "AI-Piatec";
+                    $company->save();
+
+                    $results['success'][] = [
+                        'row' => $results['total_processed'],
+                        'id' => $company->id,
+                        'updated_fields' => $updatedFields
+                    ];
+                    $results['success_count']++;
+
+                } catch (\Exception $e) {
+                    $results['errors'][] = [
+                        'row' => $results['total_processed'],
+                        'id' => $rowData['id'] ?? 'unknown',
+                        'error' => $e->getMessage()
+                    ];
+                    $results['error_count']++;
+                }
+            }
+
+            fclose($handle);
+
+            // สร้าง CSV response
+            $csvData = [];
+            $csvData[] = ['id', 'name_th', 'state', 'message', 'updated_fields', 'full_profile_url'];
+            
+            // เพิ่มข้อมูล success
+            foreach ($results['success'] as $success) {
+                $company = \App\Models\CompanyMd::find($success['id']);
+                $fullProfileUrl = '';
+                if ($company) {
+                    $category = \App\Models\CategoryMd::find($company->category);
+                    if ($category) {
+                        $fullProfileUrl = url('/th') . '/' . $category->key . '/cp/' . $company->profile_url;
+                    }
+                }
+                
+                $csvData[] = [
+                    $success['id'],
+                    $company ? $company->name_th : '',
+                    'success',
+                    'Updated successfully',
+                    implode(', ', $success['updated_fields']),
+                    $fullProfileUrl
+                ];
+            }
+            
+            // เพิ่มข้อมูล error
+            foreach ($results['errors'] as $error) {
+                $csvData[] = [
+                    $error['id'],
+                    '',
+                    'error',
+                    $error['error'],
+                    '',
+                    ''
+                ];
+            }
+
+            // สร้าง CSV content
+            $csvContent = '';
+            foreach ($csvData as $row) {
+                $csvContent .= '"' . implode('","', $row) . '"' . "\n";
+            }
+
+            // ส่ง CSV response
+            return response($csvContent, 200, [
+                'Content-Type' => 'text/csv',
+                'Content-Disposition' => 'attachment; filename="bulk_update_results.csv"'
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'data' => $e->getMessage()]);
+        }
+    }
 }

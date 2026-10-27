@@ -73,6 +73,7 @@ function updateNavigation() {
        lastId = id;
        // Set/remove active class
 
+       console.log(id);
        menuItems
          .parent().removeClass("active")
          .end().filter("[data-scroll='#"+id+"']").parent().addClass("active");

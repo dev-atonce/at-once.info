@@ -111,8 +111,8 @@ class HomeCtrl extends Controller
 
         $seo = \App\Helpers\SeoLandingPage::getLandingSeoKeyword($lang);
 
-        $companyPerPage = 7;
-        $blogPerPage = 12;
+        $companyPerPage = 5;
+        $blogPerPage = 4;
 
         if ($request->get('partial') === 'blogs') {
             $blogPage = (int)$request->get('blog_page', 1);

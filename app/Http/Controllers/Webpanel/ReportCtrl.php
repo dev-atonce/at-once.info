@@ -41,7 +41,8 @@ class ReportCtrl extends Controller
                 'cp.name_en as company',
                 'category.name_en as categoryName',
                 'sms_history.created'
-            ]);
+            ])
+            ->orderBy('sms_history.created', 'desc');
 
         return view('back-end.modules.report.index', [
             'prefix' => $this->prefix,

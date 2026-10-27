@@ -60,8 +60,8 @@ const blogSummary = (el) => {
     var tab = $('.tab-blog-activity');
     var totolElm = $('.blog-total');
     var byElm = $('.blog-by');
-    var categoryId = [];
-    var categoryName = [];
+    var industryId = [];
+    var industryName = [];
     var byName = [];
 
     if (typeof el == typeof undefined) {
@@ -70,10 +70,10 @@ const blogSummary = (el) => {
       if(tabActive.find('li').length>0){
         tabActive.find('li').each(function(){
           id = $(this).attr('id');
-          category = $(this).attr('category');
+          industry = $(this).attr('industry');
           by = $(this).find('small').attr('blog-by');
-          if(categoryId != undefined) if($.inArray(id,categoryId) === -1) categoryId.push(id);
-          if(category != undefined) if($.inArray(category,categoryName) === -1) categoryName.push(category);
+          if(industryId != undefined) if($.inArray(id,industryId) === -1) industryId.push(id);
+          if(industry != undefined) if($.inArray(industry,industryName) === -1) industryName.push(industry);
           if(by != undefined) if($.inArray(by,byName) === -1) byName.push(by);
           tabActive.find('li');
         });   
@@ -88,13 +88,13 @@ const blogSummary = (el) => {
       $('[tab-toggle="blog-activity"]').addClass('d-none');
       tabActive.removeClass('d-none');
       let id='';
-      let category='';
+      let industry='';
       tabActive.find('li').each(function(){
         id = $(this).attr('id');
-        category = $(this).attr('category');
+        industry = $(this).attr('industry');
         by = $(this).find('small').attr('blog-by');
-        if($.inArray(id,categoryId) === -1) categoryId.push(id);
-        if($.inArray(category,categoryName) === -1) categoryName.push(category);
+        if($.inArray(id,industryId) === -1) industryId.push(id);
+        if($.inArray(industry,industryName) === -1) industryName.push(industry);
         if($.inArray(by,byName) === -1) byName.push(by);
       });
       if(tabActive.find('ol').height()>523){
@@ -104,15 +104,15 @@ const blogSummary = (el) => {
     totolElm.html('<strong>Total:&nbsp;</strong>');
     byElm.html('<strong>By:&nbsp;</strong>');
 
-    if(categoryName.length>0){
+    if(industryName.length>0){
         let blogTotal = '';
 
-        $.each(categoryId,function(i,v){
+        $.each(industryId,function(i,v){
             if (i>0) totolElm.append(',&nbsp;');
-            if (typeof categoryName[i] !== typeof undefined) {
+            if (typeof industryName[i] !== typeof undefined) {
                 // console.log(tabActive)
                 // if(typeof tabActive!== typeof undefined){
-                    blogTotal += '[ ' + categoryName[i] + ' : ' + tabActive.find('li').map(function(){ if($(this).attr('id') == v) return true }).get().length + ' ]';
+                    blogTotal += '[ ' + industryName[i] + ' : ' + tabActive.find('li').map(function(){ if($(this).attr('id') == v) return true }).get().length + ' ]';
                 // }
             }else{
                 // if(tabActive.find('li').length>0){
@@ -154,11 +154,11 @@ const blogActivity = () =>
         for(i=0;i<response[dataTab].data.length; i++){
             let text  = response[dataTab].data[i].name_th;
             // let small = '';
-            let category = '';
-            if(response[dataTab].data[i]?.categoryName){
-                category = response[dataTab].data[i].categoryName;
+            let industry = '';
+            if(response[dataTab].data[i]?.industryName){
+                industry = response[dataTab].data[i].industryName;
             }
-            li = $('<li id="'+response[dataTab].data[i].categoryId+'" category="'+response[dataTab].data[i].categoryName+'"><div class="list-item d-flex"><strong>'+category+'</strong><a style="width:'+(blogListWidth - 212)+'px;">'+text+'</span></a></li>');
+            li = $('<li id="'+response[dataTab].data[i].industryId+'" industry="'+response[dataTab].data[i].industryName+'"><div class="list-item d-flex"><strong>'+industry+'</strong><a style="width:'+(blogListWidth - 212)+'px;">'+text+'</span></a></li>');
             if(dataTab=='blog-created' && response[dataTab].data[i].created_by!=null) {        
                 small = $('<small class="list-item-right" blog-by="'+response[dataTab].data[i].created_by+'"><strong>By: </strong>'+response[dataTab].data[i].created_by+'</small>');
                 li.children().append(small);
