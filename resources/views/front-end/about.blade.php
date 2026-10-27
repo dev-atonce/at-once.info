@@ -14,7 +14,7 @@
     <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "Organization",
             "name": "At-Once",
             "url": "https://at-once.info",
@@ -32,7 +32,7 @@
     <!-- WebApplication Schema -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "At-Once B2B Business Matching Platform",
             "url": "https://at-once.info/th",
@@ -55,7 +55,7 @@
     <!-- Service Schema -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "Service",
             "serviceType": "B2B Business Matching",
             "name": "At-Once — บริการจับคู่ธุรกิจ B2B",

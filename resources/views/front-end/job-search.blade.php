@@ -23,7 +23,7 @@
     <!-- 既存のOrganization Schema（SearchAction削除版） -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org",
+            "@@context": "https://schema.org",
             "@type": "Organization",
             "name": "At-Once",
             "url": "https://at-once.info",

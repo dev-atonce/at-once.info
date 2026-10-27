@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Database\MySqlConnection;
+use Illuminate\Database\Connection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // return base_path('punlic_html');
+        Connection::resolverFor('mysql', function ($connection, $database, $prefix, $config) {
+            return new MySqlConnection($connection, $database, $prefix, $config);
+        });
     }
 
     /**
