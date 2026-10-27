@@ -87,6 +87,8 @@ Route::get('getCompanyFromCategory', [\App\Http\Controllers\Api\CompanyCtrl::cla
 Route::post('send/sms', [\App\Http\Controllers\CompanyCtrl::class, 'sendSMS']);
 Route::post('send/sms-to-sale', [\App\Http\Controllers\HomeCtrl::class, 'sendSMS']);
 Route::prefix('ai-updata-by-piatec')->group(function () {
+    Route::get('incomplete-companies', [\App\Http\Controllers\Api\CompanyCtrl::class, 'getIncompleteCompanies']);
+    Route::post('updateCompaniesByCSV', [\App\Http\Controllers\Api\CompanyCtrl::class, 'updateCompaniesByCSV']);
     Route::post('company', [\App\Http\Controllers\Api\CompanyCtrl::class, 'updateCompanyTranslateByN8N']);
     Route::get('blog', [\App\Http\Controllers\Api\BlogCtrl::class, 'getBlogForTranslate']);
     Route::post('blog', [\App\Http\Controllers\Api\BlogCtrl::class, 'updataBlogToTranslate']);
