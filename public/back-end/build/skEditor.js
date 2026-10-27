@@ -190,7 +190,7 @@
                                         <div class="input-group-prepend">\
                                             <span class="input-group-text"><i class="fas fa-ruler-combined fa-lg"></i></span>\
                                         </div>\
-                                        <input type="text" class="form-control" name="im_width" placeholder="Width">\
+                                        <input type="text" class="form-control" name="im_width" placeholder="Width" value="800">\
                                         <input type="text" class="form-control" name="im_height" placeholder="Height">\
                                     </div>\
                                 </div>\
