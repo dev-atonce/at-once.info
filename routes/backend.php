@@ -622,5 +622,15 @@ Route::middleware(['Webpanel'])->group(function () use ($category) {
             Route::get('/', [\App\Http\Controllers\Webpanel\TodolistCtrl::class, 'index']);
             Route::post('/description', [\App\Http\Controllers\Webpanel\TodolistCtrl::class, 'updateDescription']);
         });
+        Route::prefix('chatbot-logs')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Webpanel\ChatbotLogCtrl::class, 'index']);
+            Route::get('/export', [\App\Http\Controllers\Webpanel\ChatbotLogCtrl::class, 'export']);
+        });
+        Route::prefix('chatbot-clicks')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Webpanel\ChatbotClickCtrl::class, 'index']);
+            Route::get('/export', [\App\Http\Controllers\Webpanel\ChatbotClickCtrl::class, 'export']);
+            Route::get('/{profileUrl}/export', [\App\Http\Controllers\Webpanel\ChatbotClickCtrl::class, 'exportDetail']);
+            Route::get('/{profileUrl}', [\App\Http\Controllers\Webpanel\ChatbotClickCtrl::class, 'show']);
+        });
     });
 });
